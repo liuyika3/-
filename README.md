@@ -1,148 +1,84 @@
 # 刘益恺 · 个人作品集（dmoes）
 
-本仓库是**刘益恺**的个人作品与实验集合：把日常开发里的**自动化工具**、**产品功能 Demo**、**减脂教练（Jovida）业务与界面**、**社媒向科普物料**，以及部分**演讲与需求文档**放在同一处，便于自己回顾，也方便对外展示时一键打开。
+你好，这里是**刘益恺**的作品集仓库：个人开发的**自动化工具**、**产品功能 Demo**、**减脂教练（Jovida）业务与界面**、**社媒向科普物料**，以及部分**演讲与需求文档**，都集中在本仓库中。
 
 ---
 
-## 对外一般发哪个链接？
+## 从这里开始看
 
-**最常发、也最不会误会的是仓库主页**（点进去就是 README + 目录 + 文件）：
+| 你想做什么 | 怎么做 |
+|------------|--------|
+| **在网页上看说明和代码** | 打开仓库主页：**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)** — 本页 README 会显示在仓库首页，下方有目录与文件。 |
+| **在浏览器里直接点作品集（不装环境）** | 若仓库已开启 **GitHub Pages** 且部署成功，可尝试：**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**。若显示 404，说明静态站尚未发布或最近一次构建失败，以仓库主页为准即可。 |
+| **在自己电脑上跑起来** | 见下一节「本地运行」。 |
 
-**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)**
-
-这和「能不能在浏览器里直接跑起来」是两件 GitHub 自带能力：
-
-| 链接类型 | 地址形态 | 对方看到什么 |
-|----------|------------|----------------|
-| **仓库**（默认就发这个） | `https://github.com/<用户>/<仓库>` | 说明文档、代码树、Issues 等；**不自动运行**你的 React，但可按 README 本地 `npm run dev`。 |
-| **GitHub Pages**（可选） | `https://<用户>.github.io/<仓库名>/` | 把构建好的静态站挂出去，**像网站一样打开**；要在仓库里 **Settings → Pages** 打开并走 Actions，**没配好就会 404**，不是仓库坏了。 |
-
----
-
-## 给 HR / 面试官：要不要克隆、用谁的 GitHub
-
-- **只想快速了解项目**：发上面的 **GitHub 仓库链接** 即可；对方在网页上就能读 README、看目录结构。
-- **想直接在浏览器里点作品集、不装 Node**：才需要 **GitHub Pages** 那类地址（见下节）；若仍是 404，多半是 **Pages 未启用** 或 **Actions 部署失败**，需要仓库管理员在 Settings 里检查。
-- **仓库是「公开 Public」时**：对方可以用**自己的任意 GitHub 账号**或**不登录**，用 HTTPS 克隆，例如：  
-  `git clone https://github.com/liuyika3/-.git`  
-  克隆与拉代码**不需要**被你加为协作者，也**不需要**用你的账号。
-- **仓库是「私有 Private」时**：你必须在 GitHub 上把对方 **Invite** 进仓库（或用带权限的 Token），对方才能克隆。
-
-本地跑作品集前请安装 **Node.js 20 或 22（LTS）** 与 **npm**（随 Node 安装）。建议克隆到**带名字的文件夹**，避免仓库名 `-` 与 shell 的 `cd -`（返回上一目录）混淆：
+**克隆仓库（公开仓库时）**：一般不需要仓库作者把你加成协作者；用 HTTPS 即可，例如：
 
 ```bash
 git clone https://github.com/liuyika3/-.git liuyikai-dmoes
+```
+
+若仓库为**私有**，需由作者在 GitHub 上邀请你的账号后，你才能克隆或浏览。
+
+---
+
+## 本地运行（作品集主程序）
+
+主程序在 **`vibe-portfolio/`**：左侧选作品，右侧内嵌预览；也可在界面里用「新标签」全屏打开某一则。
+
+**环境要求：** **Node.js 20 或更高（推荐 22 LTS）**，并自带 **npm**。
+
+```bash
 cd liuyikai-dmoes/vibe-portfolio
 npm install
 npm run dev
 ```
 
----
+在终端提示的本地地址（一般为 `http://localhost:5173`）用浏览器打开即可。
 
-## 怎么浏览（推荐）
-
-主入口是 **`vibe-portfolio/`** 里的 React 作品集：左侧选条目，右侧内嵌预览；也可在每项里用「新标签」全屏打开。
-
-```bash
-cd vibe-portfolio
-npm install
-npm run dev
-```
-
-浏览器访问终端里提示的本地地址即可。生产构建与静态资源内嵌逻辑见该目录下的 `vite.config.ts` 与 `Dockerfile`。
+若要生产构建或 Docker，见 `vibe-portfolio/` 下的 `vite.config.ts` 与 `Dockerfile`。
 
 ---
 
-## 仓库里大致有什么
+## 仓库里有什么
 
-| 方向 | 说明 | 在本仓库中的位置（示例） |
-|------|------|--------------------------|
-| **工具 · 自动化** | 浏览器内可用的效率与自动化原型（部分需本机服务或自行配置密钥） | `gemini_web_client/`、`mail-tool-gmail/` 等 |
-| **产品 · Feature** | 独立功能或流程的界面 Demo（外食、Onboarding、万物教练视觉原型等） | `外食demo/`、`onboarding可视化demo/`、`万物教练api demos/` 等 |
-| **减脂教练业务** | 业务体系总览（SPARE）与各维度下的功能界面示意 | **`减脂教练业务展示/`**（见下一节） |
-| **科普 · 社媒向产出** | 适合信息流、公众号外跳的科普单页（多为主题化 HTML） | `workflow-demos/popular-science-posts/` |
-| **方法论与长文页** | 独立方法论站点的构建产物入口（需在构建机配置 pre 路径） | 作品集内「Jovida Methodology（pre）」条目 |
-| **演讲与需求文档** | Word / PDF / Markdown 等材料 | 仓库根目录及子目录中按需归档的 `.docx`、`.pdf`、`.md` 等 |
+| 方向 | 说明 | 位置（示例） |
+|------|------|----------------|
+| **工具 · 自动化** | 浏览器内工具与自动化原型（部分需本机服务或自行配置密钥） | `gemini_web_client/`、`mail-tool-gmail/` 等 |
+| **产品 · Feature** | 功能与流程界面 Demo | `外食demo/`、`onboarding可视化demo/`、`万物教练api demos/` 等 |
+| **减脂教练业务** | SPARE 五维总览与各维度下的界面示意 | **`减脂教练业务展示/`**（说明见下节） |
+| **科普 · 社媒向产出** | 信息流/外跳适用的单页 HTML | `workflow-demos/popular-science-posts/` |
+| **方法论长页** | 方法论独立站点的构建产物（在作品集中为单独条目） | 见作品集内「Jovida Methodology（pre）」 |
+| **演讲与需求** | Word、PDF、Markdown 等 | 仓库根目录及子目录中的相关文件 |
 
-> 说明：部分工具依赖 OAuth、Vertex 或本地 Node 服务，**不等同于线上正式产品**；对外分享时注意密钥与隐私。
+部分 Demo 依赖 OAuth、云端 API 或本地服务，**仅供演示**，不等同于线上正式产品；请勿在截图或录屏中泄露密钥。
 
 ---
 
-## 减脂教练业务展示：SPARE 五维与「点字母进功能」
+## 减脂教练业务：SPARE 五维
 
-在作品集里打开 **「减脂教练业务展示」**，会进入 **`减脂教练业务展示/index.html`** 的 **SPARE 总览页**。页面用单侧大括号把五个维度串在一起：**每一个字母都是可点击入口**；点击后会进入**针对该业务维度设计的 feature 子页**（界面示意、长图或录屏占位），用于说明「这一维在产品里长什么样、解决什么问题」。
+在作品集里进入 **「减脂教练业务展示」** 后，会看到 **SPARE** 总览：**S / P / A / R / E 每个字母都可点击**，进入对应业务维度下的 **feature 界面示意**（静态页或长图）。各字母含义与入口如下（与 `减脂教练业务展示/index.html` 一致）。
 
-五维与字母对应关系如下（与总览页文案一致）：
+| 字母 | 维度 | 含义（一句话） | 点进去看什么 |
+|:----:|------|----------------|--------------|
+| **S** | 科学性 | 营养信息与识别能力，支撑「吃得明白」 | 食物预识别等界面（`modules/m4-pre-recognition.html`） |
+| **P** | 个性化 | 结合目标与偏好的解释与建议 | 食物评分与分析（`modules/m3-food-scoring.html`） |
+| **A** | 主动性 | 把长期行为拆成可完成的小任务 | 每日挑战与打卡（`modules/m2-daily-challenge.html`） |
+| **R** | 结果导向 | 把摄入与消耗讲成可感知的叙事 | 结果与动效示意（`modules/m1-food-burn.html`） |
+| **E** | 可落地性（外食） | 在外食场景里仍能执行决策 | 外食体系界面物料（`modules/e-out-eating-system.html`） |
 
-| 字母 | 维度名称 | 业务含义（一句话） | 点进去看什么 |
-|:----:|----------|-------------------|----------------|
-| **S** | **科学性** | 用可核对的营养信息与识别能力，支撑「吃得明白」 | 食物预识别相关界面：扫描、营养卡、Non-food、批量记录等（`modules/m4-pre-recognition.html`） |
-| **P** | **个性化** | 同一食物在不同目标与偏好下的解释与建议 | 食物评分与分析：分数、结论与下一步建议（`modules/m3-food-scoring.html`） |
-| **A** | **主动性** | 把长期行为拆成可完成的小任务，促使用户持续参与 | 每日挑战：打卡与任务卡片界面（`modules/m2-daily-challenge.html`） |
-| **R** | **结果导向** | 把摄入与消耗组织成用户能感知、能坚持的叙事 | 结果叙事与动效节奏示意（`modules/m1-food-burn.html`） |
-| **E** | **可落地性**（外食体系） | 在真实外食场景里仍能执行决策 | 外食体系：首页、菜谱与外食详情等界面物料（`modules/e-out-eating-system.html`） |
-
-总览页副标题中的中文概括是：**科学性 · 个性化 · 主动性 · 结果导向 · 可落地性**。子页浏览完后，可用各子页内的 **「返回 SPARE 总览」** 回到字母导航。
+总览副标题：**科学性 · 个性化 · 主动性 · 结果导向 · 可落地性**。子页内可返回 SPARE 总览。
 
 ---
 
 ## 技术栈（作品集壳）
 
-- **Vite 7 + React 19 + TypeScript + Tailwind CSS 4**
-- 开发/预览期通过中间件挂载 **`/__embed`** 等路径；生产构建时会将需要的静态 Demo 拷入 `dist`，便于纯静态托管。
+**Vite 7、React 19、TypeScript、Tailwind CSS 4。** 开发时通过 Vite 挂载内嵌静态资源；执行 `npm run build` 时会把需在预览里用到的 Demo 文件一并打进 `dist/`，便于静态部署。
 
 ---
 
-## 在线作品集（GitHub Pages，可选）
+## 作者与使用说明
 
-若已在仓库 **Settings → Pages** 把 **Source** 设为 **GitHub Actions**，且 **Actions** 里 **Deploy portfolio to GitHub Pages** 成功，则可通过静态站预览（无需克隆）：
+**刘益恺** — 个人作品集与实验归档，内容会随项目更新。
 
-**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**
-
-若打开为 **404**：请到 **Settings → Pages** 确认已启用 **GitHub Actions** 部署，并打开 **Actions** 标签查看最近一次 workflow 是否失败（失败时站点不会发布）。**对外沟通仍以 `github.com/liuyika3/-` 为主链接即可**，Pages 当作「有则加分」的演示入口。
-
----
-
-## 作者
-
-**刘益恺** — 本仓库为个人作品集与实验归档，内容随项目迭代更新。
-
-若你通过 Git 克隆本仓库，欢迎本地运行 `vibe-portfolio` 浏览；转载或商用页面中的具体文案与素材前，请先与作者确认授权。
-
----
-
-## GitHub 推送（本机已配置专用 SSH）
-
-本仓库的 `origin` 为 **`git@github.com:liuyika3/-.git`**。若在 Windows 上遇到 **`WARNING: UNPROTECTED PRIVATE KEY FILE`**（默认 `~/.ssh/id_ed25519` 权限过宽），OpenSSH 会拒绝使用该密钥。
-
-**已采用做法：** 在 `~/.ssh/` 下使用专用密钥 **`id_ed25519_dmoes`**，并在本仓库内执行：
-
-```bash
-git config core.sshCommand "ssh -i <你的用户目录>/.ssh/id_ed25519_dmoes -o IdentitiesOnly=yes"
-```
-
-（当前机器上已由脚本写入；克隆到新电脑后请重新运行下方脚本。）
-
-### 第一次把代码推上去
-
-1. 在仓库根目录执行（或在 PowerShell 里 `cd` 到本仓库后执行）：
-
-   ```powershell
-   .\scripts\github-setup.ps1
-   ```
-
-2. 脚本会打印 **公钥**一整行。打开 GitHub：  
-   **[SSH and GPG keys](https://github.com/settings/keys)** → **New SSH key**，标题随意（如 `dmoes PC`），把公钥粘贴进去保存。  
-   （若只用这一把钥匙管该仓库，也可以在仓库 **Settings → Deploy keys** 里添加并勾选 **Allow write access**。）
-
-3. 再执行一次 **`.\scripts\github-setup.ps1`**（或手动 `ssh -T git@github.com` 后 `git push -u origin main`）。看到 `Hi liuyika3! You've successfully authenticated...` 即表示 SSH 已通。
-
-### 若 HTTPS 间歇连不上
-
-部分网络环境下 Git 走 HTTP/2 会超时，可只对 GitHub 使用 HTTP/1.1：
-
-```bash
-git config --global http.https://github.com/.httpVersion HTTP/1.1
-```
-
-推送仍建议在浏览器登录 GitHub 时使用 **Personal Access Token** 作为密码，或使用 **Git Credential Manager**。
+转载、商用或二次分发本仓库中的页面与素材前，请先取得作者同意。
