@@ -1,0 +1,6526 @@
+[
+  {
+    "index": 1,
+    "name": "Bell Sauce Dipping Sauce",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bell Sauce Dipping Sauce'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 2,
+    "name": "Chicken Nuggets - 5 Piece",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chicken Nuggets - 5 Piece'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 3,
+    "name": "Chicken Nuggets - 10 Piece",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chicken Nuggets - 10 Piece'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 4,
+    "name": "Dragonfruit Freeze® (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Freeze® (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 5,
+    "name": "Dragonfruit Freeze® (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Freeze® (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 6,
+    "name": "Dragonfruit Freeze® with Dragonfruit Syrup (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Freeze® with Dragonfruit Syrup (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 7,
+    "name": "Dragonfruit Freeze® with Dragonfruit Syrup (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Freeze® with Dragonfruit Syrup (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 8,
+    "name": "Dragonfruit Strawberry Limonada",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Strawberry Limonada'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 9,
+    "name": "Hidden Valley™ Diablo Ranch Dipping Sauce",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hidden Valley™ Diablo Ranch Dipping Sauce'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 10,
+    "name": "Jalapeno Honey Mustard Dipping Sauce",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Jalapeno Honey Mustard Dipping Sauce'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 11,
+    "name": "Loaded Taco Fries",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Loaded Taco Fries'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 12,
+    "name": "Mango Peach Limonada",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mango Peach Limonada'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 13,
+    "name": "Orange Vanilla Cream Soda Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Orange Vanilla Cream Soda Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 14,
+    "name": "Orange Vanilla Cream Soda Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Orange Vanilla Cream Soda Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 15,
+    "name": "Pineapple Dream Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pineapple Dream Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 16,
+    "name": "Strawberry Dream Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Strawberry Dream Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 17,
+    "name": "Strawberry Passionfruit Limonada",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Strawberry Passionfruit Limonada'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 18,
+    "name": "Supreme Nacho Fries",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Supreme Nacho Fries'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 19,
+    "name": "Vanilla Cream Soda Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Cream Soda Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 20,
+    "name": "Vanilla Cream Soda Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Cream Soda Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 21,
+    "name": "Avocado Salsa Verde Packet",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Avocado Salsa Verde Packet'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 22,
+    "name": "Cantina Chicken Bowl",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cantina Chicken Bowl'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 23,
+    "name": "Cantina Chicken Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cantina Chicken Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 24,
+    "name": "Cantina Chicken Crispy Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cantina Chicken Crispy Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 25,
+    "name": "Cantina Chicken Quesadilla",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cantina Chicken Quesadilla'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 26,
+    "name": "Cantina Chicken Soft Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cantina Chicken Soft Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 27,
+    "name": "Black Bean Chalupa Supreme® (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Bean Chalupa Supreme® (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 28,
+    "name": "Chalupa Supreme® - Beef",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chalupa Supreme® - Beef'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 29,
+    "name": "Chalupa Supreme® - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chalupa Supreme® - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 30,
+    "name": "Chalupa Supreme® - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chalupa Supreme® - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 31,
+    "name": "Cheesy Gordita Crunch",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Gordita Crunch'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 32,
+    "name": "Crunchy Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Crunchy Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 33,
+    "name": "Crunchy Taco Supreme®",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Crunchy Taco Supreme®'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 34,
+    "name": "Doritos® Cheesy Gordita Crunch - Nacho Cheese",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Doritos® Cheesy Gordita Crunch - Nacho Cheese'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 35,
+    "name": "Double Stacked Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Double Stacked Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 36,
+    "name": "Nacho Cheese Doritos® Locos Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nacho Cheese Doritos® Locos Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 37,
+    "name": "Nacho Cheese Doritos® Locos Taco Supreme®",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nacho Cheese Doritos® Locos Taco Supreme®'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 38,
+    "name": "Soft Taco - Beef",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Soft Taco - Beef'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 39,
+    "name": "Soft Taco - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Soft Taco - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 40,
+    "name": "Soft Taco Supreme® - Beef",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Soft Taco Supreme® - Beef'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 41,
+    "name": "Soft Taco Supreme® - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Soft Taco Supreme® - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 42,
+    "name": "Spicy Potato Soft Taco (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Spicy Potato Soft Taco (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 43,
+    "name": "Bean Burrito (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bean Burrito (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 44,
+    "name": "Beefy 5-Layer Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beefy 5-Layer Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 45,
+    "name": "Black Bean Grilled Cheese Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Bean Grilled Cheese Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 46,
+    "name": "Burrito Supreme® - Beef",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Burrito Supreme® - Beef'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 47,
+    "name": "Burrito Supreme® - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Burrito Supreme® - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 48,
+    "name": "Burrito Supreme® - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Burrito Supreme® - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 49,
+    "name": "Cheesy Bean & Rice Burrito (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Bean & Rice Burrito (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 50,
+    "name": "Cheesy Double Beef Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Double Beef Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 51,
+    "name": "Chicken Enchilada Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chicken Enchilada Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 52,
+    "name": "Chili Cheese Burrito (regional)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chili Cheese Burrito (regional)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 53,
+    "name": "Grilled Cheese Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grilled Cheese Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 54,
+    "name": "Grilled Cheese Burrito - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grilled Cheese Burrito - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 55,
+    "name": "Grilled Cheese Burrito - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grilled Cheese Burrito - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 56,
+    "name": "Chips and Nacho Cheese Sauce (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chips and Nacho Cheese Sauce (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 57,
+    "name": "Loaded Beef Nachos",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Loaded Beef Nachos'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 58,
+    "name": "Nachos BellGrande® - Beef",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nachos BellGrande® - Beef'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 59,
+    "name": "Nachos BellGrande® - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nachos BellGrande® - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 60,
+    "name": "Nachos BellGrande® - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nachos BellGrande® - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 61,
+    "name": "Quesadilla - Cheese (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Quesadilla - Cheese (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 62,
+    "name": "Quesadilla - Chicken",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Quesadilla - Chicken'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 63,
+    "name": "Quesadilla - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Quesadilla - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 64,
+    "name": "3-Cheese Chicken Flatbread Melt",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 '3-Cheese Chicken Flatbread Melt'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 65,
+    "name": "Black Bean Crunchwrap Supreme® (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Bean Crunchwrap Supreme® (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 66,
+    "name": "Cheesy Roll Up (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Roll Up (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 67,
+    "name": "Crunchwrap Supreme®",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Crunchwrap Supreme®'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 68,
+    "name": "Mexican Pizza",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Pizza'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 69,
+    "name": "Stacker",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Stacker'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 70,
+    "name": "Veggie Mexican Pizza (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Veggie Mexican Pizza (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 71,
+    "name": "Black Beans & Rice (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Beans & Rice (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 72,
+    "name": "Black Beans (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Beans (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 73,
+    "name": "Cheesy Fiesta Potatoes (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Fiesta Potatoes (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 74,
+    "name": "Cinnabon® Delights™ (2 Pk) (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (2 Pk) (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 75,
+    "name": "Cinnabon® Delights™ (12 Pk - Serves 4) (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (12 Pk - Serves 4) (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 76,
+    "name": "Cinnamon Twists (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnamon Twists (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 77,
+    "name": "Diablo Sauce Packet (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diablo Sauce Packet (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 78,
+    "name": "Fire Sauce Packet (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Fire Sauce Packet (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 79,
+    "name": "Hot Sauce Packet (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hot Sauce Packet (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 80,
+    "name": "Large Nacho Fries",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Large Nacho Fries'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 81,
+    "name": "Mild Sauce Packet (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mild Sauce Packet (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 82,
+    "name": "Nacho Fries",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Nacho Fries'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 83,
+    "name": "Pintos N Cheese (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pintos N Cheese (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 84,
+    "name": "Blue Raspberry Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Raspberry Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 85,
+    "name": "Blue Raspberry Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Raspberry Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 86,
+    "name": "Caramel Dulce Churro Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Caramel Dulce Churro Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 87,
+    "name": "Caramel Dulce Churro Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Caramel Dulce Churro Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 88,
+    "name": "Cinnabon® Caramel Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Caramel Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 89,
+    "name": "Cinnabon® Caramel Coffee - Iced (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Caramel Coffee - Iced (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 90,
+    "name": "Cinnabon® Caramel Coffee - Iced (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Caramel Coffee - Iced (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 91,
+    "name": "Cinnabon® Caramel Latte Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Caramel Latte Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 92,
+    "name": "Cinnabon® Caramel Latte Chiller (19 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Caramel Latte Chiller (19 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 93,
+    "name": "Cinnabon® Delights™ Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 94,
+    "name": "Cinnabon® Delights™ Coffee - Iced",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ Coffee - Iced'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 95,
+    "name": "Confetti Cookie Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Confetti Cookie Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 96,
+    "name": "Confetti Cookie Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Confetti Cookie Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 97,
+    "name": "Dragonfruit Berry Agua Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dragonfruit Berry Agua Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 98,
+    "name": "Hot Coffee with Creamer",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hot Coffee with Creamer'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 99,
+    "name": "Iced Coffee with Creamer",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Iced Coffee with Creamer'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 100,
+    "name": "Lowfat Milk - CA (Regional)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lowfat Milk - CA (Regional)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 101,
+    "name": "Lowfat Milk - Federal (Regional)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lowfat Milk - Federal (Regional)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 102,
+    "name": "Mango Peach Agua Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mango Peach Agua Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 103,
+    "name": "Mexican Chocolate Churro Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Chocolate Churro Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 104,
+    "name": "Mexican Chocolate Churro Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Chocolate Churro Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 105,
+    "name": "Mexican Mocha Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Mocha Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 106,
+    "name": "Mexican Mocha Coffee - Iced (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Mocha Coffee - Iced (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 107,
+    "name": "Mexican Mocha Coffee - Iced (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Mocha Coffee - Iced (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 108,
+    "name": "Mexican Mocha Latte Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Mocha Latte Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 109,
+    "name": "Mexican Mocha Latte Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mexican Mocha Latte Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 110,
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 111,
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 112,
+    "name": "Orange Juice",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Orange Juice'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 113,
+    "name": "Pineapple Lime Rockstar Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pineapple Lime Rockstar Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 114,
+    "name": "Pink Lemonade Frost (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pink Lemonade Frost (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 115,
+    "name": "Pink Lemonade Frost (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pink Lemonade Frost (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 116,
+    "name": "Premium Roast Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Premium Roast Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 117,
+    "name": "Premium Roast Coffee - Iced",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Premium Roast Coffee - Iced'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 118,
+    "name": "Strawberry Matcha Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Strawberry Matcha Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 119,
+    "name": "Strawberry Matcha Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Strawberry Matcha Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 120,
+    "name": "Strawberry Passionfruit Agua Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Strawberry Passionfruit Agua Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 121,
+    "name": "Tropical Punch Rockstar Refresca",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tropical Punch Rockstar Refresca'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 122,
+    "name": "Vanilla Crema Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Crema Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 123,
+    "name": "Vanilla Crema Coffee - Iced (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Crema Coffee - Iced (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 124,
+    "name": "Vanilla Crema Coffee - Iced (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Crema Coffee - Iced (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 125,
+    "name": "Vanilla Crema Latte Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Crema Latte Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 126,
+    "name": "Vanilla Crema Latte Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Crema Latte Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 127,
+    "name": "Water",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Water'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 128,
+    "name": "Wild Strawberry Churro Chiller (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Wild Strawberry Churro Chiller (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 129,
+    "name": "Wild Strawberry Churro Chiller (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Wild Strawberry Churro Chiller (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 130,
+    "name": "3-Cheese Chicken Flatbread Melt - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 '3-Cheese Chicken Flatbread Melt - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 131,
+    "name": "Avocado Ranch Chicken Stacker",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Avocado Ranch Chicken Stacker'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 132,
+    "name": "Beefy Potato Loaded Griller",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beefy Potato Loaded Griller'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 133,
+    "name": "Cheesy Bean & Rice Burrito - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Bean & Rice Burrito - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 134,
+    "name": "Cheesy Double Beef Burrito - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Double Beef Burrito - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 135,
+    "name": "Cheesy Fiesta Potatoes - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Fiesta Potatoes - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 136,
+    "name": "Cheesy Roll Up - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Roll Up - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 137,
+    "name": "Chicken Enchilada Burrito - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chicken Enchilada Burrito - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 138,
+    "name": "Chips and Nacho Supreme Dip",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chips and Nacho Supreme Dip'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 139,
+    "name": "Double Stacked Taco - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Double Stacked Taco - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 140,
+    "name": "Loaded Beef Nachos - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Loaded Beef Nachos - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 141,
+    "name": "Mini Taco Salad",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mini Taco Salad'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 142,
+    "name": "Spicy Potato Soft Taco - Value Menu",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Spicy Potato Soft Taco - Value Menu'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 143,
+    "name": "Bean Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bean Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 144,
+    "name": "Black Bean Chalupa Supreme®",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Bean Chalupa Supreme®'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 145,
+    "name": "Black Bean Crunchwrap Supreme®",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Bean Crunchwrap Supreme®'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 146,
+    "name": "Black Beans",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Beans'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 147,
+    "name": "Black Beans & Rice",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Beans & Rice'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 148,
+    "name": "Cheese Quesadilla",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheese Quesadilla'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 149,
+    "name": "Cheesy Bean & Rice Burrito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Bean & Rice Burrito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 150,
+    "name": "Cheesy Fiesta Potatoes",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Fiesta Potatoes'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 151,
+    "name": "Cheesy Roll Up",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Roll Up'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 152,
+    "name": "Chips and Nacho Cheese Sauce",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Chips and Nacho Cheese Sauce'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 153,
+    "name": "Cinnabon® Delights™ (2 Pack)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (2 Pack)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 154,
+    "name": "Cinnabon® Delights™ (12 Pack - Serves 4)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (12 Pack - Serves 4)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 155,
+    "name": "Cinnamon Twists",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnamon Twists'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 156,
+    "name": "Hash Brown",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hash Brown'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 157,
+    "name": "Pintos N Cheese",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pintos N Cheese'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 158,
+    "name": "Spicy Potato Soft Taco",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Spicy Potato Soft Taco'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 159,
+    "name": "Veggie Bowl",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Veggie Bowl'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 160,
+    "name": "Veggie Mexican Pizza",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Veggie Mexican Pizza'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 161,
+    "name": "Breakfast California Crunchwrap - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast California Crunchwrap - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 162,
+    "name": "Breakfast California Crunchwrap - Sausage",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast California Crunchwrap - Sausage'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 163,
+    "name": "Breakfast Crunchwrap - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Crunchwrap - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 164,
+    "name": "Breakfast Crunchwrap - Sausage Patty",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Crunchwrap - Sausage Patty'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 165,
+    "name": "Breakfast Crunchwrap - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Crunchwrap - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 166,
+    "name": "Breakfast Quesadilla - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Quesadilla - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 167,
+    "name": "Breakfast Quesadilla - Sausage",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Quesadilla - Sausage'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 168,
+    "name": "Breakfast Quesadilla - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Quesadilla - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 169,
+    "name": "Breakfast Salsa Packet (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breakfast Salsa Packet (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 170,
+    "name": "Cheesy Toasted Breakfast Burrito - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Toasted Breakfast Burrito - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 171,
+    "name": "Cheesy Toasted Breakfast Burrito - Fiesta Potato (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Toasted Breakfast Burrito - Fiesta Potato (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 172,
+    "name": "Cheesy Toasted Breakfast Burrito - Sausage",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cheesy Toasted Breakfast Burrito - Sausage'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 173,
+    "name": "Cinnabon® Delights™ (2 Pack) (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (2 Pack) (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 174,
+    "name": "Cinnabon® Delights™ (12 Pack - Serves 4) (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ (12 Pack - Serves 4) (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 175,
+    "name": "Cinnabon® Delights™ Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 176,
+    "name": "Cinnabon® Delights™ Coffee - Iced",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cinnabon® Delights™ Coffee - Iced'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 177,
+    "name": "Grande Toasted Breakfast Burrito - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grande Toasted Breakfast Burrito - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 178,
+    "name": "Grande Toasted Breakfast Burrito - Sausage",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grande Toasted Breakfast Burrito - Sausage'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 179,
+    "name": "Grande Toasted Breakfast Burrito - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Grande Toasted Breakfast Burrito - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 180,
+    "name": "Hash Brown (V)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hash Brown (V)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 181,
+    "name": "Hash Brown Toasted Breakfast Burrito - Bacon",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hash Brown Toasted Breakfast Burrito - Bacon'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 182,
+    "name": "Hash Brown Toasted Breakfast Burrito - Sausage",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hash Brown Toasted Breakfast Burrito - Sausage'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 183,
+    "name": "Hash Brown Toasted Breakfast Burrito - Steak",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hash Brown Toasted Breakfast Burrito - Steak'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 184,
+    "name": "Hot Coffee with Creamer",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hot Coffee with Creamer'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 185,
+    "name": "Iced Coffee with Creamer",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Iced Coffee with Creamer'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 186,
+    "name": "Orange Juice",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Orange Juice'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 187,
+    "name": "Premium Roast Coffee - Hot",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Premium Roast Coffee - Hot'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 188,
+    "name": "Premium Roast Coffee - Iced",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Premium Roast Coffee - Iced'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 189,
+    "name": "Vanilla Creamer",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vanilla Creamer'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 190,
+    "name": "Mad Tasty Grapefruit Sparkling Water",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mad Tasty Grapefruit Sparkling Water'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 191,
+    "name": "Mad Tasty Unicorn Tears Sparkling Water",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mad Tasty Unicorn Tears Sparkling Water'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 192,
+    "name": "Mad Tasty Watermelon Kiwi Sparkling Water",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mad Tasty Watermelon Kiwi Sparkling Water'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 193,
+    "name": "Mad Tasty Yuzu Citrus Sparkling Water",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mad Tasty Yuzu Citrus Sparkling Water'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 194,
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 195,
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 196,
+    "name": "Prosecco Sparkling Wine (350 mL)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Prosecco Sparkling Wine (350 mL)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 197,
+    "name": "Red Wine (6.3 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Red Wine (6.3 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 198,
+    "name": "Rum (80 proof)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Rum (80 proof)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 199,
+    "name": "Tequila (80 proof)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tequila (80 proof)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 200,
+    "name": "Vodka (80 proof)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vodka (80 proof)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 201,
+    "name": "Anchor Steam (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Anchor Steam (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 202,
+    "name": "Angel Island IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Angel Island IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 203,
+    "name": "Angel Island IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Angel Island IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 204,
+    "name": "Angry Orchard (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Angry Orchard (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 205,
+    "name": "Angry Orchard - Crisp Apple (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Angry Orchard - Crisp Apple (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 206,
+    "name": "Angry Orchard - Crisp Apple (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Angry Orchard - Crisp Apple (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 207,
+    "name": "Barrio Blonde (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Barrio Blonde (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 208,
+    "name": "Barrio Blonde (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Barrio Blonde (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 209,
+    "name": "Beach Bell Beer (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beach Bell Beer (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 210,
+    "name": "Beach Bell Beer (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beach Bell Beer (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 211,
+    "name": "Beer - General (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beer - General (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 212,
+    "name": "Beer - General (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Beer - General (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 213,
+    "name": "Bell's Two Hearted Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bell's Two Hearted Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 214,
+    "name": "Bell's Two Hearted Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bell's Two Hearted Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 215,
+    "name": "Bell Tower Cerveza (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bell Tower Cerveza (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 216,
+    "name": "Bell Tower Cerveza (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bell Tower Cerveza (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 217,
+    "name": "Black Abbey - The Rose (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Abbey - The Rose (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 218,
+    "name": "Black Abbey - The Rose (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Black Abbey - The Rose (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 219,
+    "name": "Blue Moon Belgian White (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Belgian White (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 220,
+    "name": "Blue Moon Belgian White (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Belgian White (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 221,
+    "name": "Blue Moon Belgian White (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Belgian White (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 222,
+    "name": "Blue Moon Belgian White Bottle (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Belgian White Bottle (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 223,
+    "name": "Blue Moon Mango Wheat (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Mango Wheat (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 224,
+    "name": "Blue Moon Mango Wheat (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Moon Mango Wheat (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 225,
+    "name": "Blue Point Big City Bells Pilsner (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Big City Bells Pilsner (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 226,
+    "name": "Blue Point Big City Bells Pilsner (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Big City Bells Pilsner (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 227,
+    "name": "Blue Point Hoptical Illusion IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Hoptical Illusion IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 228,
+    "name": "Blue Point Hoptical Illusion IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Hoptical Illusion IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 229,
+    "name": "Blue Point Toasted Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Toasted Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 230,
+    "name": "Blue Point Toasted Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Blue Point Toasted Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 231,
+    "name": "Boulevard Cherry Blossom and Lime (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Cherry Blossom and Lime (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 232,
+    "name": "Boulevard Cherry Blossom and Lime (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Cherry Blossom and Lime (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 233,
+    "name": "Boulevard Space Camper Cosmic IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Space Camper Cosmic IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 234,
+    "name": "Boulevard Space Camper Cosmic IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Space Camper Cosmic IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 235,
+    "name": "Boulevard Unfiltered Wheat Beer (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Unfiltered Wheat Beer (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 236,
+    "name": "Boulevard Unfiltered Wheat Beer (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Unfiltered Wheat Beer (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 237,
+    "name": "Boulevard Unfiltered Wheat Beer 100 (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Unfiltered Wheat Beer 100 (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 238,
+    "name": "Boulevard Unfiltered Wheat Beer 100 (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Boulevard Unfiltered Wheat Beer 100 (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 239,
+    "name": "Breaking Bud (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breaking Bud (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 240,
+    "name": "Breaking Bud (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Breaking Bud (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 241,
+    "name": "Brooklyn Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brooklyn Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 242,
+    "name": "Brooklyn Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brooklyn Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 243,
+    "name": "Bud Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bud Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 244,
+    "name": "Bud Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bud Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 245,
+    "name": "Bud Light Bottle (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Bud Light Bottle (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 246,
+    "name": "Budweiser (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Budweiser (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 247,
+    "name": "Budweiser (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Budweiser (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 248,
+    "name": "Budweiser Bottle (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Budweiser Bottle (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 249,
+    "name": "Busch Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Busch Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 250,
+    "name": "Calicraft Coast (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Calicraft Coast (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 251,
+    "name": "Calicraft Coast (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Calicraft Coast (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 252,
+    "name": "Captain Lawrence Hop Commander (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Captain Lawrence Hop Commander (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 253,
+    "name": "Cool Kidz IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Cool Kidz IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 254,
+    "name": "Coors (Coors Banquet) (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Coors (Coors Banquet) (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 255,
+    "name": "Coors (Coors Banquet) (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Coors (Coors Banquet) (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 256,
+    "name": "Coors Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Coors Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 257,
+    "name": "Coors Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Coors Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 258,
+    "name": "Coors Light (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Coors Light (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 259,
+    "name": "Copperhead Red (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Copperhead Red (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 260,
+    "name": "Copperhead Red (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Copperhead Red (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 261,
+    "name": "Corona Extra (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Extra (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 262,
+    "name": "Corona Extra (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Extra (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 263,
+    "name": "Corona Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 264,
+    "name": "Corona Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 265,
+    "name": "Corona Premier (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Premier (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 266,
+    "name": "Corona Premier (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Corona Premier (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 267,
+    "name": "Dos Equis Lager Especial (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dos Equis Lager Especial (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 268,
+    "name": "Dos Equis Lager Especial (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dos Equis Lager Especial (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 269,
+    "name": "Dos Equis Mexican Pale Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dos Equis Mexican Pale Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 270,
+    "name": "Dos Equis Mexican Pale Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dos Equis Mexican Pale Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 271,
+    "name": "Elysian Space Dust IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Elysian Space Dust IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 272,
+    "name": "Elysian Space Dust IPA (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Elysian Space Dust IPA (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 273,
+    "name": "Estrella Jalisco (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Estrella Jalisco (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 274,
+    "name": "Estrella Jalisco (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Estrella Jalisco (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 275,
+    "name": "Fair Winds® Howling Gail (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Fair Winds® Howling Gail (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 276,
+    "name": "Fair Winds® Howling Gail (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Fair Winds® Howling Gail (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 277,
+    "name": "Fat Tire Amber Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Fat Tire Amber Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 278,
+    "name": "Fat Tire Amber Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Fat Tire Amber Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 279,
+    "name": "Firestone 805 (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Firestone 805 (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 280,
+    "name": "Firestone 805 (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Firestone 805 (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 281,
+    "name": "Firestone 805 (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Firestone 805 (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 282,
+    "name": "Flybird Lime Margarita",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Lime Margarita'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 283,
+    "name": "Flybird Lime Margarita (Can)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Lime Margarita (Can)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 284,
+    "name": "Flybird Mangonada",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Mangonada'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 285,
+    "name": "Flybird Mojito",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Mojito'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 286,
+    "name": "Flybird Pina Colada",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Pina Colada'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 287,
+    "name": "Flybird Prickly Pear Margarita",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Prickly Pear Margarita'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 288,
+    "name": "Flybird Strawberry Margarita",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Strawberry Margarita'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 289,
+    "name": "Flybird Strawberry Margarita (Can)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Flybird Strawberry Margarita (Can)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 290,
+    "name": "Four Peaks Kilt Lifter (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Four Peaks Kilt Lifter (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 291,
+    "name": "Four Peaks Kilt Lifter (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Four Peaks Kilt Lifter (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 292,
+    "name": "Goose Island IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Goose Island IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 293,
+    "name": "Goose Island IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Goose Island IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 294,
+    "name": "Hard Mtn Dew - Baja Blast (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Baja Blast (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 295,
+    "name": "Hard Mtn Dew - Baja Blast (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Baja Blast (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 296,
+    "name": "Hard Mtn Dew - Black Cherry (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Black Cherry (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 297,
+    "name": "Hard Mtn Dew - Black Cherry (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Black Cherry (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 298,
+    "name": "Hard Mtn Dew - Original (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Original (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 299,
+    "name": "Hard Mtn Dew - Original (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Original (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 300,
+    "name": "Hard Mtn Dew - Watermelon (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Watermelon (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 301,
+    "name": "Hard Mtn Dew - Watermelon (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hard Mtn Dew - Watermelon (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 302,
+    "name": "Harpoon IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Harpoon IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 303,
+    "name": "Harpoon IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Harpoon IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 304,
+    "name": "Heineken (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 305,
+    "name": "Heineken (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 306,
+    "name": "Heineken 0.0 (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken 0.0 (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 307,
+    "name": "Heineken 0.0 (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken 0.0 (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 308,
+    "name": "Heineken Bottle (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken Bottle (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 309,
+    "name": "Heineken Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 310,
+    "name": "Heineken Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Heineken Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 311,
+    "name": "Hop Commander IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hop Commander IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 312,
+    "name": "Hop Commander IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Hop Commander IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 313,
+    "name": "Kansas City Dunkel (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kansas City Dunkel (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 314,
+    "name": "Kansas City Dunkel (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kansas City Dunkel (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 315,
+    "name": "Kansas City Helles (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kansas City Helles (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 316,
+    "name": "Kansas City Helles (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kansas City Helles (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 317,
+    "name": "Kona Big Wave Golden Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kona Big Wave Golden Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 318,
+    "name": "Kona Big Wave Golden Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Kona Big Wave Golden Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 319,
+    "name": "Lagunitas IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lagunitas IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 320,
+    "name": "Lagunitas IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lagunitas IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 321,
+    "name": "Landshark Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Landshark Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 322,
+    "name": "Landshark Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Landshark Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 323,
+    "name": "Loose Cannon IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Loose Cannon IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 324,
+    "name": "Loose Cannon IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Loose Cannon IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 325,
+    "name": "Michelob Original Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Michelob Original Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 326,
+    "name": "Michelob Original Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Michelob Original Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 327,
+    "name": "Michelob Ultra (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Michelob Ultra (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 328,
+    "name": "Michelob Ultra (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Michelob Ultra (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 329,
+    "name": "Michelob Ultra Bottle (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Michelob Ultra Bottle (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 330,
+    "name": "Miller Genuine Draft (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller Genuine Draft (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 331,
+    "name": "Miller Genuine Draft (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller Genuine Draft (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 332,
+    "name": "Miller High Life (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller High Life (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 333,
+    "name": "Miller High Life (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller High Life (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 334,
+    "name": "Miller Lite (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller Lite (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 335,
+    "name": "Miller Lite (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Miller Lite (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 336,
+    "name": "Modelo Chelada (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Chelada (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 337,
+    "name": "Modelo Especial (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Especial (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 338,
+    "name": "Modelo Especial (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Especial (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 339,
+    "name": "Modelo Especial (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Especial (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 340,
+    "name": "Modelo Negra (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Negra (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 341,
+    "name": "Modelo Negra (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Modelo Negra (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 342,
+    "name": "Motorworks Intellectual Property IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Motorworks Intellectual Property IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 343,
+    "name": "Motorworks Intellectual Property IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Motorworks Intellectual Property IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 344,
+    "name": "Motorworks Pulp Fiction IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Motorworks Pulp Fiction IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 345,
+    "name": "Motorworks Pulp Fiction IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Motorworks Pulp Fiction IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 346,
+    "name": "Newcastle Brown Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Newcastle Brown Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 347,
+    "name": "Newcastle Brown Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Newcastle Brown Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 348,
+    "name": "Old Elephant IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Old Elephant IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 349,
+    "name": "Old Elephant IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Old Elephant IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 350,
+    "name": "Pabst Blue Ribbon Original (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pabst Blue Ribbon Original (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 351,
+    "name": "Pabst Blue Ribbon Original (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pabst Blue Ribbon Original (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 352,
+    "name": "Pacifico (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pacifico (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 353,
+    "name": "Pacifico (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pacifico (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 354,
+    "name": "Patriot Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Patriot Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 355,
+    "name": "Patriot Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Patriot Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 356,
+    "name": "Revolution Anti Hero (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Revolution Anti Hero (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 357,
+    "name": "Revolution Anti Hero (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Revolution Anti Hero (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 358,
+    "name": "Road 2 Ruin Double IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Road 2 Ruin Double IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 359,
+    "name": "Road 2 Ruin Double IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Road 2 Ruin Double IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 360,
+    "name": "Samuel Adams '76 (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Samuel Adams '76 (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 361,
+    "name": "Samuel Adams® Winter Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Samuel Adams® Winter Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 362,
+    "name": "Samuel Adams® Winter Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Samuel Adams® Winter Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 363,
+    "name": "Sea Hag IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sea Hag IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 364,
+    "name": "Sea Hag IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sea Hag IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 365,
+    "name": "Shock Top Belgian White (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Shock Top Belgian White (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 366,
+    "name": "Shock Top Belgian White (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Shock Top Belgian White (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 367,
+    "name": "Sierra Nevada Hazy Little Thing IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sierra Nevada Hazy Little Thing IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 368,
+    "name": "Sierra Nevada Hazy Little Thing IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sierra Nevada Hazy Little Thing IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 369,
+    "name": "Sol Cervesa (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sol Cervesa (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 370,
+    "name": "Sol Cervesa (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sol Cervesa (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 371,
+    "name": "St. Archer (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'St. Archer (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 372,
+    "name": "Stella Artois (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Stella Artois (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 373,
+    "name": "Stella Artois (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Stella Artois (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 374,
+    "name": "Stella Artois (24 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Stella Artois (24 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 375,
+    "name": "Sweetwater 420 Extra Pale Ale (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sweetwater 420 Extra Pale Ale (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 376,
+    "name": "Sweetwater 420 Extra Pale Ale (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Sweetwater 420 Extra Pale Ale (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 377,
+    "name": "Tampa Bay Reef Donkey (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tampa Bay Reef Donkey (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 378,
+    "name": "Tecate Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tecate Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 379,
+    "name": "Tecate Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tecate Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 380,
+    "name": "Tecate Original (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tecate Original (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 381,
+    "name": "Tecate Original (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tecate Original (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 382,
+    "name": "Victoria (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Victoria (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 383,
+    "name": "Victoria (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Victoria (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 384,
+    "name": "Voodoo Ranger Juicy Haze IPA (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Voodoo Ranger Juicy Haze IPA (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 385,
+    "name": "Voodoo Ranger Juicy Haze IPA (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Voodoo Ranger Juicy Haze IPA (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 386,
+    "name": "White Claw Hard Seltzer (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'White Claw Hard Seltzer (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 387,
+    "name": "Yuengling - Black and Tan (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Black and Tan (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 388,
+    "name": "Yuengling - Black and Tan (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Black and Tan (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 389,
+    "name": "Yuengling - Golden Pilsner (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Golden Pilsner (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 390,
+    "name": "Yuengling - Golden Pilsner (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Golden Pilsner (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 391,
+    "name": "Yuengling - Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 392,
+    "name": "Yuengling - Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 393,
+    "name": "Yuengling - Light Lager (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Light Lager (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 394,
+    "name": "Yuengling - Light Lager (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Light Lager (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 395,
+    "name": "Yuengling - Porter (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Porter (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 396,
+    "name": "Yuengling - Porter (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Porter (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 397,
+    "name": "Yuengling - Premium (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Premium (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 398,
+    "name": "Yuengling - Premium (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Premium (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 399,
+    "name": "Yuengling - Premium Light (12 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Premium Light (12 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 400,
+    "name": "Yuengling - Premium Light (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Yuengling - Premium Light (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 401,
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 402,
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 403,
+    "name": "Mtn Dew® Baja Blast Freeze™ (32 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Freeze™ (32 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 404,
+    "name": "Red Sangria - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Red Sangria - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 405,
+    "name": "Rum (80 proof) - Double - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Rum (80 proof) - Double - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 406,
+    "name": "Rum (80 proof) - Single - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Rum (80 proof) - Single - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 407,
+    "name": "Tequila (80 proof) - Double - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tequila (80 proof) - Double - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 408,
+    "name": "Tequila (80 proof) - Single - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tequila (80 proof) - Single - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 409,
+    "name": "Vodka (80 proof) - Double - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vodka (80 proof) - Double - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 410,
+    "name": "Vodka (80 proof) - Single - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Vodka (80 proof) - Single - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 411,
+    "name": "Whiskey (80 proof) - Double - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Whiskey (80 proof) - Double - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 412,
+    "name": "Whiskey (80 proof) - Single - LV",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Whiskey (80 proof) - Single - LV'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 413,
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Dragon Paradise Sparkling Iced Tea (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 414,
+    "name": "Brisk® Mango Iced Tea (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Mango Iced Tea (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 415,
+    "name": "Diet Dr Pepper® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Dr Pepper® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 416,
+    "name": "Diet Pepsi® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Pepsi® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 417,
+    "name": "Dr Pepper® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dr Pepper® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 418,
+    "name": "G2 - Fruit Punch (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'G2 - Fruit Punch (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 419,
+    "name": "Lipton Unsweetened Iced Tea (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lipton Unsweetened Iced Tea (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 420,
+    "name": "Midnight Mtn Dew® Baja Blast™ (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Midnight Mtn Dew® Baja Blast™ (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 421,
+    "name": "Mtn Dew® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 422,
+    "name": "Mtn Dew® Baja Blast™ (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast™ (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 423,
+    "name": "Mtn Dew® Baja Blast Zero Sugar (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Zero Sugar (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 424,
+    "name": "Mtn Dew® Zero Sugar (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Zero Sugar (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 425,
+    "name": "Mug® Root Beer (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mug® Root Beer (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 426,
+    "name": "Pepsi® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 427,
+    "name": "Pepsi® Wild Cherry (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Wild Cherry (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 428,
+    "name": "Pepsi® Zero Sugar (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Zero Sugar (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 429,
+    "name": "Starry® (16 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Starry® (16 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 430,
+    "name": "Tropicana Original Lemonade (16 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tropicana Original Lemonade (16 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 431,
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Dragon Paradise Sparkling Iced Tea (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 432,
+    "name": "Brisk® Mango Iced Tea (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Mango Iced Tea (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 433,
+    "name": "Diet Dr Pepper® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Dr Pepper® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 434,
+    "name": "Diet Pepsi® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Pepsi® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 435,
+    "name": "Dr Pepper® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dr Pepper® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 436,
+    "name": "G2 - Fruit Punch (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'G2 - Fruit Punch (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 437,
+    "name": "Lipton Unsweetened Iced Tea (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lipton Unsweetened Iced Tea (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 438,
+    "name": "Midnight Mtn Dew® Baja Blast™ (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Midnight Mtn Dew® Baja Blast™ (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 439,
+    "name": "Mtn Dew® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 440,
+    "name": "Mtn Dew® Baja Blast™ (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast™ (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 441,
+    "name": "Mtn Dew® Baja Blast Zero Sugar (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Zero Sugar (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 442,
+    "name": "Mtn Dew® Zero Sugar (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Zero Sugar (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 443,
+    "name": "Mug® Root Beer (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mug® Root Beer (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 444,
+    "name": "Pepsi® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 445,
+    "name": "Pepsi® Wild Cherry (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Wild Cherry (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 446,
+    "name": "Pepsi® Zero Sugar (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Zero Sugar (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 447,
+    "name": "Starry® (20 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Starry® (20 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 448,
+    "name": "Tropicana Original Lemonade (20 oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tropicana Original Lemonade (20 oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 449,
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Dragon Paradise Sparkling Iced Tea (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 450,
+    "name": "Brisk® Mango Iced Tea (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Brisk® Mango Iced Tea (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 451,
+    "name": "Diet Dr Pepper® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Dr Pepper® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 452,
+    "name": "Diet Pepsi® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Diet Pepsi® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 453,
+    "name": "Dr Pepper® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Dr Pepper® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 454,
+    "name": "G2 - Fruit Punch (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'G2 - Fruit Punch (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 455,
+    "name": "Lipton Unsweetened Iced Tea (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Lipton Unsweetened Iced Tea (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 456,
+    "name": "Midnight Mtn Dew® Baja Blast™ (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Midnight Mtn Dew® Baja Blast™ (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 457,
+    "name": "Mtn Dew® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 458,
+    "name": "Mtn Dew® Baja Blast™ (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast™ (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 459,
+    "name": "Mtn Dew® Baja Blast Zero Sugar (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Baja Blast Zero Sugar (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 460,
+    "name": "Mtn Dew® Zero Sugar (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mtn Dew® Zero Sugar (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 461,
+    "name": "Mug® Root Beer (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Mug® Root Beer (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 462,
+    "name": "Pepsi® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 463,
+    "name": "Pepsi® Wild Cherry (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Wild Cherry (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 464,
+    "name": "Pepsi® Zero Sugar (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Pepsi® Zero Sugar (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 465,
+    "name": "Starry® (30 fl oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Starry® (30 fl oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  },
+  {
+    "index": 466,
+    "name": "Tropicana Original Lemonade (30oz)",
+    "status": "pending",
+    "actions": [
+      "1. 在营养信息页面找到 'Tropicana Original Lemonade (30oz)'",
+      "2. 点击 [more info] 链接",
+      "3. 等待弹窗加载",
+      "4. 提取 Nutrition Facts (完整营养成分表)",
+      "5. 提取 Allergen Information (过敏原信息)",
+      "6. 提取 Ingredients (成分列表)",
+      "7. 关闭弹窗"
+    ]
+  }
+]

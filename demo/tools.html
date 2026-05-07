@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jovida Tool Demo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #45C400;
+    --green-hover: #3AAD00;
+    --bg: #E7E9EC;
+    --card-bg: #F2F2F2;
+    --white: #FFFFFF;
+    --text: #000000;
+    --text-secondary: rgba(0,0,0,0.4);
+    --text-tertiary: rgba(0,0,0,0.2);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    --radius-btn: 32px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    gap: 0;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: var(--white);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+  }
+
+  .logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+
+  .nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 8px 4px 4px;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 150ms;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-item:hover { background: var(--card-bg); color: var(--text); }
+  .nav-item.active { background: rgba(69,196,0,0.1); color: var(--green); font-weight: 600; }
+
+  /* ── Main ── */
+  .main {
+    flex: 1;
+    padding: 32px;
+    max-width: 960px;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .page-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  /* ── Input group ── */
+  .input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: var(--radius-btn);
+    border: 1.5px solid rgba(0,0,0,0.12);
+    font-size: 15px;
+    outline: none;
+    transition: border 150ms;
+    background: var(--white);
+  }
+  input[type="text"]:focus { border-color: var(--green); }
+
+  .btn {
+    padding: 12px 20px;
+    border-radius: var(--radius-btn);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 150ms;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--green); color: white; }
+  .btn-primary:hover { background: var(--green-hover); }
+  .btn-primary:disabled { background: rgba(0,0,0,0.15); cursor: not-allowed; }
+  .btn-secondary { background: var(--card-bg); color: var(--text); }
+  .btn-secondary:hover { background: #e0e0e0; }
+
+  /* ── Status ── */
+  .status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+  }
+  .status.show { display: flex; }
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Error ── */
+  .error-box {
+    background: #fff0f0;
+    border: 1px solid #ffcccc;
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #cc0000;
+    display: none;
+    margin-top: 10px;
+  }
+  .error-box.show { display: block; }
+
+  /* ── Stats ── */
+  .stats-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat-box {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .stat-num { font-size: 22px; font-weight: 700; color: var(--green); }
+  .stat-label { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ── English: Video list ── */
+  .video-list { display: flex; flex-direction: column; gap: 10px; }
+  .video-item {
+    display: flex; gap: 12px; padding: 12px;
+    border-radius: var(--radius-md);
+    background: var(--card-bg); cursor: pointer;
+    transition: all 150ms; border: 2px solid transparent;
+  }
+  .video-item:hover { border-color: var(--green); }
+  .video-item.selected { border-color: var(--green); background: rgba(69,196,0,0.07); }
+  .video-thumb { width: 100px; height: 60px; border-radius: var(--radius-sm); object-fit: cover; background: #ddd; flex-shrink: 0; }
+  .video-info { flex: 1; min-width: 0; }
+  .video-title { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .video-meta { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── English: Transcript / vocab ── */
+  .caption-list { max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+  .caption-item { display: flex; gap: 10px; font-size: 13px; }
+  .caption-time { color: var(--green); font-weight: 600; min-width: 36px; font-size: 12px; padding-top: 1px; }
+  .caption-text { color: var(--text); line-height: 1.4; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .vocab-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 14px; }
+  .vocab-word { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .vocab-count { font-size: 11px; color: var(--text-tertiary); margin-bottom: 6px; }
+  .vocab-example { font-size: 12px; color: var(--text-secondary); line-height: 1.4; font-style: italic; }
+  .sentence-list { display: flex; flex-direction: column; gap: 8px; }
+  .sentence-item { background: var(--card-bg); border-radius: var(--radius-md); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .sentence-time { color: var(--green); font-weight: 600; font-size: 12px; white-space: nowrap; padding-top: 1px; }
+  .sentence-text { font-size: 14px; line-height: 1.5; }
+
+  /* ── PubMed: Article list ── */
+  .article-list { display: flex; flex-direction: column; gap: 12px; }
+  .article-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    border-left: 3px solid var(--green);
+  }
+  .article-title { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; color: var(--text); }
+  .article-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+  .article-meta span { margin-right: 10px; }
+  .article-link {
+    font-size: 12px; font-weight: 600; color: var(--green);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .article-link:hover { text-decoration: underline; }
+
+  /* ── Reddit: Post list ── */
+  .post-list { display: flex; flex-direction: column; gap: 12px; }
+  .post-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    transition: all 150ms;
+  }
+  .post-item:hover { background: #ebebeb; }
+  .post-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .post-subreddit {
+    font-size: 11px; font-weight: 700;
+    background: rgba(69,196,0,0.12); color: var(--green);
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .post-score { font-size: 12px; color: var(--text-secondary); margin-left: auto; }
+  .post-title { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+  .post-body { font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-meta { font-size: 11px; color: var(--text-tertiary); display: flex; gap: 10px; }
+  .post-link { font-size: 12px; font-weight: 600; color: var(--green); text-decoration: none; }
+  .post-link:hover { text-decoration: underline; }
+
+  /* ── Wikipedia: Article summary ── */
+  .wiki-result { display: flex; gap: 20px; align-items: flex-start; }
+  .wiki-thumb {
+    width: 160px; height: 120px;
+    border-radius: var(--radius-md);
+    object-fit: cover; flex-shrink: 0; background: var(--card-bg);
+  }
+  .wiki-body { flex: 1; }
+  .wiki-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .wiki-description { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+  .wiki-extract { font-size: 14px; line-height: 1.6; color: var(--text); }
+  .wiki-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 14px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
+  .wiki-link:hover { text-decoration: underline; }
+  .wiki-related { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .wiki-related-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 150ms;
+  }
+  .wiki-related-item:hover { background: #ebebeb; }
+  .wiki-related-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .wiki-related-desc { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── Shopping: Product list ── */
+  .product-list { display: flex; flex-direction: column; gap: 10px; }
+  .product-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex; gap: 14px; align-items: flex-start;
+    cursor: pointer; transition: all 150ms;
+    text-decoration: none;
+  }
+  .product-item:hover { background: #e8e8e8; }
+  .product-img {
+    width: 80px; height: 80px; flex-shrink: 0;
+    object-fit: contain; border-radius: var(--radius-sm);
+    background: white; padding: 6px;
+  }
+  .product-img-placeholder {
+    width: 80px; height: 80px; flex-shrink: 0;
+    border-radius: var(--radius-sm); background: #ddd;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .product-body { flex: 1; min-width: 0; }
+  .product-name {
+    font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .product-price-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+  .product-price { font-size: 18px; font-weight: 800; color: var(--green); }
+  .product-original-price { font-size: 13px; color: var(--text-tertiary); text-decoration: line-through; }
+  .product-discount { font-size: 12px; font-weight: 700; color: #e63946; background: #ffeef0; padding: 1px 6px; border-radius: 4px; }
+  .product-store { font-size: 12px; color: var(--text-secondary); }
+  .product-rating { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── PubMed abstract expand ── */
+  .article-item { cursor: pointer; transition: background 150ms; }
+  .article-item:hover { background: #e8e8e8; }
+  .article-abstract-box {
+    display: none; margin-top: 10px; padding: 12px;
+    background: white; border-radius: var(--radius-sm);
+    font-size: 13px; line-height: 1.6; color: var(--text);
+    border-left: 3px solid var(--green);
+  }
+  .article-abstract-box.open { display: block; }
+  .article-expand-hint { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; }
+
+  /* ── Reddit post expand ── */
+  .post-full-body {
+    display: none; margin-top: 8px; padding: 10px 12px;
+    background: white; border-radius: var(--radius-sm);
+    font-size: 13px; line-height: 1.6; color: var(--text);
+    white-space: pre-wrap;
+  }
+  .post-full-body.open { display: block; }
+  .post-item { cursor: pointer; }
+
+  /* ── Food ── */
+  .food-list { display: flex; flex-direction: column; gap: 12px; }
+  .food-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .food-img {
+    width: 70px; height: 70px;
+    border-radius: var(--radius-sm);
+    object-fit: contain; background: white; flex-shrink: 0;
+    padding: 4px;
+  }
+  .food-body { flex: 1; min-width: 0; }
+  .food-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .food-name { font-size: 14px; font-weight: 700; }
+  .food-brand { font-size: 12px; color: var(--text-secondary); }
+  .nutriscore {
+    font-size: 11px; font-weight: 800; padding: 2px 7px;
+    border-radius: 6px; color: white; flex-shrink: 0;
+  }
+  .nutriscore-A { background: #038141; }
+  .nutriscore-B { background: #85BB2F; }
+  .nutriscore-C { background: #FECB02; color: #333; }
+  .nutriscore-D { background: #EE8100; }
+  .nutriscore-E { background: #E63E11; }
+  .food-macros { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+  .macro-pill {
+    font-size: 11px; background: white;
+    border-radius: 20px; padding: 2px 8px;
+    color: var(--text-secondary);
+  }
+  .macro-pill strong { color: var(--text); }
+  .food-additives { font-size: 11px; color: var(--text-tertiary); }
+  .additive-tag {
+    display: inline-block; background: #fff3cd;
+    border-radius: 4px; padding: 1px 5px;
+    margin: 1px 2px; font-size: 11px; color: #856404;
+  }
+  .food-ingredients { font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+
+  /* ── Jobs ── */
+  .job-list { display: flex; flex-direction: column; gap: 12px; }
+  .job-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    border-left: 3px solid var(--green);
+    cursor: pointer; transition: background 150ms;
+  }
+  .job-item:hover { background: #e8e8e8; }
+  .job-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .job-company { font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+  .job-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .job-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; display: none; margin-top: 8px; white-space: pre-wrap; }
+  .job-desc.open { display: block; }
+  .job-link { font-size: 12px; font-weight: 600; color: var(--green); text-decoration: none; margin-top: 8px; display: inline-block; }
+  .job-link:hover { text-decoration: underline; }
+
+  /* ── Hotels ── */
+  .hotel-list { display: flex; flex-direction: column; gap: 12px; }
+  .hotel-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex; gap: 14px; align-items: flex-start;
+    cursor: pointer; transition: background 150ms;
+    text-decoration: none;
+  }
+  .hotel-item:hover { background: #e8e8e8; }
+  .hotel-img { width: 100px; height: 70px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; background: #ddd; }
+  .hotel-body { flex: 1; min-width: 0; }
+  .hotel-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .hotel-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .hotel-price { font-size: 18px; font-weight: 800; color: var(--green); }
+
+  /* ── Exercises ── */
+  .exercise-list { display: flex; flex-direction: column; gap: 12px; }
+  .exercise-item {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    border-left: 3px solid var(--green);
+  }
+  .exercise-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .exercise-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .ex-tag {
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .ex-tag-muscle { background: rgba(69,196,0,0.12); color: var(--green); }
+  .ex-tag-equip { background: rgba(0,0,0,0.06); color: var(--text-secondary); }
+  .ex-tag-category { background: #e8f4ff; color: #0066cc; }
+  .exercise-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .exercise-img { width: 120px; height: 90px; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; background: var(--card-bg); }
+  .exercise-row { display: flex; gap: 14px; align-items: flex-start; }
+
+/* ══════════════════════════════════════════════════════════
+   SHOWCASE PAGES — scoped CSS
+══════════════════════════════════════════════════════════ */
+
+/* ── 1. 戒糖侦探 ── */
+#page-sugar { margin: -32px; width: calc(100% + 64px); min-height: 100vh; background: #080808; color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+#page-sugar .sg-hero { padding: 80px 24px 48px; max-width: 680px; margin: 0 auto; text-align: center; }
+#page-sugar .sg-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,51,51,0.1); border: 1px solid rgba(255,51,51,0.25); color: #ff3333; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 28px; }
+#page-sugar .sg-h1 { font-size: clamp(36px, 7vw, 68px); font-weight: 900; line-height: 1.08; margin-bottom: 18px; }
+#page-sugar .sg-h1 em { color: #ff3333; font-style: normal; }
+#page-sugar .sg-sub { font-size: 15px; color: #777; margin-bottom: 40px; line-height: 1.7; }
+#page-sugar .sg-wrap { max-width: 520px; margin: 0 auto; }
+#page-sugar .sg-row { display: flex; gap: 10px; }
+#page-sugar .sg-inp { flex: 1; background: #161616; border: 1.5px solid #2a2a2a; color: #f0f0f0; font-size: 15px; padding: 14px 18px; border-radius: 14px; outline: none; transition: border 200ms; }
+#page-sugar .sg-inp:focus { border-color: #ff3333; }
+#page-sugar .sg-inp::placeholder { color: #444; }
+#page-sugar .sg-btn { background: #ff3333; color: #fff; border: none; padding: 14px 22px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 180ms; white-space: nowrap; }
+#page-sugar .sg-btn:hover { background: #e62929; transform: translateY(-1px); }
+#page-sugar .sg-btn:disabled { background: #2a2a2a; color: #555; cursor: not-allowed; transform: none; }
+#page-sugar .sg-picks { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; justify-content: center; }
+#page-sugar .sg-pick { background: transparent; border: 1px solid #2a2a2a; color: #777; padding: 5px 13px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 150ms; }
+#page-sugar .sg-pick:hover { border-color: #ff3333; color: #f0f0f0; }
+#page-sugar .sg-load { display: none; text-align: center; padding: 72px 24px; }
+#page-sugar .sg-load.show { display: block; }
+#page-sugar .sg-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
+#page-sugar .sg-dot { width: 8px; height: 8px; background: #ff3333; border-radius: 50%; animation: sg-blink 1.4s infinite; }
+#page-sugar .sg-dot:nth-child(2) { animation-delay: .2s; }
+#page-sugar .sg-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes sg-blink { 0%,100%{opacity:.15;transform:scale(.7)} 50%{opacity:1;transform:scale(1)} }
+#page-sugar .sg-lmsg { font-size: 13px; color: #777; letter-spacing: .05em; }
+#page-sugar .sg-err { display: none; background: rgba(255,51,51,.07); border: 1px solid rgba(255,51,51,.2); color: #ff7070; padding: 12px 18px; border-radius: 12px; font-size: 13px; margin: 14px auto 0; max-width: 520px; text-align: center; }
+#page-sugar .sg-err.show { display: block; }
+#page-sugar .sg-results { display: none; max-width: 960px; margin: 0 auto; padding: 0 20px 100px; }
+#page-sugar .sg-results.show { display: block; }
+#page-sugar .sg-verdict { border-left: 3px solid #ff3333; background: #111; border-radius: 16px; padding: 22px 28px; margin-bottom: 18px; }
+#page-sugar .sg-v-label { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #ff3333; margin-bottom: 8px; }
+#page-sugar .sg-v-text { font-size: 14px; line-height: 1.7; color: #ccc; }
+#page-sugar .sg-prod { background: #111; border: 1px solid #1e1e1e; border-radius: 20px; padding: 28px; margin-bottom: 18px; display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+#page-sugar .sg-prod-left { flex: 1; min-width: 200px; }
+#page-sugar .sg-prod-name { font-size: 22px; font-weight: 800; margin-bottom: 2px; }
+#page-sugar .sg-prod-brand { font-size: 13px; color: #777; margin-bottom: 20px; }
+#page-sugar .sg-macros { display: flex; flex-direction: column; gap: 9px; }
+#page-sugar .sg-mrow { display: flex; align-items: center; gap: 10px; }
+#page-sugar .sg-mname { font-size: 11px; color: #777; width: 52px; flex-shrink: 0; }
+#page-sugar .sg-mtrack { flex: 1; height: 5px; background: #1e1e1e; border-radius: 3px; overflow: hidden; }
+#page-sugar .sg-mfill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+#page-sugar .sg-mval { font-size: 11px; font-weight: 700; width: 44px; text-align: right; flex-shrink: 0; }
+#page-sugar .sg-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+#page-sugar .sg-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+#page-sugar .sg-t-add { background: rgba(255,107,0,.12); color: #ff6b00; border: 1px solid rgba(255,107,0,.25); }
+#page-sugar .sg-t-allergy { background: rgba(255,51,51,.1); color: #ff8080; border: 1px solid rgba(255,51,51,.2); }
+#page-sugar .sg-t-ok { background: rgba(34,197,94,.09); color: #22c55e; border: 1px solid rgba(34,197,94,.2); }
+#page-sugar .sg-ing { font-size: 11px; color: #555; line-height: 1.6; margin-top: 12px; }
+#page-sugar .sg-gauge { text-align: center; width: 150px; flex-shrink: 0; }
+#page-sugar .sg-glabel { font-size: 10px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: #777; margin-bottom: 10px; }
+#page-sugar .sg-gscore { font-size: 32px; font-weight: 900; line-height: 1; }
+#page-sugar .sg-gunit { font-size: 11px; color: #777; margin-top: 2px; }
+#page-sugar .sg-gtag { font-size: 12px; font-weight: 700; margin-top: 6px; }
+#page-sugar .sg-ns { display: inline-block; font-size: 14px; font-weight: 900; padding: 4px 12px; border-radius: 8px; color: #fff; margin-top: 10px; }
+#page-sugar .sg-ns-A{background:#038141} #page-sugar .sg-ns-B{background:#85BB2F} #page-sugar .sg-ns-C{background:#FECB02;color:#333} #page-sugar .sg-ns-D{background:#EE8100} #page-sugar .sg-ns-E{background:#E63E11}
+#page-sugar .sg-twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+@media(max-width:640px){ #page-sugar .sg-twocol{grid-template-columns:1fr} #page-sugar .sg-prod{flex-direction:column} }
+#page-sugar .sg-sec { background: #111; border: 1px solid #1e1e1e; border-radius: 20px; padding: 22px; }
+#page-sugar .sg-sec-label { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #777; margin-bottom: 16px; display: flex; align-items: center; gap: 7px; }
+#page-sugar .sg-sec-label::before { content:''; width:5px; height:5px; border-radius:50%; background:#ff3333; display:block; }
+#page-sugar .sg-paper { padding: 13px 0; border-bottom: 1px solid #1e1e1e; }
+#page-sugar .sg-paper:last-child { border-bottom: none; }
+#page-sugar .sg-ptitle { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+#page-sugar .sg-pmeta { font-size: 11px; color: #777; margin-bottom: 5px; }
+#page-sugar .sg-plink { font-size: 11px; color: #ff3333; text-decoration: none; font-weight: 600; }
+#page-sugar .sg-plink:hover { text-decoration: underline; }
+#page-sugar .sg-spost { padding: 13px 0; border-bottom: 1px solid #1e1e1e; }
+#page-sugar .sg-spost:last-child { border-bottom: none; }
+#page-sugar .sg-spost-sub { font-size: 10px; font-weight: 700; color: #ff6b00; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 3px; }
+#page-sugar .sg-spost-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+#page-sugar .sg-spost-meta { font-size: 11px; color: #777; display: flex; gap: 10px; }
+#page-sugar .sg-spost-link { font-size: 11px; color: #ff3333; text-decoration: none; font-weight: 600; }
+#page-sugar .sg-empty { font-size: 13px; color: #444; }
+
+/* ── 2. 英语教练 ── */
+#page-encoach { margin: -32px; width: calc(100% + 64px); min-height: 100vh; background: #faf8f4; color: #1a1a2e; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+#page-encoach .en-nav { padding: 0 40px; height: 56px; display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #e8e4dc; background: #fff; }
+#page-encoach .en-nav-brand { font-size: 15px; font-weight: 800; color: #3b3b8a; }
+#page-encoach .en-nav-sub { font-size: 12px; color: #888; }
+#page-encoach .en-nav-pill { margin-left: auto; background: #3b3b8a; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: .05em; }
+#page-encoach .en-hero { padding: 64px 40px 48px; max-width: 800px; margin: 0 auto; }
+#page-encoach .en-eyebrow { font-size: 12px; font-weight: 700; color: #4f6ef7; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 16px; }
+#page-encoach .en-h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.1; color: #1a1a2e; margin-bottom: 14px; }
+#page-encoach .en-h1 em { color: #4f6ef7; font-style: normal; text-decoration: underline; text-decoration-color: rgba(79,110,247,.4); }
+#page-encoach .en-sub { font-size: 15px; color: #888; line-height: 1.7; max-width: 500px; }
+#page-encoach .en-zone { padding: 0 40px 52px; max-width: 800px; margin: 0 auto; }
+#page-encoach .en-label { font-size: 12px; font-weight: 700; color: #888; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+#page-encoach .en-row { display: flex; gap: 10px; max-width: 540px; }
+#page-encoach .en-inp { flex: 1; background: #fff; border: 2px solid #e8e4dc; color: #1a1a2e; font-size: 15px; padding: 13px 18px; border-radius: 14px; outline: none; transition: border 200ms; }
+#page-encoach .en-inp:focus { border-color: #4f6ef7; }
+#page-encoach .en-inp::placeholder { color: #bbb; }
+#page-encoach .en-btn { background: #3b3b8a; color: #fff; border: none; padding: 13px 24px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 180ms; white-space: nowrap; }
+#page-encoach .en-btn:hover { background: #4f6ef7; transform: translateY(-1px); }
+#page-encoach .en-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+#page-encoach .en-picks { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+#page-encoach .en-pick { background: #fff; border: 1.5px solid #e8e4dc; color: #888; padding: 5px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 150ms; }
+#page-encoach .en-pick:hover { border-color: #4f6ef7; color: #4f6ef7; }
+#page-encoach .en-err { display:none; background:#fff0f0; border:1.5px solid #ffd0d0; color:#e5534b; padding:12px 18px; border-radius:12px; font-size:13px; margin-top:12px; max-width:540px; }
+#page-encoach .en-err.show { display:block; }
+#page-encoach .en-loading { display: none; padding: 80px 40px; text-align: center; }
+#page-encoach .en-loading.show { display: block; }
+#page-encoach .en-licon { font-size: 40px; animation: en-float 2s ease-in-out infinite; display: inline-block; }
+@keyframes en-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+#page-encoach .en-ltext { font-size: 14px; color: #888; margin-top: 16px; }
+#page-encoach .en-phase { display: none; max-width: 960px; margin: 0 auto; padding: 0 40px; }
+#page-encoach .en-phase.show { display: block; }
+#page-encoach .en-phase-title { font-size: 13px; font-weight: 700; color: #888; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+#page-encoach .en-vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 24px; }
+#page-encoach .en-vcard { background: #fff; border: 2px solid #e8e4dc; border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 180ms; position: relative; }
+#page-encoach .en-vcard:hover { border-color: #4f6ef7; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,110,247,.12); }
+#page-encoach .en-vcard.selected { border-color: #4f6ef7; box-shadow: 0 0 0 3px rgba(79,110,247,.15); }
+#page-encoach .en-vthumb { width: 100%; height: 148px; object-fit: cover; background: #eee; display: block; }
+#page-encoach .en-vthumb-ph { width: 100%; height: 148px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+#page-encoach .en-vinfo { padding: 12px 14px; }
+#page-encoach .en-vtitle { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#page-encoach .en-vmeta { font-size: 11px; color: #888; }
+#page-encoach .en-vcheck { display: none; position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; background: #4f6ef7; border-radius: 50%; color: #fff; align-items: center; justify-content: center; font-size: 12px; }
+#page-encoach .en-vcard.selected .en-vcheck { display: flex; }
+#page-encoach .en-pickbtn { display: block; width: 100%; max-width: 540px; background: #3b3b8a; color: #fff; border: none; padding: 15px; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 180ms; text-align: center; }
+#page-encoach .en-pickbtn:hover { background: #4f6ef7; }
+#page-encoach .en-pickbtn:disabled { background: #ccc; cursor: not-allowed; }
+#page-encoach .en-tload { display: none; padding: 48px 0; }
+#page-encoach .en-tload.show { display: flex; align-items: center; gap: 12px; justify-content: center; }
+#page-encoach .en-spin { width: 20px; height: 20px; border: 2px solid #e8e4dc; border-top-color: #4f6ef7; border-radius: 50%; animation: spin .8s linear infinite; }
+#page-encoach .en-phase3 { display: none; max-width: 960px; margin: 0 auto; padding: 0 40px 100px; }
+#page-encoach .en-phase3.show { display: block; }
+#page-encoach .en-lhero { background: #3b3b8a; color: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 24px; display: flex; }
+#page-encoach .en-lhimg { width: 260px; flex-shrink: 0; object-fit: cover; display: block; }
+#page-encoach .en-lhimg-ph { width: 260px; flex-shrink: 0; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+#page-encoach .en-lhbody { padding: 28px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+#page-encoach .en-lhlabel { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 8px; }
+#page-encoach .en-lhtitle { font-size: 18px; font-weight: 800; line-height: 1.3; margin-bottom: 6px; }
+#page-encoach .en-lhmeta { font-size: 13px; opacity: .7; margin-bottom: 16px; }
+#page-encoach .en-lhstats { display: flex; gap: 20px; }
+#page-encoach .en-lhsnum { font-size: 22px; font-weight: 900; }
+#page-encoach .en-lhslbl { font-size: 10px; opacity: .6; text-transform: uppercase; letter-spacing: .1em; }
+#page-encoach .en-slabel { font-size: 12px; font-weight: 700; color: #888; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
+#page-encoach .en-vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 28px; }
+#page-encoach .en-voc { background: #fff; border: 1.5px solid #e8e4dc; border-radius: 14px; padding: 16px; cursor: pointer; transition: all 180ms; }
+#page-encoach .en-voc:hover { border-color: #4f6ef7; transform: translateY(-2px); }
+#page-encoach .en-voc-word { font-size: 18px; font-weight: 900; color: #1a1a2e; margin-bottom: 2px; }
+#page-encoach .en-voc-count { font-size: 10px; color: #888; margin-bottom: 8px; }
+#page-encoach .en-voc-ex { font-size: 11px; color: #888; line-height: 1.4; font-style: italic; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+#page-encoach .en-slist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+#page-encoach .en-sent { background: #fff; border: 1.5px solid #e8e4dc; border-radius: 14px; padding: 14px 18px; display: flex; gap: 14px; align-items: flex-start; }
+#page-encoach .en-stime { font-size: 12px; font-weight: 700; color: #4f6ef7; white-space: nowrap; padding-top: 1px; min-width: 36px; }
+#page-encoach .en-stext { font-size: 14px; line-height: 1.6; }
+#page-encoach .en-caps { background: #fff; border: 1.5px solid #e8e4dc; border-radius: 16px; padding: 20px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+#page-encoach .en-cap { display: flex; gap: 12px; }
+#page-encoach .en-ctime { font-size: 11px; font-weight: 700; color: #4f6ef7; min-width: 36px; padding-top: 2px; }
+#page-encoach .en-ctext { font-size: 13px; line-height: 1.5; color: #1a1a2e; }
+#page-encoach .en-empty { font-size: 13px; color: #888; }
+
+/* topic cards */
+#page-encoach .en-topic-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-bottom: 8px; }
+#page-encoach .en-tcard { background: #fff; border: 2px solid #e8e4dc; border-radius: 14px; padding: 16px 14px; cursor: pointer; transition: all 180ms; text-align: center; }
+#page-encoach .en-tcard:hover { border-color: #4f6ef7; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,110,247,.12); }
+#page-encoach .en-tcard-icon { font-size: 28px; margin-bottom: 8px; }
+#page-encoach .en-tcard-title { font-size: 14px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+#page-encoach .en-tcard-sub { font-size: 11px; color: #888; line-height: 1.4; }
+
+/* coach says banners */
+#page-encoach .en-coach-box { background: linear-gradient(135deg, #3b3b8a 0%, #4f6ef7 100%); color: #fff; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; }
+#page-encoach .en-coach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
+#page-encoach .en-coach-msg { font-size: 15px; font-weight: 600; line-height: 1.6; }
+#page-encoach .en-coach-tasks { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+#page-encoach .en-coach-task { background: rgba(255,255,255,.12); border-radius: 8px; padding: 8px 14px; font-size: 13px; display: flex; align-items: flex-start; gap: 8px; }
+#page-encoach .en-top3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+#page-encoach .en-t3card { background: rgba(0,0,0,.3); border-radius: 10px; padding: 12px; }
+#page-encoach .en-t3word { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+#page-encoach .en-t3count { font-size: 10px; color: rgba(255,255,255,.5); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .1em; }
+#page-encoach .en-t3ex { font-size: 11px; color: rgba(255,255,255,.65); font-style: italic; line-height: 1.4; }
+#page-encoach .en-top3-card { background: #3b3b8a; color: #fff; border-radius: 14px; padding: 16px; text-align: center; }
+#page-encoach .en-top3-card { background: #3b3b8a; color: #fff; border-radius: 14px; padding: 16px; text-align: center; }
+#page-encoach .en-top3-num { font-size: 10px; opacity: .6; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+#page-encoach .en-top3-word { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+#page-encoach .en-top3-ex { font-size: 11px; opacity: .7; font-style: italic; line-height: 1.4; }
+
+/* coach banners for other showcases */
+#page-sugar .sg-coach { background: linear-gradient(135deg, #1a0000 0%, #2d0000 100%); border: 1px solid rgba(255,51,51,.3); border-radius: 16px; padding: 20px 24px; margin-bottom: 18px; }
+#page-sugar .sg-coach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #ff3333; margin-bottom: 8px; }
+#page-sugar .sg-coach-msg { font-size: 14px; color: #f0c0c0; line-height: 1.7; }
+#page-sugar .sg-coach-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+#page-sugar .sg-coach-action { background: rgba(255,51,51,.1); border: 1px solid rgba(255,51,51,.2); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #ff9090; }
+
+#page-career .ca-coach { background: linear-gradient(135deg, #001a2d 0%, #002d3d 100%); border: 1px solid rgba(0,229,255,.2); border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; }
+#page-career .ca-coach-label { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #00e5ff; margin-bottom: 8px; }
+#page-career .ca-coach-msg { font-size: 13px; color: rgba(221,224,255,.8); line-height: 1.7; }
+#page-career .ca-coach-steps { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+#page-career .ca-coach-step { background: rgba(0,229,255,.06); border: 1px solid rgba(0,229,255,.12); border-radius: 6px; padding: 8px 14px; font-size: 12px; color: #99eeff; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+
+#page-travelsc .tr-coach { background: #1c1c22; color: #f0ece4; border-radius: 14px; padding: 20px 24px; margin: 24px 40px 0; max-width: 1100px; margin-left: auto; margin-right: auto; }
+#page-travelsc .tr-coach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #0f766e; margin-bottom: 8px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-coach-msg { font-size: 14px; color: rgba(240,236,228,.8); line-height: 1.7; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-checklist { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+#page-travelsc .tr-check-item { background: rgba(15,118,110,.2); border: 1px solid rgba(15,118,110,.3); border-radius: 8px; padding: 8px 14px; font-size: 13px; color: #7dd8d0; font-family: -apple-system, sans-serif; }
+
+#page-fitlab .fl-coach { background: linear-gradient(135deg, #0a1a00 0%, #0f2800 100%); border: 1px solid rgba(69,196,0,.25); border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; }
+#page-fitlab .fl-coach-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #45C400; margin-bottom: 8px; }
+#page-fitlab .fl-coach-msg { font-size: 14px; color: rgba(240,240,240,.8); line-height: 1.7; }
+#page-fitlab .fl-program { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+#page-fitlab .fl-prog-item { background: rgba(69,196,0,.08); border: 1px solid rgba(69,196,0,.15); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #90e060; display: flex; justify-content: space-between; align-items: center; }
+#page-fitlab .fl-prog-sets { font-size: 11px; color: #45C400; font-weight: 700; }
+
+/* ── 3. 求职情报站 ── */
+#page-career { margin: -32px; width: calc(100% + 64px); min-height: 100vh; background: #050508; color: #dde0ff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+#page-career .ca-topbar { border-bottom: 1px solid #16161f; padding: 0 32px; display: flex; align-items: center; gap: 24px; height: 52px; background: rgba(5,5,8,.9); }
+#page-career .ca-logo { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 13px; font-weight: 700; color: #00e5ff; letter-spacing: .08em; }
+#page-career .ca-status { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 11px; color: #55557a; }
+#page-career .ca-blink { animation: ca-blink 1s step-end infinite; }
+@keyframes ca-blink { 50%{opacity:0} }
+#page-career .ca-ts { margin-left: auto; font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 11px; color: #55557a; }
+#page-career .ca-hero { padding: 72px 32px 56px; max-width: 720px; }
+#page-career .ca-prelabel { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 11px; color: #00e5ff; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+#page-career .ca-prelabel::before { content:'//'; opacity:.5; }
+#page-career .ca-h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 900; line-height: 1.08; margin-bottom: 14px; }
+#page-career .ca-h1 span { color: #00e5ff; }
+#page-career .ca-sub { font-size: 14px; color: #55557a; line-height: 1.7; max-width: 480px; }
+#page-career .ca-zone { padding: 0 32px 48px; max-width: 680px; }
+#page-career .ca-srow { display: flex; gap: 0; }
+#page-career .ca-inp { flex: 1; background: #0c0c10; border: 1px solid #1e1e2a; border-right: none; color: #dde0ff; font-size: 15px; padding: 14px 20px; border-radius: 12px 0 0 12px; outline: none; transition: border 200ms; font-family: inherit; }
+#page-career .ca-inp:focus { border-color: #00e5ff; }
+#page-career .ca-inp::placeholder { color: #55557a; font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 13px; }
+#page-career .ca-btn { background: #00e5ff; color: #000; border: none; padding: 14px 24px; border-radius: 0 12px 12px 0; font-size: 13px; font-weight: 800; cursor: pointer; transition: all 180ms; white-space: nowrap; letter-spacing: .05em; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-btn:hover { background: #33eaff; }
+#page-career .ca-btn:disabled { background: #1e1e2a; color: #55557a; cursor: not-allowed; }
+#page-career .ca-picks { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+#page-career .ca-pick { background: transparent; border: 1px solid #1e1e2a; color: #55557a; padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 150ms; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-pick:hover { border-color: #00e5ff; color: #00e5ff; }
+#page-career .ca-err { display:none; font-size:13px; color:#ff6666; font-family:'SF Mono','Fira Code','Consolas',monospace; padding:14px 0; }
+#page-career .ca-err.show { display:block; }
+#page-career .ca-loading { display: none; padding: 80px 32px; }
+#page-career .ca-loading.show { display: block; }
+#page-career .ca-scan { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 12px; color: #00e5ff; }
+#page-career .ca-sline { opacity: 0; animation: ca-fadein .3s forwards; margin-bottom: 4px; }
+#page-career .ca-sline::before { content: '> '; color: #55557a; }
+@keyframes ca-fadein { to{ opacity: 1 } }
+#page-career .ca-stats { display: flex; gap: 1px; margin: 0 0 20px; background: #16161f; border-radius: 12px; overflow: hidden; }
+#page-career .ca-stat-cell { flex: 1; background: #0c0c10; padding: 16px 20px; display: flex; flex-direction: column; gap: 2px; }
+#page-career .ca-stat-num { font-size: 24px; font-weight: 900; color: #00e5ff; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-stat-lbl { font-size: 10px; color: #55557a; text-transform: uppercase; letter-spacing: .12em; }
+#page-career .ca-layout { padding: 0 0 100px; display: grid; grid-template-columns: 1fr 360px; gap: 16px; }
+@media(max-width:900px){ #page-career .ca-layout{grid-template-columns:1fr} }
+#page-career .ca-results { display: none; max-width: 1200px; padding: 0 24px; }
+#page-career .ca-results.show { display: block; }
+#page-career .ca-col-label { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 10px; color: #55557a; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 12px; padding-left: 4px; }
+#page-career .ca-jcard { background: #0c0c10; border: 1px solid #16161f; border-radius: 14px; padding: 18px 20px; margin-bottom: 10px; cursor: pointer; transition: all 180ms; border-left: 2px solid transparent; }
+#page-career .ca-jcard:hover, #page-career .ca-jcard.open { border-left-color: #00e5ff; background: #101016; }
+#page-career .ca-jtop { display: flex; align-items: flex-start; gap: 12px; }
+#page-career .ca-jbody { flex: 1; }
+#page-career .ca-jtitle { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+#page-career .ca-jco { font-size: 13px; color: #00e5ff; font-weight: 600; margin-bottom: 6px; }
+#page-career .ca-jmeta { display: flex; gap: 10px; flex-wrap: wrap; }
+#page-career .ca-jtag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-jloc { background: rgba(0,229,255,.08); color: #00e5ff; }
+#page-career .ca-jtype { background: rgba(0,255,135,.08); color: #00ff87; }
+#page-career .ca-jsal { background: rgba(167,139,250,.1); color: #a78bfa; font-weight: 700; }
+#page-career .ca-jdate { background: rgba(255,255,255,.05); color: #55557a; }
+#page-career .ca-jarr { font-size: 14px; color: #55557a; transition: transform 200ms; margin-top: 2px; }
+#page-career .ca-jcard.open .ca-jarr { transform: rotate(180deg); }
+#page-career .ca-jdesc { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #16161f; font-size: 12px; color: #55557a; line-height: 1.7; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-jdesc.open { display: block; }
+#page-career .ca-jlink { font-size: 11px; font-weight: 700; color: #00e5ff; text-decoration: none; margin-top: 8px; display: inline-block; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-intel { background: #0c0c10; border: 1px solid #16161f; border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+#page-career .ca-ilabel { font-family: 'SF Mono','Fira Code','Consolas',monospace; font-size: 10px; color: #55557a; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+#page-career .ca-idot { width: 5px; height: 5px; border-radius: 50%; background: #00e5ff; }
+#page-career .ca-ri { padding: 11px 0; border-bottom: 1px solid #16161f; }
+#page-career .ca-ri:last-child { border-bottom: none; }
+#page-career .ca-ri-sub { font-size: 10px; color: #00ff87; font-family: 'SF Mono','Fira Code','Consolas',monospace; margin-bottom: 3px; }
+#page-career .ca-ri-title { font-size: 12px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+#page-career .ca-ri-meta { font-size: 10px; color: #55557a; display: flex; gap: 8px; }
+#page-career .ca-ri-link { font-size: 10px; color: #00e5ff; text-decoration: none; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-wiki-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+#page-career .ca-wiki-desc { font-size: 12px; color: #00e5ff; margin-bottom: 8px; }
+#page-career .ca-wiki-text { font-size: 12px; color: #55557a; line-height: 1.6; }
+#page-career .ca-wiki-link { font-size: 11px; color: #00e5ff; text-decoration: none; display: inline-block; margin-top: 8px; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+#page-career .ca-empty { font-size: 12px; color: #55557a; font-family: 'SF Mono','Fira Code','Consolas',monospace; }
+
+/* ── 4. 旅行准备官 ── */
+#page-travelsc { margin: -32px; width: calc(100% + 64px); min-height: 100vh; background: #f7f4ef; color: #1c1c22; font-family: Georgia,'Times New Roman',serif; }
+#page-travelsc .tr-mast { background: #1c1c22; color: #f0ece4; padding: 0 40px; height: 56px; display: flex; align-items: center; gap: 20px; }
+#page-travelsc .tr-mtitle { font-size: 18px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+#page-travelsc .tr-mdiv { color: #555; }
+#page-travelsc .tr-msub { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: #888; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-mdate { margin-left: auto; font-size: 11px; color: #666; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-cover { background: #1c1c22; color: #f0ece4; padding: 72px 40px 64px; position: relative; overflow: hidden; }
+#page-travelsc .tr-cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(15,118,110,.3) 0%, transparent 60%); pointer-events: none; }
+#page-travelsc .tr-cinner { max-width: 800px; position: relative; }
+#page-travelsc .tr-ckicker { font-size: 11px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: #0f766e; margin-bottom: 16px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-ctitle { font-size: clamp(40px, 7vw, 80px); line-height: 1.05; font-weight: 700; margin-bottom: 18px; }
+#page-travelsc .tr-ctitle span { color: #0f766e; font-style: italic; }
+#page-travelsc .tr-csub { font-size: 16px; color: rgba(240,236,228,.65); line-height: 1.7; max-width: 500px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-sbar { background: #fff; border-bottom: 1px solid #e5e0d8; padding: 20px 40px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+#page-travelsc .tr-slabel { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #888; font-family: -apple-system, sans-serif; white-space: nowrap; }
+#page-travelsc .tr-inp { flex: 1; min-width: 200px; max-width: 360px; background: #f7f4ef; border: 1.5px solid #e5e0d8; color: #1c1c22; font-size: 15px; padding: 11px 16px; border-radius: 10px; outline: none; transition: border 200ms; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-inp:focus { border-color: #0f766e; }
+#page-travelsc .tr-inp::placeholder { color: #bbb; }
+#page-travelsc .tr-btn { background: #0f766e; color: #fff; border: none; padding: 11px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 180ms; white-space: nowrap; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-btn:hover { background: #0e6860; }
+#page-travelsc .tr-btn:disabled { background: #ccc; cursor: not-allowed; }
+#page-travelsc .tr-pills { display: flex; gap: 7px; flex-wrap: wrap; }
+#page-travelsc .tr-pill { background: transparent; border: 1.5px solid #e5e0d8; color: #888; padding: 5px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 150ms; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-pill:hover { border-color: #0f766e; color: #0f766e; }
+#page-travelsc .tr-err { display:none; font-size:13px; color:#cc0000; padding:10px 0; font-family:-apple-system,sans-serif; }
+#page-travelsc .tr-err.show { display:block; }
+#page-travelsc .tr-loading { display: none; padding: 80px 40px; text-align: center; }
+#page-travelsc .tr-loading.show { display: block; }
+#page-travelsc .tr-licon { font-size: 36px; display: inline-block; animation: tr-spin 3s linear infinite; }
+@keyframes tr-spin { to { transform: rotate(360deg); } }
+#page-travelsc .tr-ltext { font-size: 14px; color: #888; margin-top: 16px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-results { display: none; }
+#page-travelsc .tr-results.show { display: block; }
+#page-travelsc .tr-spread { padding: 48px 40px 0; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+@media(max-width:800px){ #page-travelsc .tr-spread{grid-template-columns:1fr} }
+#page-travelsc .tr-wlabel { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #0f766e; margin-bottom: 12px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-wtitle { font-size: 30px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
+#page-travelsc .tr-wdesc { font-size: 14px; color: #0f766e; font-style: italic; margin-bottom: 18px; }
+#page-travelsc .tr-wimg { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block; margin-bottom: 18px; }
+#page-travelsc .tr-wimg-ph { width: 100%; height: 220px; background: #e5e0d8; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 48px; margin-bottom: 18px; }
+#page-travelsc .tr-wtext { font-size: 15px; line-height: 1.8; color: #3a3a3a; }
+#page-travelsc .tr-wread { display: inline-block; margin-top: 16px; font-size: 13px; font-weight: 600; color: #0f766e; text-decoration: none; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-hlabel { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #888; margin-bottom: 12px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-hcard { background: #fff; border: 1px solid #e5e0d8; border-radius: 14px; overflow: hidden; margin-bottom: 14px; display: flex; transition: all 180ms; text-decoration: none; color: #1c1c22; }
+#page-travelsc .tr-hcard:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-2px); }
+#page-travelsc .tr-himg { width: 110px; flex-shrink: 0; object-fit: cover; display: block; background: #e5e0d8; }
+#page-travelsc .tr-himg-ph { width: 110px; flex-shrink: 0; background: #e5e0d8; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+#page-travelsc .tr-hbody { padding: 14px 16px; flex: 1; }
+#page-travelsc .tr-hname { font-size: 14px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+#page-travelsc .tr-hmeta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+#page-travelsc .tr-htag { font-size: 11px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-hstars { color: #d97706; }
+#page-travelsc .tr-hrating { color: #0f766e; font-weight: 600; }
+#page-travelsc .tr-hloc { color: #888; }
+#page-travelsc .tr-hprice { font-size: 18px; font-weight: 900; color: #1e3a5f; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-divider { max-width: 1100px; margin: 48px auto 0; padding: 0 40px; border-top: 2px solid #1c1c22; display: flex; align-items: center; gap: 16px; padding-top: 20px; }
+#page-travelsc .tr-dtitle { font-size: 13px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #1c1c22; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-dline { flex: 1; height: 1px; background: #e5e0d8; }
+#page-travelsc .tr-vsec { padding: 24px 40px 0; max-width: 1100px; margin: 0 auto; }
+#page-travelsc .tr-vscroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+#page-travelsc .tr-vscroll::-webkit-scrollbar { height: 4px; }
+#page-travelsc .tr-vscroll::-webkit-scrollbar-thumb { background: #e5e0d8; border-radius: 2px; }
+#page-travelsc .tr-ytcard { background: #fff; border: 1px solid #e5e0d8; border-radius: 14px; overflow: hidden; min-width: 240px; max-width: 260px; flex-shrink: 0; text-decoration: none; color: #1c1c22; transition: all 180ms; display: block; }
+#page-travelsc .tr-ytcard:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
+#page-travelsc .tr-ytthumb { width: 100%; height: 140px; object-fit: cover; display: block; background: #e5e0d8; }
+#page-travelsc .tr-ytthumb-ph { width: 100%; height: 140px; background: #e5e0d8; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+#page-travelsc .tr-ytbody { padding: 12px 14px; }
+#page-travelsc .tr-yttitle { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#page-travelsc .tr-ytmeta { font-size: 11px; color: #888; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-rsec { padding: 24px 40px 100px; max-width: 1100px; margin: 0 auto; }
+#page-travelsc .tr-rgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+#page-travelsc .tr-rc { background: #fff; border: 1px solid #e5e0d8; border-radius: 14px; padding: 18px; transition: all 180ms; }
+#page-travelsc .tr-rc:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+#page-travelsc .tr-rc-sub { font-size: 11px; font-weight: 700; color: #0f766e; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-rc-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+#page-travelsc .tr-rc-body { font-size: 12px; color: #888; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-rc-meta { display: flex; gap: 10px; align-items: center; font-family: -apple-system, sans-serif; }
+#page-travelsc .tr-rc-score { font-size: 11px; color: #888; }
+#page-travelsc .tr-rc-link { font-size: 11px; font-weight: 700; color: #0f766e; text-decoration: none; margin-left: auto; }
+#page-travelsc .tr-empty { font-size: 13px; color: #888; font-family: -apple-system, sans-serif; padding: 12px 0; }
+
+/* ── 5. 健身实验室 ── */
+#page-fitlab { margin: -32px; width: calc(100% + 64px); min-height: 100vh; background: #0a0a0a; color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+#page-fitlab .fl-header { padding: 40px 32px 32px; max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid #1a1a1a; }
+#page-fitlab .fl-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(69,196,0,.12); border: 1px solid rgba(69,196,0,.25); color: #45C400; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; margin-bottom: 16px; }
+#page-fitlab .fl-h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 900; line-height: 1.1; }
+#page-fitlab .fl-h1 span { color: #45C400; }
+#page-fitlab .fl-sub { font-size: 14px; color: #666; margin-top: 8px; max-width: 480px; line-height: 1.6; }
+#page-fitlab .fl-hstat { text-align: right; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+#page-fitlab .fl-hnum { font-size: 36px; font-weight: 900; color: #45C400; line-height: 1; }
+#page-fitlab .fl-hlbl { font-size: 11px; color: #666; }
+#page-fitlab .fl-zone { padding: 28px 32px; max-width: 1100px; margin: 0 auto; }
+#page-fitlab .fl-srow { display: flex; gap: 10px; max-width: 560px; }
+#page-fitlab .fl-inp { flex: 1; background: #111; border: 1.5px solid #222; color: #f0f0f0; font-size: 15px; padding: 13px 18px; border-radius: 12px; outline: none; transition: border 200ms; }
+#page-fitlab .fl-inp:focus { border-color: #45C400; }
+#page-fitlab .fl-inp::placeholder { color: #666; }
+#page-fitlab .fl-btn { background: #45C400; color: #000; border: none; padding: 13px 22px; border-radius: 12px; font-size: 14px; font-weight: 800; cursor: pointer; transition: all 180ms; white-space: nowrap; }
+#page-fitlab .fl-btn:hover { background: #5cd600; transform: translateY(-1px); }
+#page-fitlab .fl-btn:disabled { background: #222; color: #666; cursor: not-allowed; transform: none; }
+#page-fitlab .fl-muscles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+#page-fitlab .fl-mb { display: flex; align-items: center; gap: 6px; background: #111; border: 1px solid #222; color: #666; padding: 7px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; transition: all 150ms; font-weight: 600; }
+#page-fitlab .fl-mb:hover { border-color: #45C400; color: #45C400; background: rgba(69,196,0,.12); }
+#page-fitlab .fl-err { display:none; font-size:13px; color:#ff6666; padding:12px 0; }
+#page-fitlab .fl-err.show { display:block; }
+#page-fitlab .fl-loading { display: none; padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
+#page-fitlab .fl-loading.show { display: block; }
+#page-fitlab .fl-linner { display: flex; align-items: center; gap: 12px; }
+#page-fitlab .fl-spin { width: 20px; height: 20px; border: 2px solid #1a1a1a; border-top-color: #45C400; border-radius: 50%; animation: spin .8s linear infinite; }
+#page-fitlab .fl-ltext { font-size: 13px; color: #666; }
+#page-fitlab .fl-results { display: none; max-width: 1100px; margin: 0 auto; padding: 0 32px 100px; }
+#page-fitlab .fl-results.show { display: block; }
+#page-fitlab .fl-module { margin-bottom: 48px; }
+#page-fitlab .fl-mhdr { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1a1a1a; }
+#page-fitlab .fl-mnum { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #45C400; background: rgba(69,196,0,.12); border: 1px solid rgba(69,196,0,.2); padding: 3px 10px; border-radius: 4px; }
+#page-fitlab .fl-mtitle { font-size: 15px; font-weight: 800; }
+#page-fitlab .fl-mcount { margin-left: auto; font-size: 12px; color: #666; }
+#page-fitlab .fl-exgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+#page-fitlab .fl-excard { background: #111; border: 1px solid #1a1a1a; border-radius: 16px; overflow: hidden; }
+#page-fitlab .fl-eximg { width: 100%; height: 140px; object-fit: cover; background: #151515; display: block; }
+#page-fitlab .fl-eximg-ph { width: 100%; height: 140px; background: #151515; display: flex; align-items: center; justify-content: center; }
+#page-fitlab .fl-exbody { padding: 16px; }
+#page-fitlab .fl-exname { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+#page-fitlab .fl-extags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+#page-fitlab .fl-extag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+#page-fitlab .fl-et-m { background: rgba(69,196,0,.12); color: #45C400; }
+#page-fitlab .fl-et-e { background: rgba(255,255,255,.05); color: #666; }
+#page-fitlab .fl-et-c { background: rgba(68,136,255,.1); color: #4488ff; }
+#page-fitlab .fl-exdesc { font-size: 12px; color: #666; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+#page-fitlab .fl-scigrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+#page-fitlab .fl-scicard { background: #111; border: 1px solid #1a1a1a; border-radius: 16px; padding: 20px; border-left: 3px solid #45C400; }
+#page-fitlab .fl-sctitle { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+#page-fitlab .fl-scmeta { font-size: 11px; color: #666; margin-bottom: 10px; }
+#page-fitlab .fl-sclink { font-size: 11px; font-weight: 700; color: #45C400; text-decoration: none; }
+#page-fitlab .fl-sclink:hover { text-decoration: underline; }
+#page-fitlab .fl-gscroll { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; }
+#page-fitlab .fl-gscroll::-webkit-scrollbar { height: 4px; }
+#page-fitlab .fl-gscroll::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+#page-fitlab .fl-gcard { background: #111; border: 1px solid #1a1a1a; border-radius: 16px; min-width: 200px; max-width: 220px; flex-shrink: 0; overflow: hidden; text-decoration: none; color: #f0f0f0; transition: all 180ms; display: block; }
+#page-fitlab .fl-gcard:hover { border-color: #45C400; transform: translateY(-2px); }
+#page-fitlab .fl-gimg { width: 100%; height: 120px; object-fit: contain; background: #161616; padding: 8px; display: block; }
+#page-fitlab .fl-gimg-ph { width: 100%; height: 120px; background: #161616; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+#page-fitlab .fl-gbody { padding: 14px; }
+#page-fitlab .fl-gname { font-size: 12px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#page-fitlab .fl-gprice { font-size: 16px; font-weight: 900; color: #45C400; }
+#page-fitlab .fl-grating { font-size: 11px; color: #666; margin-top: 3px; }
+#page-fitlab .fl-comgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+#page-fitlab .fl-pcard { background: #111; border: 1px solid #1a1a1a; border-radius: 16px; padding: 18px; cursor: pointer; transition: all 180ms; }
+#page-fitlab .fl-pcard:hover { border-color: #333; }
+#page-fitlab .fl-pc-sub { font-size: 10px; font-weight: 700; color: #45C400; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 5px; }
+#page-fitlab .fl-pc-title { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+#page-fitlab .fl-pc-body { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+#page-fitlab .fl-pc-meta { display: flex; gap: 10px; align-items: center; }
+#page-fitlab .fl-pc-score { font-size: 11px; color: #666; }
+#page-fitlab .fl-pc-link { font-size: 11px; font-weight: 700; color: #45C400; text-decoration: none; margin-left: auto; }
+#page-fitlab .fl-empty { font-size: 13px; color: #666; padding: 20px 0; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+  <div class="logo">🌿 Jovida</div>
+  <div class="nav-label">Tool Demos</div>
+  <div class="nav-item active" data-page="english">🧠 英语教练</div>
+  <div class="nav-item" data-page="pubmed">🔬 PubMed 文献</div>
+  <div class="nav-item" data-page="reddit">💬 Reddit 热帖</div>
+  <div class="nav-item" data-page="wikipedia">📖 Wikipedia</div>
+  <div class="nav-item" data-page="shopping">🛍️ 商品搜索</div>
+  <div class="nav-item" data-page="food">🥗 食品成分</div>
+  <div class="nav-item" data-page="exercises">🏋️ 动作库</div>
+  <div class="nav-item" data-page="jobs">💼 工作机会</div>
+  <div class="nav-item" data-page="hotels">✈️ 旅游住宿</div>
+  <div class="nav-label" style="margin-top:10px">Showcases</div>
+  <div class="nav-item" data-page="sugar">🍬 戒糖侦探</div>
+  <div class="nav-item" data-page="encoach">📺 英语教练</div>
+  <div class="nav-item" data-page="career">💼 求职情报站</div>
+  <div class="nav-item" data-page="travelsc">✈️ 旅行准备官</div>
+  <div class="nav-item" data-page="fitlab">💪 健身实验室</div>
+</nav>
+
+<!-- Main -->
+<main class="main">
+
+  <!-- ══════════════════════════════════════════════════════════
+       英语教练
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page active" id="page-english">
+    <div class="page-title">🧠 英语教练 Goal</div>
+    <div class="page-desc">输入你感兴趣的主题 → 自动找 YouTube 视频 → 提取字幕 → 生成学习材料</div>
+
+    <div class="card">
+      <div class="card-title">Step 1 — 搜索视频</div>
+      <div class="input-row">
+        <input type="text" id="keyword-input" placeholder="输入主题，如 psychology / climate / AI..." />
+        <button class="btn btn-primary" id="search-btn" onclick="searchVideos()">搜索</button>
+      </div>
+      <div class="status" id="search-status"><div class="spinner"></div><span>正在搜索 YouTube...</span></div>
+      <div class="error-box" id="search-error"></div>
+    </div>
+
+    <div class="card" id="video-result-card" style="display:none">
+      <div class="card-title">选择一个视频</div>
+      <div class="video-list" id="video-list"></div>
+      <div style="margin-top:14px">
+        <button class="btn btn-primary" id="transcript-btn" onclick="getTranscript()" disabled>提取字幕 →</button>
+      </div>
+    </div>
+
+    <div class="card" id="transcript-loading-card" style="display:none">
+      <div class="status show"><div class="spinner"></div><span id="transcript-status-text">正在提取字幕...</span></div>
+    </div>
+
+    <div id="analysis-section" style="display:none">
+      <div class="card">
+        <div class="card-title">字幕概览</div>
+        <div class="stats-row" id="stats-row"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📚 今日单词（词频分析，无需 AI）</div>
+        <div class="vocab-grid" id="vocab-grid"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎧 听力练习句（8词以上）</div>
+        <div class="sentence-list" id="sentence-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📄 字幕原文（前50段）</div>
+        <div class="caption-list" id="caption-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PubMed 文献搜索
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-pubmed">
+    <div class="page-title">🔬 PubMed 文献搜索</div>
+    <div class="page-desc">搜索 NCBI PubMed 医学文献库 — 免费 API，无需 Apify 额度。适合健康/科学 Goal。</div>
+
+    <div class="card">
+      <div class="card-title">搜索文献</div>
+      <div class="input-row">
+        <input type="text" id="pubmed-input" placeholder="如 intermittent fasting / sleep quality / ADHD..." />
+        <button class="btn btn-primary" id="pubmed-btn" onclick="searchPubmed()">搜索</button>
+      </div>
+      <div class="status" id="pubmed-status"><div class="spinner"></div><span>查询 PubMed...</span></div>
+      <div class="error-box" id="pubmed-error"></div>
+    </div>
+
+    <div class="card" id="pubmed-result-card" style="display:none">
+      <div class="card-title">搜索结果</div>
+      <div class="article-list" id="article-list"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Reddit 热帖
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-reddit">
+    <div class="page-title">💬 Reddit 热帖</div>
+    <div class="page-desc">抓取 Reddit 相关讨论帖子 — 适合了解真实用户观点、产品口碑、生活建议。</div>
+
+    <div class="card">
+      <div class="card-title">搜索话题</div>
+      <div class="input-row">
+        <input type="text" id="reddit-input" placeholder="如 morning routine / protein supplements / dating apps..." />
+        <button class="btn btn-primary" id="reddit-btn" onclick="searchReddit()">搜索</button>
+      </div>
+      <div class="status" id="reddit-status"><div class="spinner"></div><span>正在抓取 Reddit...</span></div>
+      <div class="error-box" id="reddit-error"></div>
+    </div>
+
+    <div class="card" id="reddit-result-card" style="display:none">
+      <div class="card-title">热帖列表</div>
+      <div class="post-list" id="post-list"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Wikipedia
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-wikipedia">
+    <div class="page-title">📖 Wikipedia 知识摘要</div>
+    <div class="page-desc">获取 Wikipedia 权威摘要 — 免费 API，适合知识类 Goal 的背景介绍卡片。</div>
+
+    <div class="card">
+      <div class="card-title">搜索词条</div>
+      <div class="input-row">
+        <input type="text" id="wiki-input" placeholder="如 meditation / stoicism / gut microbiome..." />
+        <button class="btn btn-primary" id="wiki-btn" onclick="searchWiki()">搜索</button>
+      </div>
+      <div class="status" id="wiki-status"><div class="spinner"></div><span>查询 Wikipedia...</span></div>
+      <div class="error-box" id="wiki-error"></div>
+    </div>
+
+    <div class="card" id="wiki-result-card" style="display:none">
+      <div class="card-title">词条摘要</div>
+      <div id="wiki-article"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Google Shopping
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-shopping">
+    <div class="page-title">🛍️ 商品搜索</div>
+    <div class="page-desc">Google Shopping 实时比价 — 适合消费/装备类 Goal 推荐相关商品。</div>
+
+    <div class="card">
+      <div class="card-title">搜索商品</div>
+      <div class="input-row">
+        <input type="text" id="shopping-input" placeholder="如 yoga mat / protein powder / standing desk..." />
+        <button class="btn btn-primary" id="shopping-btn" onclick="searchShopping()">搜索</button>
+      </div>
+      <div class="status" id="shopping-status"><div class="spinner"></div><span>正在搜索商品...</span></div>
+      <div class="error-box" id="shopping-error"></div>
+    </div>
+
+    <div class="card" id="shopping-result-card" style="display:none">
+      <div class="card-title">商品列表</div>
+      <div class="product-list" id="product-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       食品成分
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-food">
+    <div class="page-title">🥗 食品成分查询</div>
+    <div class="page-desc">Open Food Facts — 700万+真实产品数据库。查成分、Nutri-Score 评级、添加剂、营养素。模型不知道具体品牌配方，这里知道。</div>
+
+    <div class="card">
+      <div class="card-title">搜索食品</div>
+      <div class="input-row">
+        <input type="text" id="food-input" placeholder="品牌名 / 食品名，如 Kind bar / Oatly / Oreo..." />
+        <button class="btn btn-primary" id="food-btn" onclick="searchFood()">搜索</button>
+      </div>
+      <div class="status" id="food-status"><div class="spinner"></div><span>查询 Open Food Facts...</span></div>
+      <div class="error-box" id="food-error"></div>
+    </div>
+
+    <div class="card" id="food-result-card" style="display:none">
+      <div class="card-title">产品列表</div>
+      <div class="food-list" id="food-list"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       动作库
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-exercises">
+    <div class="page-title">🏋️ 动作库</div>
+    <div class="page-desc">wger 开源动作数据库。输入肌群（chest / back / legs / shoulders / abs / arms）或动作名 → 获取标准做法 + 目标肌肉 + 所需器械。</div>
+
+    <div class="card">
+      <div class="card-title">搜索动作</div>
+      <div class="input-row">
+        <input type="text" id="exercises-input" placeholder="肌群: chest / back / legs / abs... 或动作: squat / deadlift..." />
+        <button class="btn btn-primary" id="exercises-btn" onclick="searchExercises()">搜索</button>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+        <span onclick="quickEx('chest')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">胸 chest</span>
+        <span onclick="quickEx('back')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">背 back</span>
+        <span onclick="quickEx('legs')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">腿 legs</span>
+        <span onclick="quickEx('shoulders')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">肩 shoulders</span>
+        <span onclick="quickEx('abs')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">腹 abs</span>
+        <span onclick="quickEx('arms')" class="ex-tag ex-tag-category" style="cursor:pointer;padding:4px 10px">臂 arms</span>
+      </div>
+      <div class="status" id="exercises-status"><div class="spinner"></div><span>查询动作库...</span></div>
+      <div class="error-box" id="exercises-error"></div>
+    </div>
+
+    <div class="card" id="exercises-result-card" style="display:none">
+      <div class="card-title">动作列表</div>
+      <div class="exercise-list" id="exercise-list"></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       LinkedIn 工作机会
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-jobs">
+    <div class="page-title">💼 工作机会</div>
+    <div class="page-desc">Indeed 职位搜索 — 输入职位关键词，获取真实招聘信息。适合求职/职业发展 Goal。</div>
+
+    <div class="card">
+      <div class="card-title">搜索职位</div>
+      <div class="input-row">
+        <input type="text" id="jobs-input" placeholder="如 product manager / UX designer / data scientist..." />
+        <button class="btn btn-primary" id="jobs-btn" onclick="searchJobs()">搜索</button>
+      </div>
+      <div class="status" id="jobs-status"><div class="spinner"></div><span>正在搜索 Indeed...</span></div>
+      <div class="error-box" id="jobs-error"></div>
+    </div>
+
+    <div class="card" id="jobs-result-card" style="display:none">
+      <div class="card-title">职位列表</div>
+      <div class="job-list" id="job-list"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       旅游住宿 Booking.com
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-hotels">
+    <div class="page-title">✈️ 旅游住宿</div>
+    <div class="page-desc">Booking.com 酒店搜索 — 输入目的地，获取真实价格和评分。适合旅游/出行 Goal。</div>
+
+    <div class="card">
+      <div class="card-title">搜索目的地</div>
+      <div class="input-row">
+        <input type="text" id="hotels-input" placeholder="如 Tokyo / Paris / New York / Bali..." />
+        <button class="btn btn-primary" id="hotels-btn" onclick="searchHotels()">搜索</button>
+      </div>
+      <div class="status" id="hotels-status"><div class="spinner"></div><span>正在搜索 Booking.com...</span></div>
+      <div class="error-box" id="hotels-error"></div>
+    </div>
+
+    <div class="card" id="hotels-result-card" style="display:none">
+      <div class="card-title">酒店列表</div>
+      <div class="hotel-list" id="hotel-list"></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHOWCASE 1: 戒糖侦探
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-sugar">
+    <div class="sg-hero">
+      <div class="sg-badge">🔍 糖分侦探</div>
+      <div class="sg-h1">你今天<em>吃了</em><br>多少糖？</div>
+      <p class="sg-sub">输入任意食品名，侦探帮你揪出隐藏糖分、危险添加剂和营养真相。<br>数据来自 700万+ 真实产品库。</p>
+      <div class="sg-wrap">
+        <div class="sg-row">
+          <input class="sg-inp" id="sg-inp" placeholder="如 Oreo / Oatly oat milk / Kind bar..." />
+          <button class="sg-btn" id="sg-btn" onclick="sgScan()">开始侦测</button>
+        </div>
+        <div class="sg-picks">
+          <span class="sg-pick" onclick="sgQ('Coca-Cola')">可口可乐</span>
+          <span class="sg-pick" onclick="sgQ('Oreo')">奥利奥</span>
+          <span class="sg-pick" onclick="sgQ('Oatly oat milk')">燕麦奶</span>
+          <span class="sg-pick" onclick="sgQ('Kind bar')">Kind Bar</span>
+          <span class="sg-pick" onclick="sgQ('Greek yogurt')">希腊酸奶</span>
+        </div>
+      </div>
+      <div class="sg-err" id="sg-err"></div>
+    </div>
+    <div class="sg-load" id="sg-load">
+      <div class="sg-dots"><div class="sg-dot"></div><div class="sg-dot"></div><div class="sg-dot"></div></div>
+      <div class="sg-lmsg" id="sg-lmsg">正在扫描产品档案...</div>
+    </div>
+    <div class="sg-results" id="sg-results"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHOWCASE 2: 英语教练 (Daily Drop)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-encoach">
+    <div class="en-nav">
+      <div class="en-nav-brand">Daily Drop</div>
+      <div class="en-nav-sub">每日英语沉浸</div>
+      <div class="en-nav-pill">英语教练</div>
+    </div>
+    <div class="en-hero">
+      <div class="en-eyebrow">Coach's Mission · 今日任务</div>
+      <div class="en-h1">今天<em>30分钟</em>，<br>学一个主题</div>
+      <p class="en-sub">教练帮你找到合适的真实英语视频，提取高频词汇，给你具体的练习任务。不是随便看——是有目的地学。</p>
+    </div>
+    <div class="en-zone">
+      <div class="en-label">🎯 选一个今日主题 — 或者自己输入</div>
+      <div class="en-topic-cards" id="en-topic-cards">
+        <div class="en-tcard" onclick="enQ('psychology human behavior')">
+          <div class="en-tcard-icon">🧠</div>
+          <div class="en-tcard-title">心理学</div>
+          <div class="en-tcard-sub">人类行为与思维方式</div>
+        </div>
+        <div class="en-tcard" onclick="enQ('startup entrepreneurship founder')">
+          <div class="en-tcard-icon">🚀</div>
+          <div class="en-tcard-title">创业</div>
+          <div class="en-tcard-sub">创始人故事与商业思维</div>
+        </div>
+        <div class="en-tcard" onclick="enQ('artificial intelligence future technology')">
+          <div class="en-tcard-icon">🤖</div>
+          <div class="en-tcard-title">AI 科技</div>
+          <div class="en-tcard-sub">科技前沿与未来趋势</div>
+        </div>
+        <div class="en-tcard" onclick="enQ('health fitness nutrition science')">
+          <div class="en-tcard-icon">💪</div>
+          <div class="en-tcard-title">健康科学</div>
+          <div class="en-tcard-sub">身体与营养研究</div>
+        </div>
+        <div class="en-tcard" onclick="enQ('climate change environment sustainability')">
+          <div class="en-tcard-icon">🌍</div>
+          <div class="en-tcard-title">气候与环境</div>
+          <div class="en-tcard-sub">全球议题与政策</div>
+        </div>
+        <div class="en-tcard" onclick="enQ('mindfulness meditation mental health')">
+          <div class="en-tcard-icon">🧘</div>
+          <div class="en-tcard-title">冥想正念</div>
+          <div class="en-tcard-sub">心理健康与专注力</div>
+        </div>
+      </div>
+      <div class="en-label" style="margin-top:20px">或者自定义主题</div>
+      <div class="en-row">
+        <input class="en-inp" id="en-inp" placeholder="输入英文主题，如 stoicism / finance / leadership..." />
+        <button class="en-btn" id="en-btn" onclick="enFindVideos()">找视频</button>
+      </div>
+      <div class="en-err" id="en-err"></div>
+    </div>
+    <div class="en-loading" id="en-loading">
+      <div class="en-licon">🎬</div>
+      <div class="en-ltext" id="en-lmsg">正在寻找今日视频...</div>
+    </div>
+    <div class="en-phase" id="en-phase1">
+      <div class="en-phase-title">选一个视频开始今日学习</div>
+      <div class="en-vgrid" id="en-vgrid"></div>
+      <button class="en-pickbtn" id="en-pickbtn" onclick="enLoadTranscript()" disabled>开始学习这个视频 →</button>
+    </div>
+    <div class="en-tload" id="en-tload">
+      <div class="en-spin"></div>
+      <span style="font-size:14px;color:#888">正在提取字幕，生成词汇卡...</span>
+    </div>
+    <div class="en-phase3" id="en-phase3"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHOWCASE 3: 求职情报站
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-career">
+    <div class="ca-topbar">
+      <div class="ca-logo">CAREER_LAB<span class="ca-blink">▌</span></div>
+      <div class="ca-status">求职情报终端 v1.0</div>
+      <div class="ca-ts" id="ca-ts">—</div>
+    </div>
+    <div class="ca-hero">
+      <div class="ca-prelabel">INTELLIGENCE BRIEFING</div>
+      <div class="ca-h1">掌握<span>市场情报</span><br>再出发</div>
+      <p class="ca-sub">输入目标职位，实时获取招聘动态、行业内幕与职场真实讨论。数据来自 Indeed + Reddit + Wikipedia。</p>
+    </div>
+    <div class="ca-zone">
+      <div class="ca-srow">
+        <input class="ca-inp" id="ca-inp" placeholder="_ 输入职位名，如 product manager / UX designer..." />
+        <button class="ca-btn" id="ca-btn" onclick="caSearch()">扫描市场</button>
+      </div>
+      <div class="ca-picks">
+        <span class="ca-pick" onclick="caQ('product manager')">product manager</span>
+        <span class="ca-pick" onclick="caQ('UX designer')">UX designer</span>
+        <span class="ca-pick" onclick="caQ('data scientist')">data scientist</span>
+        <span class="ca-pick" onclick="caQ('software engineer')">software engineer</span>
+        <span class="ca-pick" onclick="caQ('marketing manager')">marketing</span>
+      </div>
+      <div class="ca-err" id="ca-err"></div>
+    </div>
+    <div class="ca-loading" id="ca-loading">
+      <div class="ca-scan" id="ca-scan"></div>
+    </div>
+    <div class="ca-results" id="ca-results">
+      <div class="ca-stats" id="ca-stats"></div>
+      <div class="ca-layout">
+        <div id="ca-jobs"></div>
+        <div id="ca-intel"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHOWCASE 4: 旅行准备官
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-travelsc">
+    <div class="tr-mast">
+      <div class="tr-mtitle">Atlas</div>
+      <div class="tr-mdiv">—</div>
+      <div class="tr-msub">旅行准备官</div>
+      <div class="tr-mdate" id="tr-mdate"></div>
+    </div>
+    <div class="tr-cover">
+      <div class="tr-cinner">
+        <div class="tr-ckicker">Destination Intelligence</div>
+        <div class="tr-ctitle">去哪儿，<span>准备好</span><br>再出发</div>
+        <p class="tr-csub">输入目的地，Atlas 为你整合 <b>目的地百科</b>、<b>真实住宿</b>、<b>旅行影像</b> 与 <b>旅者第一手笔记</b>，出发前把一切看清楚。</p>
+      </div>
+    </div>
+    <div class="tr-sbar">
+      <div class="tr-slabel">目的地</div>
+      <input class="tr-inp" id="tr-inp" placeholder="如 Tokyo / Paris / Bali / New York..." />
+      <button class="tr-btn" id="tr-btn" onclick="trExplore()">出发准备</button>
+      <div class="tr-pills">
+        <span class="tr-pill" onclick="trQ('Tokyo')">东京</span>
+        <span class="tr-pill" onclick="trQ('Paris')">巴黎</span>
+        <span class="tr-pill" onclick="trQ('Bali')">巴厘岛</span>
+        <span class="tr-pill" onclick="trQ('New York')">纽约</span>
+        <span class="tr-pill" onclick="trQ('Barcelona')">巴塞罗那</span>
+        <span class="tr-pill" onclick="trQ('Kyoto')">京都</span>
+      </div>
+      <div class="tr-err" id="tr-err"></div>
+    </div>
+    <div class="tr-loading" id="tr-loading">
+      <div class="tr-licon">🌍</div>
+      <div class="tr-ltext" id="tr-lmsg">正在收集目的地情报...</div>
+    </div>
+    <div class="tr-results" id="tr-results"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHOWCASE 5: 健身实验室
+  ══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-fitlab">
+    <div class="fl-header">
+      <div>
+        <div class="fl-badge">⚗️ Iron Lab</div>
+        <div class="fl-h1">科学<span>健身</span><br>实验室</div>
+        <p class="fl-sub">选择目标肌群或动作，实验室为你生成今日训练方案、科学依据、装备建议与社区真实反馈。</p>
+      </div>
+      <div class="fl-hstat">
+        <div class="fl-hnum">4</div>
+        <div class="fl-hlbl">DATA MODULES</div>
+      </div>
+    </div>
+    <div class="fl-zone">
+      <div class="fl-srow">
+        <input class="fl-inp" id="fl-inp" placeholder="输入肌群或动作，如 chest / deadlift / 臀部..." />
+        <button class="fl-btn" id="fl-btn" onclick="flLab()">生成方案</button>
+      </div>
+      <div class="fl-muscles">
+        <span class="fl-mb" onclick="flQ('chest')"><span class="icon">💪</span>胸 chest</span>
+        <span class="fl-mb" onclick="flQ('back')"><span class="icon">🦾</span>背 back</span>
+        <span class="fl-mb" onclick="flQ('legs')"><span class="icon">🦵</span>腿 legs</span>
+        <span class="fl-mb" onclick="flQ('shoulders')"><span class="icon">🏋️</span>肩 shoulders</span>
+        <span class="fl-mb" onclick="flQ('abs')"><span class="icon">⚡</span>腹 abs</span>
+        <span class="fl-mb" onclick="flQ('arms')"><span class="icon">💥</span>臂 arms</span>
+      </div>
+      <div class="fl-err" id="fl-err"></div>
+    </div>
+    <div class="fl-loading" id="fl-loading">
+      <div class="fl-linner">
+        <div class="fl-spin"></div>
+        <div class="fl-ltext" id="fl-lmsg">正在加载训练数据...</div>
+      </div>
+    </div>
+    <div class="fl-results" id="fl-results"></div>
+  </div>
+
+</main>
+
+<script>
+let selectedVideo = null;
+
+// ── Nav ──────────────────────────────────────────────────────────────────────
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    item.classList.add('active');
+    const page = document.getElementById('page-' + item.dataset.page);
+    if (page) page.classList.add('active');
+  });
+});
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function showStatus(id) { document.getElementById(id).classList.add('show'); }
+function hideStatus(id) { document.getElementById(id).classList.remove('show'); }
+function showError(id, msg) { const el = document.getElementById(id); el.textContent = '❌ ' + msg; el.classList.add('show'); }
+function hideError(id) { document.getElementById(id).classList.remove('show'); }
+
+async function apiPost(path, body) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 90000);
+  try {
+    const res = await fetch(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: ctrl.signal
+    });
+
+    const raw = await res.text();
+    let data = null;
+    try { data = raw ? JSON.parse(raw) : null; } catch (e) { data = null; }
+
+    if (!res.ok) {
+      const msg = (data && (data.error || data.message)) || raw || `HTTP ${res.status}`;
+      throw new Error(String(msg).slice(0, 300));
+    }
+    if (!data || !data.ok) throw new Error((data && data.error) || 'Unknown error');
+    return data;
+  } catch (err) {
+    if (err && err.name === 'AbortError') throw new Error('请求超时（90s）。建议先刷新页面再试。');
+    throw err;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// 英语教练
+// ════════════════════════════════════════════════════════════
+
+async function searchVideos() {
+  const keyword = document.getElementById('keyword-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('search-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('search-status'); hideError('search-error');
+  document.getElementById('video-result-card').style.display = 'none';
+  document.getElementById('analysis-section').style.display = 'none';
+  selectedVideo = null;
+
+  try {
+    const data = await apiPost('/api/youtube-search', { keyword });
+    renderVideoList(data.videos);
+  } catch (err) {
+    showError('search-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('search-status');
+  }
+}
+
+function renderVideoList(videos) {
+  const list = document.getElementById('video-list');
+  list.innerHTML = '';
+  videos.forEach(v => {
+    const item = document.createElement('div');
+    item.className = 'video-item';
+    item.innerHTML = `
+      <img class="video-thumb" src="${v.thumbnail || ''}" onerror="this.style.background='#ddd'" />
+      <div class="video-info">
+        <div class="video-title">${v.title}</div>
+        <div class="video-meta">${v.channel} · ${v.duration || '-'}</div>
+      </div>`;
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.video-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedVideo = v;
+      document.getElementById('transcript-btn').disabled = false;
+    });
+    list.appendChild(item);
+  });
+  document.getElementById('video-result-card').style.display = 'block';
+}
+
+async function getTranscript() {
+  if (!selectedVideo) return;
+  const btn = document.getElementById('transcript-btn');
+  btn.disabled = true; btn.textContent = '提取中...';
+  document.getElementById('transcript-loading-card').style.display = 'block';
+  document.getElementById('analysis-section').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/transcript', { videoUrl: selectedVideo.url });
+    renderAnalysis(data.captions, data.analysis);
+  } catch (err) {
+    alert('字幕提取失败: ' + err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '提取字幕 →';
+    document.getElementById('transcript-loading-card').style.display = 'none';
+  }
+}
+
+function renderAnalysis(captions, analysis) {
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-box"><div class="stat-num">${analysis.total}</div><div class="stat-label">字幕段</div></div>
+    <div class="stat-box"><div class="stat-num">${analysis.wordCount}</div><div class="stat-label">单词数</div></div>
+    <div class="stat-box"><div class="stat-num">${analysis.vocab.length}</div><div class="stat-label">推荐单词</div></div>
+    <div class="stat-box"><div class="stat-num">${analysis.longSentences.length}</div><div class="stat-label">练习句</div></div>`;
+
+  document.getElementById('vocab-grid').innerHTML = analysis.vocab.map(v => `
+    <div class="vocab-card">
+      <div class="vocab-word">${v.word}</div>
+      <div class="vocab-count">出现 ${v.count} 次</div>
+      <div class="vocab-example">"${v.example}"</div>
+    </div>`).join('');
+
+  document.getElementById('sentence-list').innerHTML = analysis.longSentences.map(s => `
+    <div class="sentence-item">
+      <div class="sentence-time">${s.start}s</div>
+      <div class="sentence-text">${s.text}</div>
+    </div>`).join('');
+
+  document.getElementById('caption-list').innerHTML = captions.map(c => `
+    <div class="caption-item">
+      <div class="caption-time">${Number(c.start).toFixed(0)}s</div>
+      <div class="caption-text">${c.text.replace(/\n/g, ' ')}</div>
+    </div>`).join('');
+
+  document.getElementById('analysis-section').style.display = 'block';
+}
+
+document.getElementById('keyword-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchVideos(); });
+
+// ════════════════════════════════════════════════════════════
+// PubMed
+// ════════════════════════════════════════════════════════════
+
+async function searchPubmed() {
+  const keyword = document.getElementById('pubmed-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('pubmed-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('pubmed-status'); hideError('pubmed-error');
+  document.getElementById('pubmed-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/pubmed', { keyword });
+    renderArticles(data.articles);
+  } catch (err) {
+    showError('pubmed-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('pubmed-status');
+  }
+}
+
+function renderArticles(articles) {
+  if (!articles.length) {
+    document.getElementById('article-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关文献</div>';
+  } else {
+    document.getElementById('article-list').innerHTML = articles.map(a => `
+      <div class="article-item" onclick="toggleAbstract('${a.pmid}', this)" data-pmid="${a.pmid}">
+        <div class="article-title">${escHtml(a.title)}</div>
+        <div class="article-meta">
+          <span>📰 ${escHtml(a.journal || '-')}</span>
+          <span>📅 ${escHtml(a.year || '-')}</span>
+          <span>👤 ${escHtml(a.authors || '-')}</span>
+        </div>
+        <div class="article-expand-hint">点击展开摘要 ↓</div>
+        <div class="article-abstract-box" id="abstract-${a.pmid}">
+          <div style="color:var(--text-secondary);font-size:12px">加载中...</div>
+        </div>
+        <a class="article-link" href="${a.url}" target="_blank" onclick="event.stopPropagation()">阅读原文 →</a>
+      </div>`).join('');
+  }
+  document.getElementById('pubmed-result-card').style.display = 'block';
+}
+
+async function toggleAbstract(pmid, el) {
+  const box = document.getElementById('abstract-' + pmid);
+  if (box.classList.contains('open')) { box.classList.remove('open'); return; }
+  box.classList.add('open');
+  if (box.dataset.loaded) return;
+  try {
+    const data = await apiPost('/api/pubmed/abstract', { pmid });
+    box.textContent = data.abstract || '暂无摘要';
+  } catch (e) {
+    box.textContent = '获取失败: ' + e.message;
+  }
+  box.dataset.loaded = '1';
+}
+
+document.getElementById('pubmed-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchPubmed(); });
+
+// ════════════════════════════════════════════════════════════
+// Reddit
+// ════════════════════════════════════════════════════════════
+
+async function searchReddit() {
+  const keyword = document.getElementById('reddit-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('reddit-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('reddit-status'); hideError('reddit-error');
+  document.getElementById('reddit-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/reddit', { keyword });
+    renderPosts(data.posts);
+  } catch (err) {
+    showError('reddit-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('reddit-status');
+  }
+}
+
+function renderPosts(posts) {
+  if (!posts.length) {
+    document.getElementById('post-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关帖子</div>';
+  } else {
+    document.getElementById('post-list').innerHTML = posts.map((p, i) => `
+      <div class="post-item" onclick="togglePost(${i}, this)">
+        <div class="post-header">
+          ${p.subreddit ? `<span class="post-subreddit">r/${escHtml(p.subreddit)}</span>` : ''}
+          <span class="post-score">↑ ${(p.score || 0).toLocaleString()}</span>
+        </div>
+        <div class="post-title">${escHtml(p.title)}</div>
+        ${p.body ? `<div class="post-body">${escHtml(p.body)}</div>` : '<div style="font-size:12px;color:var(--text-tertiary);margin-top:4px">点击查看全文 ↓</div>'}
+        <div class="post-full-body" id="post-full-${i}">${escHtml(p.body || '（无正文）')}</div>
+        <div class="post-meta" style="margin-top:8px">
+          <span>💬 ${p.comments || 0} 评论</span>
+          <span>👤 u/${escHtml(p.author || '-')}</span>
+          ${p.url ? `<a class="post-link" href="${p.url}" target="_blank" onclick="event.stopPropagation()">Reddit 原帖 →</a>` : ''}
+        </div>
+      </div>`).join('');
+  }
+  document.getElementById('reddit-result-card').style.display = 'block';
+}
+
+function togglePost(i, el) {
+  const box = document.getElementById('post-full-' + i);
+  box.classList.toggle('open');
+}
+
+document.getElementById('reddit-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchReddit(); });
+
+// ════════════════════════════════════════════════════════════
+// Wikipedia
+// ════════════════════════════════════════════════════════════
+
+async function searchWiki() {
+  const keyword = document.getElementById('wiki-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('wiki-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('wiki-status'); hideError('wiki-error');
+  document.getElementById('wiki-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/wikipedia', { keyword });
+    renderWikiArticle(data.article);
+  } catch (err) {
+    showError('wiki-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('wiki-status');
+  }
+}
+
+function renderWikiArticle(article) {
+  if (!article) {
+    document.getElementById('wiki-article').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关词条</div>';
+  } else {
+    document.getElementById('wiki-article').innerHTML = `
+      <div class="wiki-result">
+        ${article.thumbnail ? `<img class="wiki-thumb" src="${article.thumbnail}" onerror="this.style.display='none'" />` : ''}
+        <div class="wiki-body">
+          <div class="wiki-title">${escHtml(article.title)}</div>
+          ${article.description ? `<div class="wiki-description">${escHtml(article.description)}</div>` : ''}
+          <div class="wiki-extract">${escHtml(article.extract || '')}</div>
+          <a class="wiki-link" href="${article.url}" target="_blank">阅读完整词条 →</a>
+        </div>
+      </div>`;
+  }
+  document.getElementById('wiki-result-card').style.display = 'block';
+}
+
+document.getElementById('wiki-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchWiki(); });
+
+// ════════════════════════════════════════════════════════════
+// Shopping
+// ════════════════════════════════════════════════════════════
+
+async function searchShopping() {
+  const keyword = document.getElementById('shopping-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('shopping-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('shopping-status'); hideError('shopping-error');
+  document.getElementById('shopping-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/shopping', { keyword });
+    renderProducts(data.products);
+  } catch (err) {
+    showError('shopping-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('shopping-status');
+  }
+}
+
+function renderProducts(products) {
+  if (!products.length) {
+    document.getElementById('product-grid').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关商品</div>';
+  } else {
+    document.getElementById('product-grid').innerHTML = products.map(p => {
+      const imgHtml = p.thumbnail
+        ? `<img class="product-img" src="${p.thumbnail}" onerror="this.parentElement.querySelector('.product-img-placeholder').style.display='flex';this.style.display='none'" /><div class="product-img-placeholder" style="display:none">🛍️</div>`
+        : `<div class="product-img-placeholder">🛍️</div>`;
+      return `
+      <a class="product-item" ${p.url ? `href="${p.url}" target="_blank"` : ''}>
+        ${imgHtml}
+        <div class="product-body">
+          <div class="product-name">${escHtml(p.title || '-')}</div>
+          <div class="product-price-row">
+            ${p.price ? `<span class="product-price">${escHtml(String(p.price))}</span>` : ''}
+            ${p.originalPrice && p.onSale ? `<span class="product-original-price">${escHtml(String(p.originalPrice))}</span>` : ''}
+            ${p.percentOff ? `<span class="product-discount">-${p.percentOff}%</span>` : ''}
+          </div>
+          ${p.store ? `<div class="product-store">🏪 ${escHtml(p.store)}</div>` : ''}
+          ${p.rating ? `<div class="product-rating">⭐ ${p.rating}${p.reviews ? ` · ${Number(p.reviews).toLocaleString()} 评价` : ''}</div>` : ''}
+        </div>
+      </a>`;
+    }).join('');
+  }
+  document.getElementById('shopping-result-card').style.display = 'block';
+}
+
+document.getElementById('shopping-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchShopping(); });
+
+// ════════════════════════════════════════════════════════════
+// Food
+// ════════════════════════════════════════════════════════════
+
+async function searchFood() {
+  const keyword = document.getElementById('food-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('food-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('food-status'); hideError('food-error');
+  document.getElementById('food-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/food', { keyword });
+    renderFood(data.products);
+  } catch (err) {
+    showError('food-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('food-status');
+  }
+}
+
+function renderFood(products) {
+  if (!products.length) {
+    document.getElementById('food-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关产品</div>';
+  } else {
+    document.getElementById('food-list').innerHTML = products.map(p => {
+      const ns = p.nutriscore;
+      const nsClass = ns ? `nutriscore-${ns}` : '';
+      const n = p.nutrition;
+      const macros = [
+        n.calories != null ? `<span class="macro-pill">热量 <strong>${Math.round(n.calories)} kcal</strong></span>` : '',
+        n.protein  != null ? `<span class="macro-pill">蛋白质 <strong>${n.protein}g</strong></span>` : '',
+        n.carbs    != null ? `<span class="macro-pill">碳水 <strong>${n.carbs}g</strong></span>` : '',
+        n.fat      != null ? `<span class="macro-pill">脂肪 <strong>${n.fat}g</strong></span>` : '',
+        n.sugar    != null ? `<span class="macro-pill">糖 <strong>${n.sugar}g</strong></span>` : '',
+        n.fiber    != null ? `<span class="macro-pill">膳食纤维 <strong>${n.fiber}g</strong></span>` : '',
+        n.salt     != null ? `<span class="macro-pill">盐 <strong>${n.salt}g</strong></span>` : '',
+      ].filter(Boolean).join('');
+
+      const additives = p.additives.length
+        ? `<div class="food-additives" style="margin-top:5px">添加剂: ${p.additives.map(a => `<span class="additive-tag">${escHtml(a)}</span>`).join('')}</div>`
+        : '';
+
+      return `
+      <div class="food-item">
+        ${p.image ? `<img class="food-img" src="${p.image}" onerror="this.style.display='none'" />` : ''}
+        <div class="food-body">
+          <div class="food-header">
+            <div class="food-name">${escHtml(p.name)}</div>
+            ${ns ? `<span class="nutriscore ${nsClass}">${ns}</span>` : ''}
+          </div>
+          ${p.brand ? `<div class="food-brand">${escHtml(p.brand)}</div>` : ''}
+          <div class="food-macros">${macros}</div>
+          ${p.allergens ? `<div style="font-size:11px;color:#cc6600;margin-top:3px">⚠️ 过敏原: ${escHtml(p.allergens)}</div>` : ''}
+          ${additives}
+          ${p.ingredients ? `<div class="food-ingredients">${escHtml(p.ingredients.slice(0, 200))}${p.ingredients.length > 200 ? '...' : ''}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('food-result-card').style.display = 'block';
+}
+
+document.getElementById('food-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchFood(); });
+
+// ════════════════════════════════════════════════════════════
+// Exercises
+// ════════════════════════════════════════════════════════════
+
+function quickEx(term) {
+  document.getElementById('exercises-input').value = term;
+  searchExercises();
+}
+
+async function searchExercises() {
+  const keyword = document.getElementById('exercises-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('exercises-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('exercises-status'); hideError('exercises-error');
+  document.getElementById('exercises-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/exercises', { keyword });
+    renderExercises(data.exercises);
+  } catch (err) {
+    showError('exercises-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('exercises-status');
+  }
+}
+
+function renderExercises(exercises) {
+  if (!exercises.length) {
+    document.getElementById('exercise-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关动作，试试 chest / back / legs / arms / abs / shoulders</div>';
+  } else {
+    document.getElementById('exercise-list').innerHTML = exercises.map(ex => {
+      const muscleTags = ex.muscles.map(m => `<span class="ex-tag ex-tag-muscle">${escHtml(m)}</span>`).join('');
+      const secTags = ex.musclesSecondary.map(m => `<span class="ex-tag ex-tag-muscle" style="opacity:.6">${escHtml(m)}</span>`).join('');
+      const equipTags = ex.equipment.map(e => `<span class="ex-tag ex-tag-equip">${escHtml(e)}</span>`).join('');
+      const catTag = ex.category ? `<span class="ex-tag ex-tag-category">${escHtml(ex.category)}</span>` : '';
+      return `
+      <div class="exercise-item">
+        <div class="exercise-row">
+          ${ex.image ? `<img class="exercise-img" src="${ex.image}" onerror="this.style.display='none'" />` : ''}
+          <div style="flex:1">
+            <div class="exercise-name">${escHtml(ex.name)}</div>
+            <div class="exercise-tags">${catTag}${muscleTags}${secTags}${equipTags}</div>
+            ${ex.description ? `<div class="exercise-desc">${escHtml(ex.description)}</div>` : ''}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('exercises-result-card').style.display = 'block';
+}
+
+document.getElementById('exercises-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchExercises(); });
+
+// ════════════════════════════════════════════════════════════
+// Jobs
+// ════════════════════════════════════════════════════════════
+
+async function searchJobs() {
+  const keyword = document.getElementById('jobs-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('jobs-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('jobs-status'); hideError('jobs-error');
+  document.getElementById('jobs-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/jobs', { keyword });
+    renderJobs(data.jobs);
+  } catch (err) {
+    showError('jobs-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('jobs-status');
+  }
+}
+
+function renderJobs(jobs) {
+  if (!jobs.length) {
+    document.getElementById('job-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关职位</div>';
+  } else {
+    document.getElementById('job-list').innerHTML = jobs.map((j, i) => `
+      <div class="job-item" onclick="toggleJobDesc(${i})">
+        <div class="job-title">${escHtml(j.title)}</div>
+        <div class="job-company">${escHtml(j.company)}</div>
+        <div class="job-meta">
+          ${j.location ? `<span>📍 ${escHtml(j.location)}</span>` : ''}
+          ${j.type ? `<span>🕐 ${escHtml(j.type)}</span>` : ''}
+          ${j.posted ? `<span>📅 ${escHtml(j.posted)}</span>` : ''}
+        </div>
+        ${j.salary ? `<div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:4px">💰 ${escHtml(j.salary)}</div>` : ''}
+        ${j.description ? `<div class="job-desc" id="job-desc-${i}">${escHtml(j.description)}${j.description.length >= 300 ? '...' : ''}</div>` : ''}
+        ${j.url ? `<a class="job-link" href="${j.url}" target="_blank" onclick="event.stopPropagation()">查看详情 →</a>` : ''}
+      </div>`).join('');
+  }
+  document.getElementById('jobs-result-card').style.display = 'block';
+}
+
+function toggleJobDesc(i) {
+  const el = document.getElementById('job-desc-' + i);
+  if (el) el.classList.toggle('open');
+}
+
+document.getElementById('jobs-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchJobs(); });
+
+// ════════════════════════════════════════════════════════════
+// Hotels
+// ════════════════════════════════════════════════════════════
+
+async function searchHotels() {
+  const keyword = document.getElementById('hotels-input').value.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('hotels-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  showStatus('hotels-status'); hideError('hotels-error');
+  document.getElementById('hotels-result-card').style.display = 'none';
+
+  try {
+    const data = await apiPost('/api/hotels', { keyword });
+    renderHotels(data.hotels);
+  } catch (err) {
+    showError('hotels-error', err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '搜索';
+    hideStatus('hotels-status');
+  }
+}
+
+function renderHotels(hotels) {
+  if (!hotels.length) {
+    document.getElementById('hotel-list').innerHTML = '<div style="color:var(--text-secondary);font-size:14px">没有找到相关酒店</div>';
+  } else {
+    document.getElementById('hotel-list').innerHTML = hotels.map(h => `
+      <a class="hotel-item" ${h.url ? `href="${h.url}" target="_blank"` : ''}>
+        ${h.image ? `<img class="hotel-img" src="${h.image}" onerror="this.style.display='none'" />` : '<div class="hotel-img" style="display:flex;align-items:center;justify-content:center;font-size:24px">🏨</div>'}
+        <div class="hotel-body">
+          <div class="hotel-name">${escHtml(h.name)}</div>
+          <div class="hotel-meta">
+            ${h.stars ? `<span>${'⭐'.repeat(Math.min(h.stars, 5))}</span>` : ''}
+            ${h.rating ? `<span>🏅 ${h.rating}${h.reviews ? ` · ${Number(h.reviews).toLocaleString()} 评价` : ''}</span>` : ''}
+            ${h.location ? `<span>📍 ${escHtml(h.location)}</span>` : ''}
+          </div>
+          ${h.price ? `<div class="hotel-price">${escHtml(String(h.price))}</div>` : ''}
+        </div>
+      </a>`).join('');
+  }
+  document.getElementById('hotels-result-card').style.display = 'block';
+}
+
+document.getElementById('hotels-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchHotels(); });
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE SHARED UTILS
+// ════════════════════════════════════════════════════════════
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+async function scPost(path, body) {
+  const r = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || '请求失败');
+  return d;
+}
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE 1: 戒糖侦探
+// ════════════════════════════════════════════════════════════
+const sgQ = v => { document.getElementById('sg-inp').value = v; sgScan(); };
+
+async function sgScan() {
+  const kw = document.getElementById('sg-inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('sg-btn');
+  btn.disabled = true; btn.textContent = '侦测中...';
+  document.getElementById('sg-load').classList.add('show');
+  document.getElementById('sg-results').classList.remove('show');
+  document.getElementById('sg-err').classList.remove('show');
+
+  const msgs = ['正在扫描产品档案...','检索营养成分数据...','比对科学研究...','汇总社区情报...'];
+  let mi = 0;
+  const t = setInterval(() => { document.getElementById('sg-lmsg').textContent = msgs[++mi % msgs.length]; }, 2200);
+
+  try {
+    const [food, science, community] = await Promise.all([
+      scPost('/api/food', { keyword: kw }),
+      scPost('/api/pubmed', { keyword: kw + ' sugar health effects' }),
+      scPost('/api/reddit', { keyword: kw + ' quit sugar healthy' })
+    ]);
+    clearInterval(t);
+    sgRender(food.products||[], science.articles||[], community.posts||[], kw);
+  } catch(e) {
+    clearInterval(t);
+    const el = document.getElementById('sg-err');
+    el.textContent = '❌ ' + e.message;
+    el.classList.add('show');
+  } finally {
+    btn.disabled = false; btn.textContent = '开始侦测';
+    document.getElementById('sg-load').classList.remove('show');
+  }
+}
+
+function sgSugarInfo(g) {
+  if (g == null) return null;
+  if (g <= 5)  return { color:'#22c55e', label:'低糖', pct: Math.min(g/25*100,100) };
+  if (g <= 12) return { color:'#fbbf24', label:'适中', pct: Math.min(g/25*100,100) };
+  if (g <= 20) return { color:'#f97316', label:'偏高', pct: Math.min(g/25*100,100) };
+  return { color:'#ef4444', label:'危险!', pct: Math.min(g/25*100,100) };
+}
+
+function sgRender(prods, papers, posts, kw) {
+  const el = document.getElementById('sg-results');
+  const p = prods[0];
+  if (!p) {
+    el.innerHTML = `<div class="sg-sec" style="text-align:center;padding:60px"><div style="font-size:44px;margin-bottom:14px">🕵️</div><div style="font-size:15px;font-weight:700;margin-bottom:8px">未找到「${esc(kw)}」的产品数据</div><div class="sg-empty">建议使用英文名称，或更换关键词</div></div>`;
+    el.classList.add('show'); return;
+  }
+  const n = p.nutrition || {};
+  const si = sgSugarInfo(n.sugar);
+  const gc = si ? si.color : '#555';
+
+  const macroList = [
+    { name:'热量', val:n.calories, unit:'kcal', max:500, color:'#f97316' },
+    { name:'碳水', val:n.carbs,    unit:'g',    max:60,  color:'#fbbf24' },
+    { name:'糖',   val:n.sugar,   unit:'g',    max:30,  color: gc },
+    { name:'脂肪', val:n.fat,     unit:'g',    max:35,  color:'#a78bfa' },
+    { name:'蛋白', val:n.protein, unit:'g',    max:30,  color:'#22c55e' },
+  ].filter(m => m.val != null);
+
+  let vtext = '';
+  if (si && n.sugar != null) {
+    const g = n.sugar;
+    if (si.label==='低糖') vtext=`档案评估：「${esc(p.name)}」含糖量较低（每100g含${g}g糖），属于安全范围。`;
+    else if (si.label==='适中') vtext=`档案评估：「${esc(p.name)}」含糖量适中（每100g含${g}g糖），偶尔摄入问题不大。`;
+    else if (si.label==='偏高') vtext=`⚠️ 档案评估：「${esc(p.name)}」含糖量偏高（每100g含${g}g糖），建议减少摄入频率。`;
+    else vtext=`🚨 档案评估：「${esc(p.name)}」含糖量极高（每100g含${g}g糖），超WHO每日游离糖建议量${Math.round(g/25*100)}%。`;
+  }
+
+  const macroHTML = macroList.map(m => {
+    const w = Math.min((m.val||0)/m.max*100,100);
+    return `<div class="sg-mrow"><div class="sg-mname">${m.name}</div><div class="sg-mtrack"><div class="sg-mfill" style="width:${w}%;background:${m.color}"></div></div><div class="sg-mval" style="color:${m.color}">${m.val}${m.unit}</div></div>`;
+  }).join('');
+
+  const addHTML = (p.additives||[]).map(a=>`<span class="sg-tag sg-t-add">${esc(a)}</span>`).join('');
+  const allerHTML = p.allergens?`<span class="sg-tag sg-t-allergy">⚠️ ${esc(p.allergens)}</span>`:'';
+  const okHTML = (!addHTML&&!allerHTML)?'<span class="sg-tag sg-t-ok">✓ 无标记添加剂</span>':'';
+
+  const paperHTML = papers.length ? papers.slice(0,4).map(a=>`
+    <div class="sg-paper">
+      <div class="sg-ptitle">${esc(a.title)}</div>
+      <div class="sg-pmeta">📰 ${esc(a.journal||'-')} · ${esc(a.year||'-')}</div>
+      <a class="sg-plink" href="${esc(a.url)}" target="_blank">阅读原文 →</a>
+    </div>`).join('') : '<div class="sg-empty">暂无相关研究</div>';
+
+  const postHTML = posts.length ? posts.slice(0,4).map(pp=>`
+    <div class="sg-spost">
+      ${pp.subreddit?`<div class="sg-spost-sub">r/${esc(pp.subreddit)}</div>`:''}
+      <div class="sg-spost-title">${esc(pp.title)}</div>
+      <div class="sg-spost-meta"><span>↑ ${(pp.score||0).toLocaleString()}</span>${pp.url?`<a class="sg-spost-link" href="${esc(pp.url)}" target="_blank">查看 →</a>`:''}</div>
+    </div>`).join('') : '<div class="sg-empty">暂无社区讨论</div>';
+
+  // Coach box
+  let sgCoachMsg = '', sgCoachActions = [];
+  if (si) {
+    const swapMap = { '低糖':'继续保持！', '适中':'可以，偶尔享用。', '偏高':'建议换成黑巧克力（85%+）或希腊酸奶。', '危险!':'立即替换！试试无糖版本或自制版本。' };
+    sgCoachMsg = `今日侦查对象：${p.name}。含糖评级：${si.label}。${swapMap[si.label]||''}`;
+    const dailyLeft = n.sugar != null ? Math.max(0, 25 - Math.round(n.sugar)) : null;
+    sgCoachActions = [
+      `🎯 今日挑战：今天的游离糖总摄入控制在 25g 以内（WHO标准）`,
+      n.sugar != null ? `📊 吃一份这个，还剩 ${dailyLeft}g 配额` : `📊 找到含糖标签，练习识别"隐形糖"`,
+      `🔄 替换作业：列出家里3个高糖食品，找到低糖替代品`
+    ];
+  } else {
+    sgCoachMsg = `未找到「${p.name}」的糖分数据。今日任务：去超市找这个产品，亲自查看营养成分表。`;
+    sgCoachActions = [`🎯 今日挑战：查看你今天吃的所有食品包装，记录总含糖量`];
+  }
+  const sgCoachHTML = `<div class="sg-coach"><div class="sg-coach-label">🕵️ 侦探教练点评</div><div class="sg-coach-msg">${sgCoachMsg}</div><div class="sg-coach-actions">${sgCoachActions.map(a=>`<div class="sg-coach-action">${esc(a)}</div>`).join('')}</div></div>`;
+
+  el.innerHTML = `
+    ${sgCoachHTML}
+    ${vtext?`<div class="sg-verdict"><div class="sg-v-label">侦探结论</div><div class="sg-v-text">${vtext}</div></div>`:''}
+    <div class="sg-prod">
+      <div class="sg-prod-left">
+        <div class="sg-prod-name">${esc(p.name)}</div>
+        <div class="sg-prod-brand">${esc(p.brand||'未知品牌')}</div>
+        <div class="sg-macros">${macroHTML}</div>
+        <div class="sg-tags">${allerHTML}${addHTML}${okHTML}</div>
+        ${p.ingredients?`<div class="sg-ing">配料：${esc(p.ingredients.slice(0,220))}${p.ingredients.length>220?'…':''}</div>`:''}
+      </div>
+      <div class="sg-gauge">
+        <div class="sg-glabel">糖分 / 100g</div>
+        ${si&&n.sugar!=null?`
+          <svg width="140" height="82" viewBox="0 0 140 82" style="display:block;margin:0 auto">
+            <path d="M12,76 A58,58 0 0,1 128,76" fill="none" stroke="#1e1e1e" stroke-width="10" stroke-linecap="round"/>
+            <path d="M12,76 A58,58 0 0,1 128,76" fill="none" stroke="${gc}" stroke-width="10" stroke-linecap="round"
+              stroke-dasharray="${Math.PI*58}" stroke-dashoffset="${Math.PI*58*(1-si.pct/100)}" style="transition:stroke-dashoffset 1s ease"/>
+          </svg>
+          <div class="sg-gscore" style="color:${gc}">${Math.round(n.sugar)}<span style="font-size:16px;font-weight:400;color:#777">g</span></div>
+          <div class="sg-gunit">每 100g 含糖</div>
+          <div class="sg-gtag" style="color:${gc}">${si.label}</div>
+        `:'<div class="sg-empty" style="padding:20px 0">暂无糖分数据</div>'}
+        ${p.nutriscore?`<div class="sg-ns sg-ns-${p.nutriscore}">Nutri-Score ${p.nutriscore}</div>`:''}
+      </div>
+    </div>
+    <div class="sg-twocol">
+      <div class="sg-sec"><div class="sg-sec-label">科学研究怎么说</div>${paperHTML}</div>
+      <div class="sg-sec"><div class="sg-sec-label">社区怎么说</div>${postHTML}</div>
+    </div>`;
+  el.classList.add('show');
+}
+
+document.getElementById('sg-inp').addEventListener('keydown', e => { if(e.key==='Enter') sgScan(); });
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE 2: 英语教练 (Daily Drop)
+// ════════════════════════════════════════════════════════════
+let enSelectedVideo = null;
+const enQ = v => { document.getElementById('en-inp').value = v; enFindVideos(); };
+
+async function enFindVideos() {
+  const kw = document.getElementById('en-inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('en-btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  document.getElementById('en-loading').classList.add('show');
+  document.getElementById('en-err').classList.remove('show');
+  document.getElementById('en-phase1').classList.remove('show');
+  document.getElementById('en-phase3').classList.remove('show');
+  document.getElementById('en-phase3').innerHTML = '';
+  enSelectedVideo = null;
+  document.getElementById('en-lmsg').textContent = '正在寻找今日视频...';
+  try {
+    const data = await scPost('/api/youtube-search', { keyword: kw });
+    enRenderVideos(data.videos||[]);
+  } catch(e) {
+    const el = document.getElementById('en-err');
+    el.textContent = '❌ ' + e.message; el.classList.add('show');
+  } finally {
+    btn.disabled = false; btn.textContent = '找视频';
+    document.getElementById('en-loading').classList.remove('show');
+  }
+}
+
+function enRenderVideos(videos) {
+  document.getElementById('en-vgrid').innerHTML = videos.map((v,i) => `
+    <div class="en-vcard" id="en-vc-${i}" onclick="enPickVideo(${i}, ${JSON.stringify(v).replace(/"/g,'&quot;')})">
+      <div class="en-vcheck">✓</div>
+      ${v.thumbnail?`<img class="en-vthumb" src="${esc(v.thumbnail)}" onerror="this.style.display='none'" />`:`<div class="en-vthumb-ph">🎬</div>`}
+      <div class="en-vinfo">
+        <div class="en-vtitle">${esc(v.title)}</div>
+        <div class="en-vmeta">${esc(v.channel)} · ${esc(v.duration||'-')}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('en-phase1').classList.add('show');
+}
+
+function enPickVideo(i, v) {
+  document.querySelectorAll('#page-encoach .en-vcard').forEach(c => c.classList.remove('selected'));
+  document.getElementById('en-vc-'+i).classList.add('selected');
+  enSelectedVideo = v;
+  document.getElementById('en-pickbtn').disabled = false;
+}
+
+async function enLoadTranscript() {
+  if (!enSelectedVideo) return;
+  document.getElementById('en-pickbtn').disabled = true;
+  document.getElementById('en-tload').classList.add('show');
+  document.getElementById('en-phase3').classList.remove('show');
+  document.getElementById('en-phase3').innerHTML = '';
+  try {
+    const data = await scPost('/api/transcript', { videoUrl: enSelectedVideo.url });
+    enRenderLearn(data.captions||[], data.analysis||{}, enSelectedVideo);
+  } catch(e) {
+    alert('字幕提取失败: ' + e.message);
+  } finally {
+    document.getElementById('en-pickbtn').disabled = false;
+    document.getElementById('en-tload').classList.remove('show');
+  }
+}
+
+function enRenderLearn(captions, analysis, video) {
+  const el = document.getElementById('en-phase3');
+  const vocabHTML = (analysis.vocab||[]).length
+    ? `<div class="en-vocab-grid">${(analysis.vocab||[]).map(v=>`<div class="en-voc"><div class="en-voc-word">${esc(v.word)}</div><div class="en-voc-count">出现 ${v.count} 次</div><div class="en-voc-ex">"${esc(v.example)}"</div></div>`).join('')}</div>`
+    : '<div class="en-empty">暂无词汇数据</div>';
+  const sentHTML = (analysis.longSentences||[]).length
+    ? `<div class="en-slist">${(analysis.longSentences||[]).map(s=>`<div class="en-sent"><div class="en-stime">${s.start}s</div><div class="en-stext">${esc(s.text)}</div></div>`).join('')}</div>`
+    : '<div class="en-empty">暂无长句数据</div>';
+  const capHTML = captions.length
+    ? `<div class="en-caps">${captions.map(c=>`<div class="en-cap"><div class="en-ctime">${Number(c.start).toFixed(0)}s</div><div class="en-ctext">${esc(c.text.replace(/\n/g,' '))}</div></div>`).join('')}</div>`
+    : '<div class="en-empty">暂无字幕</div>';
+  // Coach box
+  const top3 = (analysis.vocab||[]).slice(0,3);
+  const top3HTML = top3.length ? `<div class="en-top3">${top3.map(v=>`<div class="en-t3card"><div class="en-t3word">${esc(v.word)}</div><div class="en-t3count">出现 ${v.count} 次</div><div class="en-t3ex">"${esc(v.example)}"</div></div>`).join('')}</div>` : '';
+  const challengeSentence = (analysis.longSentences||[])[0];
+  const enCoachHTML = `<div class="en-coach-box">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px">🎓 教练任务</div>
+    <div style="font-size:15px;font-weight:700;margin-bottom:4px">今日30分钟学习计划</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.8">
+      <span>① 先看一遍视频，不暂停</span><br>
+      <span>② 重点攻克下方 3 个高频词</span><br>
+      <span>③ 跟读今日挑战句 5 遍</span>
+    </div>
+    ${top3HTML}
+    ${challengeSentence?`<div style="margin-top:12px;background:rgba(0,0,0,.25);border-radius:8px;padding:10px 14px"><div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.15em;margin-bottom:6px">🎯 今日挑战句 — 跟读5遍</div><div style="font-size:13px;font-style:italic;color:#fff;line-height:1.6">"${esc(challengeSentence.text)}"</div></div>`:''}
+  </div>`;
+
+  el.innerHTML = `
+    ${enCoachHTML}
+    <div class="en-lhero">
+      ${video.thumbnail?`<img class="en-lhimg" src="${esc(video.thumbnail)}" />`:`<div class="en-lhimg-ph">🎬</div>`}
+      <div class="en-lhbody">
+        <div class="en-lhlabel">今日视频</div>
+        <div class="en-lhtitle">${esc(video.title)}</div>
+        <div class="en-lhmeta">${esc(video.channel)} · ${esc(video.duration||'-')}</div>
+        <div class="en-lhstats">
+          <div><div class="en-lhsnum">${analysis.total||0}</div><div class="en-lhslbl">字幕段</div></div>
+          <div><div class="en-lhsnum">${analysis.wordCount||0}</div><div class="en-lhslbl">词汇量</div></div>
+          <div><div class="en-lhsnum">${(analysis.vocab||[]).length}</div><div class="en-lhslbl">推荐单词</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="en-slabel">📚 今日词汇卡 — 高频词提取</div>${vocabHTML}
+    <div class="en-slabel">🎧 听力练习句 — 8词以上长句</div>${sentHTML}
+    <div class="en-slabel">📄 字幕原文</div>${capHTML}`;
+  el.classList.add('show');
+  el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+document.getElementById('en-inp').addEventListener('keydown', e => { if(e.key==='Enter') enFindVideos(); });
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE 3: 求职情报站
+// ════════════════════════════════════════════════════════════
+setInterval(() => { const ts=document.getElementById('ca-ts'); if(ts) ts.textContent=new Date().toLocaleTimeString('en-US',{hour12:false}); }, 1000);
+const caQ = v => { document.getElementById('ca-inp').value = v; caSearch(); };
+const CA_MSGS = ['CONNECTING TO INDEED API...','PARSING JOB LISTINGS...','FETCHING REDDIT INTELLIGENCE...','QUERYING WIKIPEDIA DATABASE...','COMPILING BRIEFING REPORT...'];
+
+async function caSearch() {
+  const kw = document.getElementById('ca-inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('ca-btn');
+  btn.disabled = true; btn.textContent = 'SCANNING...';
+  document.getElementById('ca-results').classList.remove('show');
+  document.getElementById('ca-err').classList.remove('show');
+  document.getElementById('ca-loading').classList.add('show');
+  const sl = document.getElementById('ca-scan');
+  sl.innerHTML = '';
+  CA_MSGS.forEach((m,i) => {
+    const d = document.createElement('div');
+    d.className='ca-sline'; d.style.animationDelay=i*0.5+'s'; d.textContent=m;
+    sl.appendChild(d);
+  });
+  try {
+    const [jobs, reddit, wiki] = await Promise.all([
+      scPost('/api/jobs', { keyword: kw }),
+      scPost('/api/reddit', { keyword: kw+' career jobs industry' }),
+      scPost('/api/wikipedia', { keyword: kw })
+    ]);
+    caRender(jobs.jobs||[], reddit.posts||[], wiki.article, kw);
+  } catch(e) {
+    const el=document.getElementById('ca-err'); el.textContent='// ERROR: '+e.message; el.classList.add('show');
+  } finally {
+    btn.disabled=false; btn.textContent='扫描市场';
+    document.getElementById('ca-loading').classList.remove('show');
+  }
+}
+
+function caRender(jobs, posts, wiki, kw) {
+  const companies=[...new Set(jobs.map(j=>j.company).filter(Boolean))];
+  // Coach box
+  const topJob = jobs[0];
+  const caCoachSteps = [
+    `STEP 01 — 研究市场：今天搜到 ${jobs.length} 个职位，找到薪资最高的3个，记录要求`,
+    topJob ? `STEP 02 — 分析目标：${topJob.company} 正在招聘 ${topJob.title}，花10分钟了解这家公司` : `STEP 02 — 完善简历：针对「${kw}」职位，更新你的简历关键词`,
+    `STEP 03 — 今日行动：选1个职位，写出你最强的3条匹配理由，准备好就投`
+  ];
+  const caCoachHTML = `<div class="ca-coach"><div class="ca-coach-label">// COACH MISSION — 今日行动方案</div><div class="ca-coach-msg">情报扫描完毕。${jobs.length} 个职位，${[...new Set(jobs.map(j=>j.company).filter(Boolean))].length} 家公司。别只是看，现在就执行下面3步。</div><div class="ca-coach-steps">${caCoachSteps.map(s=>`<div class="ca-coach-step">${esc(s)}</div>`).join('')}</div></div>`;
+  document.getElementById('ca-results').insertAdjacentHTML('afterbegin', caCoachHTML);
+
+  document.getElementById('ca-stats').innerHTML=`
+    <div class="ca-stat-cell"><div class="ca-stat-num">${jobs.length}</div><div class="ca-stat-lbl">职位数量</div></div>
+    <div class="ca-stat-cell"><div class="ca-stat-num">${companies.length}</div><div class="ca-stat-lbl">招聘公司</div></div>
+    <div class="ca-stat-cell"><div class="ca-stat-num">${jobs.filter(j=>j.salary).length}</div><div class="ca-stat-lbl">注明薪资</div></div>
+    <div class="ca-stat-cell"><div class="ca-stat-num">${posts.length}</div><div class="ca-stat-lbl">行业讨论</div></div>`;
+
+  document.getElementById('ca-jobs').innerHTML=`
+    <div class="ca-col-label">// 职位列表 — ${esc(kw.toUpperCase())}</div>
+    ${jobs.length?jobs.map((j,i)=>`
+      <div class="ca-jcard" id="ca-jc-${i}" onclick="caToggleJob(${i})">
+        <div class="ca-jtop">
+          <div class="ca-jbody">
+            <div class="ca-jtitle">${esc(j.title)}</div>
+            <div class="ca-jco">${esc(j.company)}</div>
+            <div class="ca-jmeta">
+              ${j.location?`<span class="ca-jtag ca-jloc">📍 ${esc(j.location)}</span>`:''}
+              ${j.type?`<span class="ca-jtag ca-jtype">${esc(j.type)}</span>`:''}
+              ${j.salary?`<span class="ca-jtag ca-jsal">💰 ${esc(j.salary)}</span>`:''}
+              ${j.posted?`<span class="ca-jtag ca-jdate">${esc(j.posted)}</span>`:''}
+            </div>
+          </div>
+          <div class="ca-jarr">▾</div>
+        </div>
+        ${j.description?`<div class="ca-jdesc" id="ca-jd-${i}">${esc(j.description)}${j.description.length>=300?'…':''}${j.url?`<br/><a class="ca-jlink" href="${esc(j.url)}" target="_blank" onclick="event.stopPropagation()">[ 查看原帖 → ]</a>`:''}</div>`:''}`).join('')
+    :'<div class="ca-empty">// 暂无职位数据</div>'}`;
+
+  const redditHTML=posts.length?posts.slice(0,5).map(p=>`
+    <div class="ca-ri">
+      ${p.subreddit?`<div class="ca-ri-sub">r/${esc(p.subreddit)}</div>`:''}
+      <div class="ca-ri-title">${esc(p.title)}</div>
+      <div class="ca-ri-meta"><span>↑ ${(p.score||0).toLocaleString()}</span>${p.url?`<a class="ca-ri-link" href="${esc(p.url)}" target="_blank">[ OPEN ]</a>`:''}</div>
+    </div>`).join(''):'<div class="ca-empty">// 暂无讨论数据</div>';
+
+  const wikiHTML=wiki?`
+    <div class="ca-wiki-title">${esc(wiki.title)}</div>
+    ${wiki.description?`<div class="ca-wiki-desc">${esc(wiki.description)}</div>`:''}
+    <div class="ca-wiki-text">${esc((wiki.extract||'').slice(0,300))}${(wiki.extract||'').length>300?'…':''}</div>
+    ${wiki.url?`<a class="ca-wiki-link" href="${esc(wiki.url)}" target="_blank">[ READ MORE → ]</a>`:''}`
+  :'<div class="ca-empty">// 暂无背景资料</div>';
+
+  document.getElementById('ca-intel').innerHTML=`
+    <div class="ca-intel"><div class="ca-ilabel"><div class="ca-idot"></div>Reddit 情报流</div>${redditHTML}</div>
+    <div class="ca-intel"><div class="ca-ilabel"><div class="ca-idot"></div>行业背景</div>${wikiHTML}</div>`;
+
+  document.getElementById('ca-results').classList.add('show');
+}
+
+function caToggleJob(i) {
+  const card=document.getElementById('ca-jc-'+i), desc=document.getElementById('ca-jd-'+i);
+  card.classList.toggle('open'); if(desc) desc.classList.toggle('open');
+}
+
+document.getElementById('ca-inp').addEventListener('keydown', e => { if(e.key==='Enter') caSearch(); });
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE 4: 旅行准备官
+// ════════════════════════════════════════════════════════════
+(function(){ const d=document.getElementById('tr-mdate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
+const trQ = v => { document.getElementById('tr-inp').value = v; trExplore(); };
+
+async function trExplore() {
+  const kw = document.getElementById('tr-inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('tr-btn');
+  btn.disabled=true; btn.textContent='整理中...';
+  document.getElementById('tr-loading').classList.add('show');
+  document.getElementById('tr-results').classList.remove('show');
+  document.getElementById('tr-results').innerHTML='';
+  document.getElementById('tr-err').classList.remove('show');
+  const msgs=['正在收集目的地情报...','搜寻住宿选项...','检索旅行视频...','整合旅者笔记...'];
+  let mi=0;
+  const t=setInterval(()=>{ document.getElementById('tr-lmsg').textContent=msgs[++mi%msgs.length]; },2200);
+  try {
+    const [wiki,hotels,videos,reddit] = await Promise.all([
+      scPost('/api/wikipedia',{keyword:kw}),
+      scPost('/api/hotels',{keyword:kw}),
+      scPost('/api/youtube-search',{keyword:kw+' travel guide vlog'}),
+      scPost('/api/reddit',{keyword:kw+' travel tips reddit'})
+    ]);
+    clearInterval(t);
+    trRender(wiki.article, hotels.hotels||[], videos.videos||[], reddit.posts||[], kw);
+  } catch(e) {
+    clearInterval(t);
+    const el=document.getElementById('tr-err'); el.textContent='❌ '+e.message; el.classList.add('show');
+  } finally {
+    btn.disabled=false; btn.textContent='出发准备';
+    document.getElementById('tr-loading').classList.remove('show');
+  }
+}
+
+function trRender(wiki, hotels, videos, posts, kw) {
+  const el = document.getElementById('tr-results');
+  const wikiHTML = wiki?`
+    <div>
+      <div class="tr-wlabel">目的地情报</div>
+      <div class="tr-wtitle">${esc(wiki.title)}</div>
+      ${wiki.description?`<div class="tr-wdesc">${esc(wiki.description)}</div>`:''}
+      ${wiki.thumbnail?`<img class="tr-wimg" src="${esc(wiki.thumbnail)}" />`:`<div class="tr-wimg-ph">🗺️</div>`}
+      <div class="tr-wtext">${esc((wiki.extract||'').slice(0,600))}${(wiki.extract||'').length>600?'…':''}</div>
+      ${wiki.url?`<a class="tr-wread" href="${esc(wiki.url)}" target="_blank">阅读完整词条 →</a>`:''}
+    </div>`:`<div><div class="tr-empty">暂无目的地资料</div></div>`;
+
+  const hotelsHTML = hotels.length?`
+    <div>
+      <div class="tr-hlabel">住宿侦察 · ${hotels.length} 家选项</div>
+      ${hotels.slice(0,5).map(h=>`
+        <a class="tr-hcard" ${h.url?`href="${esc(h.url)}" target="_blank"`:''}>
+          ${h.image?`<img class="tr-himg" src="${esc(h.image)}" onerror="this.style.display='none'" />`:`<div class="tr-himg-ph">🏨</div>`}
+          <div class="tr-hbody">
+            <div class="tr-hname">${esc(h.name)}</div>
+            <div class="tr-hmeta">
+              ${h.stars?`<span class="tr-htag tr-hstars">${'★'.repeat(Math.min(h.stars,5))}</span>`:''}
+              ${h.rating?`<span class="tr-htag tr-hrating">⭐ ${h.rating}</span>`:''}
+              ${h.location&&typeof h.location==='string'?`<span class="tr-htag tr-hloc">📍 ${esc(h.location.slice(0,40))}</span>`:''}
+            </div>
+            ${h.price?`<div class="tr-hprice">${esc(String(h.price))}</div>`:''}
+          </div>
+        </a>`).join('')}
+    </div>`:`<div><div class="tr-empty">暂无住宿数据</div></div>`;
+
+  const videosHTML = videos.length?`
+    <div class="tr-divider"><div class="tr-dtitle">出发前必看</div><div class="tr-dline"></div></div>
+    <div class="tr-vsec"><div class="tr-vscroll">
+      ${videos.slice(0,8).map(v=>`
+        <a class="tr-ytcard" href="${esc(v.url)}" target="_blank">
+          ${v.thumbnail?`<img class="tr-ytthumb" src="${esc(v.thumbnail)}" onerror="this.style.display='none'" />`:`<div class="tr-ytthumb-ph">🎬</div>`}
+          <div class="tr-ytbody"><div class="tr-yttitle">${esc(v.title)}</div><div class="tr-ytmeta">${esc(v.channel)} · ${esc(v.duration||'-')}</div></div>
+        </a>`).join('')}
+    </div></div>`:'';
+
+  const redditHTML = posts.length?`
+    <div class="tr-divider"><div class="tr-dtitle">旅者第一手笔记</div><div class="tr-dline"></div></div>
+    <div class="tr-rsec"><div class="tr-rgrid">
+      ${posts.slice(0,6).map(p=>`
+        <div class="tr-rc">
+          ${p.subreddit?`<div class="tr-rc-sub">r/${esc(p.subreddit)}</div>`:''}
+          <div class="tr-rc-title">${esc(p.title)}</div>
+          ${p.body?`<div class="tr-rc-body">${esc(p.body)}</div>`:''}
+          <div class="tr-rc-meta">
+            <span class="tr-rc-score">↑ ${(p.score||0).toLocaleString()}</span>
+            ${p.url?`<a class="tr-rc-link" href="${esc(p.url)}" target="_blank">阅读 →</a>`:''}
+          </div>
+        </div>`).join('')}
+    </div></div>`:'<div style="padding:0 40px 100px"><div class="tr-empty">暂无旅者讨论</div></div>';
+
+  const topHotel = hotels[0];
+  const topVideo = videos[0];
+  const trChecklist = [
+    `📖 阅读目的地百科：了解${wiki?wiki.title:kw}的基本情况、最佳季节、文化禁忌`,
+    topVideo ? `🎬 今日必看视频：「${topVideo.title.slice(0,40)}」—— 提前感受当地氛围` : `🎬 找一个旅行vlog看看，提前感受目的地`,
+    topHotel ? `🏨 住宿参考：${topHotel.name}（评分 ${topHotel.rating}）先收藏，出发前再决定` : `🏨 比较3家住宿，关注位置是否靠近景点`,
+    `📝 今日作业：写出你这次旅行的3个"必做体验"，并列出一份基础行李清单`
+  ];
+  const trCoachHTML = `<div class="tr-coach"><div class="tr-coach-label">✈️ 旅行教练 — 出发前必做清单</div><div class="tr-coach-msg">情报收集完毕。距离出发，你还需要完成以下准备：</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">${trChecklist.map(s=>`<div style="background:rgba(255,255,255,.06);border-radius:8px;padding:8px 14px;font-size:13px;color:rgba(240,236,228,.8);font-family:-apple-system,sans-serif">${esc(s)}</div>`).join('')}</div></div>`;
+  el.innerHTML=`${trCoachHTML}<div class="tr-spread">${wikiHTML}${hotelsHTML}</div>${videosHTML}${redditHTML}`;
+  el.classList.add('show');
+}
+
+document.getElementById('tr-inp').addEventListener('keydown', e => { if(e.key==='Enter') trExplore(); });
+
+// ════════════════════════════════════════════════════════════
+// SHOWCASE 5: 健身实验室
+// ════════════════════════════════════════════════════════════
+const flQ = v => { document.getElementById('fl-inp').value = v; flLab(); };
+
+async function flLab() {
+  const kw = document.getElementById('fl-inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('fl-btn');
+  btn.disabled=true; btn.textContent='加载中...';
+  document.getElementById('fl-loading').classList.add('show');
+  document.getElementById('fl-results').classList.remove('show');
+  document.getElementById('fl-err').classList.remove('show');
+  const msgs=['正在加载训练数据...','检索科学研究...','搜索装备推荐...','汇总社区反馈...'];
+  let mi=0;
+  const t=setInterval(()=>{ document.getElementById('fl-lmsg').textContent=msgs[++mi%msgs.length]; },2000);
+  try {
+    const [exercises,science,gear,community] = await Promise.all([
+      scPost('/api/exercises',{keyword:kw}),
+      scPost('/api/pubmed',{keyword:kw+' muscle training exercise science'}),
+      scPost('/api/shopping',{keyword:kw+' workout equipment gym'}),
+      scPost('/api/reddit',{keyword:kw+' workout training gains'})
+    ]);
+    clearInterval(t);
+    flRender(exercises.exercises||[], science.articles||[], gear.products||[], community.posts||[], kw);
+  } catch(e) {
+    clearInterval(t);
+    const el=document.getElementById('fl-err'); el.textContent='❌ '+e.message; el.classList.add('show');
+  } finally {
+    btn.disabled=false; btn.textContent='生成方案';
+    document.getElementById('fl-loading').classList.remove('show');
+  }
+}
+
+function flRender(exercises, papers, products, posts, kw) {
+  const el = document.getElementById('fl-results');
+
+  const exHTML = exercises.length?`<div class="fl-exgrid">${exercises.map(ex=>{
+    const muscles=ex.muscles.map(m=>`<span class="fl-extag fl-et-m">${esc(m)}</span>`).join('');
+    const sec=ex.musclesSecondary.map(m=>`<span class="fl-extag fl-et-m" style="opacity:.55">${esc(m)}</span>`).join('');
+    const equip=ex.equipment.map(e=>`<span class="fl-extag fl-et-e">${esc(e)}</span>`).join('');
+    const cat=ex.category?`<span class="fl-extag fl-et-c">${esc(ex.category)}</span>`:'';
+    return `<div class="fl-excard">
+      ${ex.image?`<img class="fl-eximg" src="${esc(ex.image)}" onerror="this.style.display='none'" />`:`<div class="fl-eximg-ph">🏋️</div>`}
+      <div class="fl-exbody">
+        <div class="fl-exname">${esc(ex.name)}</div>
+        <div class="fl-extags">${cat}${muscles}${sec}${equip}</div>
+        ${ex.description?`<div class="fl-exdesc">${esc(ex.description)}</div>`:''}
+      </div></div>`;
+  }).join('')}</div>`:'<div class="fl-empty">暂无动作数据，试试 chest / back / legs / arms / shoulders / abs</div>';
+
+  const sciHTML = papers.length?`<div class="fl-scigrid">${papers.slice(0,6).map(p=>`
+    <div class="fl-scicard">
+      <div class="fl-sctitle">${esc(p.title)}</div>
+      <div class="fl-scmeta">📰 ${esc(p.journal||'-')} · ${esc(p.year||'-')}</div>
+      <a class="fl-sclink" href="${esc(p.url)}" target="_blank">阅读原文 →</a>
+    </div>`).join('')}</div>`:'<div class="fl-empty">暂无相关研究</div>';
+
+  const gearHTML = products.length?`<div class="fl-gscroll">${products.map(p=>`
+    <a class="fl-gcard" ${p.url?`href="${esc(p.url)}" target="_blank"`:''}>
+      ${p.thumbnail?`<img class="fl-gimg" src="${esc(p.thumbnail)}" onerror="this.style.display='none'" />`:`<div class="fl-gimg-ph">🛒</div>`}
+      <div class="fl-gbody">
+        <div class="fl-gname">${esc(p.title||'-')}</div>
+        ${p.price?`<div class="fl-gprice">${esc(String(p.price))}</div>`:''}
+        ${p.rating?`<div class="fl-grating">⭐ ${p.rating}</div>`:''}
+      </div>
+    </a>`).join('')}</div>`:'<div class="fl-empty">暂无装备推荐</div>';
+
+  const comHTML = posts.length?`<div class="fl-comgrid">${posts.slice(0,6).map(p=>`
+    <div class="fl-pcard">
+      ${p.subreddit?`<div class="fl-pc-sub">r/${esc(p.subreddit)}</div>`:''}
+      <div class="fl-pc-title">${esc(p.title)}</div>
+      ${p.body?`<div class="fl-pc-body">${esc(p.body)}</div>`:''}
+      <div class="fl-pc-meta">
+        <span class="fl-pc-score">↑ ${(p.score||0).toLocaleString()}</span>
+        ${p.url?`<a class="fl-pc-link" href="${esc(p.url)}" target="_blank">查看 →</a>`:''}
+      </div>
+    </div>`).join('')}</div>`:'<div class="fl-empty">暂无社区讨论</div>';
+
+  // Coach workout plan
+  const flWorkoutExs = exercises.slice(0,4);
+  const flPlan = flWorkoutExs.length
+    ? flWorkoutExs.map((ex,i) => `${i+1}. ${ex.name} — 3组 × 12次，组间休息60秒`).join('  |  ')
+    : `完成${kw}相关动作 — 3组 × 12次，全程保持动作标准`;
+  const flCoachHTML = `<div class="fl-coach"><div class="fl-coach-label">💪 今日训练方案 — 跟着做完</div><div class="fl-coach-msg">别只是浏览。下面是你今天的完整训练计划，共3个阶段：</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+    <div style="background:rgba(69,196,0,.08);border:1px solid rgba(69,196,0,.15);border-radius:8px;padding:8px 14px;font-size:12px;color:#9ef07a">🔥 热身 5分钟：慢跑 + 动态拉伸（腿部摆动、手臂绕环）</div>
+    <div style="background:rgba(69,196,0,.08);border:1px solid rgba(69,196,0,.15);border-radius:8px;padding:8px 14px;font-size:12px;color:#9ef07a">🏋️ 主训练：${esc(flPlan)}</div>
+    <div style="background:rgba(69,196,0,.08);border:1px solid rgba(69,196,0,.15);border-radius:8px;padding:8px 14px;font-size:12px;color:#9ef07a">🧘 放松 5分钟：静态拉伸，每个部位保持30秒</div>
+    <div style="background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#ffc078">📝 训练后作业：记录今天完成几组，下次增加1组或加5%重量</div>
+  </div></div>`;
+
+  el.innerHTML=`
+    ${flCoachHTML}
+    <div class="fl-module"><div class="fl-mhdr"><div class="fl-mnum">MODULE 01</div><div class="fl-mtitle">今日训练方案</div><div class="fl-mcount">${exercises.length} 个动作</div></div>${exHTML}</div>
+    <div class="fl-module"><div class="fl-mhdr"><div class="fl-mnum">MODULE 02</div><div class="fl-mtitle">科学研究支撑</div><div class="fl-mcount">${papers.length} 篇文献</div></div>${sciHTML}</div>
+    <div class="fl-module"><div class="fl-mhdr"><div class="fl-mnum">MODULE 03</div><div class="fl-mtitle">装备推荐</div><div class="fl-mcount">${products.length} 件产品</div></div>${gearHTML}</div>
+    <div class="fl-module"><div class="fl-mhdr"><div class="fl-mnum">MODULE 04</div><div class="fl-mtitle">社区真实反馈</div><div class="fl-mcount">${posts.length} 条讨论</div></div>${comHTML}</div>`;
+  el.classList.add('show');
+}
+
+document.getElementById('fl-inp').addEventListener('keydown', e => { if(e.key==='Enter') flLab(); });
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+<script>
+// embed mode + query routing for launcher page
+(function () {
+  const params = new URLSearchParams(location.search);
+  const embed = params.get('embed') === '1';
+  const page = params.get('page'); // e.g. english | pubmed | reddit ...
+
+  if (embed) {
+    document.body.style.display = 'block';
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.style.display = 'none';
+    const main = document.querySelector('.main');
+    if (main) {
+      main.style.maxWidth = 'none';
+      main.style.padding = '24px';
+    }
+  }
+
+  if (page) {
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.toggle('active', item.dataset.page === page);
+    });
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById('page-' + page);
+    if (el) el.classList.add('active');
+  }
+})();
+</script>
+</body>
+</html>

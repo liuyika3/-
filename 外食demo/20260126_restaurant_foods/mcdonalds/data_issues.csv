@@ -1,0 +1,15 @@
+﻿food_id,food_name,issue_type,issue_detail
+bagel-plain,Bagel (plain),缺失卡路里,calories为空
+hot-caramel-sundae,Hot Caramel Sundae,缺失卡路里,calories为空
+diet-coke-small,Diet Coke®,缺失卡路里,calories为空
+iced-tea-small,Unsweetened Iced Tea,缺失卡路里,calories为空
+espresso-americano-coffee-small-12-oz,Americano,缺失营养素,"Master表缺失: protein_g, total_fat_g, sodium_mg"
+diet-coke-small,Diet Coke®,缺失营养素,"Master表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"
+iced-tea-small,Unsweetened Iced Tea,缺失营养素,"Master表缺失: total_carbs_g, total_fat_g, sodium_mg"
+dasani-water,DASANI® Water,缺失营养素,"Master表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"
+mustard-package,Mustard Packet,缺失营养素,"Master表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"
+espresso-americano-coffee-small-12-oz,Americano,缺失营养素,"Nutrition表缺失: protein_g, total_fat_g, sodium_mg"
+diet-coke-small,Diet Coke®,缺失营养素,"Nutrition表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"
+iced-tea-small,Unsweetened Iced Tea,缺失营养素,"Nutrition表缺失: total_carbs_g, total_fat_g, sodium_mg"
+dasani-water,DASANI® Water,缺失营养素,"Nutrition表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"
+mustard-package,Mustard Packet,缺失营养素,"Nutrition表缺失: protein_g, total_carbs_g, total_fat_g, sodium_mg"

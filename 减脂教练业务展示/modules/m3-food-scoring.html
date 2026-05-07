@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>图3 · 食物评分与分析 · Jovida 减脂教练</title>
+  <style>
+    :root { --bg:#0b0f14; --line:#2d3a52; --text:#e8edf5; --muted:#94a3b8; --accent:#fbbf24; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); padding:1.25rem clamp(1rem,4vw,2rem) 2rem; line-height:1.6; }
+    a.back { color:#fcd34d; text-decoration:none; font-size:0.9rem; }
+    a.back:focus-visible { outline:2px solid #fbbf24; outline-offset:2px; }
+    h1 { font-size:1.35rem; margin:1rem 0 0.5rem; }
+    .tag { font-size:0.72rem; color:#fcd34d; letter-spacing:0.08em; text-transform:uppercase; }
+    .copy { color:var(--muted); max-width:52ch; font-size:0.95rem; }
+    .media {
+      margin-top:1.5rem; max-width:56rem; padding:1rem; border-radius:1rem; border:1px solid var(--line);
+      background:#121826;
+    }
+    .media p { margin:0 0 0.75rem; font-size:0.82rem; color:var(--muted); }
+    video { width:100%; max-height:min(72vh, 720px); border-radius:0.75rem; vertical-align:middle; background:#000; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← 返回 SPARE 总览</a>
+  <p class="tag">图3 · 我主导的设计</p>
+  <h1>食物评分体系与分析</h1>
+  <p class="copy">
+    <strong>认知支撑：</strong>把营养与规则压缩成「分数 + 一句人话结论 + 下一步」；
+    我主导评分维度优先级、解释文案结构以及从分数到行动建议的跳转逻辑。
+  </p>
+  <div class="media" role="region" aria-label="食物评分演示视频">
+    <p>演示录屏 · <code style="color:#fcd34d;font-size:0.8rem;">m3-food-scoring.mp4</code></p>
+    <video controls playsinline preload="metadata">
+      <source src="../assets/m3-food-scoring.mp4" type="video/mp4" />
+      您的浏览器不支持内嵌视频，请直接打开 assets 目录中的 mp4 文件。
+    </video>
+  </div>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启动 Gemini 客户端</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+        
+        .feature i {
+            color: #10b981;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .start-button {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+        }
+        
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .api-key-note {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #92400e;
+        }
+        
+        .api-key-note strong {
+            color: #b45309;
+        }
+        
+        .config-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .config-section h2 {
+            color: #4f46e5;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        
+        .status-loading {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .server-status {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .server-online {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .server-offline {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-robot"></i> Gemini 客户端</h1>
+        <p class="subtitle">支持多种 Gemini 模型的现代化 Web 界面</p>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>支持 Gemini 2.5 Pro、Flash 等多种模型</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>智能记忆：自动保存对话历史和上下文</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>文件上传：支持多种格式文件分析</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>大容量输入：支持80万字符输入</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>可调节创造性参数和上下文窗口</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>响应式设计，支持移动端</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Markdown 格式支持</span>
+            </div>
+        </div>
+        
+        <!-- 服务器状态 -->
+        <div id="server-status" class="server-status server-offline">
+            <i class="fas fa-circle"></i> 正在检查服务器连接...
+        </div>
+        
+        <!-- Vertex AI 配置区域 -->
+        <div class="config-section">
+            <h2><i class="fas fa-cog"></i> Vertex AI 配置</h2>
+            
+            <form id="vertex-config-form">
+                <div class="form-group">
+                    <label for="google-cloud-project">GOOGLE_CLOUD_PROJECT</label>
+                    <input type="text" id="google-cloud-project" name="GOOGLE_CLOUD_PROJECT" 
+                           value="innertest-471009" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="google-cloud-location">GOOGLE_CLOUD_LOCATION</label>
+                    <input type="text" id="google-cloud-location" name="GOOGLE_CLOUD_LOCATION" 
+                           value="global" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="google-genai-use-vertexai">GOOGLE_GENAI_USE_VERTEXAI</label>
+                    <input type="text" id="google-genai-use-vertexai" name="GOOGLE_GENAI_USE_VERTEXAI" 
+                           value="True" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="google-application-credentials">GOOGLE_APPLICATION_CREDENTIALS</label>
+                    <input type="text" id="google-application-credentials" name="GOOGLE_APPLICATION_CREDENTIALS" 
+                           value="" 
+                           placeholder="Vertex 凭证 JSON 的完整路径（可选）">
+                </div>
+                
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="configureVertex()">
+                        <i class="fas fa-save"></i> 保存配置
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="testVertex()">
+                        <i class="fas fa-vial"></i> 测试连接
+                    </button>
+                </div>
+            </form>
+            
+            <div id="status-message" class="status-message hidden"></div>
+        </div>
+        
+        <div class="api-key-note">
+            <strong>使用说明：</strong><br>
+            若已运行 Vertex 后端（默认 <code>http://localhost:5000</code>），可按步骤保存配置并测试连接。<br>
+            未运行后端时，可直接点击「启动客户端」，在页面内使用 Google AI Studio 的 API Key 进行对话与 Ins 工作流。
+        </div>
+        
+        <a href="index.html" class="start-button" id="start-button">
+            <i class="fas fa-rocket"></i> 启动客户端
+        </a>
+        
+        <div style="margin-top: 2rem; color: #6b7280; font-size: 0.9rem;">
+            <p>后端服务器地址: <span id="server-url">http://localhost:5000</span></p>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        let vertexConfigured = false;
+        
+        // 加载默认环境变量配置
+        async function loadDefaultConfig() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/get-vertex-config`);
+                const data = await response.json();
+                
+                if (data.success && data.config) {
+                    const config = data.config;
+                    const projectInput = document.getElementById('google-cloud-project');
+                    const locationInput = document.getElementById('google-cloud-location');
+                    const useVertexInput = document.getElementById('google-genai-use-vertexai');
+                    const credsInput = document.getElementById('google-application-credentials');
+                    
+                    if (projectInput) projectInput.value = config.GOOGLE_CLOUD_PROJECT || 'innertest-471009';
+                    if (locationInput) locationInput.value = config.GOOGLE_CLOUD_LOCATION || 'global';
+                    if (useVertexInput) useVertexInput.value = config.GOOGLE_GENAI_USE_VERTEXAI || 'True';
+                    if (credsInput) credsInput.value = config.GOOGLE_APPLICATION_CREDENTIALS || '';
+                }
+            } catch (error) {
+                console.error('加载默认配置失败:', error);
+                // 如果失败，使用硬编码的默认值
+            }
+        }
+        
+        // 页面加载时自动加载配置
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDefaultConfig();
+        });
+        
+        // 检查服务器状态
+        async function checkServerStatus() {
+            const statusEl = document.getElementById('server-status');
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3000); // 3秒超时
+                
+                const response = await fetch(`${API_BASE_URL}/api/health`, {
+                    method: 'GET',
+                    mode: 'cors',
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    statusEl.className = 'server-status server-online';
+                    statusEl.innerHTML = '<i class="fas fa-check-circle"></i> 服务器已连接';
+                    vertexConfigured = data.vertex_configured;
+                    enableStartButton();
+                } else {
+                    statusEl.className = 'server-status server-offline';
+                    statusEl.innerHTML = '<i class="fas fa-times-circle"></i> 服务器连接失败';
+                }
+            } catch (error) {
+                statusEl.className = 'server-status server-offline';
+                let errorMsg = '无法连接到服务器';
+                
+                if (error.name === 'AbortError') {
+                    errorMsg = '连接超时，请检查服务器是否运行';
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    errorMsg = '网络错误：无法连接到 ' + API_BASE_URL + '，请确保服务器已启动';
+                } else {
+                    errorMsg = '连接错误: ' + error.message;
+                }
+                
+                statusEl.innerHTML = '<i class="fas fa-times-circle"></i> ' + errorMsg + '（仍可打开客户端使用网页内 API Key）';
+                console.error('服务器连接错误:', error);
+                enableStartButton();
+            }
+        }
+        
+        // 配置 Vertex AI
+        async function configureVertex() {
+            try {
+                const form = document.getElementById('vertex-config-form');
+                if (!form) {
+                    console.error('找不到配置表单');
+                    alert('错误：找不到配置表单');
+                    return;
+                }
+                
+                const formData = new FormData(form);
+                
+                const config = {
+                    GOOGLE_CLOUD_PROJECT: formData.get('GOOGLE_CLOUD_PROJECT'),
+                    GOOGLE_CLOUD_LOCATION: formData.get('GOOGLE_CLOUD_LOCATION'),
+                    GOOGLE_GENAI_USE_VERTEXAI: formData.get('GOOGLE_GENAI_USE_VERTEXAI'),
+                    GOOGLE_APPLICATION_CREDENTIALS: formData.get('GOOGLE_APPLICATION_CREDENTIALS')
+                };
+                
+                const statusEl = document.getElementById('status-message');
+                if (!statusEl) {
+                    console.error('找不到状态消息元素');
+                    alert('错误：找不到状态消息元素');
+                    return;
+                }
+                
+                statusEl.className = 'status-message status-loading';
+                statusEl.textContent = '正在配置 Vertex AI...';
+                statusEl.classList.remove('hidden');
+                
+                const response = await fetch(`${API_BASE_URL}/api/config`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(config)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusEl.className = 'status-message status-success';
+                    statusEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message;
+                    vertexConfigured = true;
+                    enableStartButton();
+                } else {
+                    statusEl.className = 'status-message status-error';
+                    statusEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + data.error;
+                }
+            } catch (error) {
+                console.error('配置 Vertex AI 失败:', error);
+                if (statusEl) {
+                    statusEl.className = 'status-message status-error';
+                    statusEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> 配置失败: ' + error.message;
+                } else {
+                    alert('配置失败: ' + error.message);
+                }
+            }
+        }
+        
+        // 测试 Vertex AI 连接
+        async function testVertex() {
+            try {
+                const statusEl = document.getElementById('status-message');
+                if (!statusEl) {
+                    console.error('找不到状态消息元素');
+                    alert('错误：找不到状态消息元素');
+                    return;
+                }
+                
+                statusEl.className = 'status-message status-loading';
+                statusEl.textContent = '正在测试 Vertex AI 连接...';
+                statusEl.classList.remove('hidden');
+                
+                const response = await fetch(`${API_BASE_URL}/api/test`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusEl.className = 'status-message status-success';
+                    statusEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message + '<br><small>' + data.response + '</small>';
+                } else {
+                    statusEl.className = 'status-message status-error';
+                    statusEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + data.error;
+                }
+            } catch (error) {
+                console.error('测试 Vertex AI 连接失败:', error);
+                if (statusEl) {
+                    statusEl.className = 'status-message status-error';
+                    statusEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> 测试失败: ' + error.message;
+                } else {
+                    alert('测试失败: ' + error.message);
+                }
+            }
+        }
+        
+        // 启用启动按钮
+        function enableStartButton() {
+            try {
+                const btn = document.getElementById('start-button');
+                if (btn) {
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                } else {
+                    console.warn('找不到启动按钮元素');
+                }
+            } catch (error) {
+                console.error('启用启动按钮失败:', error);
+            }
+        }
+        
+        // 页面加载时检查服务器状态
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('页面加载完成，初始化...');
+            try {
+                checkServerStatus();
+                // 每5秒检查一次服务器状态
+                setInterval(checkServerStatus, 5000);
+            } catch (error) {
+                console.error('初始化失败:', error);
+            }
+        });
+        
+        // 确保函数在全局作用域可用（防止作用域问题）
+        window.configureVertex = configureVertex;
+        window.testVertex = testVertex;
+        window.enableStartButton = enableStartButton;
+    </script>
+</body>
+</html>

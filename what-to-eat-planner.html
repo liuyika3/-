@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What to Eat Planner</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes walk {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes waveBody {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+    @keyframes waveHand {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(20deg); }
+    }
+    @keyframes ear-left {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+    @keyframes ear-right {
+      0%, 100% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+    }
+    .animate-walk { animation: walk 0.6s infinite ease-in-out; }
+    .animate-wave-body { transform-origin: bottom center; animation: waveBody 1s infinite ease-in-out; }
+    .animate-wave-hand { transform-origin: 75px 60px; animation: waveHand 0.8s infinite ease-in-out; }
+    .animate-ear-left { transform-origin: 40px 35px; animation: ear-left 1.2s infinite ease-in-out; }
+    .animate-ear-right { transform-origin: 60px 35px; animation: ear-right 1.2s infinite ease-in-out; }
+    .perspective-1000 { perspective: 1000px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    @keyframes slideUp {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
+    @keyframes bounceIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .animate-bounce-in { animation: bounceIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop-in { animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .demo-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    .demo-btn:hover {
+      background: #eef2ff;
+    }
+    .demo-btn:active {
+      transform: scale(0.95);
+    }
+    .demo-btn .p-2 {
+      padding: 0.5rem;
+      background: #f9fafb;
+      border-radius: 0.5rem;
+      transition: background-color 0.2s;
+    }
+    .demo-btn:hover .p-2 {
+      background: #e0e7ff;
+    }
+    .demo-btn:hover i {
+      color: #4f46e5 !important;
+    }
+    .pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .pill-btn:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen p-4 gap-6 overflow-hidden">
+    <!-- Demo Cases Sidebar -->
+    <div class="w-64 flex flex-col gap-2 overflow-y-auto no-scrollbar py-2">
+      <h3 class="text-xs font-black text-gray-400 mb-2 uppercase tracking-widest px-2">Demo Cases</h3>
+      <button class="demo-btn" data-case="1">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="utensils" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">1. 饭点纠结</span>
+      </button>
+      <button class="demo-btn" data-case="2">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">2. 有明确想吃的</span>
+      </button>
+      <button class="demo-btn" data-case="3">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="timer" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">3. 晚饭提前吃了</span>
+      </button>
+      <button class="demo-btn" data-case="4">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="store" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">4. 餐厅点菜求助</span>
+      </button>
+      <button class="demo-btn" data-case="5">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">5. 任务完成打卡</span>
+      </button>
+      <button class="demo-btn" data-case="6">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="candy" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">6. 闲时突发饥饿</span>
+      </button>
+      <button class="demo-btn" data-case="7">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="zap" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">7. 首次尝试备餐</span>
+      </button>
+      <button class="demo-btn" data-case="8">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">8. 周日购物场景</span>
+      </button>
+      <button class="demo-btn" data-case="9">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="calendar" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">9. 周末计划备餐</span>
+      </button>
+      <button class="demo-btn" data-case="10">
+        <div class="p-2 bg-gray-50 rounded-lg"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-gray-400"></i></div>
+        <span class="text-[10px] font-bold text-gray-600 text-left leading-tight">10. 尝试'聊聊'任务</span>
+      </button>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="flex-1 max-w-md mx-auto h-full bg-[#F8F9FD] rounded-[3rem] shadow-2xl border-[8px] border-gray-900 overflow-hidden relative flex flex-col">
+      <div class="h-6 w-full flex justify-center items-end pb-1">
+        <div class="w-24 h-4 bg-gray-900 rounded-full"></div>
+      </div>
+
+      <!-- Portal Buttons -->
+      <div id="portal-buttons"></div>
+
+      <!-- Back Button -->
+      <button id="back-btn" class="hidden absolute top-8 left-6 z-50 p-2 bg-white rounded-full shadow-md text-gray-400">
+        <i data-lucide="arrow-left" class="w-4.5 h-4.5"></i>
+      </button>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 overflow-hidden flex flex-col relative">
+        <!-- Home View -->
+        <div id="home-view" class="flex flex-col h-full">
+          <div class="pt-10 px-6">
+            <h1 class="text-3xl font-black italic tracking-tighter text-gray-900 mb-1 leading-none">CHALLENGE</h1>
+            <div class="flex justify-center py-1 h-28">
+              <div class="w-44 h-44" id="home-rabbit"></div>
+            </div>
+          </div>
+          <div class="relative flex-1 flex items-center justify-center perspective-1000 overflow-visible">
+            <div class="relative w-full h-[320px] flex items-center justify-center" id="challenge-container"></div>
+            <button id="prev-challenge" class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-300">
+              <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="next-challenge" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300">
+              <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detail View -->
+        <div id="detail-view" class="hidden flex flex-col h-full bg-white overflow-y-auto no-scrollbar animate-slide-up">
+          <div id="detail-header" class="w-full h-64 relative flex items-center justify-center">
+            <div id="detail-background-icon" class="scale-150 opacity-10"></div>
+            <div class="absolute -bottom-8 right-8 w-24 h-24" id="detail-rabbit"></div>
+          </div>
+          <div class="px-6 pt-10 pb-24" id="detail-content"></div>
+        </div>
+
+        <!-- Secondary Views -->
+        <div id="secondary-view" class="hidden flex flex-col h-full">
+          <div class="pt-12 pb-4 px-6 text-center">
+            <div class="w-36 h-36 mx-auto mb-2" id="secondary-rabbit"></div>
+            <h2 id="secondary-title" class="text-xl font-black uppercase tracking-wider"></h2>
+          </div>
+          <div class="flex-1 px-5 overflow-y-auto no-scrollbar pb-64" id="items-container"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Action Area -->
+      <div class="px-5 pb-6 z-50 bg-gradient-to-t from-[#F8F9FD] via-[#F8F9FD] to-transparent pt-4">
+        <!-- Chat Messages -->
+        <div class="mb-3 animate-slide-up flex flex-col gap-2" id="chat-messages"></div>
+
+        <!-- Home View Actions -->
+        <div id="home-actions" class="flex gap-2 overflow-x-auto no-scrollbar mb-3 py-1">
+          <button class="pill-btn bg-rose-500" data-view="decision">
+            <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+            <span class="text-[9px] font-black whitespace-nowrap">What to Eat</span>
+          </button>
+          <button class="pill-btn bg-indigo-600" data-view="meal_prep">
+            <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+            <span class="text-[9px] font-black whitespace-nowrap">我要备餐</span>
+          </button>
+          <button class="pill-btn bg-amber-500" data-view="snack">
+            <i data-lucide="candy" class="w-3 h-3"></i>
+            <span class="text-[9px] font-black whitespace-nowrap">想吃零食</span>
+          </button>
+          <button class="pill-btn bg-emerald-500" data-view="knowledge">
+            <i data-lucide="book-open" class="w-3 h-3"></i>
+            <span class="text-[9px] font-black whitespace-nowrap">学习知识</span>
+          </button>
+        </div>
+
+        <!-- Secondary View Actions -->
+        <div id="secondary-actions" class="hidden">
+          <!-- Filter Panel -->
+          <div id="filter-panel" class="hidden absolute bottom-20 left-5 right-5 mb-2 p-2 bg-white border border-indigo-100 rounded-2xl shadow-2xl flex flex-wrap gap-2 z-50 animate-bounce-in">
+            <div id="filter-options" class="flex flex-wrap gap-2"></div>
+            <button id="close-filter" class="ml-auto p-1 text-gray-400">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Input Area -->
+          <div class="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden mb-2">
+            <div id="quick-actions" class="px-3 pt-3 pb-2 border-b border-gray-50 bg-gray-50/50">
+              <div class="grid grid-cols-3 gap-2" id="quick-actions-grid"></div>
+            </div>
+            <div class="relative flex items-center p-1.5 px-3 h-12">
+              <button id="camera-btn" class="hidden mr-2 p-2 bg-gray-100 rounded-full text-indigo-600 animate-pop-in">
+                <i data-lucide="plus" class="w-4.5 h-4.5"></i>
+              </button>
+              <input type="text" id="search-input" class="flex-1 bg-transparent text-[11px] font-bold outline-none pl-1" placeholder="输入需求...">
+              <div class="flex gap-1">
+                <button id="cancel-restaurant" class="hidden p-2 text-gray-300">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+                <button id="submit-btn" class="p-2 bg-indigo-600 text-white rounded-full shadow-md active:scale-90 transition-transform flex items-center justify-center">
+                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail View Bottom Button -->
+        <div id="detail-bottom" class="hidden">
+          <button id="confirm-choice-btn" class="w-full py-4 bg-gray-900 text-white rounded-[2rem] font-black text-sm shadow-2xl shadow-indigo-200 active:scale-95 transition-all flex items-center justify-center gap-2">
+            就它了 <i data-lucide="check-circle-2" class="w-4.5 h-4.5"></i>
+          </button>
+        </div>
+
+        <!-- Home Chat Input -->
+        <div id="home-chat" class="relative flex items-center gap-2">
+          <div class="flex-1 bg-white rounded-full shadow-xl border border-white flex items-center px-4 h-11">
+            <input type="text" id="home-input" class="flex-1 bg-transparent text-[10px] font-bold outline-none" placeholder="和 Jovida 教练聊聊...">
+            <i data-lucide="send" class="w-4 h-4 text-indigo-600 cursor-pointer" id="home-send"></i>
+          </div>
+          <button class="w-11 h-11 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-400 border border-white active:scale-90">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Icon initialization helper
+    function initIcons() {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        initIcons();
+      }
+    }
+    
+    // State Management
+    let currentView = 'home';
+    let activePortals = [];
+    let searchQuery = '';
+    let interactionStep = 'initial';
+    let activeFilter = null;
+    let displayItems = [];
+    let rabbitAnimation = 'idle';
+    let activeChallengeIndex = 0;
+    let detailItem = null;
+    let detailParentView = null;
+    let chatHistory = [
+      { role: 'ai', title: "今日挑战已就绪！🐰", content: "嘿！今天看起来精神不错。首个任务是为你量身定制的<span class='text-emerald-600 font-bold'>主任务</span>，完成后奖励翻倍哦！" }
+    ];
+    let inputText = '';
+
+    const challenges = [
+      { id: 1, title: "多吃一份蔬菜", desc: "午餐或晚餐增加至少 200g 绿叶菜，补足纤维。", icon: 'leaf', iconColor: 'text-emerald-500', type: 'photo', isMain: true, reward: 30 },
+      { id: 2, title: "日行 5000 步", desc: "餐后散步是控制血糖的最佳时机，走起来吧！", icon: 'footprints', iconColor: 'text-amber-500', type: 'check', isMain: false, reward: 10 },
+      { id: 3, title: "今日 2L 饮水", desc: "保持代谢高速运转，给身体充足的水分。", icon: 'droplets', iconColor: 'text-blue-500', type: 'chat', isMain: false, reward: 10 },
+      { id: 4, title: "提前 1 小时睡", desc: "优质睡眠是最好的减肥药，今晚早点关手机。", icon: 'moon', iconColor: 'text-indigo-500', type: 'check', isMain: false, reward: 10 },
+      { id: 5, title: "拒绝人工糖分", desc: "今天不碰奶茶和甜品，感受食材天然的味道。", icon: 'flame', iconColor: 'text-rose-500', type: 'chat', isMain: false, reward: 10 }
+    ];
+
+    const initialItems = [
+      { id: 1, name: 'Sweetgreen', dish: 'Harvest Bowl', scene: 'out', type: '健康沙拉', calories: '450', matchScore: 98, tags: ['高纤维', '低GI'], imageColor: 'bg-emerald-100', aiReason: '由于你今天久坐较久，这款能量碗能帮助肠道蠕动。' },
+      { id: 2, name: '自家厨房', dish: '西红柿牛腩意面', scene: 'home', type: '家常食谱', calories: '520', matchScore: 95, tags: ['优质蛋白', '抗氧化'], imageColor: 'bg-red-50', aiReason: '中午碳水较高，晚上建议用大量西红柿炖煮牛腩。' }
+    ];
+
+    const mealPrepItems = [
+      { id: 201, name: '批量备餐计划', dish: '柠檬香草烤鸡腿 + 烤杂菜', scene: 'meal_prep', type: '高蛋白批处理', calories: '480', matchScore: 97, keepDays: '4天', servings: '3-4份', tags: ['烤箱菜', '加热友好'], imageColor: 'bg-indigo-900', aiReason: '一次烤制可管3顿晚餐，冷藏加热后口感流失最少。' },
+      { id: 202, name: '高效备餐计划', dish: '墨西哥风味黑豆肉酱', scene: 'meal_prep', type: '炖菜/酱料', calories: '410', matchScore: 92, keepDays: '14天(冷冻)', servings: '6份', tags: ['高纤维', '冷冻友好'], imageColor: 'bg-indigo-800', aiReason: '高纤维黑豆对久坐人群极好，肉酱冷冻可保存两周。' }
+    ];
+
+    const snackItems = [
+      { id: 401, name: '办公室解馋', dish: '85% 黑巧克力 + 原味巴旦木', scene: 'snack', type: '抗氧化组合', calories: '180', matchScore: 96, tags: ['控糖', '脑力加油'], imageColor: 'bg-amber-100', aiReason: '黑巧克力的硬脂酸不会引起血糖剧烈波动，搭配坚果增加饱腹感。' },
+      { id: 402, name: '清凉一夏', dish: '希腊酸奶 + 蓝莓 + 奇亚籽', scene: 'snack', type: '高蛋白甜品', calories: '150', matchScore: 94, tags: ['肠道友好', '低卡'], imageColor: 'bg-blue-100', aiReason: '当你渴望冰激凌时，这是完美的替代品，蛋白质含量是普通酸奶的2倍。' }
+    ];
+
+    const knowledgeItems = [
+      { id: 501, title: '为什么你总是饿？', type: 'quiz', tags: ['生理机制', 'Quiz'], content: 'Quiz: 哪种激素是造成饥饿感的元凶？', options: ['A. 瘦素', 'B. 胃雷林', 'C. 胰岛素'], answer: 'B', imageColor: 'bg-purple-100', aiReason: '了解身体的信号，才能战胜假性饥饿。' },
+      { id: 502, title: '避开"伪健康"沙拉陷阱', type: 'article', tags: ['避雷指南', '干货'], content: '许多餐厅沙拉酱的热量比汉堡还高！教你 3 步识别隐形热量炸弹...', imageColor: 'bg-emerald-100', aiReason: '这篇干货非常适合经常点外卖的你。' }
+    ];
+
+    const filterOptions = {
+      decision: { time: ['10 min', '20 min'], people: ['1人食', '2人约会'], taste: ['清淡', '重口', '辣'], budget: ['50元以内', '不差钱'] },
+      meal_prep: { prep_days: ['3天', '5天', '一周'], storage: ['冷藏', '冷冻'], grocery: ['生成清单'], strategy: ['批处理'] },
+      snack: { type: ['想吃甜的', '要脆的', '热乎的', '冰凉的'], timing: ['深夜解馋', '运动前', '下午茶'], goal: ['低卡', '高蛋白', '解压'] },
+      knowledge: { topic: ['减脂辟谣', '营养扫盲', '成分党'], format: ['Quiz挑战', '3分钟读物', '视频讲解'] }
+    };
+
+    // Estimate nutrients function
+    function estimateNutrients(item) {
+      const c = parseInt(item.calories) || 0;
+      if (c === 0) return null;
+      return {
+        protein: Math.round(c * 0.08) + 'g',
+        carbs: Math.round(c * 0.1) + 'g',
+        fat: Math.round(c * 0.04) + 'g',
+        fiber: Math.round(c * 0.02) + 'g',
+        sugar: Math.round(c * 0.01) + 'g',
+        sodium: Math.round(c * 1.5) + 'mg'
+      };
+    }
+
+    const quickActionConfigs = {
+      decision: [
+        { icon: 'timer', label: '时间', filter: 'time' },
+        { icon: 'users', label: '人数', filter: 'people' },
+        { icon: 'sliders-horizontal', label: '口味', filter: 'taste' },
+        { icon: 'dollar-sign', label: '预算', filter: 'budget' }
+      ],
+      meal_prep: [
+        { icon: 'calendar-days', label: '天数', filter: 'prep_days' },
+        { icon: 'box', label: '储存', filter: 'storage' },
+        { icon: 'clipboard-list', label: '清单', filter: 'grocery' },
+        { icon: 'zap', label: '技巧', filter: 'strategy' },
+        { icon: 'sliders-horizontal', label: '基调', filter: 'flavor_profile' },
+        { icon: 'dollar-sign', label: '预算', filter: 'prep_budget' }
+      ],
+      snack: [
+        { icon: 'candy', label: '种类', filter: 'type' },
+        { icon: 'clock', label: '时机', filter: 'timing' },
+        { icon: 'trophy', label: '目标', filter: 'goal' }
+      ],
+      knowledge: [
+        { icon: 'brain', label: '话题', filter: 'topic' },
+        { icon: 'file-text', label: '形式', filter: 'format' }
+      ]
+    };
+
+    // Helper Functions
+    function createRabbit(state) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.className = `w-full h-full ${state === 'walking' ? 'animate-walk' : state === 'waving' ? 'animate-wave-body' : ''}`;
+      
+      const earLeft = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      earLeft.setAttribute('cx', '40');
+      earLeft.setAttribute('cy', '20');
+      earLeft.setAttribute('rx', '6');
+      earLeft.setAttribute('ry', '15');
+      earLeft.setAttribute('fill', '#FFF');
+      if (state === 'walking') earLeft.className = 'animate-ear-left';
+      
+      const earRight = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      earRight.setAttribute('cx', '60');
+      earRight.setAttribute('cy', '20');
+      earRight.setAttribute('rx', '6');
+      earRight.setAttribute('ry', '15');
+      earRight.setAttribute('fill', '#FFF');
+      if (state === 'walking') earRight.className = 'animate-ear-right';
+      
+      const body = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      body.setAttribute('cx', '50');
+      body.setAttribute('cy', '55');
+      body.setAttribute('r', '30');
+      body.setAttribute('fill', '#FFF');
+      
+      const eye1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      eye1.setAttribute('cx', '40');
+      eye1.setAttribute('cy', '50');
+      eye1.setAttribute('r', '3');
+      eye1.setAttribute('fill', '#333');
+      
+      const eye2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      eye2.setAttribute('cx', '60');
+      eye2.setAttribute('cy', '50');
+      eye2.setAttribute('r', '3');
+      eye2.setAttribute('fill', '#333');
+      
+      const cheek1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      cheek1.setAttribute('cx', '30');
+      cheek1.setAttribute('cy', '60');
+      cheek1.setAttribute('r', '5');
+      cheek1.setAttribute('fill', '#FFC0CB');
+      cheek1.setAttribute('opacity', '0.4');
+      
+      const cheek2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      cheek2.setAttribute('cx', '70');
+      cheek2.setAttribute('cy', '60');
+      cheek2.setAttribute('r', '5');
+      cheek2.setAttribute('fill', '#FFC0CB');
+      cheek2.setAttribute('opacity', '0.4');
+      
+      svg.appendChild(earLeft);
+      svg.appendChild(earRight);
+      svg.appendChild(body);
+      svg.appendChild(eye1);
+      svg.appendChild(eye2);
+      svg.appendChild(cheek1);
+      svg.appendChild(cheek2);
+      
+      if (state === 'waving') {
+        const hand = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        hand.setAttribute('d', 'M75 60 Q 85 50 90 60');
+        hand.setAttribute('stroke', '#FFF');
+        hand.setAttribute('stroke-width', '5');
+        hand.setAttribute('stroke-linecap', 'round');
+        hand.className = 'animate-wave-hand origin-left';
+        svg.appendChild(hand);
+      } else {
+        const leg1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        leg1.setAttribute('x', '35');
+        leg1.setAttribute('y', '80');
+        leg1.setAttribute('width', '8');
+        leg1.setAttribute('height', '12');
+        leg1.setAttribute('rx', '4');
+        leg1.setAttribute('fill', '#EEE');
+        if (state === 'walking') leg1.className = 'animate-leg-left';
+        
+        const leg2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        leg2.setAttribute('x', '57');
+        leg2.setAttribute('y', '80');
+        leg2.setAttribute('width', '8');
+        leg2.setAttribute('height', '12');
+        leg2.setAttribute('rx', '4');
+        leg2.setAttribute('fill', '#EEE');
+        if (state === 'walking') leg2.className = 'animate-leg-right';
+        
+        svg.appendChild(leg1);
+        svg.appendChild(leg2);
+      }
+      
+      return svg;
+    }
+
+    function createRabbitFace(size = 100) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+      svg.setAttribute('viewBox', '0 0 100 100');
+      
+      const face = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      face.setAttribute('cx', '50');
+      face.setAttribute('cy', '60');
+      face.setAttribute('r', '35');
+      face.setAttribute('fill', '#FFF');
+      
+      const eye1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      eye1.setAttribute('cx', '40');
+      eye1.setAttribute('cy', '55');
+      eye1.setAttribute('r', '3');
+      eye1.setAttribute('fill', '#333');
+      
+      const eye2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      eye2.setAttribute('cx', '60');
+      eye2.setAttribute('cy', '55');
+      eye2.setAttribute('r', '3');
+      eye2.setAttribute('fill', '#333');
+      
+      const cheek1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      cheek1.setAttribute('cx', '35');
+      cheek1.setAttribute('cy', '65');
+      cheek1.setAttribute('r', '5');
+      cheek1.setAttribute('fill', '#FFC0CB');
+      cheek1.setAttribute('opacity', '0.4');
+      
+      const cheek2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      cheek2.setAttribute('cx', '65');
+      cheek2.setAttribute('cy', '65');
+      cheek2.setAttribute('r', '5');
+      cheek2.setAttribute('fill', '#FFC0CB');
+      cheek2.setAttribute('opacity', '0.4');
+      
+      svg.appendChild(face);
+      svg.appendChild(eye1);
+      svg.appendChild(eye2);
+      svg.appendChild(cheek1);
+      svg.appendChild(cheek2);
+      
+      return svg;
+    }
+
+    function getIconName(icon) {
+      const iconMap = {
+        'leaf': 'leaf',
+        'footprints': 'footprints',
+        'droplets': 'droplets',
+        'moon': 'moon',
+        'flame': 'flame'
+      };
+      return iconMap[icon] || 'circle';
+    }
+
+    function renderChallenges() {
+      const container = document.getElementById('challenge-container');
+      container.innerHTML = '';
+      
+      challenges.forEach((challenge, index) => {
+        const offset = index - activeChallengeIndex;
+        const isCenter = offset === 0;
+        const isLeft = offset === -1 || (activeChallengeIndex === 0 && index === challenges.length - 1);
+        const isRight = offset === 1 || (activeChallengeIndex === challenges.length - 1 && index === 0);
+        
+        if (!isCenter && !isLeft && !isRight) return;
+        
+        let transform = isCenter 
+          ? 'scale(1) translateX(0) translateZ(0)' 
+          : isLeft 
+            ? 'scale(0.85) translateX(-130px) translateZ(-150px) rotateY(20deg)' 
+            : 'scale(0.85) translateX(130px) translateZ(-150px) rotateY(-20deg)';
+        
+        const card = document.createElement('div');
+        card.className = `absolute w-60 h-72 transition-all duration-500 ease-out ${challenge.isMain ? 'border-emerald-400 ring-4 ring-emerald-50' : 'border-white'}`;
+        card.style.transform = transform;
+        card.style.zIndex = isCenter ? 30 : 20;
+        card.style.opacity = isCenter ? 1 : 0.3;
+        
+        card.innerHTML = `
+          <div class="w-full h-full bg-white rounded-[35px] shadow-xl border p-6 flex flex-col items-center text-center relative">
+            <div class="absolute top-4 right-4 flex items-center gap-1 px-2 py-1 rounded-full text-[9px] font-black ${challenge.isMain ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-100 text-gray-400'}">
+              <i data-lucide="sparkles" class="w-2.5 h-2.5"></i>
+              +${challenge.reward}
+            </div>
+            ${challenge.isMain ? '<div class="absolute top-4 left-4 bg-emerald-500 text-white text-[7px] px-2 py-0.5 rounded-full font-black uppercase">推荐主任务</div>' : ''}
+            <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-4">
+              <i data-lucide="${getIconName(challenge.icon)}" class="${challenge.iconColor} w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-black text-gray-900 mb-1">${challenge.title}</h3>
+            <p class="text-[10px] text-gray-500 font-bold leading-tight mb-6">${challenge.desc}</p>
+            ${isCenter ? `
+              <div class="w-full">
+                ${challenge.type === 'photo' ? '<button class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-black text-[10px] shadow-lg shadow-blue-100"><i data-lucide="camera" class="w-3.5 h-3.5 inline mr-1"></i> 拍照上传证明</button>' : ''}
+                ${challenge.type === 'chat' ? '<button class="w-full py-2.5 bg-indigo-600 text-white rounded-xl font-black text-[10px] shadow-lg shadow-indigo-100"><i data-lucide="message-circle" class="w-3.5 h-3.5 inline mr-1"></i> 和 Jovida 聊聊</button>' : ''}
+                ${challenge.type === 'check' ? '<button class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-black text-[10px] shadow-lg shadow-emerald-100"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 inline mr-1"></i> I did it</button>' : ''}
+              </div>
+            ` : ''}
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      initIcons();
+    }
+
+    function renderItems() {
+      const container = document.getElementById('items-container');
+      container.innerHTML = '';
+      
+      displayItems.forEach(item => {
+        const itemDiv = document.createElement('div');
+        const bgClass = item.scene === 'meal_prep' 
+          ? 'bg-indigo-950 border-indigo-800 text-white' 
+          : item.scene === 'snack' 
+            ? 'bg-amber-50 border-amber-100' 
+            : 'bg-white border-gray-100';
+        
+        const badgeClass = item.scene === 'meal_prep' 
+          ? 'bg-indigo-500 text-white' 
+          : item.scene === 'snack' 
+            ? 'bg-amber-400 text-white' 
+            : item.type === 'quiz' 
+              ? 'bg-purple-500 text-white' 
+              : 'bg-orange-500 text-white';
+        
+        const badgeText = item.scene === 'meal_prep' 
+          ? '备餐建议' 
+          : item.scene === 'snack' 
+            ? '零食推荐' 
+            : item.type === 'quiz' 
+              ? '小测验' 
+              : '推荐单品';
+        
+        itemDiv.className = `rounded-[2.5rem] p-5 mb-4 shadow-sm border active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden ${bgClass}`;
+        itemDiv.onclick = () => openDetail(item);
+        
+        if (item.type === 'quiz' || item.type === 'article') {
+          itemDiv.innerHTML = `
+            <div class="absolute top-0 right-0 px-4 py-1.5 rounded-bl-2xl text-[10px] font-bold shadow-sm ${badgeClass}">${badgeText}</div>
+            <div>
+              <div class="flex gap-4 mb-3">
+                <div class="w-14 h-14 rounded-2xl ${item.imageColor} flex items-center justify-center shrink-0">
+                  <i data-lucide="${item.type === 'quiz' ? 'help-circle' : 'file-text'}" class="${item.type === 'quiz' ? 'text-purple-500' : 'text-blue-500'} w-7 h-7"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-gray-900">${item.title}</h3>
+                  <div class="flex gap-1 mt-1">${item.tags.map(t => `<span class="text-[9px] bg-white px-1.5 py-0.5 rounded border border-gray-200 text-gray-500">${t}</span>`).join('')}</div>
+                </div>
+              </div>
+              <div class="bg-white/50 p-3 rounded-2xl text-[11px] font-bold text-gray-700 leading-relaxed mb-2">${item.content}</div>
+              ${item.type === 'quiz' ? `<div class="grid grid-cols-1 gap-2">${item.options.map(opt => `<button class="bg-white py-2 rounded-xl text-[10px] font-bold text-gray-600 shadow-sm" onclick="event.stopPropagation()">${opt}</button>`).join('')}</div>` : ''}
+            </div>
+            <div class="mt-3 pt-3 border-t ${item.scene === 'meal_prep' ? 'border-indigo-800/50 text-indigo-300' : 'border-gray-100 text-gray-500'} text-[10px] leading-relaxed">"${item.aiReason}"</div>
+          `;
+        } else {
+          const iconName = item.scene === 'meal_prep' ? 'layers' : item.scene === 'snack' ? 'candy' : 'utensils';
+          const iconColor = item.scene === 'meal_prep' ? 'text-white/40' : item.scene === 'snack' ? 'text-amber-500/40' : 'text-gray-400 opacity-40';
+          const titleColor = item.scene === 'meal_prep' ? 'text-indigo-100' : 'text-gray-900';
+          const descColor = item.scene === 'meal_prep' ? 'text-indigo-300' : 'text-gray-500';
+          const caloriesColor = item.scene === 'meal_prep' ? 'text-indigo-400' : 'text-orange-500';
+          const scoreBg = item.scene === 'meal_prep' ? 'bg-indigo-900' : 'bg-white/50 text-indigo-600';
+          
+          itemDiv.innerHTML = `
+            <div class="absolute top-0 right-0 px-4 py-1.5 rounded-bl-2xl text-[10px] font-bold shadow-sm ${badgeClass}">${badgeText}</div>
+            <div class="flex gap-4">
+              <div class="w-16 h-16 rounded-2xl ${item.imageColor} flex items-center justify-center shrink-0">
+                <i data-lucide="${iconName}" class="${iconColor} w-6 h-6"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-sm ${titleColor}">${item.dish}</h3>
+                <p class="text-[10px] mb-2 ${descColor}">${item.name}</p>
+                ${item.scene === 'meal_prep' ? `<div class="flex gap-2 mb-2"><span class="text-[9px] bg-indigo-900 px-2 py-0.5 rounded text-indigo-200">保鲜 ${item.keepDays}</span></div>` : ''}
+                <div class="flex justify-between items-center text-[10px] font-bold">
+                  <span class="flex items-center ${caloriesColor}"><i data-lucide="flame" class="w-3 h-3 mr-1"></i> ${item.calories} kcal</span>
+                  <span class="${scoreBg} px-2 py-0.5 rounded-full flex items-center gap-1">AI ${item.matchScore}%</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t ${item.scene === 'meal_prep' ? 'border-indigo-800/50 text-indigo-300' : 'border-gray-100 text-gray-500'} text-[10px] leading-relaxed">"${item.aiReason}"</div>
+          `;
+        }
+        
+        container.appendChild(itemDiv);
+      });
+      
+      initIcons();
+    }
+
+    function renderChatMessages() {
+      const container = document.getElementById('chat-messages');
+      container.innerHTML = '';
+      
+      const recentMessages = getRecentChat();
+      recentMessages.forEach((msg, idx) => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : ''}`;
+        
+        if (msg.role === 'ai') {
+          const rabbitFace = createRabbitFace(30);
+          msgDiv.innerHTML = `
+            <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center shrink-0 border border-gray-100 shadow-sm overflow-hidden pt-1"></div>
+            <div class="bg-white/95 backdrop-blur-xl border border-white text-gray-600 rounded-2xl p-3 shadow-lg max-w-[80%] rounded-tl-none ring-1 ring-gray-100">
+              ${msg.title ? `<p class="text-xl font-black mb-0.5 text-gray-900">${msg.title}</p>` : ''}
+              <p class="text-xl leading-relaxed font-bold">${msg.content}</p>
+            </div>
+          `;
+          msgDiv.querySelector('.w-9').appendChild(rabbitFace);
+        } else {
+          msgDiv.innerHTML = `
+            <div class="bg-indigo-600 text-white rounded-2xl p-3 shadow-lg max-w-[80%] rounded-tr-none">
+              <p class="text-xl leading-relaxed font-bold text-white">${msg.content}</p>
+            </div>
+          `;
+        }
+        
+        container.appendChild(msgDiv);
+      });
+    }
+
+    function getRecentChat() {
+      const lastAiIndex = chatHistory.findLastIndex(msg => msg.role === 'ai');
+      if (lastAiIndex === -1) return chatHistory.slice(-1);
+      const relevantMsgs = [];
+      if (lastAiIndex > 0 && chatHistory[lastAiIndex - 1].role === 'user') {
+        relevantMsgs.push(chatHistory[lastAiIndex - 1]);
+      }
+      relevantMsgs.push(chatHistory[lastAiIndex]);
+      return relevantMsgs;
+    }
+
+    function renderQuickActions() {
+      const container = document.getElementById('quick-actions-grid');
+      container.innerHTML = '';
+      
+      if (currentView === 'decision' && interactionStep !== 'restaurant_selected') {
+        const restaurantBtn = document.createElement('button');
+        restaurantBtn.className = 'col-span-2 flex items-center justify-center space-x-2 px-1 py-2.5 rounded-xl text-[10px] font-black transition-all active:scale-95 bg-indigo-600 text-white shadow-md shadow-indigo-100';
+        restaurantBtn.innerHTML = '<i data-lucide="store" class="w-3.5 h-3.5"></i><span>我选好餐厅了</span>';
+        restaurantBtn.onclick = handleRestaurantSelected;
+        container.appendChild(restaurantBtn);
+      }
+      
+      const config = quickActionConfigs[currentView] || [];
+      config.forEach(action => {
+        const btn = document.createElement('button');
+        btn.className = 'flex items-center justify-center space-x-1 px-1 py-2 rounded-xl text-[10px] font-bold transition-all active:scale-95 border bg-white border-gray-200 text-gray-600 shadow-sm hover:border-indigo-300 hover:text-indigo-600';
+        btn.innerHTML = `<i data-lucide="${action.icon}" class="w-3 h-3 text-gray-400"></i><span class="truncate max-w-[50px]">${action.label}</span>`;
+        btn.onclick = () => setActiveFilter(action.filter);
+        container.appendChild(btn);
+      });
+      
+      initIcons();
+    }
+
+    function renderFilterPanel() {
+      const panel = document.getElementById('filter-panel');
+      const optionsContainer = document.getElementById('filter-options');
+      
+      if (!activeFilter || !filterOptions[currentView] || !filterOptions[currentView][activeFilter]) {
+        panel.classList.add('hidden');
+        return;
+      }
+      
+      panel.classList.remove('hidden');
+      optionsContainer.innerHTML = '';
+      
+      const options = filterOptions[currentView][activeFilter];
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'px-3 py-1.5 bg-indigo-50 text-indigo-700 text-[11px] font-bold rounded-xl hover:bg-indigo-600 hover:text-white transition-all';
+        btn.textContent = opt;
+        btn.onclick = () => handleOptionSelect(activeFilter, opt);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function renderPortalButtons() {
+      const container = document.getElementById('portal-buttons');
+      container.innerHTML = '';
+      
+      if (currentView === 'home' && activePortals.length > 0) {
+        activePortals.forEach((view, index) => {
+          const btn = document.createElement('button');
+          btn.className = 'absolute right-0 bg-indigo-600 text-white p-3 rounded-l-2xl shadow-xl z-50 animate-bounce-in flex flex-col items-center transition-all hover:pr-4';
+          btn.style.top = `${8 + (index * 4)}rem`;
+          
+          const iconMap = {
+            'decision': 'rotate-ccw',
+            'meal_prep': 'shopping-bag',
+            'snack': 'candy',
+            'knowledge': 'book-open'
+          };
+          
+          btn.innerHTML = `
+            <i data-lucide="${iconMap[view]}" class="w-4.5 h-4.5"></i>
+            <div class="text-[8px] font-black mt-1">返回</div>
+          `;
+          btn.onclick = () => handleNavigate(view);
+          container.appendChild(btn);
+        });
+        
+        initIcons();
+      }
+    }
+
+    // Detail Page Functions
+    function openDetail(item) {
+      detailItem = item;
+      detailParentView = currentView;
+      currentView = 'detail';
+      rabbitAnimation = 'waving';
+      renderDetailPage();
+      updateViewVisibility();
+    }
+
+    function closeDetail() {
+      currentView = detailParentView;
+      detailItem = null;
+      rabbitAnimation = 'idle';
+      updateViewVisibility();
+      if (currentView === 'home') {
+        renderChallenges();
+      } else {
+        renderItems();
+      }
+    }
+
+    function confirmChoice() {
+      activePortals = activePortals.filter(p => p !== detailParentView);
+      currentView = 'home';
+      interactionStep = 'initial';
+      searchQuery = '';
+      activeFilter = null;
+      detailItem = null;
+      rabbitAnimation = 'walking';
+      updateViewVisibility();
+      renderChallenges();
+      renderChatMessages();
+    }
+
+    function renderDetailPage() {
+      if (!detailItem) return;
+      
+      const header = document.getElementById('detail-header');
+      const content = document.getElementById('detail-content');
+      const rabbitContainer = document.getElementById('detail-rabbit');
+      
+      // Header background
+      header.className = `w-full h-64 ${detailItem.imageColor} relative flex items-center justify-center`;
+      const bgIcon = document.getElementById('detail-background-icon');
+      bgIcon.innerHTML = '';
+      const iconName = detailParentView === 'knowledge' ? 'book-open' : 'utensils';
+      const iconElement = document.createElement('i');
+      iconElement.setAttribute('data-lucide', iconName);
+      iconElement.style.width = '100px';
+      iconElement.style.height = '100px';
+      bgIcon.appendChild(iconElement);
+      initIcons();
+      
+      // Rabbit
+      rabbitContainer.innerHTML = '';
+      rabbitContainer.appendChild(createRabbit(rabbitAnimation));
+      
+      // Content
+      const nutrients = estimateNutrients(detailItem);
+      content.innerHTML = `
+        <div class="mb-6">
+          <div class="flex justify-between items-start">
+            <h2 class="text-2xl font-black text-gray-900 leading-tight flex-1">${detailItem.dish || detailItem.title}</h2>
+            ${detailItem.matchScore ? `<div class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-[10px] font-black whitespace-nowrap ml-2">AI ${detailItem.matchScore}%</div>` : ''}
+          </div>
+          <p class="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest">${detailItem.name || ''}</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          ${detailItem.tags ? detailItem.tags.map(t => `<span class="text-[10px] bg-gray-50 border border-gray-100 px-3 py-1 rounded-full text-gray-600 font-bold">${t}</span>`).join('') : ''}
+        </div>
+
+        <div class="bg-slate-50 p-5 rounded-2xl mb-6 border border-slate-100">
+          <p class="text-sm font-bold text-gray-600 leading-relaxed">${detailItem.content || detailItem.desc || "这是一个非常不错的选择，富含多种对身体有益的元素。"}</p>
+          ${detailItem.type === 'quiz' ? `
+            <div class="mt-4 flex flex-col gap-2">
+              ${detailItem.options.map(o => `
+                <div class="p-3 bg-white border border-gray-100 rounded-xl text-xs font-black text-gray-700 flex justify-between">
+                  ${o} ${o.startsWith(detailItem.answer) ? '<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i>' : ''}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+
+        ${nutrients ? `
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="bg-orange-50 p-3 rounded-2xl border border-orange-100 col-span-3 flex justify-between items-center px-5">
+              <span class="text-[10px] font-black text-orange-400 uppercase">Energy</span>
+              <span class="text-xl font-black text-orange-600">${detailItem.calories} kcal</span>
+            </div>
+            ${Object.entries(nutrients).map(([k, v]) => `
+              <div class="bg-white p-3 rounded-2xl border border-gray-100 text-center shadow-sm">
+                <div class="text-[9px] font-black text-gray-400 uppercase mb-1">${k}</div>
+                <div class="text-sm font-black text-gray-800">${v}</div>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+
+        <div class="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100 relative mt-4">
+          <i data-lucide="message-circle" class="absolute -top-3 -left-2 text-indigo-500 fill-white w-6 h-6"></i>
+          <h4 class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Jovida Insight</h4>
+          <p class="text-sm font-bold text-indigo-900 leading-relaxed italic">"${detailItem.aiReason}"</p>
+        </div>
+      `;
+      
+      initIcons();
+    }
+
+    // Navigation Functions
+    function updateViewVisibility() {
+      const isHome = currentView === 'home';
+      const isDetail = currentView === 'detail';
+      const isSecondary = !isHome && !isDetail;
+      
+      document.getElementById('home-view').classList.toggle('hidden', !isHome);
+      document.getElementById('secondary-view').classList.toggle('hidden', !isSecondary);
+      document.getElementById('detail-view').classList.toggle('hidden', !isDetail);
+      document.getElementById('home-actions').classList.toggle('hidden', !isHome);
+      document.getElementById('secondary-actions').classList.toggle('hidden', !isSecondary);
+      document.getElementById('detail-bottom').classList.toggle('hidden', !isDetail);
+      document.getElementById('home-chat').classList.toggle('hidden', !isHome);
+      document.getElementById('back-btn').classList.toggle('hidden', isHome);
+      document.getElementById('chat-messages').classList.toggle('hidden', isDetail);
+    }
+
+    function handleNavigate(view) {
+      currentView = view;
+      activePortals = activePortals.filter(p => p !== view);
+      interactionStep = 'initial';
+      searchQuery = '';
+      
+      // Update UI
+      updateViewVisibility();
+      document.getElementById('search-input').value = '';
+      
+      // Initialize data
+      if (view === 'decision') {
+        displayItems = [...initialItems];
+        rabbitAnimation = 'waving';
+        chatHistory.push({ role: 'ai', title: "What to Eat? 👋", content: "结合你今天的运动量，<span class='text-rose-500 font-bold'>轻食沙拉</span>或<span class='text-rose-500 font-bold'>高蛋白意面</span>都很合适。" });
+      } else if (view === 'meal_prep') {
+        displayItems = [...mealPrepItems];
+        rabbitAnimation = 'waving';
+        chatHistory.push({ role: 'ai', title: "开启 Meal Prep 模式！👋", content: "一次准备多天的饮食，省力又控卡。我们可以先从<span class='text-indigo-600 font-bold'>备餐天数</span>开始。" });
+      } else if (view === 'snack') {
+        displayItems = [...snackItems];
+        rabbitAnimation = 'waving';
+        chatHistory.push({ role: 'ai', title: "嘴馋了吗？👋", content: "别担心，选对零食也是健康的一部分。你是<span class='text-amber-600 font-bold'>想吃甜的</span>还是<span class='text-amber-600 font-bold'>想吃脆的</span>？" });
+      } else if (view === 'knowledge') {
+        displayItems = [...knowledgeItems];
+        rabbitAnimation = 'waving';
+        chatHistory.push({ role: 'ai', title: "Jovida 课堂开课啦！🎓", content: "碎片时间学点干货。今天为你准备了一个<span class='text-purple-600 font-bold'>关于饥饿感的小测验</span>，要试试吗？" });
+      } else {
+        rabbitAnimation = 'idle';
+      }
+      
+      // Update secondary view title
+      const titleMap = {
+        'meal_prep': 'Meal Prep Plan',
+        'snack': 'Smart Snacking',
+        'knowledge': 'Jovida Wiki',
+        'decision': 'What to Eat'
+      };
+      const colorMap = {
+        'meal_prep': 'text-indigo-800',
+        'snack': 'text-amber-800',
+        'knowledge': 'text-purple-800',
+        'decision': 'text-gray-900'
+      };
+      document.getElementById('secondary-title').textContent = titleMap[view] || '';
+      document.getElementById('secondary-title').className = `text-xl font-black uppercase tracking-wider ${colorMap[view] || 'text-gray-900'}`;
+      
+      // Update rabbit
+      const rabbitContainer = view === 'home' 
+        ? document.getElementById('home-rabbit')
+        : document.getElementById('secondary-rabbit');
+      rabbitContainer.innerHTML = '';
+      rabbitContainer.appendChild(createRabbit(rabbitAnimation));
+      
+      if (view !== 'home' && view !== 'detail') {
+        setTimeout(() => {
+          rabbitAnimation = 'idle';
+          const rabbitContainer = document.getElementById('secondary-rabbit');
+          rabbitContainer.innerHTML = '';
+          rabbitContainer.appendChild(createRabbit('idle'));
+        }, 2000);
+      }
+      
+      if (view === 'home') {
+        renderChallenges();
+        renderChatMessages();
+      } else if (view !== 'detail') {
+        renderItems();
+        renderChatMessages();
+        renderQuickActions();
+      }
+      renderPortalButtons();
+      activeFilter = null;
+      renderFilterPanel();
+    }
+
+    function goBackHome() {
+      if (currentView !== 'home' && currentView !== 'detail' && !activePortals.includes(currentView)) {
+        activePortals.push(currentView);
+      }
+      currentView = 'home';
+      rabbitAnimation = 'walking';
+      handleNavigate('home');
+    }
+
+    function handleOptionSelect(type, option) {
+      const trimmed = searchQuery.trim();
+      searchQuery = trimmed ? `${trimmed} ${option}` : option;
+      document.getElementById('search-input').value = searchQuery;
+      activeFilter = null;
+      renderFilterPanel();
+    }
+
+    function setActiveFilter(filter) {
+      activeFilter = filter;
+      renderFilterPanel();
+    }
+
+    function handleRestaurantSelected() {
+      interactionStep = 'restaurant_selected';
+      chatHistory.push({ role: 'ai', title: "哦？你都选好了啊！😲", content: "可以告诉我是哪家吗？或者给我<span class='text-indigo-600 font-bold'>拍一下菜单</span>，我帮你避雷。" });
+      document.getElementById('search-input').placeholder = "输入店名或拍照...";
+      document.getElementById('camera-btn').classList.remove('hidden');
+      document.getElementById('cancel-restaurant').classList.remove('hidden');
+      document.getElementById('submit-btn').innerHTML = '<i data-lucide="camera" class="w-4 h-4"></i>';
+      renderQuickActions();
+      renderChatMessages();
+      initIcons();
+    }
+
+    function handleSearchSubmit() {
+      interactionStep = 'results_shown';
+      const userMsg = { role: 'user', content: searchQuery || '推荐一下' };
+      let aiMsg = { role: 'ai', title: "刷新推荐 ✨", content: "根据你的要求，我调整了推荐列表。" };
+      
+      if (currentView === 'snack') {
+        displayItems = [{ id: 403, name: '搜索结果', dish: `${searchQuery} 组合`, scene: 'snack', type: '满足推荐', calories: '200', matchScore: 99, tags: ['解馋', '平衡'], imageColor: 'bg-pink-100', aiReason: '这个组合完美满足你的口味，且热量在安全范围内。' }, ...snackItems];
+        aiMsg.content = "找到了！这个组合既能满足你的味蕾，又不会让你今天的努力白费。";
+      } else if (currentView === 'knowledge') {
+        displayItems = [{ id: 503, title: `关于"${searchQuery}"的真相`, type: 'article', tags: ['深度好文'], content: '点击阅读深度解析...', imageColor: 'bg-blue-100', aiReason: '这是目前学术界对该话题的最新共识。' }, ...knowledgeItems];
+        aiMsg.content = `关于"${searchQuery}"，其实有很多误区，这篇内容能帮你理清思路。`;
+      } else if (currentView === 'meal_prep') {
+        displayItems = [{ id: 301, name: '定制备餐', dish: `定制：${searchQuery}`, scene: 'meal_prep', type: '专属', calories: '500', matchScore: 98, keepDays: '5天', servings: '5份', tags: ['定制'], imageColor: 'bg-indigo-900', aiReason: '已优化食材配比。' }, ...mealPrepItems];
+        aiMsg.content = "备餐计划已生成！已为你计算好分装比例。";
+      } else {
+        displayItems = [{ id: 101, name: '搜索结果', dish: `满足"${searchQuery}"`, scene: 'out', type: '推荐', calories: '500', matchScore: 97, tags: ['推荐'], imageColor: 'bg-blue-50', aiReason: '最符合当前需求的推荐。' }];
+        aiMsg.content = "为你找到了这个最佳选项！";
+      }
+      
+      chatHistory.push(userMsg, aiMsg);
+      activeFilter = null;
+      renderItems();
+      renderChatMessages();
+      renderFilterPanel();
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('home-input');
+      if (!input.value.trim()) return;
+      const newMsg = { role: 'user', content: input.value };
+      chatHistory.push(newMsg);
+      input.value = '';
+      inputText = '';
+      renderChatMessages();
+      
+      setTimeout(() => {
+        chatHistory.push({ role: 'ai', title: "Jovida 正在思考...", content: `针对"${newMsg.content}"，我的建议是...` });
+        renderChatMessages();
+      }, 1000);
+    }
+
+    function handleDemoCase(caseId) {
+      switch(caseId) {
+        case 1: handleNavigate('decision'); break;
+        case 2: 
+          handleNavigate('decision');
+          searchQuery = '轻食沙拉';
+          document.getElementById('search-input').value = searchQuery;
+          break;
+        case 3:
+          handleNavigate('decision');
+          chatHistory.push({role:'ai', title:'晚餐提早吃？', content:'那我们可以吃点低负担的。'});
+          renderChatMessages();
+          break;
+        case 4:
+          handleNavigate('decision');
+          handleRestaurantSelected();
+          break;
+        case 5:
+          currentView = 'home';
+          chatHistory.push({role:'ai', title:'打卡成功！🏆', content:'奖励已到账。'});
+          handleNavigate('home');
+          break;
+        case 6: handleNavigate('snack'); break;
+        case 7: handleNavigate('meal_prep'); break;
+        case 8: handleNavigate('meal_prep'); break;
+        case 9: handleNavigate('meal_prep'); break;
+        case 10:
+          currentView = 'home';
+          activeChallengeIndex = 2;
+          chatHistory.push({ role: 'user', content: '我想聊聊关于喝水的话题' }, { role: 'ai', title: "关于喝水 💧", content: "没问题！你觉得自己每天喝水少是因为**忘记喝**还是**不喜欢白水的味道**？" });
+          handleNavigate('home');
+          break;
+        default: break;
+      }
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons - wait for library to be ready
+      const waitForIcons = () => {
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          initIcons();
+        } else {
+          setTimeout(waitForIcons, 100);
+        }
+      };
+      waitForIcons();
+      
+      // Demo buttons
+      document.querySelectorAll('.demo-btn').forEach(btn => {
+        btn.onclick = () => handleDemoCase(parseInt(btn.dataset.case));
+      });
+      
+      // Pill buttons
+      document.querySelectorAll('.pill-btn').forEach(btn => {
+        btn.onclick = () => handleNavigate(btn.dataset.view);
+      });
+      
+      // Challenge navigation
+      document.getElementById('prev-challenge').onclick = () => {
+        activeChallengeIndex = (activeChallengeIndex - 1 + challenges.length) % challenges.length;
+        renderChallenges();
+      };
+      document.getElementById('next-challenge').onclick = () => {
+        activeChallengeIndex = (activeChallengeIndex + 1) % challenges.length;
+        renderChallenges();
+      };
+      
+      // Back button
+      document.getElementById('back-btn').onclick = () => {
+        if (currentView === 'detail') {
+          closeDetail();
+        } else {
+          goBackHome();
+        }
+      };
+      
+      // Confirm choice button
+      document.getElementById('confirm-choice-btn').onclick = confirmChoice;
+      
+      // Search input
+      document.getElementById('search-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleSearchSubmit();
+      });
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+      });
+      
+      // Submit button
+      document.getElementById('submit-btn').onclick = handleSearchSubmit;
+      
+      // Close filter
+      document.getElementById('close-filter').onclick = () => {
+        activeFilter = null;
+        renderFilterPanel();
+      };
+      
+      // Cancel restaurant
+      document.getElementById('cancel-restaurant').onclick = () => {
+        interactionStep = 'initial';
+        document.getElementById('search-input').placeholder = "输入需求...";
+        document.getElementById('camera-btn').classList.add('hidden');
+        document.getElementById('cancel-restaurant').classList.add('hidden');
+        document.getElementById('submit-btn').innerHTML = '<i data-lucide="send" class="w-3.5 h-3.5"></i>';
+        initIcons();
+        renderQuickActions();
+      };
+      
+      // Home input
+      document.getElementById('home-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+      document.getElementById('home-input').addEventListener('input', (e) => {
+        inputText = e.target.value;
+      });
+      document.getElementById('home-send').onclick = sendMessage;
+      
+      // Initial render
+      updateViewVisibility();
+      renderChallenges();
+      renderChatMessages();
+      document.getElementById('home-rabbit').appendChild(createRabbit('walking'));
+      
+      // Ensure icons are initialized after all content is loaded
+      setTimeout(initIcons, 500);
+    });
+    
+    // Also initialize on window load
+    window.addEventListener('load', () => {
+      initIcons();
+    });
+  </script>
+</body>
+</html>

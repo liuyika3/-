@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>首页 Timekiller 与外食 · Jovida 减脂教练</title>
+  <style>
+    :root { --bg:#0b0f14; --line:#2d3a52; --text:#e8edf5; --muted:#94a3b8; --accent:#22d3ee; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); padding:1.25rem clamp(1rem,4vw,2rem) 2rem; line-height:1.6; }
+    a.back { color:#a5f3fc; text-decoration:none; font-size:0.9rem; }
+    a.back:focus-visible { outline:2px solid #22d3ee; outline-offset:2px; }
+    h1 { font-size:1.35rem; margin:1rem 0 0.5rem; }
+    .tag { font-size:0.72rem; color:#a5f3fc; letter-spacing:0.08em; text-transform:uppercase; }
+    .copy { color:var(--muted); max-width:52ch; font-size:0.95rem; }
+    .slot {
+      margin-top:1.5rem; max-width:56rem; aspect-ratio:16/9; border-radius:1rem; border:1px dashed var(--line);
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; padding:1.5rem; color:var(--muted); text-align:center;
+    }
+    .slot code { color:#a5f3fc; font-size:0.85rem; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← 返回 SPARE 总览</a>
+  <p class="tag">SPARE 总览延展 · 我主导的设计</p>
+  <h1>首页 Timekiller · 小瓶子 · 外食推荐</h1>
+  <p class="copy">
+    <strong>留存与场景入口：</strong>轻量小游戏（小瓶子）与首页娱乐化节奏；外食推荐的主物料已挂在总览 <strong>SPARE · E 可落地性</strong> 下的
+    <a href="e-out-eating-system.html" style="color:#a5f3fc;">外食体系页</a>。
+  </p>
+  <div class="slot" role="region" aria-label="演示视频占位">
+    <p style="margin:0;">视频占位</p>
+    <p style="margin:0;font-size:0.88rem;">视频文件：<code>../assets/m5-home-timekiller.mp4</code></p>
+    <!--
+    <video controls playsinline width="100%"><source src="../assets/m5-home-timekiller.mp4" type="video/mp4" /></video>
+    -->
+  </div>
+</body>
+</html>

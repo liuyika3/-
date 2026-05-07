@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>万物教练 Demo 聚合器</title>
+  <style>
+    :root {
+      --green: #45C400;
+      --bg: #E7E9EC;
+      --card: #FFFFFF;
+      --text-secondary: rgba(0,0,0,0.4);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+    }
+    .sidebar {
+      width: 240px;
+      padding: 18px 14px;
+      background: var(--card);
+      box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 4px;
+    }
+    .nav-item {
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 150ms;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      user-select: none;
+    }
+    .nav-item:hover {
+      background: rgba(69,196,0,0.06);
+      color: rgba(0,0,0,0.7);
+    }
+    .nav-item.active {
+      background: rgba(69,196,0,0.12);
+      color: var(--green);
+      font-weight: 700;
+    }
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .frame-wrap {
+      flex: 1;
+      min-height: 0;
+      background: white;
+      border-left: 1px solid rgba(0,0,0,0.05);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">🌿 Jovida</div>
+
+    <div class="label">Tool Demos</div>
+    <div class="nav-item" data-key="english" data-src="tools.html?embed=1&page=english">🧠 英语教练（工具）</div>
+    <div class="nav-item" data-key="pubmed" data-src="tools.html?embed=1&page=pubmed">🔬 PubMed（工具）</div>
+    <div class="nav-item" data-key="reddit" data-src="tools.html?embed=1&page=reddit">💬 Reddit（工具）</div>
+    <div class="nav-item" data-key="wikipedia" data-src="tools.html?embed=1&page=wikipedia">📖 Wikipedia（工具）</div>
+    <div class="nav-item" data-key="shopping" data-src="tools.html?embed=1&page=shopping">🛍️ 商品搜索（工具）</div>
+    <div class="nav-item" data-key="food" data-src="tools.html?embed=1&page=food">🥗 食品成分（工具）</div>
+    <div class="nav-item" data-key="exercises" data-src="tools.html?embed=1&page=exercises">🏋️ 动作库（工具）</div>
+
+    <div class="label" style="margin-top:10px">Showcases</div>
+    <div class="nav-item" data-key="sugar" data-src="sugar.html">🍬 戒糖侦探</div>
+    <div class="nav-item" data-key="encoach" data-src="english.html">📺 英语教练</div>
+    <div class="nav-item" data-key="career" data-src="jobs.html">💼 求职情报站</div>
+    <div class="nav-item" data-key="travelsc" data-src="travel.html">✈️ 旅行准备官</div>
+    <div class="nav-item" data-key="fitlab" data-src="fitness.html">💪 健身实验室</div>
+    <div class="label" style="margin-top:10px">System</div>
+    <div class="nav-item" data-key="api-info" data-src="api-info.html">📊 查看 API 使用</div>
+  </aside>
+
+  <main class="main">
+    <div class="frame-wrap">
+      <iframe id="frame" src="index.html?embed=1&page=english"></iframe>
+    </div>
+  </main>
+
+  <script>
+    const frame = document.getElementById('frame');
+    const items = Array.from(document.querySelectorAll('.nav-item'));
+
+    function setActive(key) {
+      items.forEach(it => it.classList.toggle('active', it.dataset.key === key));
+    }
+
+    function go(key) {
+      const it = items.find(x => x.dataset.key === key);
+      if (!it) return;
+      frame.src = it.dataset.src;
+      setActive(key);
+    }
+
+    items.forEach(it => {
+      it.addEventListener('click', () => go(it.dataset.key));
+    });
+
+    // initial active
+    setActive('english');
+  </script>
+</body>
+</html>
+

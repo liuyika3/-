@@ -1,0 +1,1145 @@
+[
+  {
+    "food_id": "egg-mcmuffin",
+    "food_name": "Egg McMuffin®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/egg-mcmuffin.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202004_0046_EggMcMuffin_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/egg-mcmuffin.jpg",
+    "nutrition": {
+      "calories": 310,
+      "protein_g": 17,
+      "total_carbs_g": 30,
+      "total_fat_g": 13,
+      "sodium_mg": 770
+    }
+  },
+  {
+    "food_id": "sausage-burrito",
+    "food_name": "Sausage Burrito",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-burrito.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0334_SausageBurrito_Alt_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-burrito.jpg"
+  },
+  {
+    "food_id": "iced-coffee-small",
+    "food_name": "McCafé® Iced Coffee",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-coffee-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1212_MediumIcedCoffee_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-coffee-small.jpg",
+    "nutrition": {
+      "calories": 150,
+      "protein_g": 2,
+      "total_carbs_g": 28,
+      "total_fat_g": 4,
+      "sodium_mg": 50
+    }
+  },
+  {
+    "food_id": "big-mac",
+    "food_name": "Big Mac®",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/big-mac.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202302_0005-999_BigMac_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/big-mac.jpg",
+    "nutrition": {
+      "calories": 580,
+      "protein_g": 25,
+      "total_carbs_g": 45,
+      "total_carbs_dv": 16,
+      "total_fat_g": 34,
+      "total_fat_dv": 43,
+      "saturated_fat_g": 11,
+      "saturated_fat_dv": 56,
+      "trans_fat_g": 1,
+      "cholesterol_mg": 85,
+      "cholesterol_dv": 28,
+      "sodium_mg": 1060,
+      "sodium_dv": 46,
+      "dietary_fiber_g": 3,
+      "dietary_fiber_dv": 10,
+      "total_sugars_g": 7,
+      "added_sugars_g": 5,
+      "added_sugars_dv": 10,
+      "vitamin_d_mcg": 0,
+      "vitamin_d_dv": 0,
+      "calcium_mg": 120,
+      "calcium_dv": 10,
+      "iron_mg": 4,
+      "iron_dv": 25,
+      "potassium_mg": 370,
+      "potassium_dv": 8
+    },
+    "ingredients": [
+      {
+        "order": 1,
+        "name": "Big Mac Bun",
+        "details": "Enriched Flour (wheat Flour, Malted Barley Flour, Niacin, Reduced Iron, Thiamine Mononitrate, Riboflavin, Folic Acid), Water, Sugar, Yeast, Soybean Oil, Contains 2% Or Less: Sesame Seeds, Salt, Wheat Gluten, Calcium Sulfate, Natural Flavors, Dough Conditioners (May Contain One Or More Of: Sodium Stearoyl Lactylate, Datem, Ascorbic Acid, Azodicarbonamide, Mono And Diglycerides, Ethoxylated Monoglycerides, Monocalcium Phosphate, Enzymes, Guar Gum, Calcium Peroxide), Calcium Propionate (preservative).",
+        "allergens": [
+          "Wheat",
+          "Barley",
+          "Soy",
+          "Sesame"
+        ]
+      },
+      {
+        "order": 2,
+        "name": "100% Beef Patty",
+        "details": "100% Pure USDA Inspected Beef; No Fillers, No Extenders.",
+        "allergens": []
+      },
+      {
+        "order": 3,
+        "name": "Shredded Lettuce",
+        "details": "Lettuce.",
+        "allergens": []
+      },
+      {
+        "order": 4,
+        "name": "Big Mac Sauce",
+        "details": "Soybean Oil, Sweet Relish (diced Pickles, Sugar, High Fructose Corn Syrup, Distilled Vinegar, Salt, Corn Syrup, Xanthan Gum, Calcium Chloride, Spice Extractives), Water, Egg Yolks, Distilled Vinegar, Spices, Onion Powder, Salt, Propylene Glycol Alginate, Sodium Benzoate (preservative), Mustard Bran, Sugar, Garlic Powder, Vegetable Protein (hydrolyzed Corn, Soy And Wheat), Caramel Color, Extractives Of Paprika, Soy Lecithin, Turmeric (color), Calcium Disodium Edta (protect Flavor).",
+        "allergens": [
+          "Egg",
+          "Soy",
+          "Wheat"
+        ]
+      },
+      {
+        "order": 5,
+        "name": "Pasteurized Process American Cheese",
+        "details": "Milk, Cream, Water, Sodium Citrate, Salt, Cheese Cultures, Citric Acid, Enzymes, Soy Lecithin, Color Added.",
+        "allergens": [
+          "Milk",
+          "Soy"
+        ]
+      },
+      {
+        "order": 6,
+        "name": "Pickle Slices",
+        "details": "Cucumbers, Water, Distilled Vinegar, Salt, Calcium Chloride, Alum, Potassium Sorbate (preservative), Natural Flavors, Polysorbate 80, Extractives Of Turmeric (color).",
+        "allergens": []
+      },
+      {
+        "order": 7,
+        "name": "Onions",
+        "details": "Onions.",
+        "allergens": []
+      }
+    ],
+    "allergens": [
+      "Wheat",
+      "Barley",
+      "Soy",
+      "Sesame",
+      "Egg",
+      "Milk"
+    ]
+  },
+  {
+    "food_id": "chicken-mcnuggets-4-piece",
+    "food_name": "Piece Chicken McNuggets®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/chicken-mcnuggets-4-piece.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202502_0483_4McNuggets_Stacked_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/chicken-mcnuggets-4-piece.jpg",
+    "nutrition": {
+      "calories": 170,
+      "protein_g": 9,
+      "total_carbs_g": 10,
+      "total_fat_g": 10,
+      "sodium_mg": 330
+    }
+  },
+  {
+    "food_id": "ranch-snack-wrap",
+    "food_name": "It's backRanch Snack Wrap®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/ranch-snack-wrap.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202504_25254_RanchSnackWrap_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/ranch-snack-wrap.jpg"
+  },
+  {
+    "food_id": "quarter-pounder-with-cheese",
+    "food_name": "Quarter Pounder®* with Cheese",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/quarter-pounder-with-cheese.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202201_0007-005_QuarterPounderwithCheese_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/quarter-pounder-with-cheese.jpg",
+    "nutrition": {
+      "calories": 520,
+      "protein_g": 30,
+      "total_carbs_g": 42,
+      "total_fat_g": 26,
+      "sodium_mg": 1140
+    }
+  },
+  {
+    "food_id": "mccrispy-chicken-sandwich",
+    "food_name": "McCrispy®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mccrispy-chicken-sandwich.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202012_0383_CrispyChickenSandwich_PotatoBun_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mccrispy-chicken-sandwich.jpg",
+    "nutrition": {
+      "calories": 470,
+      "protein_g": 26,
+      "total_carbs_g": 46,
+      "total_fat_g": 20,
+      "sodium_mg": 1140
+    }
+  },
+  {
+    "food_id": "bacon-egg-cheese-biscuit",
+    "food_name": "Bacon, Egg  & Cheese Biscuit",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/bacon-egg-cheese-biscuit.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202405_0085_BaconEggCheeseBiscuit_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bacon-egg-cheese-biscuit.jpg",
+    "nutrition": {
+      "calories": 460,
+      "protein_g": 17,
+      "total_carbs_g": 38,
+      "total_fat_g": 26,
+      "sodium_mg": 1300
+    }
+  },
+  {
+    "food_id": "sausage-mcmuffin",
+    "food_name": "Sausage McMuffin®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-mcmuffin.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0078_SausageMcMuffin_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-mcmuffin.jpg",
+    "nutrition": {
+      "calories": 400,
+      "protein_g": 14,
+      "total_carbs_g": 29,
+      "total_fat_g": 26,
+      "sodium_mg": 780
+    }
+  },
+  {
+    "food_id": "sausage-mcmuffin-with-egg",
+    "food_name": "Sausage McMuffin® with Egg",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-mcmuffin-with-egg.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_0083_SausageEggMcMuffin_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-mcmuffin-with-egg.jpg",
+    "nutrition": {
+      "calories": 480,
+      "protein_g": 21,
+      "total_carbs_g": 30,
+      "total_fat_g": 31,
+      "sodium_mg": 900
+    }
+  },
+  {
+    "food_id": "sausage-biscuit",
+    "food_name": "Sausage Biscuit",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-biscuit.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0062_SausageBiscuit_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-biscuit.jpg"
+  },
+  {
+    "food_id": "sausage-biscuit-with-egg",
+    "food_name": "Sausage Biscuit  with Egg",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-biscuit-with-egg.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_0092_SausageEggBiscuit_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-biscuit-with-egg.jpg"
+  },
+  {
+    "food_id": "bacon-egg-cheese-mcgriddles",
+    "food_name": "Bacon, Egg & Cheese McGriddles®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/bacon-egg-cheese-mcgriddles.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201908_9839_BEC_McGriddle_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bacon-egg-cheese-mcgriddles.jpg"
+  },
+  {
+    "food_id": "sausage-mcgriddles",
+    "food_name": "Sausage McGriddles®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-mcgriddles.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201911_6110_SausageMcGriddle_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-mcgriddles.jpg"
+  },
+  {
+    "food_id": "sausage-egg-cheese-mcgriddles",
+    "food_name": "Sausage, Egg & Cheese McGriddles®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-egg-cheese-mcgriddles.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_9841_SausageEggCheeseMcGriddle_1564x1564-2:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-egg-cheese-mcgriddles.jpg"
+  },
+  {
+    "food_id": "bacon-egg-cheese-bagel",
+    "food_name": "Bacon, Egg & Cheese Bagel",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/bacon-egg-cheese-bagel.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_1603_BaconEggCheeseBagel_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bacon-egg-cheese-bagel.jpg"
+  },
+  {
+    "food_id": "sausage-egg-and-cheese-bagel",
+    "food_name": "Sausage, Egg & Cheese Bagel",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sausage-egg-and-cheese-bagel.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202403_1604_SausageEggCheeseBagel_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-egg-and-cheese-bagel.jpg"
+  },
+  {
+    "food_id": "steak-egg-cheese-bagel",
+    "food_name": "Steak, Egg & Cheese Bagel",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/steak-egg-cheese-bagel.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_5918_SteakEggCheeseBagel_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/steak-egg-cheese-bagel.jpg"
+  },
+  {
+    "food_id": "bagel-plain",
+    "food_name": "Bagel (plain)",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/bagel-plain.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201909_5428_PlainBagel_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bagel-plain.jpg"
+  },
+  {
+    "food_id": "egg-and-cheese-bagel",
+    "food_name": "Egg and Cheese Bagel",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/egg-and-cheese-bagel.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202410_4210_EggCheeseBagel_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/egg-and-cheese-bagel.jpg"
+  },
+  {
+    "food_id": "big-breakfast",
+    "food_name": "Big Breakfast®",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/big-breakfast.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202405_0107_BigBreakfast._1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/big-breakfast.jpg"
+  },
+  {
+    "food_id": "big-breakfast-with-hotcakes",
+    "food_name": "Big Breakfast® with Hotcakes",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/big-breakfast-with-hotcakes.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202208_3590_BigBreakfast_HotCakes_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/big-breakfast-with-hotcakes.jpg"
+  },
+  {
+    "food_id": "hotcakes",
+    "food_name": "Hotcakes",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hotcakes.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202405_0031_3HotCakes_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hotcakes.jpg"
+  },
+  {
+    "food_id": "hotcakes-and-sausage",
+    "food_name": "Hotcakes and Sausage",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hotcakes-and-sausage.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202405_0032_3HotCakes_Sausage_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hotcakes-and-sausage.jpg"
+  },
+  {
+    "food_id": "hash-browns",
+    "food_name": "Hash Browns",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hash-browns.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0035_HashBrowns_Upright_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/hash-browns.jpg",
+    "nutrition": {
+      "calories": 140,
+      "protein_g": 1,
+      "total_carbs_g": 15,
+      "total_fat_g": 8,
+      "sodium_mg": 310
+    }
+  },
+  {
+    "food_id": "fruit-maple-oatmeal",
+    "food_name": "Fruit & Maple Oatmeal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/fruit-maple-oatmeal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202002_1500_Oatmeal_Fruit_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/fruit-maple-oatmeal.jpg"
+  },
+  {
+    "food_id": "egg-mcmuffin-meal",
+    "food_name": "Egg McMuffin® Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/egg-mcmuffin-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202007_0252_EVM_HB_EggMcMuffin_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/egg-mcmuffin-meal.jpg"
+  },
+  {
+    "food_id": "sausage-mcmuffin-with-egg-meal",
+    "food_name": "Sausage McMuffin® with Egg Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/sausage-mcmuffin-with-egg-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202008_3655_EVM_HB_SausageEggMcMuffin_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-mcmuffin-with-egg-meal.jpg"
+  },
+  {
+    "food_id": "sausage-biscuit-with-egg-meal",
+    "food_name": "Sausage Biscuit with Egg Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/sausage-biscuit-with-egg-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202007_0251_EVM_HB_SausageEggBiscuit_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-biscuit-with-egg-meal.jpg"
+  },
+  {
+    "food_id": "bacon-egg-cheese-biscuit-meal",
+    "food_name": "Bacon, Egg & Cheese Biscuit Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/bacon-egg-cheese-biscuit-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202104_0250_EVM_HB_BaconEggCheeseBiscuit_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bacon-egg-cheese-biscuit-meal.jpg"
+  },
+  {
+    "food_id": "bacon-egg-cheese-mcgriddles-meal",
+    "food_name": "Bacon, Egg & Cheese McGriddles® Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/bacon-egg-cheese-mcgriddles-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202008_9840_EVM_HB_BaconEggCheeseMcGriddle_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/bacon-egg-cheese-mcgriddles-meal.jpg"
+  },
+  {
+    "food_id": "sausage-egg-cheese-mcgriddles-meal",
+    "food_name": "Sausage, Egg & Cheese McGriddles® Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/sausage-egg-cheese-mcgriddles-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202008_9842_EVM_HB_SausageEggCheeseMcGriddle_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-egg-cheese-mcgriddles-meal.jpg"
+  },
+  {
+    "food_id": "sausage-mcgriddles-meal",
+    "food_name": "Sausage McGriddles® Meal",
+    "category": "Breakfast",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/sausage-mcgriddles-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202211_6116_EVM_HB_SausageMcGriddle_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-mcgriddles-meal.jpg"
+  },
+  {
+    "food_id": "sausage-burrito-meal",
+    "food_name": "Sausage Burrito Meal",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/sausage-burrito-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202008_5093_EVM_HB_2SausageBurrito_Coffee_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sausage-burrito-meal.jpg"
+  },
+  {
+    "food_id": "double-quarter-pounder-with-cheese",
+    "food_name": "Double Quarter Pounder®* with Cheese",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/double-quarter-pounder-with-cheese.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202201_3426-005_DoubleQuarterPounderwithCheese_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/double-quarter-pounder-with-cheese.jpg",
+    "nutrition": {
+      "calories": 740,
+      "protein_g": 48,
+      "total_carbs_g": 43,
+      "total_fat_g": 42,
+      "sodium_mg": 1360
+    }
+  },
+  {
+    "food_id": "deluxe-quarter-pounder-with-cheese",
+    "food_name": "Quarter Pounder®* with Cheese Deluxe",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/deluxe-quarter-pounder-with-cheese.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202309_4282_QuarterPounderCheeseDeluxe_Shredded_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/deluxe-quarter-pounder-with-cheese.jpg"
+  },
+  {
+    "food_id": "mcdouble",
+    "food_name": "McDouble®",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mcdouble.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202302_0592-999_McDouble_Alt_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mcdouble.jpg",
+    "nutrition": {
+      "calories": 390,
+      "protein_g": 22,
+      "total_carbs_g": 33,
+      "total_fat_g": 18,
+      "sodium_mg": 920
+    }
+  },
+  {
+    "food_id": "daily-double",
+    "food_name": "Daily Double",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/daily-double.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202307_5101-999_DailyDouble_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/daily-double.jpg"
+  },
+  {
+    "food_id": "quarter-pounder-bacon",
+    "food_name": "Bacon Quarter Pounder®* with Cheese",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/quarter-pounder-bacon.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202201_4295-005_BaconQPC_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/quarter-pounder-bacon.jpg"
+  },
+  {
+    "food_id": "cheeseburger",
+    "food_name": "Cheeseburger",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/cheeseburger.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202502_0003-999_CheeseburgerAlt_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/cheeseburger.jpg",
+    "nutrition": {
+      "calories": 300,
+      "protein_g": 15,
+      "total_carbs_g": 32,
+      "total_fat_g": 12,
+      "sodium_mg": 720
+    }
+  },
+  {
+    "food_id": "double-cheeseburger",
+    "food_name": "Double Cheeseburger",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/double-cheeseburger.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_0004-999_DoubleCheeseburger_Alt_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/double-cheeseburger.jpg"
+  },
+  {
+    "food_id": "hamburger",
+    "food_name": "Hamburger: The Classic McDonald's Burger",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hamburger.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202302_0001-999_Hamburger_Alt_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hamburger.jpg",
+    "nutrition": {
+      "calories": 250,
+      "protein_g": 12,
+      "total_carbs_g": 31,
+      "total_fat_g": 8,
+      "sodium_mg": 510
+    }
+  },
+  {
+    "food_id": "deluxe-mccrispy-chicken-sandwich",
+    "food_name": "Deluxe McCrispy®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/deluxe-mccrispy-chicken-sandwich.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202012_0370_DeluxeCrispyChicken_PotatoBun_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/deluxe-mccrispy-chicken-sandwich.jpg"
+  },
+  {
+    "food_id": "spicy-mccrispy-chicken-sandwich",
+    "food_name": "Spicy McCrispy®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/spicy-mccrispy-chicken-sandwich.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202012_0116_SpicyCrispyChicken_PotatoBun_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/spicy-mccrispy-chicken-sandwich.jpg"
+  },
+  {
+    "food_id": "spicy-deluxe-mccrispy-chicken-sandwich",
+    "food_name": "Spicy Deluxe McCrispy®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/spicy-deluxe-mccrispy-chicken-sandwich.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202104_0100_DeluxeSpicyCrispyChickenSandwich_PotatoBun_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/spicy-deluxe-mccrispy-chicken-sandwich.jpg"
+  },
+  {
+    "food_id": "filet-o-fish",
+    "food_name": "Filet-O-Fish®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/filet-o-fish.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202302_5926-999_Filet-O-Fish_HalfSlice_Alt_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/filet-o-fish.jpg",
+    "nutrition": {
+      "calories": 380,
+      "protein_g": 16,
+      "total_carbs_g": 39,
+      "total_fat_g": 18,
+      "sodium_mg": 580
+    }
+  },
+  {
+    "food_id": "mcchicken",
+    "food_name": "McChicken®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mcchicken.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_4314-999_McChicken_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/mcchicken.jpg",
+    "nutrition": {
+      "calories": 400,
+      "protein_g": 14,
+      "total_carbs_g": 40,
+      "total_fat_g": 21,
+      "sodium_mg": 560
+    }
+  },
+  {
+    "food_id": "mccrispy-strips-3-piece",
+    "food_name": "McCrispy® Strips",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mccrispy-strips-3-piece.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202504_25157_3PieceMcCrispyStrips_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/mccrispy-strips-3-piece.jpg"
+  },
+  {
+    "food_id": "small-french-fries",
+    "food_name": "Small World Famous Fries®",
+    "category": "Fries & Sides",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/small-french-fries.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202411_6050_SmallFrenchFries_Standing_McValueRegistered_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/small-french-fries.jpg",
+    "nutrition": {
+      "calories": 230,
+      "protein_g": 3,
+      "total_carbs_g": 29,
+      "total_fat_g": 11,
+      "sodium_mg": 160
+    }
+  },
+  {
+    "food_id": "apple-slices",
+    "food_name": "Apple Slices",
+    "category": "Fries & Sides",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/apple-slices.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202002_2794_AppleSlices_NoBag_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/apple-slices.jpg"
+  },
+  {
+    "food_id": "hamburger-happy-meal",
+    "food_name": "Hamburger Happy Meal®",
+    "category": "Burgers",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/hamburger-happy-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202307_6975_HamburgerHappyMeal_AppleSlices_WhiteMilkJug_Left_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hamburger-happy-meal.jpg"
+  },
+  {
+    "food_id": "4-piece-chicken-mcnuggets-happy-meal",
+    "food_name": "Piece McNuggets® Happy Meal®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/4-piece-chicken-mcnuggets-happy-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_7002_4McNuggetsHappyMeal_AppleSlices_WhiteMilkJug_Left_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/4-piece-chicken-mcnuggets-happy-meal.jpg"
+  },
+  {
+    "food_id": "6-piece-chicken-mcnuggets-happy-meal",
+    "food_name": "Piece McNuggets® Happy Meal®",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/meal/6-piece-chicken-mcnuggets-happy-meal.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_7780_6McNuggetsHappyMeal_AppleSlices_WhiteMilkJug_Left_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/6-piece-chicken-mcnuggets-happy-meal.jpg"
+  },
+  {
+    "food_id": "caramel-macchiato-small",
+    "food_name": "McCafé® Caramel Macchiato",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/caramel-macchiato-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2804_MediumCaramelMacchiato_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/caramel-macchiato-small.jpg"
+  },
+  {
+    "food_id": "cappuccino-small",
+    "food_name": "McCafé® Cappuccino",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/cappuccino-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2692_MediumCappuccino_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/cappuccino-small.jpg"
+  },
+  {
+    "food_id": "caramel-cappuccino-small",
+    "food_name": "McCafé® Caramel Cappuccino",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/caramel-cappuccino-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1517_MediumCaramelCappuccino_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/caramel-cappuccino-small.jpg"
+  },
+  {
+    "food_id": "french-vanilla-cappuccino-small",
+    "food_name": "McCafé® French Vanilla Cappuccino",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/french-vanilla-cappuccino-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1372_MediumVanillaCappuccino_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/french-vanilla-cappuccino-small.jpg"
+  },
+  {
+    "food_id": "mccaf-mocha-small",
+    "food_name": "McCafé® Mocha Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mccaf-mocha-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2731_MediumMocha_Glass_A1_HL_832x472:nutrition-calculator-tile",
+    "local_image_path": "images/mccaf-mocha-small.jpg"
+  },
+  {
+    "food_id": "espresso-americano-coffee-small-12-oz",
+    "food_name": "Americano",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/espresso-americano-coffee-small-12-oz.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1318_MediumAmericano_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/espresso-americano-coffee-small-12-oz.jpg"
+  },
+  {
+    "food_id": "coffee-small",
+    "food_name": "McCafé® Premium Roast Coffee",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/coffee-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_0321_MediumCoffee_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/coffee-small.jpg",
+    "nutrition": {
+      "calories": 5,
+      "protein_g": 0,
+      "total_carbs_g": 0,
+      "total_fat_g": 0,
+      "sodium_mg": 5
+    }
+  },
+  {
+    "food_id": "iced-caramel-macchiato",
+    "food_name": "McCafé® Iced Caramel Macchiato",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-caramel-macchiato.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2743_MediumIcedCaramelMacchiato_Glass_A1_832x472:nutrition-calculator-tile",
+    "local_image_path": "images/iced-caramel-macchiato.jpg"
+  },
+  {
+    "food_id": "mccafe-iced-mocha-small",
+    "food_name": "McCafé® Iced Mocha Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mccafe-iced-mocha-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_7659_MediumIcedMocha_Glass_A1_832x472:nutrition-calculator-tile",
+    "local_image_path": "images/mccafe-iced-mocha-small.jpg"
+  },
+  {
+    "food_id": "iced-coffee-caramel-small",
+    "food_name": "McCafé® Iced Caramel Coffee",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-coffee-caramel-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1207_MediumIcedCaramelCoffee_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-coffee-caramel-small.jpg"
+  },
+  {
+    "food_id": "iced-coffee-french-vanilla-small",
+    "food_name": "McCafé® Iced French Vanilla Coffee",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-coffee-french-vanilla-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1216_MediumIcedFrenchVanillaCoffee_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-coffee-french-vanilla-small.jpg"
+  },
+  {
+    "food_id": "latte-small",
+    "food_name": "McCafé® Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/latte-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2698_MediumLatte_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/latte-small.jpg"
+  },
+  {
+    "food_id": "mccaf-iced-latte-small",
+    "food_name": "McCafé® Iced Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mccaf-iced-latte-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_7606_MediumIcedLatte_Glass_A1_832x472:nutrition-calculator-tile",
+    "local_image_path": "images/mccaf-iced-latte-small.jpg"
+  },
+  {
+    "food_id": "latte-caramel-small",
+    "food_name": "McCafé® Caramel Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/latte-caramel-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1324_MediumCaramelLatte_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/latte-caramel-small.jpg"
+  },
+  {
+    "food_id": "iced-caramel-latte-small",
+    "food_name": "McCafé® Iced Caramel Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-caramel-latte-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_0379_MediumIcedCaramelLatte_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-caramel-latte-small.jpg"
+  },
+  {
+    "food_id": "latte-french-vanilla-small",
+    "food_name": "McCafé® French Vanilla Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/latte-french-vanilla-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1331_MediumFrenchVanillaLatte_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/latte-french-vanilla-small.jpg"
+  },
+  {
+    "food_id": "iced-french-vanilla-latte-small",
+    "food_name": "McCafé® Iced French Vanilla Latte",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-french-vanilla-latte-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_0187_MediumIcedFrenchVanillaLatte_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-french-vanilla-latte-small.jpg"
+  },
+  {
+    "food_id": "frappe-caramel-small",
+    "food_name": "McCafé® Caramel Frappé",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/frappe-caramel-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2842_MediumCaramelFrappe_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/frappe-caramel-small.jpg"
+  },
+  {
+    "food_id": "frappe-mocha-small",
+    "food_name": "McCafé® Mocha Frappé",
+    "category": "McCafe Coffees",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/frappe-mocha-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_3491_MediumMochaFrappe_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/frappe-mocha-small.jpg"
+  },
+  {
+    "food_id": "mcflurry-with-oreo-cookies",
+    "food_name": "McFlurry® with OREO® Cookies",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mcflurry-with-oreo-cookies.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202002_3832_OREOMcFlurry_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mcflurry-with-oreo-cookies.jpg",
+    "nutrition": {
+      "calories": 410,
+      "protein_g": 8,
+      "total_carbs_g": 64,
+      "total_fat_g": 14,
+      "sodium_mg": 280
+    }
+  },
+  {
+    "food_id": "mm-candy-mcflurry",
+    "food_name": "McFlurry® with M&M'S® Candies",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mm-candy-mcflurry.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202505_3830_MandMMcFlurry_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/mm-candy-mcflurry.jpg"
+  },
+  {
+    "food_id": "vanilla-cone",
+    "food_name": "Vanilla Cone",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/vanilla-cone.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202106_0336_LargeVanillaCone_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/vanilla-cone.jpg",
+    "nutrition": {
+      "calories": 200,
+      "protein_g": 5,
+      "total_carbs_g": 32,
+      "total_fat_g": 5,
+      "sodium_mg": 80
+    }
+  },
+  {
+    "food_id": "chocolate-shake-small",
+    "food_name": "Chocolate Shake",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/chocolate-shake-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_1509_MediumChocolateShake_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/chocolate-shake-small.jpg",
+    "nutrition": {
+      "calories": 520,
+      "protein_g": 12,
+      "total_carbs_g": 86,
+      "total_fat_g": 14,
+      "sodium_mg": 300
+    }
+  },
+  {
+    "food_id": "vanilla-shake-small",
+    "food_name": "Vanilla Shake",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/vanilla-shake-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_1598_MediumVanillaShake_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/vanilla-shake-small.jpg"
+  },
+  {
+    "food_id": "strawberry-shake-small",
+    "food_name": "Strawberry Shake",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/strawberry-shake-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_1513_MediumStrawberryShake_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/strawberry-shake-small.jpg"
+  },
+  {
+    "food_id": "hot-fudge-sundae",
+    "food_name": "Hot Fudge Sundae",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hot-fudge-sundae.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_0337_HotFudgeSundae_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hot-fudge-sundae.jpg"
+  },
+  {
+    "food_id": "hot-caramel-sundae",
+    "food_name": "Hot Caramel Sundae",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hot-caramel-sundae.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201907_0345_CaramelSundae_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hot-caramel-sundae.jpg"
+  },
+  {
+    "food_id": "baked-hot-apple-pie",
+    "food_name": "Baked Apple Pie",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/baked-hot-apple-pie.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202004_0706_BakedApplePie_Broken_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/baked-hot-apple-pie.jpg"
+  },
+  {
+    "food_id": "chocolate-chip-cookie",
+    "food_name": "Chocolate Chip Cookie",
+    "category": "Sweets & Treats",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/chocolate-chip-cookie.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202211_1852_ChocolateChipCookie_Upright_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/chocolate-chip-cookie.jpg"
+  },
+  {
+    "food_id": "coca-cola-small",
+    "food_name": "Coca-Cola®",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/coca-cola-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202402_0521_MediumCoke_ContourGlassv1_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/coca-cola-small.jpg",
+    "nutrition": {
+      "calories": 200,
+      "protein_g": 0,
+      "total_carbs_g": 55,
+      "total_fat_g": 0,
+      "sodium_mg": 10
+    }
+  },
+  {
+    "food_id": "sprite-small",
+    "food_name": "Sprite®",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sprite-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202212_0721_MediumSprite_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sprite-small.jpg"
+  },
+  {
+    "food_id": "dr-pepper-small",
+    "food_name": "Dr Pepper®",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/dr-pepper-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201905_0421_MediumDrPepper_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/dr-pepper-small.jpg"
+  },
+  {
+    "food_id": "fanta-orange-small",
+    "food_name": "Fanta® Orange",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/fanta-orange-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202212_1262_MediumFantaOrange_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/fanta-orange-small.jpg"
+  },
+  {
+    "food_id": "diet-coke-small",
+    "food_name": "Diet Coke®",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/diet-coke-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202112_0652_MediumDietCoke_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/diet-coke-small.jpg"
+  },
+  {
+    "food_id": "hi-c-orange-lavaburst-small",
+    "food_name": "Hi-C® Orange Lavaburst®",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hi-c-orange-lavaburst-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202012_0621_MediumHi-COrange_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hi-c-orange-lavaburst-small.jpg"
+  },
+  {
+    "food_id": "frozen-fanta-blue-raspberry-small",
+    "food_name": "Frozen Fanta® Blue Raspberry",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/frozen-fanta-blue-raspberry-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202301_7959_MediumFrozenFantaBlueRaspberry_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/frozen-fanta-blue-raspberry-small.jpg"
+  },
+  {
+    "food_id": "frozen-coke-small",
+    "food_name": "Frozen Coca-Cola® Classic",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/frozen-coke-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202301_7963_MediumFrozenCocaColaClassic_Glass_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/frozen-coke-small.jpg"
+  },
+  {
+    "food_id": "strawberry-banana-smoothie-small",
+    "food_name": "Strawberry Banana Smoothie",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/strawberry-banana-smoothie-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2725_MediumStrawberryBananaSmoothie_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/strawberry-banana-smoothie-small.jpg"
+  },
+  {
+    "food_id": "mango-pineapple-smoothie-small",
+    "food_name": "Mango Pineapple Smoothie",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mango-pineapple-smoothie-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_2790_MediumMangoPineappleSmoothie_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mango-pineapple-smoothie-small.jpg"
+  },
+  {
+    "food_id": "lemonade-small",
+    "food_name": "Lemonade",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/lemonade-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202302_14878_MediumLemonade_1564x1564-2:nutrition-calculator-tile",
+    "local_image_path": "images/lemonade-small.jpg"
+  },
+  {
+    "food_id": "sweet-tea-small",
+    "food_name": "Sweet Tea",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sweet-tea-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202105_3429_SweetTea_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sweet-tea-small.jpg"
+  },
+  {
+    "food_id": "iced-tea-small",
+    "food_name": "Unsweetened Iced Tea",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/iced-tea-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201909_9449_UnsweetTea_Glass_A1_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/iced-tea-small.jpg"
+  },
+  {
+    "food_id": "hot-tea-small",
+    "food_name": "Hot Tea",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hot-tea-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_0573_MediumHotTea_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hot-tea-small.jpg"
+  },
+  {
+    "food_id": "minute-maid-orange-juice-medium-201248",
+    "food_name": "Minute Maid® Premium Orange Juice",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/minute-maid-orange-juice-medium-201248.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumMinuteMaidPremiumOrangeJuice_832x472:nutrition-calculator-tile",
+    "local_image_path": "images/minute-maid-orange-juice-medium-201248.jpg"
+  },
+  {
+    "food_id": "honest-kids-appley-ever-after-6-fl-oz-drink-box",
+    "food_name": "Honest Kids® Appley Ever After® Organic Juice Drink",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/honest-kids-appley-ever-after-6-fl-oz-drink-box.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202008_0322_HonestKidsAppleJuice_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/honest-kids-appley-ever-after-6-fl-oz-drink-box.jpg"
+  },
+  {
+    "food_id": "1-low-fat-milk-jug",
+    "food_name": "% Low Fat Milk Jug",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/1-low-fat-milk-jug.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_0066_MilkJug_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/1-low-fat-milk-jug.jpg"
+  },
+  {
+    "food_id": "reduced-sugar-low-fat-chocolate-milk-jug",
+    "food_name": "Reduced Sugar^ Low Fat Chocolate Milk Jug",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/reduced-sugar-low-fat-chocolate-milk-jug.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202103_3179_ReducedSugarLowFatChocolateMilk_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/reduced-sugar-low-fat-chocolate-milk-jug.jpg"
+  },
+  {
+    "food_id": "hot-chocolate-small",
+    "food_name": "McCafé® Hot Chocolate",
+    "category": "Other",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/hot-chocolate-small.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_201906_1697_MediumPremiumHotChocolate_Glass_A1_HL_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/hot-chocolate-small.jpg"
+  },
+  {
+    "food_id": "dasani-water",
+    "food_name": "DASANI® Water",
+    "category": "Beverages",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/dasani-water.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_202402_5474_DasaniBottledWater_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/dasani-water.jpg"
+  },
+  {
+    "food_id": "creamy-chili-sauce",
+    "food_name": "Creamy Chili McCrispy® Strip Dip",
+    "category": "Chicken & Fish",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/creamy-chili-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202504_03248-072__25195_CreamyChiliSauce_1564x1564:nutrition-calculator-tile",
+    "local_image_path": "images/creamy-chili-sauce.jpg"
+  },
+  {
+    "food_id": "tangy-barbeque-sauce",
+    "food_name": "Tangy Barbeque Sauce",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/tangy-barbeque-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202312_00408-144__0900_TangyBBQ_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/tangy-barbeque-sauce.jpg"
+  },
+  {
+    "food_id": "spicy-buffalo-sauce",
+    "food_name": "Spicy Buffalo Sauce",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/spicy-buffalo-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_07812-045__9089_SpicyBuffalo_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/spicy-buffalo-sauce.jpg"
+  },
+  {
+    "food_id": "creamy-ranch-sauce",
+    "food_name": "Creamy Ranch Sauce",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/creamy-ranch-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_02861-036__0922_CreamyRanch_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/creamy-ranch-sauce.jpg"
+  },
+  {
+    "food_id": "honey-mustard-sauce",
+    "food_name": "Honey Mustard Sauce",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/honey-mustard-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_08731-024__9088_HoneyMustard_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/honey-mustard-sauce.jpg"
+  },
+  {
+    "food_id": "sweet-n-sour-sauce",
+    "food_name": "Sweet 'N Sour Sauce",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/sweet-n-sour-sauce.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_00409-120__0901_SweetNSour_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/sweet-n-sour-sauce.jpg"
+  },
+  {
+    "food_id": "ketchup-packet",
+    "food_name": "Ketchup Packet",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/ketchup-packet.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_02679-243__0912_Ketchup_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/ketchup-packet.jpg"
+  },
+  {
+    "food_id": "mayonnaise-packet",
+    "food_name": "Mayonnaise Packet",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mayonnaise-packet.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_11668-000__9008_Mayonnaise_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mayonnaise-packet.jpg"
+  },
+  {
+    "food_id": "mustard-package",
+    "food_name": "Mustard Packet",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/mustard-package.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202203_00046-048__9004_Mustard_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/mustard-package.jpg"
+  },
+  {
+    "food_id": "honey",
+    "food_name": "Honey",
+    "category": "Sauces & Condiments",
+    "product_url": "https://www.mcdonalds.com/us/en-us/product/honey.html",
+    "main_image_url": "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_Condiment_202312_00411-012__0902_Honey_1564x1564-1:nutrition-calculator-tile",
+    "local_image_path": "images/honey.jpg"
+  }
+]

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>万物教练 · 视觉原型导航</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #121826;
+      --border: rgba(148, 163, 184, 0.12);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #2dd4bf;
+      --accent-dim: rgba(45, 212, 191, 0.15);
+      font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: clamp(1rem, 4vw, 2rem);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 1.75rem; }
+    h1 {
+      font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.4rem;
+    }
+    .lead {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 36em;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    a.card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.card:hover {
+      border-color: rgba(45, 212, 191, 0.35);
+      background: rgba(18, 24, 38, 0.95);
+      box-shadow: 0 0 0 1px var(--accent-dim);
+    }
+    a.card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .title { font-weight: 600; font-size: 0.95rem; color: var(--accent); }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .desc {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>万物教练 · 视觉原型</h1>
+      <p class="lead">以下为纯静态 HTML 手机画幅原型，无后端与 Agent 脚本。</p>
+    </header>
+    <ul>
+      <li>
+        <a class="card" href="demo_routine.html">
+          <div class="row">
+            <span class="title">日常节奏 / 习惯</span>
+            <span class="tag">demo_routine</span>
+          </div>
+          <p class="desc">Morning routine 场景的手机画幅界面。</p>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="demo_sleep.html">
+          <div class="row">
+            <span class="title">睡眠场景</span>
+            <span class="tag">demo_sleep</span>
+          </div>
+          <p class="desc">睡眠相关 Nudge 与对话流界面示意。</p>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="demo_healthy_drinking.html">
+          <div class="row">
+            <span class="title">饮水 / 健康习惯</span>
+            <span class="tag">demo_healthy_drinking</span>
+          </div>
+          <p class="desc">健康习惯类单屏界面。</p>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="jovida_v015_prototype.html">
+          <div class="row">
+            <span class="title">Jovida 原型页</span>
+            <span class="tag">v0.15</span>
+          </div>
+          <p class="desc">v0.15 组件与流程长页（静态）。</p>
+        </a>
+      </li>
+    </ul>
+    <footer>点击卡片进入对应页面；可新标签全屏查看。</footer>
+  </div>
+</body>
+</html>

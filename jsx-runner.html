@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSX Runner - What to Eat Planner</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel Standalone for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Lucide Icons Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    @keyframes walk { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes waveBody { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+    @keyframes waveHand { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(20deg); } }
+    @keyframes ear-left { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+    @keyframes ear-right { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } }
+    .animate-walk { animation: walk 0.6s infinite ease-in-out; }
+    .animate-wave-body { transform-origin: bottom center; animation: waveBody 1s infinite ease-in-out; }
+    .animate-wave-hand { transform-origin: 75px 60px; animation: waveHand 0.8s infinite ease-in-out; }
+    .animate-ear-left { transform-origin: 40px 35px; animation: ear-left 1.2s infinite ease-in-out; }
+    .animate-ear-right { transform-origin: 60px 35px; animation: ear-right 1.2s infinite ease-in-out; }
+    .perspective-1000 { perspective: 1000px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    @keyframes slideUp { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
+    @keyframes bounceIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .animate-bounce-in { animation: bounceIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .animate-pop-in { animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    @keyframes celebrate { 
+      0% { transform: scale(0) rotate(0deg) translateY(50px); opacity: 0; }
+      30% { transform: scale(1.3) rotate(180deg) translateY(-20px); opacity: 1; }
+      60% { transform: scale(1) rotate(360deg) translateY(0); opacity: 1; }
+      100% { transform: scale(1) rotate(360deg) translateY(0); opacity: 1; }
+    }
+    @keyframes medalFloat {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+    @keyframes confetti { 
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+    .animate-celebrate { animation: celebrate 2s ease-out forwards; }
+    .animate-medal-float { animation: medalFloat 2s ease-in-out infinite; }
+    .confetti { position: absolute; width: 10px; height: 10px; background: #f0f; animation: confetti 3s linear forwards; }
+    @keyframes clickPulse {
+      0% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+      50% { transform: scale(1.3) translate(-50%, -50%); opacity: 0.9; }
+      100% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+    }
+    @keyframes clickTap {
+      0% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+      15% { transform: translate(-50%, -50%) scale(0.9) rotate(-3deg); opacity: 0.95; }
+      30% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+      45% { transform: translate(-50%, -50%) scale(0.9) rotate(-3deg); opacity: 0.95; }
+      60% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+      75% { transform: translate(-50%, -50%) scale(0.9) rotate(-3deg); opacity: 0.95; }
+      90% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+    }
+    .click-indicator {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: clickTap 3s ease-in-out;
+      transform: translate(-50%, -50%);
+    }
+    .click-indicator svg {
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+    }
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    
+    // Lucide icon adapter - convert lucide icons to React components
+    const createLucideIcon = (iconName) => {
+      return ({ size = 24, className = "", ...props }) => {
+        const iconElement = React.useRef(null);
+        React.useEffect(() => {
+          // Initialize icon after mount
+          if (iconElement.current && typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+          }
+        });
+        return React.createElement('i', { 
+          ref: iconElement, 
+          'data-lucide': iconName,
+          className: `lucide lucide-${iconName} ${className}`,
+          style: { width: size, height: size, display: 'inline-block' },
+          ...props 
+        });
+      };
+    };
+    
+    // Create all icon components
+    const Trash2 = createLucideIcon('trash-2');
+    const ChevronLeft = createLucideIcon('chevron-left');
+    const ChevronRight = createLucideIcon('chevron-right');
+    const Leaf = createLucideIcon('leaf');
+    const Footprints = createLucideIcon('footprints');
+    const Droplets = createLucideIcon('droplets');
+    const Moon = createLucideIcon('moon');
+    const Flame = createLucideIcon('flame');
+    const Plus = createLucideIcon('plus');
+    const Camera = createLucideIcon('camera');
+    const Send = createLucideIcon('send');
+    const ShoppingBag = createLucideIcon('shopping-bag');
+    const RotateCcw = createLucideIcon('rotate-ccw');
+    const Sparkles = createLucideIcon('sparkles');
+    const Utensils = createLucideIcon('utensils');
+    const ArrowLeft = createLucideIcon('arrow-left');
+    const MessageCircle = createLucideIcon('message-circle');
+    const CheckCircle2 = createLucideIcon('check-circle-2');
+    const BookOpen = createLucideIcon('book-open');
+    const Candy = createLucideIcon('candy');
+    const ChevronUp = createLucideIcon('chevron-up');
+    const X = createLucideIcon('x');
+    const Store = createLucideIcon('store');
+    const Timer = createLucideIcon('timer');
+    const Users = createLucideIcon('users');
+    const SlidersHorizontal = createLucideIcon('sliders-horizontal');
+    const DollarSign = createLucideIcon('dollar-sign');
+    const Trophy = createLucideIcon('trophy');
+    const Coffee = createLucideIcon('coffee');
+    const Calendar = createLucideIcon('calendar');
+    const Zap = createLucideIcon('zap');
+    const MapPin = createLucideIcon('map-pin');
+    const Box = createLucideIcon('box');
+    const ClipboardList = createLucideIcon('clipboard-list');
+    const CalendarDays = createLucideIcon('calendar-days');
+    const Layers = createLucideIcon('layers');
+    const Navigation = createLucideIcon('navigation');
+    const HelpCircle = createLucideIcon('help-circle');
+    const FileText = createLucideIcon('file-text');
+    const Brain = createLucideIcon('brain');
+    const Clock = createLucideIcon('clock');
+
+    const WhatToEatPlanner = () => {
+      // --- 核心状态 ---
+      const [currentView, setCurrentView] = useState('home'); // home, decision, meal_prep, snack, knowledge, detail
+      const [activePortals, setActivePortals] = useState([]); // 存储活跃的悬浮窗列表
+      
+      // --- 二级页复刻状态 ---
+      const [searchQuery, setSearchQuery] = useState('');
+      const [interactionStep, setInteractionStep] = useState('initial'); 
+      const [activeFilter, setActiveFilter] = useState(null);
+      const [displayItems, setDisplayItems] = useState([]);
+      const [rabbitAnimation, setRabbitAnimation] = useState('idle'); 
+      const [mealScene, setMealScene] = useState('out'); // 'out' 或 'home'，用于切换"出去吃"和"在家做" 
+
+      // --- 三级详情页状态 (新增) ---
+      const [detailItem, setDetailItem] = useState(null);
+      const [detailParentView, setDetailParentView] = useState(null);
+      
+      // --- 新增状态 ---
+      const [showMealTimeBubble, setShowMealTimeBubble] = useState(false);
+      const [showCelebration, setShowCelebration] = useState(false);
+      const [challengeComplete, setChallengeComplete] = useState(false);
+      const [currentChallengeCase, setCurrentChallengeCase] = useState(null);
+      const [currentChallengeContext, setCurrentChallengeContext] = useState(null); // 存储当前挑战上下文
+      const [navigationSource, setNavigationSource] = useState(null); // 记录跳转来源：'meal_time', 'vegetables', 'b12', 等
+      const [isUploadingImage, setIsUploadingImage] = useState(false); // 上传图片状态
+      
+      // --- 演示功能状态 ---
+      const [showLoadingScreen, setShowLoadingScreen] = useState(false);
+      const [clickIndicator, setClickIndicator] = useState(null); // {x, y, visible}
+      const [isDemoRunning, setIsDemoRunning] = useState(false);
+      const [typingIndicator, setTypingIndicator] = useState(null); // {element, text}
+
+      // --- 挑战卡片数据 ---
+      const [activeChallengeIndex, setActiveChallengeIndex] = useState(0);
+      const [completedChallengeIds, setCompletedChallengeIds] = useState([]); // 已完成的挑战ID列表
+      const [challenges, setChallenges] = useState([
+        { id: 1, title: "多吃一份蔬菜", desc: "午餐或晚餐增加至少 200g 绿叶菜，补足纤维。", icon: <Leaf className="text-emerald-500" />, type: 'photo', isMain: true, reward: 30 },
+        { id: 2, title: "和 Jovida 一起决策晚饭吃什么", desc: "满足维生素 B12 的摄入需求", icon: <Footprints className="text-amber-500" />, type: 'check', isMain: false, reward: 10, challengeType: 'diet' },
+        { id: 3, title: "睡前 30 分钟不看手机", desc: "第二天来确认完成", icon: <Moon className="text-indigo-500" />, type: 'check', isMain: false, reward: 10, challengeType: 'non-diet' },
+        { id: 4, title: "日行 5000 步", desc: "餐后散步是控制血糖的最佳时机，走起来吧！", icon: <Footprints className="text-amber-500" />, type: 'check', isMain: false, reward: 10 },
+        { id: 5, title: "今日 2L 饮水", desc: "保持代谢高速运转，给身体充足的水分。", icon: <Droplets className="text-blue-500" />, type: 'check', isMain: false, reward: 10 },
+        { id: 6, title: "拒绝人工糖分", desc: "今天不碰奶茶和甜品，感受食材天然的味道。", icon: <Flame className="text-rose-500" />, type: 'check', isMain: false, reward: 10 },
+        { id: 7, title: "提前 1 小时睡", desc: "优质睡眠是最好的减肥药，今晚早点关手机。", icon: <Moon className="text-indigo-500" />, type: 'check', isMain: false, reward: 10 }
+      ]);
+
+      // --- 对话记录 ---
+      const [chatHistory, setChatHistory] = useState([
+        { role: 'ai', title: "今日挑战已就绪！🐰", content: "嘿！今天看起来精神不错。首个任务是为你量身定制的<span class='text-emerald-600 font-bold'>主任务</span>，完成后奖励翻倍哦！" }
+      ]);
+      const [inputText, setInputText] = useState('');
+
+      // --- 原始数据 ---
+      const initialItemsOut = [
+        { 
+          id: 1, 
+          name: 'Sweetgreen', 
+          dish: 'Harvest Bowl', 
+          scene: 'out', 
+          type: '健康沙拉', 
+          calories: '450', 
+          matchScore: 98, 
+          tags: ['高纤维', '低GI'], 
+          imageColor: 'bg-emerald-100', 
+          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400', // 图片URL
+          distance: '0.8 km', // 距离
+          restaurant: 'Sweetgreen', // 餐厅名称
+          rating: 4.5, // 评价
+          mainDish: 'Harvest Bowl', // 主菜
+          sideDish: '烤蔬菜+藜麦', // 配菜（可选）
+          budget: '$12-15', // 金钱预算
+          taste: '清淡', // 口味
+          restaurantImage: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800', // 餐厅图片
+          dishCombo: { main: 'Harvest Bowl', sides: ['烤蔬菜', '藜麦'] }, // 菜品组合
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '12g',
+            carbs: '30g',
+            fat: '8g',
+            fiber: '5g',
+            calories: '280'
+          },
+          sideDishNutrients: {
+            protein: '6g',
+            carbs: '15g',
+            fat: '4g',
+            fiber: '3g',
+            calories: '170'
+          },
+          nutrients: { // 组合总营养素
+            protein: '18g',
+            carbs: '45g',
+            fat: '12g',
+            fiber: '8g'
+          },
+          aiReason: '由于你今天久坐较久，这款能量碗能帮助肠道蠕动。' 
+        },
+        { 
+          id: 2, 
+          name: 'Chipotle', 
+          dish: 'Burrito Bowl', 
+          scene: 'out', 
+          type: '墨西哥风味', 
+          calories: '580', 
+          matchScore: 95, 
+          tags: ['高蛋白', '可定制'], 
+          imageColor: 'bg-orange-100', 
+          image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
+          distance: '1.2 km',
+          restaurant: 'Chipotle',
+          rating: 4.3,
+          mainDish: 'Burrito Bowl',
+          sideDish: '黑豆+米饭+蔬菜',
+          budget: '$10-12',
+          taste: '重口',
+          restaurantImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800',
+          dishCombo: { main: 'Burrito Bowl', sides: ['黑豆', '米饭', '蔬菜'] },
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '15g',
+            carbs: '40g',
+            fat: '12g',
+            fiber: '6g',
+            calories: '380'
+          },
+          sideDishNutrients: {
+            protein: '10g',
+            carbs: '25g',
+            fat: '6g',
+            fiber: '4g',
+            calories: '200'
+          },
+          nutrients: { // 组合总营养素
+            protein: '25g',
+            carbs: '65g',
+            fat: '18g',
+            fiber: '10g'
+          },
+          aiReason: '高蛋白搭配，适合运动后补充能量。' 
+        }
+      ];
+
+      const initialItemsHome = [
+        { 
+          id: 3, 
+          name: '自家厨房', 
+          dish: '西红柿牛腩意面', 
+          scene: 'home', 
+          type: '家常食谱', 
+          calories: '520', 
+          matchScore: 95, 
+          tags: ['优质蛋白', '抗氧化'], 
+          imageColor: 'bg-red-50', 
+          image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400',
+          distance: null, // 在家做没有距离
+          restaurant: null, // 在家做没有餐厅
+          rating: null, // 在家做没有评价
+          mainDish: '西红柿牛腩意面', // 主菜
+          sideDish: '蒜蓉西兰花', // 配菜
+          budget: '$8-10', // 金钱预算
+          taste: '清淡', // 口味
+          timeBudget: '45分钟', // 时间预算（在家做有）
+          complexity: '中等', // 复杂度
+          dishCombo: { main: '西红柿牛腩意面', sides: ['蒜蓉西兰花'] }, // 菜品组合
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '25g',
+            carbs: '50g',
+            fat: '12g',
+            fiber: '3g',
+            calories: '420'
+          },
+          sideDishNutrients: {
+            protein: '7g',
+            carbs: '8g',
+            fat: '3g',
+            fiber: '3g',
+            calories: '100'
+          },
+          ingredients: [ // 配料
+            '牛腩 300g',
+            '西红柿 2个',
+            '意面 200g',
+            '西兰花 200g',
+            '大蒜 3瓣',
+            '橄榄油 2勺'
+          ],
+          utensils: ['平底锅', '煮锅', '切菜板'], // 使用的厨具
+          steps: [ // 具体步骤
+            '1. 牛腩切块，用盐和黑胡椒腌制15分钟',
+            '2. 西红柿切块，大蒜切末',
+            '3. 平底锅热油，煎牛腩至两面金黄',
+            '4. 加入西红柿块，小火炖煮30分钟',
+            '5. 同时煮意面，水开后8分钟',
+            '6. 西兰花焯水，用蒜蓉炒制',
+            '7. 装盘，撒上黑胡椒和欧芹'
+          ],
+          nutrients: { // 组合总营养素
+            protein: '32g',
+            carbs: '58g',
+            fat: '15g',
+            fiber: '6g'
+          },
+          aiReason: '中午碳水较高，晚上建议用大量西红柿炖煮牛腩。' 
+        },
+        { 
+          id: 4, 
+          name: '自家厨房', 
+          dish: '香煎三文鱼配时蔬', 
+          scene: 'home', 
+          type: '高蛋白轻食', 
+          calories: '420', 
+          matchScore: 92, 
+          tags: ['高蛋白', '低卡'], 
+          imageColor: 'bg-blue-50', 
+          image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400',
+          distance: null,
+          restaurant: null,
+          rating: null,
+          mainDish: '香煎三文鱼',
+          sideDish: '时蔬沙拉',
+          budget: '$15-18',
+          taste: '清淡',
+          timeBudget: '30分钟',
+          complexity: '简单',
+          dishCombo: { main: '香煎三文鱼', sides: ['时蔬沙拉', '柠檬片'] },
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '22g',
+            carbs: '0g',
+            fat: '18g',
+            fiber: '0g',
+            calories: '280'
+          },
+          sideDishNutrients: {
+            protein: '6g',
+            carbs: '12g',
+            fat: '4g',
+            fiber: '4g',
+            calories: '140'
+          },
+          ingredients: [
+            '三文鱼 200g',
+            '混合时蔬 300g',
+            '柠檬 1个',
+            '橄榄油 1勺',
+            '盐和黑胡椒 适量'
+          ],
+          utensils: ['平底锅', '切菜板'],
+          steps: [
+            '1. 三文鱼用盐和黑胡椒腌制10分钟',
+            '2. 平底锅热油，中火煎三文鱼，每面3-4分钟',
+            '3. 时蔬洗净，用橄榄油和盐调味',
+            '4. 装盘，挤上柠檬汁'
+          ],
+          nutrients: { // 组合总营养素
+            protein: '28g',
+            carbs: '12g',
+            fat: '22g',
+            fiber: '4g'
+          },
+          aiReason: '三文鱼富含Omega-3，搭配时蔬营养均衡。' 
+        }
+      ];
+
+      // 拍菜单场景的推荐数据
+      const initialItemsMenu = [
+        { 
+          id: 301, 
+          name: '菜品推荐', 
+          dish: '香煎三文鱼配时蔬', 
+          scene: 'dish_recommendation', 
+          type: '菜品推荐', 
+          calories: '420', 
+          matchScore: 96, 
+          tags: ['高蛋白', '低卡', 'Omega-3'], 
+          imageColor: 'bg-blue-50',
+          image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400',
+          mainDish: '香煎三文鱼',
+          sideDish: '时蔬沙拉',
+          budget: '$18-22',
+          taste: '清淡',
+          dishCombo: { main: '香煎三文鱼', sides: ['时蔬沙拉', '柠檬片'] },
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '22g',
+            carbs: '0g',
+            fat: '18g',
+            fiber: '0g',
+            calories: '280'
+          },
+          sideDishNutrients: {
+            protein: '6g',
+            carbs: '12g',
+            fat: '4g',
+            fiber: '4g',
+            calories: '140'
+          },
+          nutrients: { // 组合总营养素
+            protein: '28g',
+            carbs: '12g',
+            fat: '22g',
+            fiber: '4g'
+          },
+          dishDescription: '新鲜三文鱼经过精心煎制，外皮酥脆内里鲜嫩，搭配新鲜时蔬沙拉，营养均衡且口感丰富。',
+          diningTips: [
+            '建议先品尝三文鱼的原味，再搭配时蔬沙拉',
+            '可以要求餐厅少放油，保持清淡口感',
+            '搭配柠檬汁可以提升风味，同时有助于消化',
+            '如果觉得分量不够，可以额外点一份蔬菜'
+          ],
+          healthBenefits: ['富含Omega-3脂肪酸', '高蛋白低卡', '促进心血管健康'],
+          aiReason: '根据你上传的菜单，这道菜既满足营养需求，又不会超标。三文鱼富含Omega-3，搭配时蔬营养均衡。' 
+        },
+        { 
+          id: 302, 
+          name: '菜品推荐', 
+          dish: '黑椒牛柳配烤蔬菜', 
+          scene: 'dish_recommendation', 
+          type: '菜品推荐', 
+          calories: '580', 
+          matchScore: 94, 
+          tags: ['高蛋白', '铁质丰富'], 
+          imageColor: 'bg-red-50',
+          image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400',
+          mainDish: '黑椒牛柳',
+          sideDish: '烤蔬菜',
+          budget: '$22-26',
+          taste: '重口',
+          dishCombo: { main: '黑椒牛柳', sides: ['烤蔬菜', '黑椒汁'] },
+          // 主菜和配菜各自的营养信息
+          mainDishNutrients: {
+            protein: '28g',
+            carbs: '8g',
+            fat: '20g',
+            fiber: '1g',
+            calories: '380'
+          },
+          sideDishNutrients: {
+            protein: '7g',
+            carbs: '17g',
+            fat: '8g',
+            fiber: '5g',
+            calories: '200'
+          },
+          nutrients: { // 组合总营养素
+            protein: '35g',
+            carbs: '25g',
+            fat: '28g',
+            fiber: '6g'
+          },
+          dishDescription: '精选优质牛柳，用黑胡椒腌制后煎制，肉质鲜嫩多汁，搭配烤制的新鲜蔬菜，口感层次丰富。',
+          diningTips: [
+            '建议先吃烤蔬菜，再品尝牛柳，可以平衡口感',
+            '可以要求餐厅将黑椒汁单独放置，按需添加',
+            '如果觉得太咸，可以搭配米饭或面包',
+            '建议慢慢咀嚼，充分享受肉质的鲜嫩'
+          ],
+          healthBenefits: ['高蛋白', '富含铁质', '补充B族维生素'],
+          aiReason: '这道菜蛋白质含量高，适合运动后补充。黑椒有助于促进消化，烤蔬菜保留了更多营养。' 
+        }
+      ];
+
+      const mealPrepItems = [
+        { id: 201, name: '批量备餐计划', dish: '柠檬香草烤鸡腿 + 烤杂菜', scene: 'meal_prep', type: '高蛋白批处理', calories: '480', matchScore: 97, keepDays: '4天', servings: '3-4份', tags: ['烤箱菜', '加热友好'], imageColor: 'bg-indigo-900', aiReason: '一次烤制可管3顿晚餐，冷藏加热后口感流失最少。' },
+        { id: 202, name: '高效备餐计划', dish: '墨西哥风味黑豆肉酱', scene: 'meal_prep', type: '炖菜/酱料', calories: '410', matchScore: 92, keepDays: '14天(冷冻)', servings: '6份', tags: ['高纤维', '冷冻友好'], imageColor: 'bg-indigo-800', aiReason: '高纤维黑豆对久坐人群极好，肉酱冷冻可保存两周。' }
+      ];
+
+      const snackItems = [
+        { id: 401, name: '办公室解馋', dish: '85% 黑巧克力 + 原味巴旦木', scene: 'snack', type: '抗氧化组合', calories: '180', matchScore: 96, tags: ['控糖', '脑力加油'], imageColor: 'bg-amber-100', aiReason: '黑巧克力的硬脂酸不会引起血糖剧烈波动，搭配坚果增加饱腹感。' },
+        { id: 402, name: '清凉一夏', dish: '希腊酸奶 + 蓝莓 + 奇亚籽', scene: 'snack', type: '高蛋白甜品', calories: '150', matchScore: 94, tags: ['肠道友好', '低卡'], imageColor: 'bg-blue-100', aiReason: '当你渴望冰激凌时，这是完美的替代品，蛋白质含量是普通酸奶的2倍。' }
+      ];
+
+      const knowledgeItems = [
+        { id: 501, title: '为什么你总是饿？', type: 'quiz', tags: ['生理机制', 'Quiz'], content: 'Quiz: 哪种激素是造成饥饿感的元凶？', options: ['A. 瘦素', 'B. 胃雷林', 'C. 胰岛素'], answer: 'B', imageColor: 'bg-purple-100', aiReason: '了解身体的信号，才能战胜假性饥饿。' },
+        { id: 502, title: '避开"伪健康"沙拉陷阱', type: 'article', tags: ['避雷指南', '干货'], content: '许多餐厅沙拉酱的热量比汉堡还高！教你 3 步识别隐形热量炸弹...', imageColor: 'bg-emerald-100', aiReason: '这篇干货非常适合经常点外卖的你。' }
+      ];
+
+      const filterOptions = {
+        decision: { time: ['10 min', '20 min'], people: ['1人食', '2人约会'], taste: ['清淡', '重口', '辣'], budget: ['50元以内', '不差钱'] },
+        meal_prep: { prep_days: ['3天', '5天', '一周'], storage: ['冷藏', '冷冻'], grocery: ['生成清单'], strategy: ['批处理'] },
+        snack: { type: ['想吃甜的', '要脆的', '热乎的', '冰凉的'], timing: ['深夜解馋', '运动前', '下午茶'], goal: ['低卡', '高蛋白', '解压'] },
+        knowledge: { topic: ['减脂辟谣', '营养扫盲', '成分党'], format: ['Quiz挑战', '3分钟读物', '视频讲解'] }
+      };
+
+      // --- 辅助函数：估算营养素 (新增) ---
+      const estimateNutrients = (item) => {
+        const c = parseInt(item.calories) || 0;
+        if (c === 0) return null;
+        return {
+          protein: Math.round(c * 0.08) + 'g',
+          carbs: Math.round(c * 0.1) + 'g',
+          fat: Math.round(c * 0.04) + 'g',
+          fiber: Math.round(c * 0.02) + 'g',
+          sugar: Math.round(c * 0.01) + 'g',
+          sodium: Math.round(c * 1.5) + 'mg'
+        };
+      };
+
+      // --- 视图切换逻辑 ---
+      const handleNavigate = (view, skipInitialMessage = false, source = null) => {
+        setCurrentView(view);
+        setActivePortals(prev => prev.filter(p => p !== view));
+        setInteractionStep('initial');
+        setSearchQuery('');
+        
+        // 记录跳转来源
+        if (source) {
+          setNavigationSource(source);
+        }
+        
+        // 初始化数据和文案
+        if (view === 'decision') {
+          // 如果是在restaurant_selected状态，不显示初始推荐
+          if (interactionStep !== 'restaurant_selected') {
+            // 如果source是meal_scene，不覆盖已经设置的displayItems
+            if (source !== 'meal_scene') {
+              // 根据 mealScene 显示不同的推荐
+              if (mealScene === 'menu') {
+                setDisplayItems(initialItemsMenu);
+              } else {
+                setDisplayItems(mealScene === 'out' ? initialItemsOut : initialItemsHome);
+              }
+            }
+          } else {
+            setDisplayItems([]);
+          }
+          setRabbitAnimation('waving');
+          
+          // 根据跳转来源或挑战上下文显示相应的消息
+          // 即使skipInitialMessage为true，如果有明确的跳转来源，也要显示相关消息
+          if (source === 'meal_time') {
+            // 从饭点跳转
+            addChatMessage({ 
+              role: 'ai', 
+              title: "饭点到了！🍽️", 
+              content: "我为你准备了一些适合当前时间的饮食方案，来看看哪个最合你的胃口吧！" 
+            });
+          } else if (source === 'vegetables' || currentChallengeContext === 'vegetables') {
+            // 从蔬菜挑战跳转
+            addChatMessage({ 
+              role: 'ai', 
+              title: "绿色蔬菜推荐 🥬", 
+              content: "基于你要多吃绿色蔬菜的目标，我为你找到了这些很好的选择：<span class='text-emerald-500 font-bold'>菠菜沙拉</span>、<span class='text-emerald-500 font-bold'>西兰花</span>和<span class='text-emerald-500 font-bold'>羽衣甘蓝</span>等富含纤维和维生素的菜品。" 
+            });
+          } else if (source === 'b12' || currentChallengeContext === 'b12') {
+            // 从B12挑战跳转
+            addChatMessage({ 
+              role: 'ai', 
+              title: "维生素 B12 晚餐推荐 🥩", 
+              content: "维生素 B12 很难从日常饮食中获取，但它对你的健康目标息息相关。我为你找到了几个很好的餐厅选项，都富含 B12，特别适合晚餐：<span class='text-rose-500 font-bold'>牛肉类</span>、<span class='text-rose-500 font-bold'>鱼类</span>和<span class='text-rose-500 font-bold'>蛋类</span>菜品。" 
+            });
+          } else if (!skipInitialMessage) {
+            // 默认消息（非跳转场景）
+            addChatMessage({ role: 'ai', title: "What to Eat? 👋", content: "结合你今天的运动量，<span class='text-rose-500 font-bold'>轻食沙拉</span>或<span class='text-rose-500 font-bold'>高蛋白意面</span>都很合适。" });
+          }
+        } else if (view === 'meal_prep') {
+          setDisplayItems(mealPrepItems);
+          setRabbitAnimation('waving');
+          if (!skipInitialMessage) {
+          addChatMessage({ role: 'ai', title: "开启 Meal Prep 模式！👋", content: "一次准备多天的饮食，省力又控卡。我们可以先从<span class='text-indigo-600 font-bold'>备餐天数</span>开始。" });
+          }
+        } else if (view === 'snack') {
+            setDisplayItems(snackItems);
+            setRabbitAnimation('waving');
+            if (!skipInitialMessage) {
+            addChatMessage({ role: 'ai', title: "嘴馋了吗？👋", content: "别担心，选对零食也是健康的一部分。你是<span class='text-amber-600 font-bold'>想吃甜的</span>还是<span class='text-amber-600 font-bold'>想吃脆的</span>？" });
+            }
+        } else if (view === 'knowledge') {
+            setDisplayItems(knowledgeItems);
+            setRabbitAnimation('waving');
+            if (!skipInitialMessage) {
+            addChatMessage({ role: 'ai', title: "Jovida 课堂开课啦！🎓", content: "碎片时间学点干货。今天为你准备了一个<span class='text-purple-600 font-bold'>关于饥饿感的小测验</span>，要试试吗？" });
+            }
+        } else {
+          setRabbitAnimation('idle');
+        }
+
+        setTimeout(() => { 
+          if(view !== 'home' && view !== 'detail') setRabbitAnimation('idle');
+          // 清除跳转来源，避免影响后续导航
+          if (source) {
+            setTimeout(() => setNavigationSource(null), 100);
+          }
+        }, 2000);
+      };
+
+      // --- 详情页逻辑 (新增) ---
+      const openDetail = (item) => {
+        setDetailItem(item);
+        setDetailParentView(currentView);
+        setCurrentView('detail');
+        setRabbitAnimation('waving');
+      };
+
+      // 返回详情页（保留what to eat页面进度）
+      const closeDetail = () => {
+        setCurrentView(detailParentView);
+        setDetailItem(null);
+        setRabbitAnimation('idle');
+        // 不重置搜索和筛选状态，保留页面进度
+      };
+
+      // 确认选择（记录用户饮食选择）
+      const confirmChoice = async () => {
+        // 显示庆祝效果
+        setShowCelebration(true);
+        
+        // 调用后端API记录用户选择
+        try {
+          // TODO: 调用后端API，让agent记录用户的饮食选择
+          // await fetch('/api/user/food-choice', {
+          //   method: 'POST',
+          //   headers: { 'Content-Type': 'application/json' },
+          //   body: JSON.stringify({
+          //     itemId: detailItem.id,
+          //     scene: detailItem.scene,
+          //     dish: detailItem.dish,
+          //     restaurant: detailItem.restaurant,
+          //     timestamp: new Date().toISOString()
+          //   })
+          // });
+          console.log('记录用户选择:', detailItem);
+        } catch (error) {
+          console.error('记录选择失败:', error);
+        }
+        
+        // 确认选择：回首页，且不保留悬浮窗
+        setActivePortals(prev => prev.filter(p => p !== detailParentView));
+        setInteractionStep('initial');
+        setSearchQuery('');
+        setActiveFilter(null);
+        setDetailItem(null);
+        
+        // 延迟回到首页并显示新对话
+        setTimeout(() => {
+          setCurrentView('home');
+          setRabbitAnimation('walking');
+          setShowCelebration(false);
+          
+          // 添加小兔子的新对话
+          setTimeout(() => {
+            addChatMessage({ 
+              role: 'ai', 
+              title: "告诉我你的感受 💭", 
+              content: "告诉我你吃完的感受，健康上满足了，我更关心你是不是喜欢我给你找的餐厅/食物的口味" 
+            });
+          }, 500);
+        }, 2000); // 庆祝动画持续2秒
+      };
+
+      // Instacart一键下单（在家吃）
+      const handleInstacartOrder = async () => {
+        try {
+          // TODO: 调用Instacart API或打开Instacart页面
+          // 可以传递配料列表
+          const ingredients = detailItem.ingredients || [];
+          console.log('Instacart下单，配料:', ingredients);
+          // 实际实现时，可以打开Instacart页面或调用API
+          // window.open(`https://www.instacart.com/store/...?items=${ingredients.join(',')}`, '_blank');
+          alert('Instacart一键下单功能（待实现）\n配料：' + ingredients.join(', '));
+        } catch (error) {
+          console.error('Instacart下单失败:', error);
+        }
+      };
+
+      // 拍摄菜单（外食）
+      const handleTakeMenuPhoto = () => {
+        // 打开相机或相册
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.capture = 'environment'; // 使用后置摄像头
+        input.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            // TODO: 上传图片并分析菜单
+            console.log('上传菜单图片:', file);
+            // 可以跳转回what to eat页面，显示点餐套路
+            setCurrentView('decision');
+            setInteractionStep('restaurant_selected');
+            setDetailItem(null);
+            // 这里可以添加上传图片的逻辑
+          }
+        };
+        input.click();
+      };
+      
+      // 处理"饭点"按钮
+      const handleMealTime = () => {
+        // 直接跳转到whattoeat页面，显示与饭点相关的消息
+        handleNavigate('decision', true, 'meal_time'); // true表示跳过默认消息，但会显示饭点相关消息
+        setActivePortals(prev => prev.filter(p => p !== 'decision'));
+      };
+
+      // 处理"用餐场景"按钮
+      const handleMealScene = (scene) => {
+        // 设置场景
+        setMealScene(scene);
+        
+        // 根据场景设置对应的推荐数据
+        if (scene === 'home') {
+          setDisplayItems(initialItemsHome);
+        } else if (scene === 'out') {
+          setDisplayItems(initialItemsOut);
+        } else if (scene === 'menu') {
+          setDisplayItems(initialItemsMenu);
+        }
+        
+        // 跳转到whattoeat页面
+        handleNavigate('decision', true, 'meal_scene');
+        setActivePortals(prev => prev.filter(p => p !== 'decision'));
+        
+        // 设置对应的场景消息
+        if (scene === 'home') {
+          addChatMessage({ 
+            role: 'ai', 
+            title: "在家吃推荐 🏠", 
+            content: "我为你准备了一些适合在家做的combo套餐，主菜+配菜营养均衡，来看看哪个最合你的胃口吧！" 
+          });
+        } else if (scene === 'out') {
+          addChatMessage({ 
+            role: 'ai', 
+            title: "出去吃推荐 🍽️", 
+            content: "我为你准备了一些适合外出用餐的combo套餐，主菜+配菜营养均衡，来看看哪个最合你的胃口吧！" 
+          });
+        } else if (scene === 'menu') {
+          addChatMessage({ 
+            role: 'ai', 
+            title: "拍菜单推荐 📷", 
+            content: "根据你拍摄的菜单，我为你推荐这些combo套餐，主菜+配菜营养均衡，来看看哪个最合你的胃口吧！" 
+          });
+        }
+      };
+      
+      // 处理"和jovida聊聊"按钮
+      const handleChallengeChat = (challenge) => {
+        // 判断是否需要跳转到副功能页面
+        let targetView = null;
+        let topicMessage = "";
+        
+        if (challenge.title === "和 Jovida 一起决策晚饭吃什么") {
+          // 维生素B12挑战 - 直接跳转到whattoeat，显示B12相关消息
+          setCurrentChallengeContext('b12');
+          targetView = 'decision';
+        } else if (challenge.title === "多吃一份蔬菜") {
+          // 绿色蔬菜挑战 - 直接跳转到whattoeat，显示蔬菜相关消息
+          setCurrentChallengeContext('vegetables');
+          targetView = 'decision';
+        } else if (challenge.title === "拒绝人工糖分") {
+          // 控糖挑战 - 直接跳转到零食页面，不显示初始对话
+          targetView = 'snack';
+        } else if (challenge.title === "睡前 30 分钟不看手机" || challenge.title === "提前 1 小时睡") {
+          // 早睡相关挑战 - 在首页聊天
+          topicMessage = challenge.title === "睡前 30 分钟不看手机" 
+            ? "早睡确实不容易！给你几个小技巧：1. 设置手机自动进入勿扰模式 2. 把手机放在另一个房间充电 3. 睡前读纸质书代替刷手机 4. 做5分钟深呼吸放松。试试看，你会睡得更香！"
+            : "提前1小时睡确实不容易！试试这些方法：1. 提前30分钟开始准备（关灯、调暗屏幕）2. 睡前1小时停止看手机 3. 做10分钟拉伸或冥想 4. 保持卧室温度凉爽。优质睡眠是最好的减肥药！";
+        } else if (challenge.title === "日行 5000 步") {
+          // 步行挑战 - 在首页聊天
+          topicMessage = "步行5000步听起来很多，但其实很简单！试试这些方法：1. 餐后散步15-20分钟 2. 用楼梯代替电梯 3. 提前一站下车步行 4. 工作间隙起来走动。餐后散步还能帮助控制血糖，一举两得！";
+        } else if (challenge.title === "今日 2L 饮水") {
+          // 饮水挑战 - 在首页聊天
+          topicMessage = "每天2L水确实不容易！试试这些技巧：1. 设置每小时提醒 2. 准备一个大水杯，标记时间点 3. 饭前喝一杯水 4. 如果觉得白水没味道，可以加柠檬片或薄荷叶。保持充足水分对代谢很重要！";
+        } else if (challenge.type === 'check' || challenge.type === 'photo') {
+          // 其他ididit类型的挑战，默认跳转到whattoeat，不显示初始对话
+          targetView = 'decision';
+        }
+        
+        // 如果需要跳转到副功能页面，显示与主题相关的消息
+        if (targetView) {
+          // 根据挑战类型设置跳转来源
+          let source = null;
+          if (challenge.title === "和 Jovida 一起决策晚饭吃什么") {
+            source = 'b12';
+          } else if (challenge.title === "多吃一份蔬菜") {
+            source = 'vegetables';
+          }
+          handleNavigate(targetView, true, source); // true表示跳过默认消息，但会显示主题相关消息
+          setActivePortals(prev => prev.filter(p => p !== targetView));
+        } else {
+          // 在首页聊天
+          addChatMessage({ 
+            role: 'ai', 
+            title: challenge.title, 
+            content: topicMessage 
+          });
+        }
+      };
+      
+      // 处理挑战完成
+      const handleChallengeComplete = (challenge) => {
+        // 显示庆祝效果
+        setShowCelebration(true);
+        setChallengeComplete(true);
+        addChatMessage({ 
+          role: 'ai', 
+          title: "Challenge Complete! 🎉", 
+          content: `恭喜完成"${challenge.title}"挑战！奖励已到账。` 
+        });
+        
+        // 延迟移除挑战，让用户看到庆祝动画
+        setTimeout(() => {
+          // 获取当前可用的挑战（排除已完成的）
+          const currentAvailable = challenges.filter(c => !completedChallengeIds.includes(c.id));
+          const currentIndex = currentAvailable.findIndex(c => c.id === challenge.id);
+          
+          // 标记挑战为已完成
+          setCompletedChallengeIds(prev => [...prev, challenge.id]);
+          
+          // 调整activeChallengeIndex，确保显示正确的挑战
+          if (currentIndex !== -1) {
+            if (currentIndex < activeChallengeIndex) {
+              // 如果完成的挑战在当前显示之前，索引减1
+              setActiveChallengeIndex(prevIndex => Math.max(0, prevIndex - 1));
+            } else if (currentIndex === activeChallengeIndex) {
+              // 如果完成的是当前显示的挑战
+              const remainingCount = currentAvailable.length - 1;
+              if (remainingCount > 0) {
+                // 如果还有其他挑战，保持当前索引（会显示下一个挑战）
+                if (activeChallengeIndex >= remainingCount) {
+                  setActiveChallengeIndex(Math.max(0, remainingCount - 1));
+                }
+                // 否则保持当前索引，会自动显示下一个
+              } else {
+                // 如果没有剩余挑战了，重置为0
+                setActiveChallengeIndex(0);
+              }
+            }
+          }
+          
+          setShowCelebration(false);
+          setChallengeComplete(false);
+        }, 2000); // 2秒后移除挑战
+      };
+
+      const goBackHome = () => {
+        if (currentView !== 'home' && !activePortals.includes(currentView)) {
+          setActivePortals(prev => [...prev, currentView]);
+        }
+        setCurrentView('home');
+        setRabbitAnimation('walking');
+      };
+
+      // --- 业务逻辑 ---
+      const handleOptionSelect = (type, option) => {
+        setSearchQuery(prev => {
+            const trimmed = prev.trim();
+            return trimmed ? `${trimmed} ${option}` : option;
+        });
+        setActiveFilter(null);
+      };
+
+      const handleRestaurantSelected = () => {
+        setInteractionStep('restaurant_selected');
+        // 清空推荐卡片，等待用户上传图片
+        setDisplayItems([]);
+        addChatMessage({ 
+          role: 'ai', 
+          title: "诶呀都选好了！😊", 
+          content: "可以拍下你的菜单或菜品吗？然后我们一起想想怎么点餐/选菜。" 
+        });
+      };
+
+      const handleSearchSubmit = async () => {
+        // 如果是餐厅选好了状态，模拟上传图片
+        if (interactionStep === 'restaurant_selected') {
+          setIsUploadingImage(true);
+          
+          // 模拟上传过程
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          setIsUploadingImage(false);
+          
+          // 显示菜品推荐卡（根据用户上传的图片）- 类似出去吃但不包含餐厅信息
+          const dishRecommendationItems = [
+            { 
+              id: 301, 
+              name: '菜品推荐', 
+              dish: '香煎三文鱼配时蔬', 
+              scene: 'dish_recommendation', // 新的场景类型
+              type: '菜品推荐', 
+              calories: '420', 
+              matchScore: 96, 
+              tags: ['高蛋白', '低卡', 'Omega-3'], 
+              imageColor: 'bg-blue-50',
+              image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400',
+              mainDish: '香煎三文鱼',
+              sideDish: '时蔬沙拉',
+              budget: '$18-22',
+              taste: '清淡',
+              dishCombo: { main: '香煎三文鱼', sides: ['时蔬沙拉', '柠檬片'] },
+              // 主菜和配菜各自的营养信息
+              mainDishNutrients: {
+                protein: '22g',
+                carbs: '0g',
+                fat: '18g',
+                fiber: '0g',
+                calories: '280'
+              },
+              sideDishNutrients: {
+                protein: '6g',
+                carbs: '12g',
+                fat: '4g',
+                fiber: '4g',
+                calories: '140'
+              },
+              nutrients: { // 组合总营养素
+                protein: '28g',
+                carbs: '12g',
+                fat: '22g',
+                fiber: '4g'
+              },
+              // 菜品详细信息（三级页用）
+              dishDescription: '新鲜三文鱼经过精心煎制，外皮酥脆内里鲜嫩，搭配新鲜时蔬沙拉，营养均衡且口感丰富。',
+              diningTips: [
+                '建议先品尝三文鱼的原味，再搭配时蔬沙拉',
+                '可以要求餐厅少放油，保持清淡口感',
+                '搭配柠檬汁可以提升风味，同时有助于消化',
+                '如果觉得分量不够，可以额外点一份蔬菜'
+              ],
+              healthBenefits: ['富含Omega-3脂肪酸', '高蛋白低卡', '促进心血管健康'],
+              aiReason: '根据你上传的菜单，这道菜既满足营养需求，又不会超标。三文鱼富含Omega-3，搭配时蔬营养均衡。' 
+            },
+            { 
+              id: 302, 
+              name: '菜品推荐', 
+              dish: '黑椒牛柳配烤蔬菜', 
+              scene: 'dish_recommendation', 
+              type: '菜品推荐', 
+              calories: '580', 
+              matchScore: 94, 
+              tags: ['高蛋白', '铁质丰富'], 
+              imageColor: 'bg-red-50',
+              image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400',
+              mainDish: '黑椒牛柳',
+              sideDish: '烤蔬菜',
+              budget: '$22-26',
+              taste: '重口',
+              dishCombo: { main: '黑椒牛柳', sides: ['烤蔬菜', '黑椒汁'] },
+              // 主菜和配菜各自的营养信息
+              mainDishNutrients: {
+                protein: '28g',
+                carbs: '8g',
+                fat: '20g',
+                fiber: '1g',
+                calories: '380'
+              },
+              sideDishNutrients: {
+                protein: '7g',
+                carbs: '17g',
+                fat: '8g',
+                fiber: '5g',
+                calories: '200'
+              },
+              nutrients: { // 组合总营养素
+                protein: '35g',
+                carbs: '25g',
+                fat: '28g',
+                fiber: '6g'
+              },
+              dishDescription: '精选优质牛柳，用黑胡椒腌制后煎制，肉质鲜嫩多汁，搭配烤制的新鲜蔬菜，口感层次丰富。',
+              diningTips: [
+                '建议先吃烤蔬菜，再品尝牛柳，可以平衡口感',
+                '可以要求餐厅将黑椒汁单独放置，按需添加',
+                '如果觉得太咸，可以搭配米饭或面包',
+                '建议慢慢咀嚼，充分享受肉质的鲜嫩'
+              ],
+              healthBenefits: ['高蛋白', '富含铁质', '补充B族维生素'],
+              aiReason: '这道菜蛋白质含量高，适合运动后补充。黑椒有助于促进消化，烤蔬菜保留了更多营养。' 
+            },
+            { 
+              id: 303, 
+              name: '菜品推荐', 
+              dish: '地中海风味烤鸡配藜麦', 
+              scene: 'dish_recommendation', 
+              type: '菜品推荐', 
+              calories: '450', 
+              matchScore: 92, 
+              tags: ['低脂', '高纤维'], 
+              imageColor: 'bg-yellow-50',
+              image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400',
+              mainDish: '地中海风味烤鸡',
+              sideDish: '藜麦',
+              budget: '$16-20',
+              taste: '清淡',
+              dishCombo: { main: '地中海风味烤鸡', sides: ['藜麦', '柠檬'] },
+              // 主菜和配菜各自的营养信息
+              mainDishNutrients: {
+                protein: '20g',
+                carbs: '5g',
+                fat: '8g',
+                fiber: '2g',
+                calories: '250'
+              },
+              sideDishNutrients: {
+                protein: '12g',
+                carbs: '30g',
+                fat: '4g',
+                fiber: '6g',
+                calories: '200'
+              },
+              nutrients: { // 组合总营养素
+                protein: '32g',
+                carbs: '35g',
+                fat: '12g',
+                fiber: '8g'
+              },
+              dishDescription: '用橄榄油、柠檬和香草调味的烤鸡，搭配营养丰富的藜麦，地中海风味浓郁，健康又美味。',
+              diningTips: [
+                '建议将烤鸡和藜麦混合食用，口感更丰富',
+                '可以要求餐厅提供额外的柠檬片，提升风味',
+                '如果觉得分量不够，可以额外点一份蔬菜沙拉',
+                '建议慢慢品尝，感受地中海风味的层次感'
+              ],
+              healthBenefits: ['低脂高蛋白', '高纤维', '地中海饮食风格'],
+              aiReason: '这道菜符合地中海饮食风格，低脂高蛋白，藜麦提供完整蛋白质和纤维，非常适合健康饮食。' 
+            }
+          ];
+          
+          // 显示推荐卡片（顶部）
+          setDisplayItems(dishRecommendationItems);
+          
+          // 重置交互状态，回到初始状态（隐藏拍照按钮，显示正常输入框）
+          setInteractionStep('initial');
+          
+          // 小兔子说话（底部）
+          addChatMessage({ 
+            role: 'ai', 
+            title: "点菜建议 🍽️", 
+            content: "根据你上传的菜单，我为你推荐了几个combo套餐，主菜+配菜营养均衡，来看看哪个最合你的胃口吧！" 
+          });
+          
+          setActiveFilter(null);
+          return;
+        }
+        
+        // 原有的搜索逻辑
+        setInteractionStep('results_shown');
+        const userMsg = { role: 'user', content: searchQuery || '推荐一下' };
+        let aiMsg = { role: 'ai', title: "刷新推荐 ✨", content: "根据你的要求，我调整了推荐列表。" };
+
+        if (currentView === 'snack') {
+            setDisplayItems([{ id: 403, name: '搜索结果', dish: `${searchQuery} 组合`, scene: 'snack', type: '满足推荐', calories: '200', matchScore: 99, tags: ['解馋', '平衡'], imageColor: 'bg-pink-100', aiReason: '这个组合完美满足你的口味，且热量在安全范围内。' }, ...snackItems]);
+            aiMsg.content = "找到了！这个组合既能满足你的味蕾，又不会让你今天的努力白费。";
+        } else if (currentView === 'knowledge') {
+            setDisplayItems([{ id: 503, title: `关于"${searchQuery}"的真相`, type: 'article', tags: ['深度好文'], content: '点击阅读深度解析...', imageColor: 'bg-blue-100', aiReason: '这是目前学术界对该话题的最新共识。' }, ...knowledgeItems]);
+            aiMsg.content = `关于"${searchQuery}"，其实有很多误区，这篇内容能帮你理清思路。`;
+        } else if (currentView === 'meal_prep') {
+            setDisplayItems([{ id: 301, name: '定制备餐', dish: `定制：${searchQuery}`, scene: 'meal_prep', type: '专属', calories: '500', matchScore: 98, keepDays: '5天', servings: '5份', tags: ['定制'], imageColor: 'bg-indigo-900', aiReason: '已优化食材配比。' }, ...mealPrepItems]);
+            aiMsg.content = "备餐计划已生成！已为你计算好分装比例。";
+        } else {
+            setDisplayItems([{ id: 101, name: '搜索结果', dish: `满足"${searchQuery}"`, scene: 'out', type: '推荐', calories: '500', matchScore: 97, tags: ['推荐'], imageColor: 'bg-blue-50', aiReason: '最符合当前需求的推荐。' }]);
+            aiMsg.content = "为你找到了这个最佳选项！";
+        }
+
+        addChatMessages([userMsg, aiMsg]);
+        setActiveFilter(null);
+      };
+
+      const sendMessage = () => {
+        if (!inputText.trim()) return;
+        const newMsg = { role: 'user', content: inputText };
+        addChatMessage(newMsg);
+        const currentInput = inputText;
+        setInputText('');
+        setTimeout(() => {
+          addChatMessage({ role: 'ai', title: "Jovida 正在思考...", content: `针对"${currentInput}"，我的建议是...` });
+        }, 1000);
+      };
+
+      // 添加聊天记录的辅助函数，自动限制为只保留最近两条
+      const addChatMessage = (message) => {
+        setChatHistory(prev => {
+          const newHistory = [...prev, message];
+          // 只保留最近两条
+          return newHistory.slice(-2);
+        });
+      };
+      
+      const addChatMessages = (messages) => {
+        setChatHistory(prev => {
+          const newHistory = [...prev, ...messages];
+          // 只保留最近两条
+          return newHistory.slice(-2);
+        });
+      };
+      
+      const getRecentChat = () => {
+        // 返回所有聊天记录（已经限制为最多两条）
+        return chatHistory;
+      };
+      const recentMessages = getRecentChat();
+
+      // --- 演示功能辅助函数 ---
+      const showClickIndicator = (element) => {
+        if (!element) return;
+        // 使用getBoundingClientRect获取元素相对于视口的位置
+        const rect = element.getBoundingClientRect();
+        // 计算元素中心点位置（考虑滚动位置）
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        // 确保位置是相对于视口的
+        setClickIndicator({ x, y, visible: true });
+        setTimeout(() => setClickIndicator(null), 3000);
+      };
+      
+      const simulateClick = (element, delay = 0) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            if (element) {
+              showClickIndicator(element);
+              // 等待3秒让用户看清楚点击位置，然后再执行点击
+              setTimeout(() => {
+                element.click();
+                resolve();
+              }, 3000);
+            } else {
+              resolve();
+            }
+          }, delay);
+        });
+      };
+      
+      const simulateTyping = async (inputElement, text, delay = 100) => {
+        if (!inputElement) return;
+        inputElement.focus();
+        await wait(200);
+        
+        // 显示输入指示器
+        const rect = inputElement.getBoundingClientRect();
+        setTypingIndicator({ element: inputElement, text: text });
+        
+        // 逐字输入
+        for (let i = 0; i <= text.length; i++) {
+          inputElement.value = text.substring(0, i);
+          inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+          setSearchQuery(text.substring(0, i));
+          await wait(delay);
+        }
+        
+        setTypingIndicator(null);
+        await wait(300);
+      };
+      
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      
+      const startLoadingScreen = () => {
+        setShowLoadingScreen(true);
+        return new Promise(resolve => {
+          setTimeout(() => {
+            setShowLoadingScreen(false);
+            resolve();
+          }, 1500);
+        });
+      };
+
+      // --- 演示逻辑 ---
+      const handleDemoCase = async (caseId) => {
+        if (isDemoRunning) return;
+        setIsDemoRunning(true);
+        
+        // 开始黑屏加载
+        await startLoadingScreen();
+        
+        switch(caseId) {
+          case 1: {
+            // 黑屏1.5秒 → 首页 → 自动点击饭点 → 直接跳转到whattoeat → 等2秒 → 点击卡片查看详情 → 点击就它了
+            setCurrentView('home');
+            setRabbitAnimation('walking');
+            
+            await wait(500);
+            // 自动点击饭点按钮（会直接跳转到whattoeat）
+            const mealTimeBtn = document.querySelector('[data-meal-time-btn]');
+            if (mealTimeBtn) {
+              await simulateClick(mealTimeBtn);
+              await wait(2000);
+            }
+            
+            // 点击第一个卡片查看详情
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+            }
+            break;
+          }
+          
+          case 2: {
+            // 黑屏3秒 → whattoeat推荐页 → 等2秒 → 点击快捷按钮选几个条件 → 输入"汉堡" → 回车 → 等2秒 → 点击卡片 → 点击就它了
+            handleNavigate('decision');
+            await wait(2000);
+            
+            // 点击快捷按钮（时间）
+            const timeBtn = document.querySelector('[data-filter-btn="time"]');
+            if (timeBtn) {
+              await simulateClick(timeBtn);
+              await wait(500);
+              // 选择第一个选项
+              const timeOption = document.querySelector('[data-filter-option]');
+              if (timeOption) {
+                await simulateClick(timeOption);
+                await wait(500);
+              }
+            }
+            
+            // 点击快捷按钮（人数）
+            await wait(300);
+            const peopleBtn = document.querySelector('[data-filter-btn="people"]');
+            if (peopleBtn) {
+              await simulateClick(peopleBtn);
+              await wait(500);
+              const peopleOption = document.querySelector('[data-filter-option]');
+              if (peopleOption) {
+                await simulateClick(peopleOption);
+                await wait(500);
+              }
+            }
+            
+            // 点击快捷按钮（口味）
+            await wait(300);
+            const tasteBtn = document.querySelector('[data-filter-btn="taste"]');
+            if (tasteBtn) {
+              await simulateClick(tasteBtn);
+              await wait(500);
+              const tasteOption = document.querySelector('[data-filter-option]');
+              if (tasteOption) {
+                await simulateClick(tasteOption);
+                await wait(500);
+              }
+            }
+            
+            // 输入"汉堡"
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+              await simulateTyping(searchInput, '汉堡', 80);
+              
+              // 回车
+              await wait(300);
+              searchInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+              await wait(2000);
+            }
+            
+            // 点击第一个卡片
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+            }
+            break;
+          }
+          
+          case 3: {
+            // 黑屏3秒 → 首页（没有饭点到了，提前吃饭） → 等2秒 → 点击whattoeat → 后续类似case1
+            setCurrentView('home');
+            setRabbitAnimation('walking');
+            setShowMealTimeBubble(false); // 确保不显示饭点气泡
+            await wait(2000);
+            
+            // 点击whattoeat按钮
+            const whattoeatBtn = document.querySelector('[data-view="decision"]');
+            if (whattoeatBtn) {
+              await simulateClick(whattoeatBtn);
+              await wait(2000);
+            }
+            
+            // 点击第一个卡片查看详情
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+            }
+            break;
+          }
+          
+          case 4: {
+            // 黑屏1.5秒 → whattoeat推荐页 → 等2秒 → 点击"我选好餐厅了" → 等2秒 → 点击加号上传图片 → 等2秒 → 点击卡片选择
+            handleNavigate('decision');
+            await wait(2000);
+            
+            // 点击"我选好餐厅了"按钮
+            const restaurantBtn = document.querySelector('[data-restaurant-btn]');
+            if (restaurantBtn) {
+              await simulateClick(restaurantBtn);
+              await wait(2000);
+            }
+            
+            // 点击加号拍照按钮（上传图片）
+            const cameraBtn = document.querySelector('[data-camera-btn="true"]');
+            if (cameraBtn) {
+              await simulateClick(cameraBtn);
+              // 等待上传完成和卡片显示
+              await wait(3000);
+            }
+            
+            // 点击第一个点餐套路combo卡片
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+            }
+            break;
+          }
+          
+          default: {
+            // 原有的demo逻辑
+            switch(caseId) {
+              case 5: setCurrentView('home'); addChatMessage({role:'ai', title:'打卡成功！🏆', content:'奖励已到账。'}); break;
+              case 6: handleNavigate('snack'); break;
+              case 7: handleNavigate('meal_prep'); break;
+              case 8: handleNavigate('meal_prep'); break;
+              case 9: handleNavigate('meal_prep'); break;
+              case 10: 
+                setCurrentView('home');
+                setActiveChallengeIndex(2);
+                addChatMessages([{ role: 'user', content: '我想聊聊关于喝水的话题' }, { role: 'ai', title: "关于喝水 💧", content: "有什么想聊的吗？" }]);
+                break;
+            }
+          }
+        }
+        
+        setIsDemoRunning(false);
+      };
+      
+      // --- Challenge Case 处理逻辑 ---
+      const handleChallengeCase = async (caseId) => {
+        if (isDemoRunning) return;
+        setIsDemoRunning(true);
+        
+        // 开始黑屏加载
+        await startLoadingScreen();
+        
+        if (caseId === 'challenge-ididit') {
+          // ididit类挑战流程（B12挑战）
+          setCurrentChallengeCase('ididit');
+          setCurrentView('home');
+          setRabbitAnimation('walking');
+          
+          // 找到B12挑战（和 Jovida 一起决策晚饭吃什么）
+          const b12Challenge = challenges.find(c => c.title === "和 Jovida 一起决策晚饭吃什么");
+          if (b12Challenge) {
+            const challengeIndex = challenges.findIndex(c => c.id === b12Challenge.id);
+            setActiveChallengeIndex(challengeIndex);
+            await wait(1000);
+            
+            // 点击"不知道怎么做？和jovida聊聊"（会直接跳转到whattoeat）
+            await wait(500);
+            const chatBtn = document.querySelector(`[data-challenge-chat="${b12Challenge.id}"]`);
+            if (chatBtn) {
+              await simulateClick(chatBtn);
+              await wait(2000);
+            }
+            
+            // 点击第一个卡片查看详情
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+              await wait(2000);
+            }
+            
+            // 回到主页后，点击ididit按钮
+            await wait(1000);
+            const ididitBtn = document.querySelector(`[data-challenge-complete="${b12Challenge.id}"]`);
+            if (ididitBtn) {
+              await simulateClick(ididitBtn);
+            }
+          }
+        } else if (caseId === 'challenge-photo') {
+          // 拍照上传类挑战流程（绿色蔬菜）
+          setCurrentChallengeCase('photo');
+          setCurrentView('home');
+          setRabbitAnimation('walking');
+          
+          // 找到绿色蔬菜挑战
+          const vegChallenge = challenges.find(c => c.title === "多吃一份蔬菜");
+          if (vegChallenge) {
+            const challengeIndex = challenges.findIndex(c => c.id === vegChallenge.id);
+            setActiveChallengeIndex(challengeIndex);
+            await wait(1000);
+            
+            // 点击"不知道怎么做？和jovida聊聊"（会直接跳转到whattoeat）
+            await wait(500);
+            const chatBtn = document.querySelector(`[data-challenge-chat="${vegChallenge.id}"]`);
+            if (chatBtn) {
+              await simulateClick(chatBtn);
+              await wait(2000);
+            }
+            
+            // 点击第一个卡片查看详情
+            const firstCard = document.querySelector('[data-item-card]');
+            if (firstCard) {
+              await simulateClick(firstCard);
+              await wait(2000);
+            }
+            
+            // 点击就它了
+            const confirmBtn = document.querySelector('[data-confirm-btn]');
+            if (confirmBtn) {
+              await simulateClick(confirmBtn);
+              await wait(2000);
+            }
+            
+            // 回到主页后，点击拍照按钮
+            await wait(1000);
+            const photoBtn = document.querySelector(`[data-challenge-photo="${vegChallenge.id}"]`);
+            if (photoBtn) {
+              await simulateClick(photoBtn);
+            }
+          }
+        } else if (caseId === 'challenge-non-diet') {
+          // 非饮食类挑战流程（睡前不看手机）
+          setCurrentChallengeCase('non-diet');
+          setCurrentView('home');
+          setRabbitAnimation('walking');
+          
+          // 找到睡前不看手机挑战
+          const sleepChallenge = challenges.find(c => c.title === "睡前 30 分钟不看手机");
+          if (sleepChallenge) {
+            const challengeIndex = challenges.findIndex(c => c.id === sleepChallenge.id);
+            setActiveChallengeIndex(challengeIndex);
+            await wait(1000);
+            
+            // 点击"不知道怎么做？和jovida聊聊"
+            await wait(500);
+            const chatBtn = document.querySelector(`[data-challenge-chat="${sleepChallenge.id}"]`);
+            if (chatBtn) {
+              await simulateClick(chatBtn);
+              await wait(2000);
+            }
+            
+            // 非饮食类挑战不显示whattoeat，直接等待后点击ididit按钮
+            await wait(2000);
+            const ididitBtn = document.querySelector(`[data-challenge-complete="${sleepChallenge.id}"]`);
+            if (ididitBtn) {
+              await simulateClick(ididitBtn);
+            }
+          }
+        }
+        
+        setIsDemoRunning(false);
+        setCurrentChallengeCase(null);
+      };
+
+      // --- 兔子组件 ---
+      const Rabbit = ({ state }) => (
+        <div className="relative w-full h-full">
+          <svg viewBox="0 0 100 100" className={`w-full h-full ${state === 'walking' ? 'animate-walk' : state === 'waving' ? 'animate-wave-body' : ''}`}>
+            <ellipse cx="40" cy="20" rx="6" ry="15" fill="#FFF" className="animate-ear-left" />
+            <ellipse cx="60" cy="20" rx="6" ry="15" fill="#FFF" className="animate-ear-right" />
+            <circle cx="50" cy="55" r="30" fill="#FFF" />
+            <circle cx="40" cy="50" r="3" fill="#333" />
+            <circle cx="60" cy="50" r="3" fill="#333" />
+            <circle cx="30" cy="60" r="5" fill="#FFC0CB" opacity="0.4" />
+            <circle cx="70" cy="60" r="5" fill="#FFC0CB" opacity="0.4" />
+            {state === 'waving' ? (
+               <path d="M75 60 Q 85 50 90 60" stroke="#FFF" strokeWidth="5" strokeLinecap="round" className="animate-wave-hand origin-left" />
+            ) : (
+               <><rect x="35" y="80" width="8" height="12" rx="4" fill="#EEE" className={state === 'walking' ? "animate-leg-left" : ""} /><rect x="57" y="80" width="8" height="12" rx="4" fill="#EEE" className={state === 'walking' ? "animate-leg-right" : ""} /></>
+            )}
+          </svg>
+        </div>
+      );
+
+      return (
+        <div className="flex h-screen bg-gray-100 p-4 gap-6 overflow-hidden relative">
+          {/* 黑屏加载 */}
+          {showLoadingScreen && (
+            <div className="loading-screen">
+              <div className="w-44 h-44"><Rabbit state="walking" /></div>
+            </div>
+          )}
+          
+          {/* 鼠标点击指示器 - 手指指向 */}
+          {clickIndicator && clickIndicator.visible && (
+            <div 
+              className="click-indicator"
+              style={{
+                left: `${clickIndicator.x}px`,
+                top: `${clickIndicator.y}px`,
+                position: 'fixed',
+              }}
+            >
+              <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* 手指指向图标 - 简化版 */}
+                <g transform="translate(50,50) rotate(-5)">
+                  {/* 手指主体 */}
+                  <ellipse cx="0" cy="15" rx="8" ry="20" fill="#4F46E5" opacity="0.95"/>
+                  {/* 手指尖 */}
+                  <ellipse cx="0" cy="-5" rx="6" ry="8" fill="#4F46E5" opacity="0.95"/>
+                  {/* 指甲 */}
+                  <path d="M-4 -8 L4 -8 L4 -12 L0 -14 L-4 -12 Z" fill="#6366F1" opacity="0.8"/>
+                  {/* 指向箭头 */}
+                  <path d="M0 -15 L0 -25 M-5 -20 L0 -25 L5 -20" stroke="#4F46E5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.95"/>
+                </g>
+              </svg>
+            </div>
+          )}
+          
+          {/* 输入文字指示器 */}
+          {typingIndicator && typingIndicator.element && (
+            <div 
+              className="absolute bg-indigo-100 border-2 border-indigo-400 rounded-lg px-2 py-1 text-xs font-bold text-indigo-800 z-[10001] pointer-events-none"
+              style={{
+                left: `${typingIndicator.element.getBoundingClientRect().left}px`,
+                top: `${typingIndicator.element.getBoundingClientRect().top - 30}px`,
+              }}
+            >
+              正在输入: {typingIndicator.text}
+            </div>
+          )}
+          
+          {/* 庆祝效果 */}
+          {showCelebration && (
+            <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-none">
+              {/* 奖章图标 */}
+              <div className="animate-celebrate mb-4">
+                <div className="relative">
+                  <svg width="120" height="120" viewBox="0 0 100 100" className="animate-medal-float">
+                    {/* 奖章主体 */}
+                    <circle cx="50" cy="50" r="40" fill="#FFD700" stroke="#FFA500" strokeWidth="3"/>
+                    <circle cx="50" cy="50" r="35" fill="#FFED4E" opacity="0.8"/>
+                    {/* 星星 */}
+                    <path d="M50 20 L52 30 L62 30 L54 36 L56 46 L50 40 L44 46 L46 36 L38 30 L48 30 Z" fill="#FFA500"/>
+                    {/* 对勾 */}
+                    <path d="M35 50 L45 60 L65 35" stroke="#4CAF50" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="animate-celebrate text-6xl">🎉</div>
+              {/* 彩纸效果 */}
+              {[...Array(20)].map((_, i) => (
+                <div
+                  key={i}
+                  className="confetti"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    background: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b'][Math.floor(Math.random() * 6)],
+                    animationDelay: `${Math.random() * 0.5}s`,
+                    animationDuration: `${2 + Math.random() * 2}s`
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          <div className="w-64 flex flex-col gap-2 overflow-y-auto no-scrollbar py-2">
+            <h3 className="text-xs font-black text-gray-400 mb-2 uppercase tracking-widest px-2">Demo Cases</h3>
+            <DemoBtn id={1} label="1. 饭点纠结" onClick={handleDemoCase} icon={Utensils} />
+            <div className="text-[8px] text-gray-400 px-4 mb-1">场景：饭点到了，不知道吃什么</div>
+            <DemoBtn id={2} label="2. 有明确想吃的" onClick={handleDemoCase} icon={Sparkles} />
+            <div className="text-[8px] text-gray-400 px-4 mb-1">场景：想吃特定食物，需要推荐</div>
+            <DemoBtn id={3} label="3. 晚饭提前吃了" onClick={handleDemoCase} icon={Timer} />
+            <div className="text-[8px] text-gray-400 px-4 mb-1">场景：提前用餐，需要调整计划</div>
+            <DemoBtn id={4} label="4. 餐厅点菜求助" onClick={handleDemoCase} icon={Store} />
+            <div className="text-[8px] text-gray-400 px-4 mb-1">场景：已到餐厅，需要点餐建议</div>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <h3 className="text-xs font-black text-gray-400 mb-2 uppercase tracking-widest px-2">Challenge Cases</h3>
+              <DemoBtn id="challenge-ididit" label="Challenge: 决策晚饭吃什么" onClick={handleChallengeCase} icon={MessageCircle} />
+              <DemoBtn id="challenge-photo" label="Challenge: 多吃蔬菜" onClick={handleChallengeCase} icon={Camera} />
+              <DemoBtn id="challenge-non-diet" label="Challenge: 早睡挑战" onClick={handleChallengeCase} icon={Moon} />
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <h3 className="text-xs font-black text-gray-400 mb-2 uppercase tracking-widest px-2">Meal Time</h3>
+              <button data-meal-time-btn onClick={handleMealTime} className="w-full flex items-center gap-3 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white border border-emerald-600 rounded-2xl transition-all group active:scale-95 shadow-sm">
+                <div className="p-2 bg-emerald-400 rounded-lg group-hover:bg-emerald-500 transition-colors"><Utensils size={14} className="text-white" /></div>
+                <span className="text-[10px] font-bold text-white text-left leading-tight">饭点到了</span>
+              </button>
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <h3 className="text-xs font-black text-gray-400 mb-2 uppercase tracking-widest px-2">用餐场景</h3>
+              <div className="space-y-2">
+                <button 
+                  onClick={() => handleMealScene('home')} 
+                  className="w-full flex items-center gap-3 px-4 py-3 bg-rose-500 hover:bg-rose-600 text-white border border-rose-600 rounded-2xl transition-all group active:scale-95 shadow-sm"
+                >
+                  <div className="p-2 bg-rose-400 rounded-lg group-hover:bg-rose-500 transition-colors"><Utensils size={14} className="text-white" /></div>
+                  <span className="text-[10px] font-bold text-white text-left leading-tight">在家吃</span>
+                </button>
+                <button 
+                  onClick={() => handleMealScene('out')} 
+                  className="w-full flex items-center gap-3 px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white border border-blue-600 rounded-2xl transition-all group active:scale-95 shadow-sm"
+                >
+                  <div className="p-2 bg-blue-400 rounded-lg group-hover:bg-blue-500 transition-colors"><Store size={14} className="text-white" /></div>
+                  <span className="text-[10px] font-bold text-white text-left leading-tight">出去吃</span>
+                </button>
+                <button 
+                  onClick={() => handleMealScene('menu')} 
+                  className="w-full flex items-center gap-3 px-4 py-3 bg-purple-500 hover:bg-purple-600 text-white border border-purple-600 rounded-2xl transition-all group active:scale-95 shadow-sm"
+                >
+                  <div className="p-2 bg-purple-400 rounded-lg group-hover:bg-purple-500 transition-colors"><Camera size={14} className="text-white" /></div>
+                  <span className="text-[10px] font-bold text-white text-left leading-tight">拍菜单</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1 max-w-md mx-auto h-full bg-[#F8F9FD] rounded-[3rem] shadow-2xl border-[8px] border-gray-900 overflow-hidden relative flex flex-col">
+            <div className="h-6 w-full flex justify-center items-end pb-1"><div className="w-24 h-4 bg-gray-900 rounded-full"></div></div>
+
+            {/* 悬浮球堆叠 */}
+            {currentView === 'home' && activePortals.map((view, index) => (
+              <button key={view} onClick={() => handleNavigate(view)} className="absolute right-0 bg-indigo-600 text-white p-3 rounded-l-2xl shadow-xl z-50 animate-bounce-in flex flex-col items-center transition-all hover:pr-4" style={{ top: `${8 + (index * 4)}rem` }}>
+                {view === 'decision' ? <RotateCcw size={18} /> : view === 'meal_prep' ? <ShoppingBag size={18} /> : view === 'snack' ? <Candy size={18} /> : <BookOpen size={18} />}
+                <div className="text-[8px] font-black mt-1">返回</div>
+              </button>
+            ))}
+
+            {currentView !== 'home' && (
+              <button onClick={currentView === 'detail' ? closeDetail : goBackHome} className="absolute top-8 left-6 z-50 p-2 bg-white rounded-full shadow-md text-gray-400 active:scale-90"><ArrowLeft size={18} /></button>
+            )}
+
+            {/* === 主内容区 === */}
+            <div className="flex-1 overflow-hidden flex flex-col relative">
+              
+              {/* --- 首页 --- */}
+              {currentView === 'home' && (
+                <div className="flex flex-col h-full">
+                  <div className="pt-10 px-6">
+                    <h1 className="text-3xl font-black italic tracking-tighter text-gray-900 mb-1 leading-none">CHALLENGE</h1>
+                    <div className="flex justify-center py-1 h-28"><div className="w-44 h-44"><Rabbit state="walking" /></div></div>
+                  </div>
+                  <div className="relative flex-1 flex items-center justify-center perspective-1000 overflow-visible">
+                     <div className="relative w-full h-[320px] flex items-center justify-center">
+                      {(() => {
+                        const availableChallenges = challenges.filter(c => !completedChallengeIds.includes(c.id));
+                        return availableChallenges.map((challenge, index) => {
+                          const offset = index - activeChallengeIndex;
+                          const isCenter = offset === 0;
+                          const isLeft = offset === -1 || (activeChallengeIndex === 0 && index === availableChallenges.length - 1);
+                          const isRight = offset === 1 || (activeChallengeIndex === availableChallenges.length - 1 && index === 0);
+                          if (!isCenter && !isLeft && !isRight) return null;
+                          let transform = isCenter ? 'scale(1) translateX(0) translateZ(0)' : isLeft ? 'scale(0.85) translateX(-130px) translateZ(-150px) rotateY(20deg)' : 'scale(0.85) translateX(130px) translateZ(-150px) rotateY(-20deg)';
+                          return (
+                            <div key={challenge.id} className="absolute w-60 h-72 transition-all duration-500 ease-out" style={{ transform, zIndex: isCenter ? 30 : 20, opacity: isCenter ? 1 : 0.3 }}>
+                              <div className={`w-full h-full bg-white rounded-[35px] shadow-xl border p-6 flex flex-col items-center text-center relative ${challenge.isMain ? 'border-emerald-400 ring-4 ring-emerald-50' : 'border-white'}`}>
+                                <div className={`absolute top-4 right-4 flex items-center gap-1 px-2 py-1 rounded-full text-[9px] font-black ${challenge.isMain ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-100 text-gray-400'}`}><Sparkles size={10} />+{challenge.reward}</div>
+                                {challenge.isMain && <div className="absolute top-4 left-4 bg-emerald-500 text-white text-[7px] px-2 py-0.5 rounded-full font-black uppercase">推荐主任务</div>}
+                                <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-4">{challenge.icon}</div>
+                                <h3 className="text-lg font-black text-gray-900 mb-1">{challenge.title}</h3>
+                                <p className="text-[10px] text-gray-500 font-bold leading-tight mb-6">{challenge.desc}</p>
+                                {isCenter && (
+                                  <div className="w-full space-y-2">
+                                    {/* 主按钮 */}
+                                    {challenge.type === 'photo' && (
+                                      <button data-challenge-photo={challenge.id} onClick={() => handleChallengeComplete(challenge)} className="w-full py-2.5 bg-blue-600 text-white rounded-xl font-black text-[10px] shadow-lg shadow-blue-100"><Camera size={14} className="inline mr-1"/> 拍照上传证明</button>
+                                    )}
+                                    {challenge.type === 'check' && (
+                                      <button data-challenge-complete={challenge.id} onClick={() => handleChallengeComplete(challenge)} className="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-black text-[10px] shadow-lg shadow-emerald-100"><CheckCircle2 size={14} className="inline mr-1"/> I did it</button>
+                                    )}
+                                    {/* 副按钮：不知道怎么做？和jovida聊聊 - 所有挑战都有 */}
+                                    <button data-challenge-chat={challenge.id} onClick={() => handleChallengeChat(challenge)} className="w-full py-2 bg-gray-100 text-gray-700 rounded-xl font-bold text-[9px] border border-gray-200 hover:bg-gray-200 transition-all"><MessageCircle size={12} className="inline mr-1"/> 不知道怎么做？和 Jovida 聊聊</button>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        });
+                      })()}
+                     </div>
+                     <button onClick={() => {
+                       const availableChallenges = challenges.filter(c => !completedChallengeIds.includes(c.id));
+                       setActiveChallengeIndex((activeChallengeIndex - 1 + availableChallenges.length) % availableChallenges.length);
+                     }} className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-300"><ChevronLeft size={24}/></button>
+                     <button onClick={() => {
+                       const availableChallenges = challenges.filter(c => !completedChallengeIds.includes(c.id));
+                       setActiveChallengeIndex((activeChallengeIndex + 1) % availableChallenges.length);
+                     }} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300"><ChevronRight size={24}/></button>
+                  </div>
+                </div>
+              )}
+
+              {/* --- 详情页 (三级页) --- */}
+              {currentView === 'detail' && detailItem && (
+                <div className="flex flex-col h-full bg-white overflow-y-auto no-scrollbar animate-slide-up">
+                    {/* 顶部图片区域 */}
+                    {detailItem.image && (
+                      <div className="w-full h-64 relative overflow-hidden">
+                        <img src={detailItem.image} alt={detailItem.dish || detailItem.title} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div className="absolute -bottom-8 right-8 w-24 h-24"><Rabbit state={rabbitAnimation} /></div>
+                      </div>
+                    )}
+                    {!detailItem.image && (
+                    <div className={`w-full h-64 ${detailItem.imageColor} relative flex items-center justify-center`}>
+                        <div className="scale-150 opacity-10">{detailParentView === 'knowledge' ? <BookOpen size={100}/> : <Utensils size={100}/>}</div>
+                        <div className="absolute -bottom-8 right-8 w-24 h-24"><Rabbit state={rabbitAnimation} /></div>
+                    </div>
+                    )}
+
+                    <div className="px-6 pt-10 pb-32">
+                        {/* 标题和匹配度 */}
+                        <div className="mb-6">
+                            <div className="flex justify-between items-start mb-2">
+                                <h2 className="text-2xl font-black text-gray-900 leading-tight flex-1">{detailItem.dish || detailItem.title}</h2>
+                                {detailItem.matchScore && <div className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-[10px] font-black whitespace-nowrap ml-2">AI {detailItem.matchScore}%</div>}
+                            </div>
+                            {detailItem.scene === 'out' && detailItem.restaurant && (
+                              <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest">{detailItem.restaurant}</p>
+                            )}
+                            {detailItem.scene === 'home' && (
+                              <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest">自家厨房</p>
+                            )}
+                            {detailItem.scene === 'dish_recommendation' && (
+                              <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest">菜品推荐</p>
+                            )}
+                        </div>
+
+                        {/* 外食：距离、金钱预算、口味、匹配度 */}
+                        {detailItem.scene === 'out' && (
+                          <div className="flex flex-wrap gap-2 mb-6">
+                            {detailItem.distance && (
+                              <span className="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                <MapPin size={10} /> {detailItem.distance}
+                              </span>
+                            )}
+                            {detailItem.budget && (
+                              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                <DollarSign size={10} /> {detailItem.budget}
+                              </span>
+                            )}
+                            {detailItem.taste && (
+                              <span className="text-[10px] bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-bold">
+                                {detailItem.taste}
+                              </span>
+                            )}
+                            {detailItem.rating && (
+                              <span className="text-[10px] bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                ⭐ {detailItem.rating}
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 菜品推荐：金钱预算、口味、匹配度（不包含距离和评价） */}
+                        {detailItem.scene === 'dish_recommendation' && (
+                          <div className="flex flex-wrap gap-2 mb-6">
+                            {detailItem.budget && (
+                              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                <DollarSign size={10} /> {detailItem.budget}
+                              </span>
+                            )}
+                            {detailItem.taste && (
+                              <span className="text-[10px] bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-bold">
+                                {detailItem.taste}
+                              </span>
+                            )}
+                            {detailItem.difficulty && (
+                              <span className="text-[10px] bg-purple-50 text-purple-700 px-3 py-1 rounded-full font-bold">
+                                难度：{detailItem.difficulty}
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 在家吃：时间预算、金钱预算、匹配度、口味、复杂度 */}
+                        {detailItem.scene === 'home' && (
+                          <div className="flex flex-wrap gap-2 mb-6">
+                            {detailItem.timeBudget && (
+                              <span className="text-[10px] bg-purple-50 text-purple-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                <Clock size={10} /> {detailItem.timeBudget}
+                              </span>
+                            )}
+                            {detailItem.budget && (
+                              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                                <DollarSign size={10} /> {detailItem.budget}
+                              </span>
+                            )}
+                            {detailItem.taste && (
+                              <span className="text-[10px] bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-bold">
+                                {detailItem.taste}
+                              </span>
+                            )}
+                            {detailItem.complexity && (
+                              <span className="text-[10px] bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-bold">
+                                复杂度：{detailItem.complexity}
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 标签 */}
+                        {detailItem.tags && detailItem.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-6">
+                            {detailItem.tags.map(t => <span key={t} className="text-[10px] bg-gray-50 border border-gray-100 px-3 py-1 rounded-full text-gray-600 font-bold">{t}</span>)}
+                        </div>
+                        )}
+
+                        {/* 外食：餐厅图片和评价 */}
+                        {detailItem.scene === 'out' && detailItem.restaurantImage && (
+                          <div className="mb-6">
+                            <h3 className="text-sm font-black text-gray-900 mb-2">餐厅环境</h3>
+                            <div className="w-full h-40 rounded-2xl overflow-hidden bg-gray-100">
+                              <img src={detailItem.restaurantImage} alt={detailItem.restaurant} className="w-full h-full object-cover" />
+                            </div>
+                            {detailItem.rating && (
+                              <p className="text-[10px] text-gray-500 mt-2 flex items-center gap-1">
+                                ⭐ {detailItem.rating} 分评价
+                              </p>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 菜品推荐：菜品描述 */}
+                        {detailItem.scene === 'dish_recommendation' && detailItem.dishDescription && (
+                          <div className="bg-slate-50 p-5 rounded-2xl mb-6 border border-slate-100">
+                            <h3 className="text-sm font-black text-gray-900 mb-2">菜品介绍</h3>
+                            <p className="text-sm font-bold text-gray-600 leading-relaxed">{detailItem.dishDescription}</p>
+                          </div>
+                        )}
+
+                        {/* 菜品组合 */}
+                        {detailItem.dishCombo && (
+                        <div className="bg-slate-50 p-5 rounded-2xl mb-6 border border-slate-100">
+                            <h3 className="text-sm font-black text-gray-900 mb-3">菜品组合</h3>
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-[10px] font-bold text-gray-500">主菜：</span>
+                                <span className="text-sm font-bold text-gray-900">{detailItem.dishCombo.main}</span>
+                                        </div>
+                              {detailItem.dishCombo.sides && detailItem.dishCombo.sides.length > 0 && (
+                                <div className="flex items-start gap-2">
+                                  <span className="text-[10px] font-bold text-gray-500">配菜：</span>
+                                  <div className="flex flex-wrap gap-1">
+                                    {detailItem.dishCombo.sides.map((side, idx) => (
+                                      <span key={idx} className="text-sm font-bold text-gray-700">{side}</span>
+                                    ))}
+                                  </div>
+                                 </div>
+                            )}
+                        </div>
+                          </div>
+                        )}
+
+                        {/* 营养素（有或无） */}
+                        {(detailItem.nutrients || estimateNutrients(detailItem)) && (
+                            <div className="mb-6">
+                                {/* 如果有主菜和配菜各自的营养信息，显示详细分解 */}
+                                {detailItem.mainDishNutrients && detailItem.sideDishNutrients ? (
+                                    <>
+                                        {/* 主菜营养信息 */}
+                                        <div className="mb-4">
+                                            <h3 className="text-sm font-black text-gray-900 mb-3">主菜营养信息</h3>
+                                            <div className="grid grid-cols-3 gap-3">
+                                                <div className="bg-orange-50 p-3 rounded-2xl border border-orange-100 col-span-3 flex justify-between items-center px-5">
+                                                    <span className="text-[10px] font-black text-orange-400 uppercase">Energy</span>
+                                                    <span className="text-xl font-black text-orange-600">{detailItem.mainDishNutrients.calories} kcal</span>
+                                                </div>
+                                                {Object.entries(detailItem.mainDishNutrients).filter(([k]) => k !== 'calories').map(([k, v]) => (
+                                                    <div key={k} className="bg-white p-3 rounded-2xl border border-gray-100 text-center shadow-sm">
+                                                        <div className="text-[9px] font-black text-gray-400 uppercase mb-1">{k}</div>
+                                                        <div className="text-sm font-black text-gray-800">{v}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        
+                                        {/* 配菜营养信息 */}
+                                        <div className="mb-4">
+                                            <h3 className="text-sm font-black text-gray-900 mb-3">配菜营养信息</h3>
+                                            <div className="grid grid-cols-3 gap-3">
+                                                <div className="bg-orange-50 p-3 rounded-2xl border border-orange-100 col-span-3 flex justify-between items-center px-5">
+                                                    <span className="text-[10px] font-black text-orange-400 uppercase">Energy</span>
+                                                    <span className="text-xl font-black text-orange-600">{detailItem.sideDishNutrients.calories} kcal</span>
+                                                </div>
+                                                {Object.entries(detailItem.sideDishNutrients).filter(([k]) => k !== 'calories').map(([k, v]) => (
+                                                    <div key={k} className="bg-white p-3 rounded-2xl border border-gray-100 text-center shadow-sm">
+                                                        <div className="text-[9px] font-black text-gray-400 uppercase mb-1">{k}</div>
+                                                        <div className="text-sm font-black text-gray-800">{v}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Combo总营养信息 */}
+                                        <div>
+                                            <h3 className="text-sm font-black text-gray-900 mb-3">Combo总营养信息</h3>
+                                            <div className="grid grid-cols-3 gap-3">
+                                                <div className="bg-orange-50 p-3 rounded-2xl border border-orange-100 col-span-3 flex justify-between items-center px-5">
+                                                    <span className="text-[10px] font-black text-orange-400 uppercase">Energy</span>
+                                                    <span className="text-xl font-black text-orange-600">{detailItem.calories} kcal</span>
+                                                </div>
+                                                {Object.entries(detailItem.nutrients || estimateNutrients(detailItem)).map(([k, v]) => (
+                                                    <div key={k} className="bg-white p-3 rounded-2xl border border-gray-100 text-center shadow-sm">
+                                                        <div className="text-[9px] font-black text-gray-400 uppercase mb-1">{k}</div>
+                                                        <div className="text-sm font-black text-gray-800">{v}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    /* 如果没有主菜和配菜各自的营养信息，显示原来的格式 */
+                                    <div className="grid grid-cols-3 gap-3">
+                                        <div className="bg-orange-50 p-3 rounded-2xl border border-orange-100 col-span-3 flex justify-between items-center px-5">
+                                            <span className="text-[10px] font-black text-orange-400 uppercase">Energy</span>
+                                            <span className="text-xl font-black text-orange-600">{detailItem.calories} kcal</span>
+                                        </div>
+                                        {Object.entries(detailItem.nutrients || estimateNutrients(detailItem)).map(([k, v]) => (
+                                            <div key={k} className="bg-white p-3 rounded-2xl border border-gray-100 text-center shadow-sm">
+                                                <div className="text-[9px] font-black text-gray-400 uppercase mb-1">{k}</div>
+                                                <div className="text-sm font-black text-gray-800">{v}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* 在家吃：配料 */}
+                        {detailItem.scene === 'home' && detailItem.ingredients && detailItem.ingredients.length > 0 && (
+                          <div className="bg-blue-50 p-5 rounded-2xl mb-6 border border-blue-100">
+                            <h3 className="text-sm font-black text-gray-900 mb-3">配料清单</h3>
+                            <div className="grid grid-cols-2 gap-2">
+                              {detailItem.ingredients.map((ingredient, idx) => (
+                                <div key={idx} className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                                  {ingredient}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* 在家吃：使用的厨具 */}
+                        {detailItem.scene === 'home' && detailItem.utensils && detailItem.utensils.length > 0 && (
+                          <div className="bg-gray-50 p-5 rounded-2xl mb-6 border border-gray-100">
+                            <h3 className="text-sm font-black text-gray-900 mb-3">使用的厨具</h3>
+                            <div className="flex flex-wrap gap-2">
+                              {detailItem.utensils.map((utensil, idx) => (
+                                <span key={idx} className="text-[10px] bg-white border border-gray-200 px-3 py-1 rounded-full text-gray-700 font-bold">
+                                  {utensil}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* 在家吃：具体步骤 */}
+                        {detailItem.scene === 'home' && detailItem.steps && detailItem.steps.length > 0 && (
+                          <div className="bg-emerald-50 p-5 rounded-2xl mb-6 border border-emerald-100">
+                            <h3 className="text-sm font-black text-gray-900 mb-3">制作步骤</h3>
+                            <div className="space-y-3">
+                              {detailItem.steps.map((step, idx) => (
+                                <div key={idx} className="flex gap-3">
+                                  <div className="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                                    {idx + 1}
+                                  </div>
+                                  <p className="text-sm font-bold text-gray-700 leading-relaxed flex-1">{step}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* 菜品推荐：菜品详细信息 */}
+                        {detailItem.scene === 'dish_recommendation' && (
+                          <>
+                            {/* 就餐建议 */}
+                            {detailItem.diningTips && detailItem.diningTips.length > 0 && (
+                              <div className="bg-blue-50 p-5 rounded-2xl mb-6 border border-blue-100">
+                                <h3 className="text-sm font-black text-gray-900 mb-3">就餐建议</h3>
+                                <div className="space-y-2">
+                                  {detailItem.diningTips.map((tip, idx) => (
+                                    <div key={idx} className="flex items-start gap-2">
+                                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1.5 shrink-0"></div>
+                                      <p className="text-sm font-bold text-gray-700 leading-relaxed">{tip}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* 健康益处 */}
+                            {detailItem.healthBenefits && detailItem.healthBenefits.length > 0 && (
+                              <div className="bg-emerald-50 p-5 rounded-2xl mb-6 border border-emerald-100">
+                                <h3 className="text-sm font-black text-gray-900 mb-3">健康益处</h3>
+                                <div className="space-y-2">
+                                  {detailItem.healthBenefits.map((benefit, idx) => (
+                                    <div key={idx} className="flex items-center gap-2">
+                                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                                      <p className="text-sm font-bold text-gray-700">{benefit}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
+
+                        {/* Jovida评价 */}
+                        {detailItem.aiReason && (
+                        <div className="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100 relative mt-4">
+                            <MessageCircle className="absolute -top-3 -left-2 text-indigo-500 fill-white" size={24} />
+                            <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Jovida Insight</h4>
+                            <p className="text-sm font-bold text-indigo-900 leading-relaxed italic">"{detailItem.aiReason}"</p>
+                        </div>
+                        )}
+                    </div>
+                </div>
+              )}
+
+              {/* --- 二级页通用渲染 --- */}
+              {currentView !== 'home' && currentView !== 'detail' && (
+                <div className="flex flex-col h-full">
+                  <div className="pt-12 pb-4 px-6 text-center">
+                     <div className="w-36 h-36 mx-auto mb-2"><Rabbit state={rabbitAnimation} /></div>
+                     <h2 className={`text-xl font-black uppercase tracking-wider ${currentView === 'meal_prep' ? 'text-indigo-800' : currentView === 'snack' ? 'text-amber-800' : currentView === 'knowledge' ? 'text-purple-800' : 'text-gray-900'}`}>
+                       {currentView === 'meal_prep' ? 'Meal Prep Plan' : currentView === 'snack' ? 'Smart Snacking' : currentView === 'knowledge' ? 'Jovida Wiki' : 'What to Eat'}
+                     </h2>
+                     {/* What to Eat 页面的场景切换 */}
+                     {currentView === 'decision' && (
+                       <div className="flex gap-2 justify-center mt-4 mb-2">
+                         <button 
+                           onClick={() => {
+                             setMealScene('out');
+                             setDisplayItems(initialItemsOut);
+                           }}
+                           className={`px-4 py-2 rounded-full text-[11px] font-black transition-all ${
+                             mealScene === 'out' 
+                               ? 'bg-rose-500 text-white shadow-md' 
+                               : 'bg-gray-100 text-gray-600'
+                           }`}
+                         >
+                           出去吃
+                         </button>
+                         <button 
+                           onClick={() => {
+                             setMealScene('home');
+                             setDisplayItems(initialItemsHome);
+                           }}
+                           className={`px-4 py-2 rounded-full text-[11px] font-black transition-all ${
+                             mealScene === 'home' 
+                               ? 'bg-rose-500 text-white shadow-md' 
+                               : 'bg-gray-100 text-gray-600'
+                           }`}
+                         >
+                           在家做
+                         </button>
+                       </div>
+                     )}
+                  </div>
+                  
+                  <div className="flex-1 px-5 overflow-y-auto no-scrollbar pb-64">
+                    {displayItems.map((item) => (
+                      <div key={item.id} data-item-card onClick={() => openDetail(item)} className={`rounded-[2.5rem] p-5 mb-4 shadow-sm border active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden ${item.scene === 'meal_prep' ? 'bg-indigo-950 border-indigo-800 text-white' : item.scene === 'snack' ? 'bg-amber-50 border-amber-100' : 'bg-white border-gray-100'}`}>
+                        <div className={`absolute top-0 right-0 px-4 py-1.5 rounded-bl-2xl text-[10px] font-bold shadow-sm ${item.scene === 'meal_prep' ? 'bg-indigo-500 text-white' : item.scene === 'snack' ? 'bg-amber-400 text-white' : item.type === 'quiz' ? 'bg-purple-500 text-white' : item.type === '点餐套路' ? 'bg-purple-500 text-white' : item.scene === 'dish_recommendation' ? 'bg-rose-500 text-white' : 'bg-orange-500 text-white'}`}>
+                          {item.scene === 'meal_prep' ? '备餐建议' : item.scene === 'snack' ? '零食推荐' : item.type === 'quiz' ? '小测验' : item.type === '点餐套路' ? '点餐套路' : item.scene === 'dish_recommendation' ? '菜品推荐' : '推荐单品'}
+                        </div>
+                        
+                        {/* 知识卡片特殊布局 */}
+                        {item.type === 'quiz' || item.type === 'article' ? (
+                           <div>
+                              <div className="flex gap-4 mb-3">
+                                 <div className={`w-14 h-14 rounded-2xl ${item.imageColor} flex items-center justify-center shrink-0`}>{item.type === 'quiz' ? <HelpCircle className="text-purple-500" /> : <FileText className="text-blue-500" />}</div>
+                                 <div>
+                                    <h3 className="font-bold text-sm text-gray-900">{item.title}</h3>
+                                    <div className="flex gap-1 mt-1">{item.tags.map(t=><span key={t} className="text-[9px] bg-white px-1.5 py-0.5 rounded border border-gray-200 text-gray-500">{t}</span>)}</div>
+                                 </div>
+                              </div>
+                              <div className="bg-white/50 p-3 rounded-2xl text-[11px] font-bold text-gray-700 leading-relaxed mb-2">{item.content}</div>
+                              {item.type === 'quiz' && <div className="grid grid-cols-1 gap-2">{item.options.map(opt=><button key={opt} onClick={(e)=>e.stopPropagation()} className="bg-white py-2 rounded-xl text-[10px] font-bold text-gray-600 shadow-sm">{opt}</button>)}</div>}
+                           </div>
+                        ) : (
+                           // What to Eat 卡片布局（更新后的字段）
+                           currentView === 'decision' || item.scene === 'dish_recommendation' ? (
+                             <div className="flex flex-col gap-3">
+                               {/* 图片 */}
+                               {item.image && (
+                                 <div className="w-full h-40 rounded-2xl overflow-hidden bg-gray-100">
+                                   <img src={item.image} alt={item.dish} className="w-full h-full object-cover" />
+                                 </div>
+                               )}
+                               
+                               <div className="flex gap-3">
+                                 <div className="flex-1">
+                                   {/* 主菜和配菜 */}
+                                   <h3 className="font-bold text-sm text-gray-900 mb-1">{item.mainDish || item.dish}</h3>
+                                   {item.sideDish && (
+                                     <p className="text-[10px] text-gray-500 mb-2">配菜：{item.sideDish}</p>
+                                   )}
+                                   
+                                   {/* 外食特有信息 */}
+                                   {item.scene === 'out' && (
+                                     <div className="flex flex-col gap-1 mb-2">
+                                       {item.restaurant && (
+                                         <p className="text-[10px] text-gray-600 font-bold">{item.restaurant}</p>
+                                       )}
+                                       <div className="flex items-center gap-2 text-[9px] text-gray-500">
+                                         {item.distance && (
+                                           <span className="flex items-center gap-1">
+                                             <MapPin size={10} /> {item.distance}
+                                           </span>
+                                         )}
+                                         {item.rating && (
+                                           <span className="flex items-center gap-1">
+                                             ⭐ {item.rating}
+                                           </span>
+                                         )}
+                                       </div>
+                                     </div>
+                                   )}
+                                   
+                                   {/* 菜品推荐卡特有信息（不显示餐厅信息） */}
+                                   {item.scene === 'dish_recommendation' && (
+                                     <div className="flex flex-col gap-1 mb-2">
+                                       <p className="text-[10px] text-gray-500 font-bold">菜品推荐</p>
+                                     </div>
+                                   )}
+                                   
+                                   {/* 在家做特有信息 */}
+                                   {item.scene === 'home' && item.timeBudget && (
+                                     <p className="text-[10px] text-gray-500 mb-2">
+                                       <Clock size={10} className="inline mr-1" /> {item.timeBudget}
+                                     </p>
+                                   )}
+                                   
+                                   {/* 金钱预算和口味 */}
+                                   <div className="flex items-center gap-2 mb-2">
+                                     {item.budget && (
+                                       <span className="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold">
+                                         <DollarSign size={9} className="inline mr-0.5" /> {item.budget}
+                                       </span>
+                                     )}
+                                     {item.taste && (
+                                       <span className="text-[9px] bg-orange-50 text-orange-700 px-2 py-0.5 rounded-full font-bold">
+                                         {item.taste}
+                                       </span>
+                                     )}
+                                   </div>
+                                   
+                                   {/* 匹配度 */}
+                                   <div className="flex justify-between items-center">
+                                     <span className="flex items-center text-orange-500 text-[10px] font-bold">
+                                       <Flame size={12} className="mr-1"/> {item.calories} kcal
+                                     </span>
+                                     <span className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full text-[10px] font-bold">
+                                       AI {item.matchScore}%
+                                     </span>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           ) : (
+                             // 其他页面的卡片布局（备餐/零食等）
+                           <div className="flex gap-4">
+                              <div className={`w-16 h-16 rounded-2xl ${item.imageColor} flex items-center justify-center shrink-0`}>
+                                {item.scene === 'meal_prep' ? <Layers size={24} className="text-white/40" /> : item.scene === 'snack' ? <Candy size={24} className="text-amber-500/40" /> : <Utensils size={24} className="text-gray-400 opacity-40" />}
+                              </div>
+                              <div className="flex-1">
+                                <h3 className={`font-bold text-sm ${item.scene === 'meal_prep' ? 'text-indigo-100' : 'text-gray-900'}`}>{item.dish}</h3>
+                                <p className={`text-[10px] mb-2 ${item.scene === 'meal_prep' ? 'text-indigo-300' : 'text-gray-500'}`}>{item.name}</p>
+                                {item.scene === 'meal_prep' && <div className="flex gap-2 mb-2"><span className="text-[9px] bg-indigo-900 px-2 py-0.5 rounded text-indigo-200">保鲜 {item.keepDays}</span></div>}
+                                <div className="flex justify-between items-center text-[10px] font-bold">
+                                  <span className={`flex items-center ${item.scene === 'meal_prep' ? 'text-indigo-400' : 'text-orange-500'}`}><Flame size={12} className="mr-1"/> {item.calories} kcal</span>
+                                  <span className={`${item.scene === 'meal_prep' ? 'bg-indigo-900' : 'bg-white/50 text-indigo-600'} px-2 py-0.5 rounded-full flex items-center gap-1`}>AI {item.matchScore}%</span>
+                                </div>
+                              </div>
+                           </div>
+                           )
+                        )}
+                        
+                        {/* AI 理由 */}
+                        <div className={`mt-3 pt-3 border-t ${item.scene === 'meal_prep' ? 'border-indigo-800/50 text-indigo-300' : 'border-gray-100 text-gray-500'} text-[10px] leading-relaxed`}>"{item.aiReason}"</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* === 底部操作区 (统一) === */}
+            <div className="px-5 pb-6 z-50 bg-gradient-to-t from-[#F8F9FD] via-[#F8F9FD] to-transparent pt-4">
+              {currentView === 'detail' ? (
+                  // 详情页底部按钮区域
+                  <div className="space-y-3">
+                    {/* 主要操作按钮 */}
+                    <div className="flex gap-2">
+                      {/* 返回按钮（保留what to eat页面进度） */}
+                      <button 
+                        onClick={closeDetail} 
+                        className="flex-1 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-[2rem] font-black text-sm shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+                      >
+                        <ArrowLeft size={18} /> 返回
+                      </button>
+                      
+                      {/* 确认按钮（记录用户选择） */}
+                      <button 
+                        data-confirm-btn 
+                        onClick={confirmChoice} 
+                        className="flex-1 py-3 bg-gray-900 text-white rounded-[2rem] font-black text-sm shadow-2xl shadow-indigo-200 active:scale-95 transition-all flex items-center justify-center gap-2"
+                      >
+                      就它了 <CheckCircle2 size={18} />
+                  </button>
+                    </div>
+                    
+                    {/* 场景特定按钮 */}
+                    {detailItem && detailItem.scene === 'home' && (
+                      // 在家吃：Instacart一键下单按钮
+                      <button 
+                        onClick={handleInstacartOrder}
+                        className="w-full py-3 bg-emerald-500 text-white rounded-[2rem] font-black text-sm shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+                      >
+                        <ShoppingBag size={18} /> Instacart 一键下单
+                      </button>
+                    )}
+                    
+                    {detailItem && detailItem.scene === 'out' && (
+                      // 外食：拍摄菜单按钮
+                      <button 
+                        onClick={handleTakeMenuPhoto}
+                        className="w-full py-3 bg-indigo-500 text-white rounded-[2rem] font-black text-sm shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Camera size={18} /> 拍摄菜单
+                      </button>
+                    )}
+                  </div>
+              ) : (
+                // 使用独立的 ChatInput 组件
+                <ChatInput 
+                  currentView={currentView}
+                  recentMessages={recentMessages}
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                  handleSearchSubmit={handleSearchSubmit}
+                  interactionStep={interactionStep}
+                  activeFilter={activeFilter}
+                  filterOptions={filterOptions}
+                  handleOptionSelect={handleOptionSelect}
+                  setActiveFilter={setActiveFilter}
+                  handleRestaurantSelected={handleRestaurantSelected}
+                  isUploadingImage={isUploadingImage}
+                  inputText={inputText}
+                  setInputText={setInputText}
+                  sendMessage={sendMessage}
+                  handleNavigate={handleNavigate}
+                  setInteractionStep={setInteractionStep}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- 辅助组件 ---
+    const DemoBtn = ({ id, label, icon: Icon, onClick }) => (
+      <button onClick={() => onClick(id)} className="w-full flex items-center gap-3 px-4 py-3 bg-white hover:bg-indigo-50 border border-gray-200 rounded-2xl transition-all group active:scale-95 shadow-sm">
+        <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-indigo-100 transition-colors"><Icon size={14} className="text-gray-400 group-hover:text-indigo-600" /></div>
+        <span className="text-[10px] font-bold text-gray-600 group-hover:text-indigo-900 text-left leading-tight">{label}</span>
+      </button>
+    );
+
+    // --- 独立的对话框和输入框组件 ---
+    const ChatInput = ({ 
+      currentView, 
+      recentMessages, 
+      searchQuery, 
+      setSearchQuery, 
+      handleSearchSubmit, 
+      interactionStep, 
+      activeFilter, 
+      filterOptions, 
+      handleOptionSelect, 
+      setActiveFilter, 
+      handleRestaurantSelected, 
+      isUploadingImage,
+      inputText,
+      setInputText,
+      sendMessage,
+      handleNavigate,
+      setInteractionStep
+    }) => {
+      return (
+        <>
+          {/* 对话框区域 - 带UI包裹 */}
+          <div className="mb-3 animate-slide-up">
+            {/* 对话框容器 - 与屏幕内容区分 */}
+            <div className="bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/30 rounded-3xl p-4 border-2 border-indigo-100/50 shadow-lg backdrop-blur-sm relative overflow-hidden">
+              {/* 装饰性背景元素 */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-200/20 rounded-full blur-2xl -mr-16 -mt-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-200/20 rounded-full blur-xl -ml-12 -mb-12"></div>
+              
+              {/* 对话框内容 */}
+              <div className="relative flex flex-col gap-3">
+                {/* 聊天消息 */}
+                <div className="flex flex-col gap-2">
+                  {recentMessages.map((msg, idx) => (
+                    <div key={idx} className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : ''}`}>
+                      {msg.role === 'ai' && <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shrink-0 border border-gray-100 shadow-sm overflow-hidden pt-1"><RabbitFace size="30" /></div>}
+                      <div className={`${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-white/95 backdrop-blur-xl border border-white text-gray-600'} rounded-2xl p-3 shadow-lg max-w-[80%] ${msg.role === 'user' ? 'rounded-tr-none' : 'rounded-tl-none ring-1 ring-gray-100'}`}>
+                        {msg.role === 'ai' && msg.title && <p className="text-xl font-black mb-0.5 text-gray-900">{msg.title}</p>}
+                        <p className={`text-xl leading-relaxed font-bold ${msg.role === 'user' ? 'text-white' : ''}`} dangerouslySetInnerHTML={{ __html: msg.content }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 首页的快捷按钮 */}
+                {currentView === 'home' && (
+                  <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
+                    <PillBtn icon={RotateCcw} label="What to Eat" color="bg-rose-500" view="decision" onClick={() => handleNavigate('decision')} />
+                    <PillBtn icon={ShoppingBag} label="我要备餐" color="bg-indigo-600" view="meal_prep" onClick={() => handleNavigate('meal_prep')} />
+                    <PillBtn icon={Candy} label="想吃零食" color="bg-amber-500" view="snack" onClick={() => handleNavigate('snack')} />
+                    <PillBtn icon={BookOpen} label="学习知识" color="bg-emerald-500" view="knowledge" onClick={() => handleNavigate('knowledge')} />
+                  </div>
+                )}
+
+                {/* 非首页的筛选和输入区域 */}
+                {currentView !== 'home' && (
+                  <>
+                    {/* 筛选选项面板 */}
+                    {activeFilter && (
+                      <div className="absolute bottom-20 left-5 right-5 mb-2 p-2 bg-white border border-indigo-100 rounded-2xl shadow-2xl flex flex-wrap gap-2 z-50 animate-bounce-in">
+                        {(filterOptions[currentView] && filterOptions[currentView][activeFilter] ? filterOptions[currentView][activeFilter] : []).map(opt => (
+                          <button key={opt} data-filter-option onClick={() => handleOptionSelect(activeFilter, opt)} className="px-3 py-1.5 bg-indigo-50 text-indigo-700 text-[11px] font-bold rounded-xl hover:bg-indigo-600 hover:text-white transition-all">{opt}</button>
+                        ))}
+                        <button onClick={() => setActiveFilter(null)} className="ml-auto p-1 text-gray-400"><X size={14}/></button>
+                      </div>
+                    )}
+
+                    {/* 输入框区域 */}
+                    <div className="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden">
+                      {interactionStep !== 'restaurant_selected' && (
+                        <div className="px-3 pt-3 pb-2 border-b border-gray-50 bg-gray-50/50">
+                          <div className="grid grid-cols-3 gap-2">
+                            {currentView === 'decision' && (
+                              <>
+                                <button data-restaurant-btn onClick={handleRestaurantSelected} className="col-span-2 flex items-center justify-center space-x-2 px-1 py-2.5 rounded-xl text-[10px] font-black transition-all active:scale-95 bg-indigo-600 text-white shadow-md shadow-indigo-100">
+                                  <Store size={14} /><span>我选好餐厅了</span>
+                                </button>
+                                <QuickActionBtn filter="time" onClick={() => setActiveFilter('time')} icon={Timer} label="时间" />
+                                <QuickActionBtn filter="people" onClick={() => setActiveFilter('people')} icon={Users} label="人数" />
+                                <QuickActionBtn filter="taste" onClick={() => setActiveFilter('taste')} icon={SlidersHorizontal} label="口味" />
+                                <QuickActionBtn filter="budget" onClick={() => setActiveFilter('budget')} icon={DollarSign} label="预算" />
+                              </>
+                            )}
+                            {currentView === 'meal_prep' && (
+                              <>
+                                <QuickActionBtn onClick={() => setActiveFilter('prep_days')} icon={CalendarDays} label="天数" />
+                                <QuickActionBtn onClick={() => setActiveFilter('storage')} icon={Box} label="储存" />
+                                <QuickActionBtn onClick={() => setActiveFilter('grocery')} icon={ClipboardList} label="清单" />
+                                <QuickActionBtn onClick={() => setActiveFilter('strategy')} icon={Zap} label="技巧" />
+                                <QuickActionBtn onClick={() => setActiveFilter('flavor_profile')} icon={SlidersHorizontal} label="基调" />
+                                <QuickActionBtn onClick={() => setActiveFilter('prep_budget')} icon={DollarSign} label="预算" />
+                              </>
+                            )}
+                            {currentView === 'snack' && (
+                              <>
+                                <QuickActionBtn onClick={() => setActiveFilter('type')} icon={Candy} label="种类" />
+                                <QuickActionBtn onClick={() => setActiveFilter('timing')} icon={Clock} label="时机" />
+                                <QuickActionBtn onClick={() => setActiveFilter('goal')} icon={Trophy} label="目标" />
+                              </>
+                            )}
+                            {currentView === 'knowledge' && (
+                              <>
+                                <QuickActionBtn onClick={() => setActiveFilter('topic')} icon={Brain} label="话题" />
+                                <QuickActionBtn onClick={() => setActiveFilter('format')} icon={FileText} label="形式" />
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="relative flex items-center p-1.5 px-3 h-12">
+                        {interactionStep === 'restaurant_selected' ? (
+                          <>
+                            <button data-camera-btn="true" onClick={handleSearchSubmit} disabled={isUploadingImage} className={`flex-1 flex items-center justify-center gap-2 py-3 bg-indigo-50 border-2 border-indigo-300 border-dashed rounded-xl text-indigo-600 hover:bg-indigo-100 transition-all animate-pop-in active:scale-95 ${isUploadingImage ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                              {isUploadingImage ? (
+                                <>
+                                  <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+                                  <span className="text-[11px] font-black">正在上传...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Plus size={24} className="text-indigo-600" />
+                                  <span className="text-[11px] font-black">拍照菜单或菜品</span>
+                                </>
+                              )}
+                            </button>
+                            <button onClick={() => setInteractionStep('initial')} className="ml-2 p-2 text-gray-400 hover:text-gray-600 transition-colors"><X size={20}/></button>
+                          </>
+                        ) : (
+                          <>
+                            <input 
+                              type="text" 
+                              className="flex-1 bg-transparent text-[11px] font-bold outline-none pl-1" 
+                              placeholder="输入需求..."
+                              value={searchQuery}
+                              onChange={(e) => setSearchQuery(e.target.value)}
+                              onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit()}
+                            />
+                            <div className="flex gap-1">
+                              <button data-camera-btn onClick={handleSearchSubmit} className="p-2 bg-indigo-600 text-white rounded-full shadow-md active:scale-90 transition-transform flex items-center justify-center">
+                                <Send size={14} />
+                              </button>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* 首页的输入框 */}
+                {currentView === 'home' && (
+                  <div className="relative flex items-center gap-2">
+                    <div className="flex-1 bg-white rounded-full shadow-xl border border-white flex items-center px-4 h-11">
+                      <input type="text" className="flex-1 bg-transparent text-[10px] font-bold outline-none" placeholder="和 Jovida 教练聊聊..." value={inputText} onChange={(e) => setInputText(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && sendMessage()}/>
+                      <Send size={16} className="text-indigo-600 cursor-pointer" onClick={sendMessage} />
+                    </div>
+                    <button className="w-11 h-11 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-400 border border-white active:scale-90"><Plus size={20} /></button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+                </>
+      );
+    };
+
+    const PillBtn = ({ icon: Icon, label, color, onClick, view }) => (
+      <button data-view={view} onClick={onClick} className={`${color} text-white flex items-center gap-1 px-3 py-2 rounded-full shadow-lg shrink-0 active:scale-95 transition-all`}>
+        <Icon size={12} /><span className="text-[9px] font-black whitespace-nowrap">{label}</span>
+      </button>
+    );
+
+    const QuickActionBtn = ({ icon: Icon, label, onClick, filter }) => (
+      <button data-filter-btn={filter} onClick={onClick} className="flex items-center justify-center space-x-1 px-1 py-2 rounded-xl text-[10px] font-bold transition-all active:scale-95 border bg-white border-gray-200 text-gray-600 shadow-sm hover:border-indigo-300 hover:text-indigo-600">
+        <Icon size={12} className="text-gray-400" /><span className="truncate max-w-[50px]">{label}</span>
+      </button>
+    );
+
+    const RabbitFace = ({ size = "100" }) => (
+      <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="60" r="35" fill="#FFF" />
+        <circle cx="40" cy="55" r="3" fill="#333" />
+        <circle cx="60" cy="55" r="3" fill="#333" />
+        <circle cx="35" cy="65" r="5" fill="#FFC0CB" opacity="0.4" />
+        <circle cx="65" cy="65" r="5" fill="#FFC0CB" opacity="0.4" />
+      </svg>
+    );
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<WhatToEatPlanner />);
+    
+    // Initialize Lucide icons after render
+    const initIcons = () => {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      } else {
+        setTimeout(initIcons, 100);
+      }
+    };
+    
+    // Wait for DOM and Lucide to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initIcons);
+    } else {
+      setTimeout(initIcons, 500);
+    }
+    
+    // Also initialize on window load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons();
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

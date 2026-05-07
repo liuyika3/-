@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A · 主动性 · 每日挑战 · Jovida 减脂教练</title>
+  <style>
+    :root { --bg:#0b0f14; --card:#121826; --line:#2d3a52; --text:#e8edf5; --muted:#94a3b8; --accent:#fbbf24; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); padding:1.25rem clamp(1rem,4vw,2rem) 2rem; line-height:1.6; }
+    a.back { color:#fcd34d; text-decoration:none; font-size:0.9rem; }
+    a.back:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    h1 { font-size:1.35rem; margin:1rem 0 0.5rem; }
+    .tag { font-size:0.72rem; color:#fcd34d; letter-spacing:0.08em; text-transform:uppercase; }
+    .copy { color:var(--muted); max-width:52ch; font-size:0.95rem; }
+    .copy strong { color:#e2e8f0; }
+    .spare { font-size:0.8rem; color:#fde68a; margin:0.75rem 0 0; padding:0.55rem 0.75rem; border-radius:0.6rem; border:1px solid rgba(251,191,36,0.25); background:rgba(251,191,36,0.06); max-width:52ch; }
+    .shot {
+      margin-top:1.25rem; max-width:22rem; margin-left:auto; margin-right:auto;
+      border-radius:1.25rem; overflow:hidden; border:1px solid var(--line);
+      box-shadow:0 24px 48px rgba(0,0,0,0.4); background:#0f172a;
+    }
+    .shot img { width:100%; height:auto; display:block; vertical-align:middle; }
+    .shot figcaption { font-size:0.72rem; color:var(--muted); padding:0.6rem 0.85rem; border-top:1px solid var(--line); }
+    .picks { margin-top:1.75rem; max-width:56rem; }
+    .picks h2 { font-size:0.95rem; font-weight:800; margin:0 0 0.5rem; color:#fde68a; letter-spacing:0.04em; }
+    .picks .note { font-size:0.72rem; color:var(--muted); margin:0 0 1rem; line-height:1.45; }
+    .picks .note code { color:#fcd34d; font-size:0.7rem; }
+    .pick-grid {
+      display:grid; gap:0.75rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:720px) {
+      .pick-grid { grid-template-columns:repeat(2, 1fr); }
+    }
+    .pick {
+      border-radius:0.85rem; border:1px solid var(--line);
+      background:linear-gradient(165deg, rgba(30,41,59,0.9), #0f172a);
+      padding:0.85rem 1rem;
+    }
+    .pick .title { font-size:0.88rem; font-weight:700; color:#fef3c7; margin:0 0 0.35rem; }
+    .pick .body { font-size:0.78rem; color:var(--muted); margin:0; line-height:1.45; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← 返回 SPARE 总览</a>
+  <p class="tag">A · 主动性 · 我主导的设计</p>
+  <h1>每日挑战</h1>
+  <p class="copy">
+    <strong>主动触达：</strong>用「连续打卡 + 当日挑战卡」把行为拆小；卡片上 <strong>Take Photos</strong> 与拼图 <strong>+3</strong> 强化反馈，横滑可切换多条挑战。
+  </p>
+  <p class="spare">对应 SPARE 中的 <strong>A · 主动性</strong>：Coachplan 之外的轻量任务与游戏化节奏。</p>
+
+  <figure class="shot">
+    <img src="../assets/m2-daily-challenge-ui.png" alt="每日挑战：连续打卡与 Eat Dark Greens 任务卡" width="286" loading="lazy" />
+    <figcaption>界面物料 · 来源 <code style="color:#fcd34d;">主动性-每日挑战</code> → <code>assets/m2-daily-challenge-ui.png</code></figcaption>
+  </figure>
+
+  <section class="picks" aria-labelledby="picks-h">
+    <h2 id="picks-h">挑战库 · 曾选用的精选条目（示例）</h2>
+    <p class="note">
+      以下文案为产品侧「挑战库」里常见、可上线的精选类型，便于演示；若要与飞书文档完全一致，请在终端执行
+      <code>lark-cli auth login</code> 后使用
+      <code>lark-cli docs +search --as user --query 挑战库</code>
+      打开对应多维表/文档，把标题与说明替换进本段 HTML。
+    </p>
+    <div class="pick-grid">
+      <article class="pick">
+        <p class="title">Eat dark greens · 3 天</p>
+        <p class="body">深色叶菜打卡：连续 3 天在任一正餐中出现菠菜 / 羽衣甘蓝等，拍照 +3 拼图进度。</p>
+      </article>
+      <article class="pick">
+        <p class="title">Protein anchor · 每餐 ≥30g</p>
+        <p class="body">每餐先完成蛋白质「锚点」：鸡胸、鱼、希腊酸奶等，减少隐性饥饿与晚间暴食。</p>
+      </article>
+      <article class="pick">
+        <p class="title">Liquid calories reset</p>
+        <p class="body">一周无含糖饮料与酒精；用气泡水、茶与黑咖啡替代，卡片上 Take Photos 留证。</p>
+      </article>
+      <article class="pick">
+        <p class="title">10k steps · 工作日</p>
+        <p class="body">工作日日均步数 ≥10k，与 Coachplan 并行；轻量、可量化、易在挑战卡横滑中展示。</p>
+      </article>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jovida Health Plan</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body{
+      width: 100%;
+      overflow-x: hidden;
+      background: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    :root{
+      --design-w: 375;
+      --design-h: 2870;
+      /* ✅ 关键改动：不再 min(1,...)，而是随屏幕宽度等比放大/缩小 */
+      --scale: calc(100vw / (var(--design-w) * 1px));
+    }
+    .scale-wrap{
+      width: calc(var(--design-w) * 1px);
+      /* ✅ 关键改动：修正放大后的页面可滚动高度（不影响排版，只影响滚动范围） */
+      height: calc((var(--design-h) * 1px) * var(--scale));
+      margin: 0; /* ✅ 去掉居中导致的两边空白 */
+      transform: scale(var(--scale));
+      transform-origin: top left; /* ✅ 左上角对齐铺满 */
+    }
+
+    .container {
+      position: relative;
+      width: 375px;
+      margin: 0;
+      background-color: #ffffff;
+      min-height: 100vh;
+    }
+
+    /* Header Image */
+    .header-image {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 375px;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    /* Header Text */
+    .header-subtitle {
+      position: absolute;
+      left: calc(50% - 163.5px);
+      top: 224px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .header-title {
+      position: absolute;
+      left: calc(50% - 163.5px);
+      top: 255px;
+      width: 327px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: normal;
+      white-space: pre-wrap;
+    }
+
+    /* Meet Your Now Section */
+    .meet-your-now {
+      position: absolute;
+      left: 0;
+      top: 344px;
+      width: 375px;
+      height: 649px;
+    }
+
+    .meet-your-now-bg {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 375px;
+      height: 649px;
+      background-color: #ffffff;
+      border-radius: 24px;
+    }
+
+    .meet-your-now-icon {
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .meet-your-now-title {
+      position: absolute;
+      left: 54px;
+      top: 24px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    /* Stats Cards */
+    .stat-card {
+      position: absolute;
+      width: 158px;
+      height: 124px;
+      background-color: #f6f6f6;
+      border-radius: 20px;
+    }
+
+    .stat-value {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .stat-label {
+      position: absolute;
+      left: 28px;
+      top: 91px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+    }
+
+    .height-card { left: 24px; top: 60px; }
+    .weight-card { left: 193px; top: 60px; }
+    .bmi-card { left: 24px; top: 197px; }
+    .sleep-card { left: 193px; top: 197px; }
+
+    .bmi-progress {
+      position: absolute;
+      left: 16px;
+      top: 56px;
+      width: 126px;
+      height: 6px;
+      border-radius: 19px;
+      background: linear-gradient(to right, #ef4444, #eab308, #22c55e);
+    }
+
+    .bmi-marker {
+      position: absolute;
+      left: 85px;
+      top: 54px;
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+      border-radius: 50%;
+    }
+
+    /* Sleep Info */
+    .sleep-info-container {
+      position: absolute;
+      left: 24px;
+      top: 329px;
+      width: 327px;
+      height: 159px;
+    }
+
+    .sleep-info-bubble {
+      position: absolute;
+      left: 50%;
+      top: 39px;
+      transform: translateX(-50%);
+      width: 327px;
+      background-color: #67c100;
+      border-radius: 20px;
+      padding: 20px 16px 12px 16px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+    }
+
+    .sleep-info-bubble .highlight { font-weight: 700; }
+    .sleep-info-bubble .faded { color: rgba(255, 255, 255, 0.6); }
+
+    .sleep-icon {
+      position: absolute;
+      left: 16px;
+      top: -41px;
+      width: 59px;
+      height: 61px;
+    }
+
+    /* Habits */
+    .habits-label {
+      position: absolute;
+      left: 24px;
+      top: 524px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .habit-tag {
+      position: absolute;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .habit-1 { left: 24px; top: 545px; background-color: rgba(255, 152, 9, 0.2); color: #ff9809; }
+    .habit-2 { left: 142px; top: 545px; background-color: rgba(173, 146, 255, 0.2); color: #ad92ff; }
+    .habit-3 { left: 24px; top: 591px; background-color: rgba(55, 154, 255, 0.2); color: #379aff; }
+    .habit-4 { left: 188px; top: 591px; background-color: rgba(109, 205, 0, 0.2); color: #6dcd00; }
+
+    /* Big Why Section */
+    .big-why {
+      position: absolute;
+      left: 0;
+      top: 1005px;
+      width: 375px;
+      height: 341px;
+    }
+
+    .big-why-bg {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 375px;
+      height: 341px;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .big-why-image {
+      position: absolute;
+      width: 136.4%;
+      height: 100%;
+      left: -11.22%;
+      top: 0;
+      object-fit: cover;
+    }
+
+    .big-why-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 24px;
+    }
+
+    .big-why-title {
+      position: absolute;
+      left: 24px;
+      top: 32px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .big-why-content {
+      position: absolute;
+      left: 24px;
+      top: 77px;
+      width: 327px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .big-why-content .faded { color: rgba(255, 255, 255, 0.7); }
+    .big-why-content > div { margin-bottom: 16px; }
+
+    /* Journey Section */
+    .journey {
+      position: absolute;
+      left: 0;
+      top: 1358px;
+      width: 375px;
+      height: 939px;
+    }
+
+    .journey-bg {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 375px;
+      height: 939px;
+      background-color: #ffffff;
+      border-radius: 24px;
+    }
+
+    .journey-header {
+      position: absolute;
+      left: 56px;
+      top: 37px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .journey-badges {
+      position: absolute;
+      left: 56px;
+      top: 73px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .journey-badge {
+      background-color: #f2f2f2;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 30px;
+      top: 131px;
+      width: 0;
+      height: 788px;
+      border-left: 2px dashed #e7e9ec;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 25px;
+      width: 10px;
+      height: 10px;
+      background-color: #f2f2f2;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .stage-card {
+      position: absolute;
+      left: 50px;
+      width: 301px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 2px solid #ffffff;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .stage-1 { top: 129px; background-color: #acff4e; }
+    .stage-2 { top: 565px; background-color: #ffe24f; }
+
+    .stage-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+
+    .stage-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .day-item {
+      position: absolute;
+      left: 66px;
+      width: 285px;
+      background-color: #f2f2f2;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 12px;
+    }
+
+    .day-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+
+    .day-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.4);
+      line-height: 18px;
+    }
+
+    .day-1 { top: 235px; }
+    .day-2 { top: 335px; }
+    .day-3 { top: 453px; }
+    .day-4 { top: 671px; }
+    .day-5 { top: 777px; }
+
+    .journey-footer {
+      position: absolute;
+      left: calc(50% - 131.5px);
+      top: 914px;
+      width: 279px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.8);
+      text-align: center;
+    }
+
+    /* Bottom Section - New Design */
+    .bottom-sticker-container {
+      position: absolute;
+      left: 50%;
+      top: 2325px;
+      transform: translateX(-50%);
+      width: 283px;
+      height: 181px;
+    }
+
+    .bottom-sticker-main {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 203px;
+      height: 230px;
+    }
+
+    .bottom-sticker-main img {
+      width: 100%;
+      height: 120.67%;
+      object-fit: cover;
+      margin-top: -12.5%;
+    }
+
+    .bottom-sticker-icon-1 {
+      position: absolute;
+      left: 26px;
+      top: 62px;
+      width: 70px;
+      height: 70px;
+    }
+
+    .bottom-sticker-icon-1 img {
+      width: 100%;
+      height: 100%;
+      transform: rotate(337.105deg);
+    }
+
+    .bottom-sticker-icon-2 {
+      position: absolute;
+      left: 176px;
+      top: 22px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .bottom-sticker-icon-2 img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bottom-info-section {
+      position: absolute;
+      left: 0;
+      top: 2506px;
+      width: 375px;
+      height: 364px;
+    }
+
+    .bottom-info-bg {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 375px;
+      height: 364px;
+      background-color: #ffffff;
+      border-radius: 23px;
+    }
+
+    .bottom-text-container {
+      position: absolute;
+      left: calc(50% - 163.5px);
+      top: 24px;
+      width: 327px;
+    }
+
+    .bottom-text-intro {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      line-height: normal;
+      margin-bottom: 16px;
+    }
+
+    .bottom-text-intro .green { color: #67c100; }
+
+    .bottom-text-tip {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 18px;
+      margin-top: 16px;
+    }
+
+    .bottom-ordering-guide {
+      position: absolute;
+      left: 50%;
+      top: 166px;
+      transform: translateX(-50%);
+      width: 327px;
+      background-color: #67c100;
+      border-radius: 18px;
+      padding: 20px 16px 12px 16px;
+      color: #ffffff;
+      z-index: 1;
+    }
+
+    .bottom-ordering-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .bottom-ordering-content {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+    }
+
+    .bottom-ordering-content .bold { font-weight: 600; }
+    .bottom-ordering-content .faded { color: rgba(255, 255, 255, 0.8); }
+
+    .icon-small {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+    }
+
+    .icon-1 { left: 16px; top: 1474px; }
+    .icon-2 { left: 16px; top: 1910px; }
+    .icon-3 { left: 16px; top: 900px; width: 32px; height: 32px; }
+
+    .stage-icon {
+      position: absolute;
+      left: 25px;
+      width: 14px;
+      height: 14px;
+      background-color: #f2f2f2;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .stage-icon-1 { top: 137px; }
+    .stage-icon-2 { top: 573px; }
+
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <div class="scale-wrap">
+    <div class="container">
+      <img src="https://www.figma.com/api/mcp/asset/8a418157-783a-4ea8-aaab-ccd7341b3585" alt="Header" class="header-image">
+      <p class="header-subtitle">Stone's Health Analyze</p>
+      <p class="header-title">Your health journey is ready to begin</p>
+
+      <div class="meet-your-now">
+        <div class="meet-your-now-bg"></div>
+        <img src="https://www.figma.com/api/mcp/asset/114b8b1d-b55d-468e-bdd5-eaf68a4ebe8f" alt="Icon" class="meet-your-now-icon">
+        <p class="meet-your-now-title">Meet Your Now</p>
+
+        <div class="stat-card height-card">
+          <div class="stat-value">180 cm</div>
+          <div class="stat-label">Height</div>
+          <img src="https://www.figma.com/api/mcp/asset/506c45e6-3a98-4f7c-a890-1056f4796a0e" alt="Dot" style="position: absolute; left: 16px; top: 97px; width: 6px; height: 6px;">
+        </div>
+
+        <div class="stat-card weight-card">
+          <div class="stat-value">75 kg</div>
+          <div class="stat-label">Weight</div>
+          <img src="https://www.figma.com/api/mcp/asset/4ff38392-dd8f-49c6-a59d-d7666660aa39" alt="Dot" style="position: absolute; left: 16px; top: 97px; width: 6px; height: 6px;">
+        </div>
+
+        <div class="stat-card bmi-card">
+          <div class="stat-value">34</div>
+          <div class="stat-label">BMI</div>
+          <div class="bmi-progress"></div>
+          <div class="bmi-marker"></div>
+          <img src="https://www.figma.com/api/mcp/asset/3fe21c3a-c569-427d-9399-7a93508ca90a" alt="Dot" style="position: absolute; left: 16px; top: 97px; width: 6px; height: 6px;">
+        </div>
+
+        <div class="stat-card sleep-card">
+          <div class="stat-value">7.5 h</div>
+          <div class="stat-label" style="top: 74px; width: 114px; white-space: pre-wrap;">Average Sleep Time</div>
+          <img src="https://www.figma.com/api/mcp/asset/709220d9-f6aa-452d-b3f5-5508802e97a2" alt="Dot" style="position: absolute; left: 16px; top: 80px; width: 6px; height: 6px;">
+        </div>
+
+        <div class="sleep-info-container">
+          <div class="sleep-info-bubble">
+            <div class="sleep-icon">
+              <img src="https://www.figma.com/api/mcp/asset/b739dc02-eeeb-4d96-aa74-438307933e79" alt="Sleep Icon" style="width: 100%; height: 100%; transform: rotate(180deg) scaleY(-1);">
+            </div>
+            <span class="faded">Your sleep length is fine, but you fell asleep too</span> <span class="highlight">late (02:15)</span>.
+            <span class="faded">Your sleep length is fine, but you fell asleep</span> <span class="highlight">too late (02:15).</span>
+          </div>
+        </div>
+
+        <p class="habits-label">Habits</p>
+        <div class="habit-tag habit-1">#Super Busy</div>
+        <div class="habit-tag habit-2">#Lives on Takeout</div>
+        <div class="habit-tag habit-3">#Lactose Intolerant</div>
+        <div class="habit-tag habit-4">#Night Owl</div>
+      </div>
+
+      <div class="big-why">
+        <div class="big-why-bg">
+          <img src="https://www.figma.com/api/mcp/asset/f5ef259a-c6cc-4b86-86a5-39acab4deb32" alt="Big Why" class="big-why-image">
+          <div class="big-why-overlay"></div>
+        </div>
+        <p class="big-why-title">Your Big Why</p>
+        <div class="big-why-content">
+          <div>
+            <span class="faded">Our Goal: To create a metabolic environment that is optimized for fertility, while achieving a </span>more toned and defined physique.
+          </div>
+          <div>
+            <span class="faded">Core Strategy: "Bio-Hacking Your Routine" We won't fight against your busy schedule. Instead,</span> we will leverage your fragmented pockets of time.
+          </div>
+        </div>
+      </div>
+
+      <div class="journey">
+        <div class="journey-bg"></div>
+        <div class="journey-icon-container" style="position: absolute; left: 24px; top: 37px; width: 24px; height: 24px;">
+          <div style="position: absolute; left: 3.2px; top: 0; width: 19.624px; height: 23.436px;">
+            <div style="transform: rotate(10.833deg);">
+              <img src="https://www.figma.com/api/mcp/asset/8c70dd94-15f7-4830-a98c-c3143dd79a53" alt="Journey Icon" style="width: 16px; height: 20.8px;">
+            </div>
+          </div>
+          <div style="position: absolute; left: 0; top: 9px; width: 11.6px; height: 13.939px;">
+            <div style="transform: rotate(350.077deg);">
+              <img src="https://www.figma.com/api/mcp/asset/6ae08517-bfc9-4ad6-b64c-4940e63e0788" alt="Journey Icon Detail" style="width: 9.594px; height: 12.472px;">
+            </div>
+          </div>
+        </div>
+        <p class="journey-header">Your journey</p>
+        <div class="journey-badges">
+          <div class="journey-badge" style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">
+              <div style="width: 5px; height: 7.5px; background: #67c100; border-radius: 2px; margin-right: 2px;"></div>
+              <div style="width: 5px; height: 11.67px; background: #67c100; opacity: 0.3; border-radius: 2px; margin-right: 2px;"></div>
+              <div style="width: 5px; height: 15.83px; background: #67c100; opacity: 0.3; border-radius: 2px;"></div>
+            </div>
+            Low Friction
+          </div>
+          <div class="journey-badge">5-10 minutes a day</div>
+        </div>
+
+        <div class="timeline-line"></div>
+        <div class="timeline-dot" style="top: 236px;"></div>
+        <div class="timeline-dot" style="top: 335px;"></div>
+        <div class="timeline-dot" style="top: 453px;"></div>
+        <div class="timeline-dot" style="top: 671px;"></div>
+        <div class="timeline-dot" style="top: 777px;"></div>
+
+        <div class="stage-icon stage-icon-1"></div>
+        <div class="stage-card stage-1">
+          <div class="stage-label">🗓 STAGE 1 • WEEK 1-3</div>
+          <div class="stage-title">Igniting the Engine: Painless Health Plugins</div>
+        </div>
+
+        <div class="day-item day-1">
+          <div class="day-title">Day 1 • Menu Detective Identify</div>
+          <div class="day-desc">"hidden oil and salt" in takeout orders and build initial awareness.</div>
+        </div>
+
+        <div class="day-item day-2">
+          <div class="day-title">Day 3 • 5-Minute Exercise Snacks</div>
+          <div class="day-desc">No clothes change required—activate your metabolism using fragmented .</div>
+        </div>
+
+        <div class="day-item day-3">
+          <div class="day-title">Day 7 • Blind Box Reward Day</div>
+          <div class="day-desc">Review your weekly data and enjoy a guilt-free treat.</div>
+        </div>
+
+        <div class="stage-icon stage-icon-2"></div>
+        <div class="stage-card stage-2">
+          <div class="stage-label">🗓 STAGE 2 • WEEK 4-6</div>
+          <div class="stage-title">Building the System: Micro-Meal Prep & Sleep Optimization</div>
+        </div>
+
+        <div class="day-item day-4">
+          <div class="day-title">Day 1 • Weekend 15-Minute Meal Prep</div>
+          <div class="day-desc">Prepare simple "health components" to make your workdays effortless.</div>
+        </div>
+
+        <div class="day-item day-5">
+          <div class="day-title">Day 4 • Sleep Environment</div>
+          <div class="day-desc">Optimize deep sleep duration based on your wearable tracker data.</div>
+        </div>
+
+        <p class="journey-footer">Get started with Jovida for more Stage...</p>
+        <div class="icon-small icon-3">
+          <div style="position: absolute; left: 2px; top: 2px; width: 24px; height: 24px;">
+            <div style="position: absolute; left: 2px; top: 0px; width: 20px; height: 26px;">
+              <img src="https://www.figma.com/api/mcp/asset/9f53a051-9376-4cff-9eaa-619ba27bfa42" alt="Lock Icon" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-small icon-1">
+        <img src="https://www.figma.com/api/mcp/asset/9a8d467b-5bc0-4fe6-b117-9acf14eb1340" alt="Icon" style="width: 100%; height: 100%;">
+      </div>
+      <div class="icon-small icon-2">
+        <img src="https://www.figma.com/api/mcp/asset/dcc60a0a-b3bb-45ab-8cff-6884b605e933" alt="Icon" style="width: 100%; height: 100%;">
+      </div>
+
+      <div class="bottom-sticker-container">
+        <div class="bottom-sticker-icon-2">
+          <img src="https://www.figma.com/api/mcp/asset/ff955a0f-8c1a-4c3e-9108-396781189690" alt="Sticker Icon 2">
+        </div>
+        <div class="bottom-sticker-main">
+          <img src="https://www.figma.com/api/mcp/asset/81859533-fc0a-4e03-ac41-b9a962aeacb4" alt="Character">
+        </div>
+        <div class="bottom-sticker-icon-1">
+          <img src="https://www.figma.com/api/mcp/asset/342922ce-8a51-4e6b-8c39-da06d1fab83b" alt="Sticker Icon 1">
+        </div>
+      </div>
+
+      <div class="bottom-info-section">
+        <div class="bottom-info-bg"></div>
+        <div class="bottom-text-container">
+          <p class="bottom-text-intro">
+            <span class="green">I am your journey companion, Jovida. </span>
+            <span>I don't give grades</span> scores, I only help you adjust.
+          </p>
+          <p class="bottom-text-tip">💡 Research shows that flexible plans have a 30% higher success rate than strict dieting.</p>
+        </div>
+
+        <div class="bottom-ordering-guide">
+          <div class="bottom-ordering-title">Ordering guide for busy days.</div>
+          <div class="bottom-ordering-content">
+            <span class="bold">Recommended Combo: </span>
+            <span class="faded">Skinless chicken soup / Steamed egg (Protein) + Blanched greens (Fiber) + Multigrain rice (eat only half, to control sugar levels)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

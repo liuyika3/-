@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jovida Demo · 健康饮酒</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}html,body{margin:0;padding:0}
+    body{font-family:-apple-system,"PingFang SC","SF Pro Text","Helvetica Neue",system-ui,sans-serif;background:#ecedf1;color:#0d1026;padding:56px 40px 120px;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+    .page-head{max-width:2100px;margin:0 auto 40px}.page-head h1{font-size:34px;font-weight:900;margin:0 0 10px;letter-spacing:-.02em}.page-head p{margin:0;color:#62687f;font-size:15px;max-width:1100px;line-height:1.6}
+    .grid{max-width:2100px;margin:0 auto;display:grid;grid-template-columns:440px;gap:40px;justify-content:center}
+    .frame{display:flex;flex-direction:column;align-items:center;width:440px}.caption{margin-top:22px;text-align:left;width:440px}.caption .num{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#0d1026;color:#fff;border-radius:999px;font-size:12px;font-weight:900;margin-right:10px;vertical-align:middle}.caption h3{display:inline;margin:0;font-size:16px;font-weight:900;vertical-align:middle}.caption p{margin:8px 0 0;font-size:13px;color:#62687f;line-height:1.6}
+    .phone{width:440px;height:956px;border-radius:60px;background:linear-gradient(180deg,#cfe7ff 0%,#e3f1ff 40%,#fff5dc 100%);overflow:hidden;position:relative;box-shadow:0 0 0 2px #3a3e55,0 0 0 13px #0a0c1a,0 0 0 15px #2a2e44,0 60px 100px -30px rgba(13,16,38,.5),0 20px 40px -20px rgba(13,16,38,.35)}
+    .island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:126px;height:38px;background:#050610;border-radius:999px;z-index:50}
+    .status{height:58px;padding:20px 36px 0;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:800;color:#0d1026;font-variant-numeric:tabular-nums}
+    .nav{padding:10px 22px;display:flex;align-items:center;justify-content:space-between;min-height:48px}.nav .l,.nav .r{display:flex;align-items:center;gap:10px}.nav .sub-ttl{font-size:10px;color:#62687f;font-weight:700;margin-top:1px}.nav .icn{width:38px;height:38px;border-radius:14px;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid rgba(13,16,38,.05);backdrop-filter:blur(12px)}
+    .content{position:absolute;left:0;right:0;top:116px;bottom:108px;overflow:auto;padding:0 20px 28px;scrollbar-width:none;-ms-overflow-style:none}.content::-webkit-scrollbar{width:0;height:0;display:none}
+    .inputbar{position:absolute;left:18px;right:18px;bottom:28px;background:#fff;border-radius:22px;padding:11px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 18px 44px -16px rgba(13,16,38,.25);border:1px solid rgba(13,16,38,.06);z-index:15}.inputbar .plus{width:34px;height:34px;background:#f1f3f9;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#62687f;flex-shrink:0}.inputbar .ph{flex:1;font-size:13px;color:#aab0c3;font-weight:700}.inputbar .send{width:34px;height:34px;background:#0d1026;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+    .chat-divider{margin:18px 0 10px;text-align:center;color:#aab0c3;font-size:11px;font-weight:900;letter-spacing:.04em}
+    .row-msg{display:flex;gap:10px;margin:12px 0;align-items:flex-end}.row-msg.me{justify-content:flex-end}.avatar-sm{width:28px;height:28px;border-radius:12px;background:rgba(255,255,255,.7);border:1px solid rgba(13,16,38,.06);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#0d1026;flex-shrink:0}
+    .bubble{max-width:312px;background:rgba(255,255,255,.86);border:1px solid rgba(13,16,38,.08);box-shadow:0 14px 28px -22px rgba(13,16,38,.35);padding:10px 12px;border-radius:18px;font-size:13px;line-height:1.55;font-weight:700;color:#0d1026}.bubble.me{background:#0d1026;color:#fff;border-color:rgba(255,255,255,.10)}.bubble b{font-weight:900}
+    .group-head{margin:18px 0 8px;display:flex;align-items:center;justify-content:space-between;color:#62687f;font-size:11px;font-weight:900}.group-head .r{color:#aab0c3;font-weight:900}
+    .nudge{background:rgba(255,255,255,.92);border:1px solid rgba(13,16,38,.08);border-radius:18px;box-shadow:0 22px 40px -34px rgba(13,16,38,.55);overflow:hidden}
+    .nudge+.nudge{margin-top:10px}
+    .nudge.text{padding:14px}.nudge.text .ttl{font-weight:900;font-size:14px;margin-bottom:6px}.nudge.text .sub{color:#62687f;font-size:12px;line-height:1.55;font-weight:800}
+    .nudge.quote{padding:14px;background:radial-gradient(140% 160% at 80% 0%,#d6ffe7,#49c78d 55%,#0a3b28 100%);border-color:rgba(255,255,255,.12);color:#fff}.nudge.quote .q{font-size:14px;font-weight:900;line-height:1.55}.nudge.quote .by{margin-top:8px;font-size:11px;font-weight:900;opacity:.85}
+    .nudge.todo{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:12px}.check{width:22px;height:22px;border-radius:8px;border:2px solid rgba(13,16,38,.18);background:rgba(255,255,255,.85);flex-shrink:0}.todo .txt b{font-weight:900;font-size:13px}.todo .txt span{display:block;color:#62687f;font-size:11px;font-weight:900;margin-top:3px}.todo .when{font-size:11px;font-weight:900;color:#0d1026;padding:6px 10px;border-radius:999px;background:rgba(255,217,74,.55);border:1px solid rgba(13,16,38,.06);white-space:nowrap}
+    .nudge.small{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px}.nudge.small .icon{width:44px;height:44px;border-radius:16px;background:#f1f3f9;border:1px solid rgba(13,16,38,.06);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900}.tint-mint{background:#e7fbf0!important}.tint-blue{background:#eef7ff!important}.tint-cream{background:#fff7e5!important}.tint-gold{background:#fef7e2!important}.small .txt b{font-weight:900;font-size:13px}.small .txt .sub{color:#62687f;font-size:11px;font-weight:900;margin-top:3px;line-height:1.35}.small .right{text-align:right}.small .price{font-weight:900;font-size:13px}.small .tag-mini{margin-top:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;padding:3px 8px;border-radius:999px;background:rgba(13,16,38,.06);color:#3c4362;border:1px solid rgba(13,16,38,.05);white-space:nowrap}
+    .propose{margin-top:12px;padding:14px;border-radius:20px;border:1px solid rgba(13,16,38,.10);background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.82));box-shadow:0 24px 44px -34px rgba(13,16,38,.60)}.propose .hd{font-size:13px;font-weight:900;margin-bottom:6px}.propose .q{font-size:12px;color:#62687f;font-weight:900;line-height:1.5}.propose .info{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.propose .info span{font-size:10px;font-weight:900;color:#3c4362;padding:5px 10px;border-radius:999px;background:rgba(13,16,38,.05);border:1px solid rgba(13,16,38,.05)}.btns{display:flex;gap:10px;margin-top:12px}.btn{flex:1;border-radius:14px;padding:10px 12px;font-weight:900;font-size:12px;text-align:center;border:1px solid rgba(13,16,38,.10);background:rgba(255,255,255,.86);user-select:none}.btn.prim{background:linear-gradient(180deg,#0d1026,#1b1f3b);color:#fff;border-color:rgba(255,255,255,.12)}
+  </style>
+</head>
+<body>
+  <div class="page-head">
+    <h1>健康饮酒 · Demo</h1>
+    <p>按 Jovida 设计语言复刻一个“健康饮酒”页面：引言、今晚可执行 TODO、规则、替代方案、备货推荐、Goal 提案。无后端。</p>
+  </div>
+  <div class="grid">
+    <div class="frame">
+      <div class="phone">
+        <div class="island"></div>
+        <div class="status"><span>21:08</span><span class="icons">●●●●  📶  🔋</span></div>
+        <div class="nav">
+          <div class="l">
+            <div class="icn">‹</div>
+            <div>
+              <div style="font-size:15px; font-weight:900;">Drink Session</div>
+              <div class="sub-ttl">场景 · 健康饮酒 · 今晚</div>
+            </div>
+          </div>
+          <div class="r"><div class="icn">⋯</div></div>
+        </div>
+        <div class="content">
+          <div class="chat-divider">今天 21:06</div>
+          <div class="row-msg me"><div class="bubble me">我不想戒酒，但我一喝就上头、第二天很累。给我一套“健康饮酒”的办法，今晚就能用。</div></div>
+          <div class="row-msg"><div class="avatar-sm">J</div><div class="bubble">收到。我给你一个 <b>“今晚喝得爽 + 明天不崩”</b>的策略：<b>3 个动作 + 3 条红线 + 3 个替代品</b>。</div></div>
+          <div class="group-head"><div class="l">① 核心原则 · 引言</div><div class="r">1:1 · 1</div></div>
+          <div class="nudge quote"><div class="q">伤害不是“酒精本身”，而是：剂量 × 速度 × 空腹 × 睡眠被打断。</div><div class="by">— Jovida · 今晚策略摘要</div></div>
+          <div class="group-head"><div class="l">② 今晚就能做的 3 件事</div><div class="r">TODO · 3</div></div>
+          <div class="nudge todo"><div class="check"></div><div class="txt"><b>先吃再喝：蛋白 + 脂肪打底</b><span>例：酸奶 / 鸡蛋 / 坚果 · 10 min 搞定</span></div><div class="when">Now</div></div>
+          <div class="nudge todo"><div class="check"></div><div class="txt"><b>把速度钉住：每杯间隔 ≥ 30 min</b><span>Jovida 帮你计时提醒</span></div><div class="when">30m</div></div>
+          <div class="nudge todo"><div class="check"></div><div class="txt"><b>每杯配一杯水：1:1 规则</b><span>第二天头痛概率下降</span></div><div class="when">1:1</div></div>
+          <div class="group-head"><div class="l">③ 3 条红线（别踩）</div><div class="r">Text · 1</div></div>
+          <div class="nudge text"><div class="ttl">守住这三条，明天基本不会崩</div><div class="sub">1) <b>别空腹</b>；2) <b>别混饮</b>（啤+烈 / 香槟+烈最容易上头）；3) <b>别压睡眠</b>（最后一杯至少离睡觉 3 小时）。</div></div>
+          <div class="group-head"><div class="l">④ 替代方案 · 3 个“像喝酒一样爽”的选择</div><div class="r">小图 · 3</div></div>
+          <div class="nudge small"><div class="icon tint-mint">L</div><div class="txt"><b>无酒精 Mojito</b><div class="sub">薄荷 + 青柠 + 苏打 · 口感像鸡尾酒</div></div><div class="right"><div class="price">¥ 19</div><div class="tag-mini">外卖</div></div></div>
+          <div class="nudge small"><div class="icon tint-blue">T</div><div class="txt"><b>热姜柠檬茶</b><div class="sub">降低“想喝点什么”的冲动</div></div><div class="right"><div class="price">¥ 0</div><div class="tag-mini">家里</div></div></div>
+          <div class="nudge small"><div class="icon tint-cream">S</div><div class="txt"><b>气泡水 + 冰 + 葡萄汁</b><div class="sub">社交手感在线 · 低负担</div></div><div class="right"><div class="price">¥ 12</div><div class="tag-mini">便利店</div></div></div>
+          <div class="group-head"><div class="l">⑤ 明天不宿醉 · 一键备货</div><div class="r">小图 · 3</div></div>
+          <div class="nudge small"><div class="icon tint-gold">E</div><div class="txt"><b>电解质冲剂</b><div class="sub">睡前 1 包 · 缓解头痛与口渴</div></div><div class="right"><div class="price">¥ 39</div><div class="tag-mini">京东</div></div></div>
+          <div class="nudge small"><div class="icon tint-cream">N</div><div class="txt"><b>坚果小包</b><div class="sub">“先吃再喝”最省事的打底</div></div><div class="right"><div class="price">¥ 28</div><div class="tag-mini">盒马</div></div></div>
+          <div class="nudge small"><div class="icon tint-blue">0%</div><div class="txt"><b>无酒精起泡葡萄汁</b><div class="sub">社交不尴尬 · 酒感替代</div></div><div class="right"><div class="price">¥ 58</div><div class="tag-mini">天猫</div></div></div>
+          <div class="row-msg"><div class="avatar-sm">J</div><div class="bubble">要不要我把它做成一个 <b>「健康饮酒」Goal</b>？你只要点一下，我会在你常喝的夜晚自动提醒：打底 / 计时 / 补水 / 止酒点。</div></div>
+          <div class="propose"><div class="hd">创建「健康饮酒」长期 Goal？</div><div class="q">每次社交自动给你：速度控制 + 补水提醒 + 止酒点 + 次日恢复计划</div><div class="info"><span>每杯计时</span><span>1:1 补水</span><span>止酒点</span><span>睡眠保护</span></div><div class="btns"><div class="btn">先不用</div><div class="btn prim">创建 Goal</div></div></div>
+        </div>
+        <div class="inputbar"><div class="plus">+</div><div class="ph">问我：今晚喝什么不容易上头？</div><div class="send">></div></div>
+      </div>
+      <div class="caption"><span class="num">1</span><h3>健康饮酒 · 页面</h3><p>双击打开即可录屏；无后端、内容预制。</p></div>
+    </div>
+  </div>
+</body>
+</html>

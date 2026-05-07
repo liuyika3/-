@@ -1,0 +1,105 @@
+========================================
+Jovida 智能食谱推荐引擎 - 使用说明
+========================================
+
+【快速启动方法】
+
+方法1：双击运行 "启动服务器.bat"
+  - 会自动启动服务器并打开浏览器
+  - 服务器地址：http://localhost:5000
+
+方法2：命令行启动
+  - 打开命令行，进入项目目录
+  - 运行：python start_server.py
+  - 浏览器会自动打开
+
+方法3：直接运行 app.py
+  - 运行：python app.py
+  - 手动在浏览器打开：http://localhost:5000
+
+========================================
+【功能说明】
+
+1. 配置 Vertex AI（首次使用）：
+   - 在左侧"Vertex AI 配置"区域填写环境变量
+   - 或直接在系统环境变量中设置（系统会自动检测）
+   - 点击"连接 Vertex AI"完成配置
+
+2. 输入用户信息：
+   - 在"用户信息输入"文本框中描述您的需求
+   - 例如："我是上班族，中午只有15分钟，需要快速午餐，素食主义者，有微波炉"
+   - 或："周末想做丰盛晚餐，素食，对坚果过敏，有完整厨房"
+
+3. AI智能推荐：
+   - 点击"🤖 AI 智能推荐"按钮
+   - AI会自动分析您的需求并生成筛选标签
+   - 系统根据标签筛选出3-5道最适合的食谱
+
+4. 查看所有食谱：
+   - 点击"📋 查看所有食谱"浏览完整数据库（100道菜）
+
+5. 自定义提示词（高级）：
+   - 展开"提示词配置"区域
+   - 可以修改AI分析用户信息的提示词模板
+   - 点击"加载默认提示词"恢复默认设置
+
+========================================
+【Vertex AI 环境变量配置】
+
+如果通过系统环境变量配置，需要设置：
+
+Windows PowerShell:
+  $env:GOOGLE_CLOUD_PROJECT="your-project-id"
+  $env:GOOGLE_CLOUD_LOCATION="us-central1"
+  $env:GOOGLE_GENAI_USE_VERTEXAI="True"
+  $env:GOOGLE_APPLICATION_CREDENTIALS="C:\path\to\credentials.json"
+
+Linux/Mac:
+  export GOOGLE_CLOUD_PROJECT="your-project-id"
+  export GOOGLE_CLOUD_LOCATION="us-central1"
+  export GOOGLE_GENAI_USE_VERTEXAI="True"
+  export GOOGLE_APPLICATION_CREDENTIALS="/path/to/credentials.json"
+
+========================================
+【数据库说明】
+
+系统已包含100道中餐食谱数据库（recipes_database.csv）
+包含：宫保鸡丁、麻婆豆腐、各种汤品、主食、小吃等
+
+数据格式：
+- name: 菜名
+- ingredients: 食材
+- protein, calories, carbs, fiber: 营养成分
+- prep_time, cook_time: 准备和烹饪时间
+- meal_type: 适合的用餐时间
+- allergen: 过敏原
+- equipment_needed: 所需设备
+
+系统会自动为每道菜生成标签：
+- Level 0: 类别（Main Dish, Side Dish, Complete Meal, Breakfast, Snack）
+- Level 1: 硬属性（timing, dietary, allergens, equipment）
+- Level 2/3/4: 策略标签（Health, Effort, Flavor）
+
+========================================
+【筛选逻辑】
+
+1. 硬过滤（L0 & L1）：
+   - 根据AI生成的类别、时间、饮食偏好筛选
+   - 排除用户过敏的食材
+   - 排除需要用户没有的设备
+
+2. 顺序漏斗（L2/L3/L4）：
+   - 根据AI生成的优先级顺序应用标签筛选
+   - 目标：每个类别保留3-5道菜
+   - 如果筛选后<3道，自动回滚到上一步
+
+3. 最终选择：
+   - 从每个类别的3-5道菜中选择最佳推荐
+
+========================================
+【停止服务器】
+
+在运行服务器的命令行窗口中按 Ctrl+C
+
+========================================
+

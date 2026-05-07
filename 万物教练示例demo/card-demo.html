@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>行动 / 等待 卡片样式 Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(120% 120% at 0% 0%, rgba(56,189,248,0.18), transparent 60%),
+                  radial-gradient(120% 120% at 100% 100%, rgba(129,140,248,0.18), transparent 60%),
+                  #020617;
+      color: #e5e7eb;
+    }
+    .phone-shell-active {
+      border-color: rgba(56,189,248,0.9);
+      background: rgba(15,23,42,0.8);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+      backdrop-filter: blur(24px);
+    }
+    .phone-shell-idle {
+      border-color: rgba(51,65,85,0.8);
+      background: rgba(15,23,42,0.6);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.8);
+      backdrop-filter: blur(18px);
+    }
+    .glass-card {
+      background: rgba(15,23,42,0.6);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: rgba(148,163,184,0.7);
+      border-radius: 999px;
+    }
+    .chart-bar {
+      background: linear-gradient(to top, #22c55e, #4ade80);
+    }
+    .chart-line-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+    .btn-tab-active {
+      background-color: rgba(15,23,42,1);
+      color: #e5e7eb;
+    }
+    .btn-tab-idle {
+      background-color: rgba(15,23,42,0.2);
+      color: #9ca3af;
+    }
+    .badge-mode {
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-72 border-r border-slate-800/60 bg-slate-950/70 backdrop-blur-xl flex flex-col">
+      <div class="px-4 py-4 border-b border-slate-800/60">
+        <div class="text-xs tracking-[0.2em] uppercase text-slate-500">看板样式库</div>
+        <div class="mt-1 text-xl font-semibold text-slate-50">行动 / 等待 卡片</div>
+        <p class="mt-1 text-xs text-slate-400">
+          左侧选样式，右侧看手机里的效果。
+        </p>
+      </div>
+      <div class="flex-1 overflow-y-auto scrollbar-thin px-3 py-3 space-y-4">
+        <div>
+          <div class="text-[11px] font-semibold text-slate-400 mb-1">行动模式（11）</div>
+          <div id="sidebar-action" class="space-y-1"></div>
+        </div>
+        <div>
+          <div class="text-[11px] font-semibold text-slate-400 mt-2 mb-1">等待模式（6）</div>
+          <div id="sidebar-wait" class="space-y-1"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main / Preview -->
+    <main class="flex-1 flex flex-col">
+      <!-- Top controls -->
+      <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800/60 bg-slate-950/60 backdrop-blur-xl">
+        <div>
+          <div id="currentModeLabel" class="inline-flex items-center gap-2 text-xs text-slate-400">
+            <span class="badge-mode px-2 py-0.5 rounded-full text-[11px] border border-slate-700/80">
+              行动模式
+            </span>
+            <span id="currentTemplateName" class="text-slate-200"></span>
+          </div>
+          <p class="mt-1 text-xs text-slate-500" id="currentPurpose"></p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button data-view="abstract" id="btnViewAbstract"
+            class="px-3 py-1.5 rounded-full text-xs font-medium btn-tab-active">
+            抽象版
+          </button>
+          <button data-view="example1" id="btnViewExample1"
+            class="px-3 py-1.5 rounded-full text-xs font-medium btn-tab-idle">
+            示例1
+          </button>
+          <button data-view="example2" id="btnViewExample2"
+            class="px-3 py-1.5 rounded-full text-xs font-medium btn-tab-idle">
+            示例2
+          </button>
+        </div>
+      </header>
+
+      <!-- Phone preview row -->
+      <section class="flex-1 flex items-center justify-center px-6 py-6">
+        <div class="flex gap-8 max-w-5xl w-full">
+          <!-- Phone -->
+          <div class="flex-1 flex items-center justify-center">
+            <div id="phoneShell"
+                 class="phone-shell-active flex h-[620px] w-[320px] flex-col rounded-[26px] border-2 transition-all">
+              <!-- phone header -->
+              <div class="h-10 px-4 flex items-center justify-between border-b border-slate-800/80 text-[11px] text-slate-400">
+                <span id="phoneTopLeft" class="truncate"></span>
+                <span id="phoneTopRight" class="truncate"></span>
+              </div>
+              <!-- card area -->
+              <div id="cardClickable"
+                   class="relative flex-1 px-4 py-4 cursor-pointer">
+                <div id="cardBox"
+                     class="glass-card h-full w-full rounded-2xl px-4 py-4 flex flex-col">
+                  <!-- filled by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small help panel -->
+          <div class="w-64 hidden lg:flex flex-col gap-3 text-xs text-slate-400">
+            <div class="rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-3">
+              <div class="text-[11px] font-semibold text-slate-300 mb-1">操作说明</div>
+              <ul class="list-disc pl-4 space-y-1">
+                <li>点左侧名称切换不同卡片样式。</li>
+                <li>上方切换「抽象版 / 示例1 / 示例2」只会换内容，不改布局。</li>
+                <li>点手机卡片上半，按样式说明进行展开或进入引导 / 总结 / 报告页。</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-3">
+              <div class="text-[11px] font-semibold text-emerald-300 mb-1">按钮约定</div>
+              <p>左下：<span class="font-semibold text-slate-100">跳过</span></p>
+              <p>右下：根据样式变化，例如「开始 / 选好了 / 生成 / 同意 / 打开 / 上传 / 记录 / 确认 / 生成报告」。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Guide Modal -->
+  <div id="guideModal"
+       class="fixed inset-0 z-30 hidden items-center justify-center bg-black/50">
+    <div class="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-950/95 px-5 py-5 shadow-2xl">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-sm font-semibold text-slate-50">引导页</h2>
+        <button id="guideCloseBtn"
+                class="w-7 h-7 rounded-full border border-slate-700 text-slate-400 text-xs hover:bg-slate-800">
+          ×
+        </button>
+      </div>
+      <p class="text-xs text-slate-400 mb-3">
+        按顺序完成三步，小勾选只是帮助你确认自己已经走到哪一步。
+      </p>
+      <ol class="space-y-2 mb-4 text-xs text-slate-300">
+        <li class="flex items-start gap-2">
+          <input type="checkbox" class="mt-0.5 h-3 w-3 rounded border-slate-600 bg-slate-900" />
+          <span><span class="font-semibold text-sky-400">第 1 步</span>：打开指定页面或应用，看一眼当前状态。</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <input type="checkbox" class="mt-0.5 h-3 w-3 rounded border-slate-600 bg-slate-900" />
+          <span><span class="font-semibold text-sky-400">第 2 步</span>：只完成最小动作，例如连接账号或勾选一个选项。</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <input type="checkbox" class="mt-0.5 h-3 w-3 rounded border-slate-600 bg-slate-900" />
+          <span><span class="font-semibold text-sky-400">第 3 步</span>：回到这里，准备告诉我你做到了什么。</span>
+        </li>
+      </ol>
+      <div class="flex justify-between mt-4">
+        <button id="guideBackBtn"
+                class="px-3 py-1.5 rounded-md border border-slate-700 text-xs text-slate-200 hover:bg-slate-800">
+          返回
+        </button>
+        <button id="guideDoneBtn"
+                class="px-3 py-1.5 rounded-md bg-sky-500 text-xs text-white font-semibold hover:bg-sky-400">
+          完成
+        </button>
+      </div>
+      <p class="mt-2 text-[11px] text-slate-500">
+        完成后，会自动切换到一个“确认我做完了”的等待卡片。
+      </p>
+    </div>
+  </div>
+
+  <!-- Summary Modal -->
+  <div id="summaryModal"
+       class="fixed inset-0 z-30 hidden items-center justify-center bg-black/50">
+    <div class="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-950/95 px-5 py-5 shadow-2xl">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-sm font-semibold text-slate-50">总结页</h2>
+        <button id="summaryCloseBtn"
+                class="w-7 h-7 rounded-full border border-slate-700 text-slate-400 text-xs hover:bg-slate-800">
+          ×
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-300 mt-2">
+        <div>
+          <div class="font-semibold text-emerald-300 mb-1">我做到了什么</div>
+          <p>今天完成了一个小任务，并清楚地记录了结果。</p>
+        </div>
+        <div>
+          <div class="font-semibold text-sky-300 mb-1">我学到什么</div>
+          <p>把任务拆成几步后，更容易开始，也更容易在中途调整难度。</p>
+        </div>
+        <div>
+          <div class="font-semibold text-amber-300 mb-1">下一步</div>
+          <p>明天可以稍微加一点难度，或者在同样难度上争取更稳定的完成率。</p>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button id="summaryBackBtn"
+                class="px-3 py-1.5 rounded-md border border-slate-700 text-xs text-slate-200 hover:bg-slate-800">
+          返回
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Modal (A12) -->
+  <div id="reportModal"
+       class="fixed inset-0 z-40 hidden items-center justify-center bg-black/60">
+    <div class="w-full max-w-xl rounded-2xl border border-slate-700 bg-slate-950/95 px-5 py-5 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-slate-50">Daily Report</h2>
+        <button id="reportCloseBtn"
+                class="w-7 h-7 rounded-full border border-slate-700 text-slate-400 text-xs hover:bg-slate-800">
+          ×
+        </button>
+      </div>
+      <div class="space-y-4 text-xs text-slate-200 max-h-[420px] overflow-y-auto scrollbar-thin">
+        <section>
+          <div class="text-[11px] font-semibold text-emerald-300 mb-1">Win</div>
+          <ul id="reportWinList" class="list-disc pl-4 space-y-1"></ul>
+        </section>
+        <section>
+          <div class="text-[11px] font-semibold text-sky-300 mb-1">Insight</div>
+          <ul id="reportInsightList" class="list-disc pl-4 space-y-1"></ul>
+        </section>
+        <section>
+          <div class="text-[11px] font-semibold text-amber-300 mb-1">Next</div>
+          <ul id="reportNextList" class="list-disc pl-4 space-y-1"></ul>
+        </section>
+        <section>
+          <details id="reportDetails" class="rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2">
+            <summary class="cursor-pointer text-[11px] font-semibold text-slate-100">
+              Details
+            </summary>
+            <ul id="reportDetailsList" class="mt-2 list-disc pl-4 space-y-1 text-[11px] text-slate-300"></ul>
+          </details>
+        </section>
+      </div>
+      <div class="mt-4 flex items-center justify-between">
+        <div id="reportStatus" class="text-[11px] text-slate-400"></div>
+        <div class="flex gap-2">
+          <button id="btnCopyReport"
+                  class="px-3 py-1.5 rounded-md border border-slate-700 text-[11px] text-slate-200 hover:bg-slate-800">
+            复制文本
+          </button>
+          <button id="btnExportReport"
+                  class="px-3 py-1.5 rounded-md border border-slate-700 text-[11px] text-slate-200 hover:bg-slate-800">
+            导出链接（模拟）
+          </button>
+          <button id="btnCloseReport"
+                  class="px-3 py-1.5 rounded-md bg-sky-500 text-[11px] font-semibold text-slate-950 hover:bg-sky-400">
+            关闭
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== 模板数据（简化版，含 A1/A2/A3/A4/A11 + W1/W2 等） ==========
+    // 为了先把 UI 和交互做顺滑，下面只放一部分代表性样式，你之后可以按同样结构继续补齐。
+    const templates = [
+      // 行动模式
+      {
+        id: 'A1',
+        name: '开始 / 安排卡',
+        mode: '行动模式',
+        purpose: '帮你在“现在做”和“稍后做”之间做一个选择。',
+        tapBehavior: 'none',
+        rightButtonLabel: '开始',
+        abstractData: {
+          tag: '今日起步',
+          title: '今天从哪一个小动作开始？',
+          lines: [
+            '只选一个时间点，不需要承诺很久。',
+            '开始一点点，就算完成。'
+          ],
+          bullets: ['现在做 10 分钟', '晚上再做一轮', '这周只尝试 2 次'],
+          image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '健身',
+              title: '今天安排 12 分钟训练',
+              lines: ['不要求做到力竭，只要完成一轮轻量训练。'],
+              bullets: ['现在就开始', '晚上 21:00 做', '改到明天同一时间'],
+              image: 'https://images.unsplash.com/photo-1554344058-8d1d1dbc5960?auto=format&fit=crop&w=800&q=80'
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '求职',
+              title: '今天发 1 条外联消息',
+              lines: ['只锁定一个人发出，不需要一口气发很多。'],
+              bullets: ['午休前发', '晚上 20:30 发', '这周末集中处理'],
+              image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80'
+            }
+          }
+        ]
+      },
+      {
+        id: 'A2',
+        name: '选择决策卡',
+        mode: '行动模式',
+        purpose: '从少量选项里选出一个今天的方向。',
+        tapBehavior: 'none',
+        rightButtonLabel: '选好了',
+        abstractData: {
+          tag: '方向选择',
+          title: '先定一个今天的主线',
+          lines: ['只要选一个，后面的步骤会围绕它展开。'],
+          bullets: ['先做最容易的', '先做影响最大的', '先做最让你心安的'],
+          image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80'
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '社交',
+              title: '今天想用哪种语气？',
+              lines: ['想象一个具体的人，选一个你此刻最舒服的表达方式。'],
+              bullets: ['温暖一点', '直接说明需求', '礼貌设边界'],
+              image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '理财',
+              title: '先从哪一块下手？',
+              lines: ['只要先看清一块的情况，就已经赢了一半。'],
+              bullets: ['订阅支出', '外卖 / 点餐', '通勤费用'],
+              image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=800&q=80'
+            }
+          }
+        ]
+      },
+      {
+        id: 'A3',
+        name: '推荐列表卡',
+        mode: '行动模式',
+        purpose: '我准备好候选，你只需选一个继续。',
+        tapBehavior: 'expand',
+        rightButtonLabel: '继续',
+        abstractData: {
+          tag: '今日候选',
+          title: '为你准备了 3 个选项',
+          lines: ['点卡片可展开更多摘要，再决定今天走哪一条。'],
+          bullets: ['选项 A · 稳妥', '选项 B · 有成长', '选项 C · 稍激进'],
+          image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+          moreLines: [
+            '展开预览可以看到当前推荐的简单说明。',
+            '不需要立刻选，先浏览一圈也可以。'
+          ]
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '求职推荐',
+              title: '3 个岗位候选',
+              lines: ['根据你的经历筛出了三个方向，展开后可看到简短摘要。'],
+              bullets: ['岗位 A · 匹配度 82%', '岗位 B · 匹配度 76%', '岗位 C · 匹配度 71%'],
+              image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '展开后可以看到每个岗位的通勤、团队规模和主要职责。',
+                '选好一个后，后续卡片都会围绕它展开。'
+              ]
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '晚餐推荐',
+              title: '3 个今晚方案',
+              lines: ['都考虑了时间和健康，选一个你现在最想要的。'],
+              bullets: ['高蛋白碗', '清淡汤面', '家常快炒'],
+              image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '展开后会看到每个方案的大致食材提示。',
+                '不用严格照做，只要方向差不多就好。'
+              ]
+            }
+          }
+        ]
+      },
+      {
+        id: 'A4',
+        name: '填一句生成卡',
+        mode: '行动模式',
+        purpose: '只补一句或一个数字，让系统生成更贴近你的内容。',
+        tapBehavior: 'none',
+        rightButtonLabel: '生成',
+        abstractData: {
+          tag: '一句就够',
+          title: '补充一句关键信息',
+          lines: [
+            '先想一想，你最想被别人记住的一个点是什么。',
+            '这一句会被放在生成结果里，帮你更像自己。'
+          ],
+          bullets: ['一个数字', '一句评价', '一个具体场景'],
+          image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '简历',
+              title: '加上一个量化成果',
+              lines: ['例如：“+18% 注册转化率” 或 “3 次核心功能上线”。'],
+              bullets: ['提升比例', '次数', '金额 / 规模'],
+              image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '外联',
+              title: '补一句个性化细节',
+              lines: ['例如最近看到的文章、演讲或产品更新。'],
+              bullets: ['一篇文章', '一次活动', '一个产品亮点'],
+              image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80'
+            }
+          }
+        ]
+      },
+      {
+        id: 'A11',
+        name: '报告生成卡',
+        mode: '行动模式',
+        purpose: '预览三行摘要，一键生成结构化日报报告。',
+        tapBehavior: 'expand',
+        rightButtonLabel: '生成报告',
+        abstractData: {
+          tag: '日报预览',
+          title: 'Daily Report 预览',
+          lines: [
+            'Win：今天完成了一件值得记住的小动作。',
+            'Insight：你对自己节奏的理解更清楚了一点。',
+            'Next：明天会在类似强度下再试一次。'
+          ],
+          bullets: ['可生成网页报告', '包含 Win / Insight / Next', '附带简单 Details 区域'],
+          image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80',
+          moreLines: [
+            '展开时会多展示几行备注，方便你在生成前快速扫一眼。',
+            '点右下“生成报告”会弹出完整日报页（仅前端模拟）。'
+          ]
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '求职日报',
+              title: '求职 Daily Report 预览',
+              lines: [
+                'Win：锁定 1 个重点岗位并发出 1 条外联消息。',
+                'Insight：带数字的经历更容易被注意到。',
+                'Next：明天优先把另一条经历也改成有数字的版本。'
+              ],
+              bullets: ['岗位简报', '外联情况', '简历改动摘要'],
+              image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '附加：今天浏览了 3 个岗位页面，真正出手的是其中 1 个。',
+                '附加：外联语气偏温和，后续可以尝试更直接一点的版本。'
+              ]
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '健身日报',
+              title: '训练 Daily Report 预览',
+              lines: [
+                'Win：完成 12 分钟训练并做 1 组纠错练习。',
+                'Insight：RPE 约为 7，强度在舒适偏上区间。',
+                'Next：晚餐会向高蛋白方向微调。'
+              ],
+              bullets: ['训练记录', '纠错情况', 'RPE & 晚餐摘要'],
+              image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '附加：动作节奏比上次更稳定，说明节奏提示起到作用。',
+                '附加：如果明天仍然感觉轻松，可以小幅增加一组。'
+              ]
+            }
+          }
+        ]
+      },
+
+      // 等待模式示例
+      {
+        id: 'W1',
+        name: '轻互动提问卡',
+        mode: '等待模式',
+        purpose: '差一个最小的信息，就能继续往下走。',
+        tapBehavior: 'none',
+        rightButtonLabel: '提交',
+        abstractData: {
+          tag: '补一句',
+          title: '补充一个数字或一句话',
+          lines: ['这一小段会成为后续决策的关键线索。'],
+          bullets: ['数字成果', '当前心情', '一个顾虑点'],
+          image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '求职',
+              title: '给我一个数字成果',
+              lines: ['例如“上个季度帮团队多拿下 3 个客户”。'],
+              bullets: ['收入提升', '用户增长', '成本下降'],
+              image: 'https://images.unsplash.com/photo-1522202195461-9433c2c75f02?auto=format&fit=crop&w=800&q=80'
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '健身',
+              title: '现在能量 1-5 分？',
+              lines: ['简单给自己打个分，方便我调整今天的节奏。'],
+              bullets: ['1 很疲惫', '3 还行', '5 状态不错'],
+              image: 'https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=800&q=80'
+            }
+          }
+        ]
+      },
+      {
+        id: 'W2',
+        name: '庆祝与强化卡',
+        mode: '等待模式',
+        purpose: '在你完成之后，帮你巩固习惯，而不是再推任务。',
+        tapBehavior: 'expand',
+        rightButtonLabel: '好的',
+        abstractData: {
+          tag: '做得好',
+          title: '先为刚才那一步鼓个掌',
+          lines: ['展开后会看到三行简短总结，帮你记住今天的赢点。'],
+          bullets: ['记住完成', '记住感受', '记住下一步'],
+          image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+          moreLines: [
+            '你做到了：在忙碌中留出一点时间给自己。',
+            '你学到：把目标压小，更容易坚持。',
+            '下一步：明天就算只做一半也依然算在坚持里。'
+          ]
+        },
+        examples: [
+          {
+            label: '示例1',
+            data: {
+              tag: '录音练习',
+              title: '完成一段清晰的录音',
+              lines: ['你的节奏比上次更稳了，这是很实在的进步。'],
+              bullets: ['节奏更稳', '气息更顺', '更敢开口'],
+              image: 'https://images.unsplash.com/photo-1512427691650-1e0c2f9a81b3?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '以后回头听这一段，会发现今天已经比很久以前好很多了。'
+              ]
+            }
+          },
+          {
+            label: '示例2',
+            data: {
+              tag: '社交',
+              title: '发出一条真诚的消息',
+              lines: ['你选择了清晰表达自己，而不是继续憋在心里。'],
+              bullets: ['有在行动', '不是只想想', '关系有机会前进'],
+              image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+              moreLines: [
+                '无论对方今天有没有回复，这一步都已经非常重要。'
+              ]
+            }
+          }
+        ]
+      }
+      // 其余 W3~W6 / A5~A11 可以按同样结构继续往下补，这里先用代表性样式做 UI。
+    ];
+
+    // ========== 状态 ==========
+    let currentTemplateId = 'A1';
+    let currentView = 'abstract'; // abstract | example1 | example2
+    let cardState = 'normal';     // normal | skipped | done
+    let isExpanded = false;
+    let reportOpen = false;
+
+    function getTemplate(id) {
+      return templates.find(t => t.id === id);
+    }
+    function getCurrentTemplate() {
+      return getTemplate(currentTemplateId);
+    }
+    function getCurrentData() {
+      const t = getCurrentTemplate();
+      if (!t) return null;
+      if (currentView === 'abstract') return t.abstractData;
+      if (currentView === 'example1') return t.examples[0].data;
+      return t.examples[1].data;
+    }
+    function resetState() {
+      cardState = 'normal';
+      isExpanded = false;
+    }
+
+    // ========== 渲染 ==========
+    function renderSidebar() {
+      const aBox = document.getElementById('sidebar-action');
+      const wBox = document.getElementById('sidebar-wait');
+      aBox.innerHTML = '';
+      wBox.innerHTML = '';
+
+      templates.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className =
+          'w-full text-left text-xs rounded-md px-2 py-1.5 flex flex-col border border-transparent hover:border-lime-400/70 hover:bg-slate-900/70';
+        if (t.id === currentTemplateId) {
+          btn.className =
+            'w-full text-left text-xs rounded-md px-2 py-1.5 flex flex-col border border-lime-400 bg-slate-900';
+        }
+        btn.innerHTML = `
+          <span class="text-slate-50 font-medium">${t.name}</span>
+          <span class="text-[11px] text-slate-400">${t.purpose}</span>
+        `;
+        btn.onclick = () => {
+          currentTemplateId = t.id;
+          currentView = 'abstract';
+          resetState();
+          renderAll();
+        };
+        if (t.mode === '行动模式') aBox.appendChild(btn);
+        else wBox.appendChild(btn);
+      });
+    }
+
+    function renderHeader() {
+      const t = getCurrentTemplate();
+      if (!t) return;
+      const modeBadge = document.querySelector('#currentModeLabel .badge-mode');
+      const nameSpan = document.getElementById('currentTemplateName');
+      const purposeP = document.getElementById('currentPurpose');
+      const phoneTopLeft = document.getElementById('phoneTopLeft');
+      const phoneTopRight = document.getElementById('phoneTopRight');
+
+      modeBadge.textContent = t.mode;
+      nameSpan.textContent = '· ' + t.name;
+      purposeP.textContent = t.purpose;
+      phoneTopLeft.textContent = t.name;
+
+      let viewLabel = '抽象版';
+      if (currentView === 'example1') viewLabel = '示例1';
+      if (currentView === 'example2') viewLabel = '示例2';
+      phoneTopRight.textContent = viewLabel;
+
+      document.getElementById('btnViewAbstract').className =
+        'px-3 py-1.5 rounded-full text-xs font-medium ' +
+        (currentView === 'abstract' ? 'btn-tab-active' : 'btn-tab-idle');
+      document.getElementById('btnViewExample1').className =
+        'px-3 py-1.5 rounded-full text-xs font-medium ' +
+        (currentView === 'example1' ? 'btn-tab-active' : 'btn-tab-idle');
+      document.getElementById('btnViewExample2').className =
+        'px-3 py-1.5 rounded-full text-xs font-medium ' +
+        (currentView === 'example2' ? 'btn-tab-active' : 'btn-tab-idle');
+    }
+
+    function renderCard() {
+      const box = document.getElementById('cardBox');
+      box.innerHTML = '';
+
+      const top = document.createElement('div');
+      top.className = 'flex-1 flex flex-col gap-2 overflow-hidden';
+      const bottom = document.createElement('div');
+      bottom.className = 'mt-3 pt-2 border-t border-slate-800 flex items-center justify-between gap-2';
+
+      if (cardState === 'skipped') {
+        const p = document.createElement('p');
+        p.className = 'text-[11px] text-slate-300';
+        p.textContent = '已跳过，稍后再提醒你。';
+        top.appendChild(p);
+      } else if (cardState === 'done') {
+        const t = getCurrentTemplate();
+        const p = document.createElement('p');
+        p.className = 'text-[11px] text-slate-300';
+        if (t.id === 'A11') {
+          p.textContent = '报告已生成 ✅。你可以随时再次生成，或切换到其他卡片。';
+        } else if (t.rightButtonLabel === '打开') {
+          p.textContent = '已打开外部页面（模拟）。回来后可以点其他卡片或记录结果。';
+        } else if (t.rightButtonLabel === '上传') {
+          p.textContent = '已上传（模拟），我会把本次记录记在时间线上。';
+        } else {
+          p.textContent = '已完成，我会根据这一步为你准备下一步建议。';
+        }
+        top.appendChild(p);
+      } else {
+        const data = getCurrentData();
+        if (data) {
+          const tagRow = document.createElement('div');
+          tagRow.className = 'flex items-center justify-between text-[11px]';
+          const tag = document.createElement('span');
+          tag.className =
+            'px-2 py-0.5 rounded-full bg-slate-900/80 border border-slate-700 text-lime-300 font-semibold';
+          tag.textContent = data.tag || (getCurrentTemplate().mode === '行动模式' ? '行动' : '等待');
+          const subtle = document.createElement('span');
+          subtle.className = 'text-slate-500';
+          subtle.textContent = getCurrentTemplate().mode;
+          tagRow.appendChild(tag);
+          tagRow.appendChild(subtle);
+          top.appendChild(tagRow);
+
+          const contentRow = document.createElement('div');
+          contentRow.className = 'flex gap-3 h-[140px]';
+
+          const textCol = document.createElement('div');
+          textCol.className = 'flex-1 flex flex-col';
+
+          const title = document.createElement('div');
+          title.className = 'text-[14px] font-semibold text-slate-50 line-clamp-2';
+          title.textContent = data.title || getCurrentTemplate().name;
+          textCol.appendChild(title);
+
+          if (data.lines && data.lines.length) {
+            const linesWrap = document.createElement('div');
+            linesWrap.className = 'mt-1 space-y-0.5 text-[11px] text-slate-300 line-clamp-3';
+            data.lines.forEach(line => {
+              const p = document.createElement('p');
+              p.textContent = line;
+              linesWrap.appendChild(p);
+            });
+            textCol.appendChild(linesWrap);
+          }
+
+          if (data.bullets && data.bullets.length) {
+            const chips = document.createElement('div');
+            chips.className = 'mt-2 flex flex-wrap gap-1';
+            data.bullets.slice(0, 3).forEach(b => {
+              const chip = document.createElement('span');
+              chip.className =
+                'px-2 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-[10px] text-slate-200';
+              chip.textContent = b;
+              chips.appendChild(chip);
+            });
+            textCol.appendChild(chips);
+          }
+
+          contentRow.appendChild(textCol);
+
+          const imgCol = document.createElement('div');
+          imgCol.className = 'w-[110px] h-full rounded-xl overflow-hidden flex-shrink-0';
+          const img = document.createElement('img');
+          img.src = data.image;
+          img.alt = '';
+          img.className = 'w-full h-full object-cover';
+          imgCol.appendChild(img);
+          contentRow.appendChild(imgCol);
+
+          top.appendChild(contentRow);
+
+          if (isExpanded && data.moreLines && data.moreLines.length) {
+            const more = document.createElement('div');
+            more.className =
+              'mt-2 rounded-lg border border-slate-800/80 bg-slate-950/70 px-2 py-1.5 text-[11px] text-slate-300 space-y-0.5';
+            data.moreLines.forEach(line => {
+              const p = document.createElement('p');
+              p.textContent = line;
+              more.appendChild(p);
+            });
+            top.appendChild(more);
+          }
+        }
+      }
+
+      // 按钮区
+      const leftBtn = document.createElement('button');
+      leftBtn.type = 'button';
+      leftBtn.className =
+        'flex-1 rounded-md border border-slate-700 bg-slate-900/80 px-3 py-2 text-[11px] font-semibold text-slate-200 hover:bg-slate-800';
+      leftBtn.textContent = '跳过';
+      leftBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (cardState === 'skipped') {
+          cardState = 'normal';
+        } else {
+          cardState = 'skipped';
+        }
+        renderCard();
+      };
+
+      const rightBtn = document.createElement('button');
+      rightBtn.type = 'button';
+      rightBtn.className =
+        'flex-1 rounded-md bg-lime-400 px-3 py-2 text-[11px] font-semibold text-slate-950 hover:bg-lime-300';
+      rightBtn.textContent =
+        cardState === 'skipped' ? '返回' : getCurrentTemplate().rightButtonLabel;
+      rightBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (cardState === 'skipped') {
+          cardState = 'normal';
+          renderCard();
+          return;
+        }
+        handleRightButton();
+      };
+
+      bottom.appendChild(leftBtn);
+      bottom.appendChild(rightBtn);
+
+      box.appendChild(top);
+      box.appendChild(bottom);
+    }
+
+    function renderAll() {
+      renderSidebar();
+      renderHeader();
+      renderCard();
+    }
+
+    // ========== 交互 ==========
+    function handleRightButton() {
+      const t = getCurrentTemplate();
+      if (t.id === 'A11') {
+        openReport();
+        return;
+      }
+      cardState = 'done';
+      renderCard();
+    }
+
+    // 卡片点击（上半）
+    document.getElementById('cardClickable').addEventListener('click', () => {
+      const t = getCurrentTemplate();
+      if (!t) return;
+      if (cardState !== 'normal') return;
+      if (t.tapBehavior === 'expand') {
+        isExpanded = !isExpanded;
+        renderCard();
+      } else if (t.tapBehavior === 'openGuide') {
+        openGuide();
+      } else if (t.tapBehavior === 'openSummary') {
+        openSummary();
+      }
+    });
+
+    // 顶部视图切换
+    document.getElementById('btnViewAbstract').onclick = () => {
+      currentView = 'abstract';
+      resetState();
+      renderAll();
+    };
+    document.getElementById('btnViewExample1').onclick = () => {
+      currentView = 'example1';
+      resetState();
+      renderAll();
+    };
+    document.getElementById('btnViewExample2').onclick = () => {
+      currentView = 'example2';
+      resetState();
+      renderAll();
+    };
+
+    // 引导页
+    function openGuide() {
+      document.getElementById('guideModal').classList.remove('hidden');
+      document.getElementById('guideModal').classList.add('flex');
+    }
+    function closeGuide() {
+      document.getElementById('guideModal').classList.add('hidden');
+      document.getElementById('guideModal').classList.remove('flex');
+    }
+    document.getElementById('guideBackBtn').onclick = closeGuide;
+    document.getElementById('guideCloseBtn').onclick = closeGuide;
+    document.getElementById('guideDoneBtn').onclick = () => {
+      closeGuide();
+      currentTemplateId = 'W1';
+      currentView = 'abstract';
+      resetState();
+      renderAll();
+    };
+
+    // 总结页
+    function openSummary() {
+      document.getElementById('summaryModal').classList.remove('hidden');
+      document.getElementById('summaryModal').classList.add('flex');
+    }
+    function closeSummary() {
+      document.getElementById('summaryModal').classList.add('hidden');
+      document.getElementById('summaryModal').classList.remove('flex');
+    }
+    document.getElementById('summaryBackBtn').onclick = closeSummary;
+    document.getElementById('summaryCloseBtn').onclick = closeSummary;
+
+    // 报告页
+    function renderReportModalContent() {
+      const winList = document.getElementById('reportWinList');
+      const insList = document.getElementById('reportInsightList');
+      const nextList = document.getElementById('reportNextList');
+      const detList = document.getElementById('reportDetailsList');
+
+      let win = [];
+      let ins = [];
+      let nxt = [];
+      let det = [];
+      if (currentView === 'example1') {
+        win = [
+          '锁定 1 个重点岗位并发出 1 条外联消息。',
+          '更新 1 条简历经历，让其带有清晰数字。'
+        ];
+        ins = [
+          '带数字的经历在预览中更容易被注意到。',
+          '回复率和岗位匹配度高度相关。'
+        ];
+        nxt = [
+          '明天优先围绕同一岗位继续跟进。',
+          '准备一个略微更直接的外联版本。'
+        ];
+        det = [
+          '今日浏览岗位数：3 个，其中真正出手的是 1 个。',
+          '外联语气偏温和，下一次可以试试更果断一点。'
+        ];
+      } else if (currentView === 'example2') {
+        win = [
+          '完成 12 分钟训练并做 1 组纠错练习。',
+          '记录今天的 RPE 和主观疲劳感。'
+        ];
+        ins = [
+          'RPE 约为 7，说明强度处于舒适偏上区间。',
+          '动作节奏比上次更稳定，节奏提示起到了效果。'
+        ];
+        nxt = [
+          '明天保持类似时间段训练。',
+          '根据恢复情况，小幅增加或维持当前组数。'
+        ];
+        det = [
+          '晚餐倾向高蛋白，整体热量略低于前几日。',
+          '如果连续两天都觉得轻松，可以再提高一点训练量。'
+        ];
+      } else {
+        win = [
+          '今天完成了一件可以被清楚描述的小事。',
+          '你愿意让这件事被记录下来，而不是悄悄消失。'
+        ];
+        ins = [
+          '你开始看到，节奏感比一次性爆发更重要。',
+          '记录让你更容易看见自己的进展。'
+        ];
+        nxt = [
+          '明天继续用类似节奏重复一次。',
+          '允许自己在稳定的前提下小幅试探更高难度。'
+        ];
+        det = [
+          '这份报告主要帮你“说清楚自己做了什么”。',
+          '真正关键在于长期连续，而不是今天写得多完美。'
+        ];
+      }
+
+      function fill(el, arr) {
+        el.innerHTML = '';
+        arr.forEach(t => {
+          const li = document.createElement('li');
+          li.textContent = t;
+          el.appendChild(li);
+        });
+      }
+      fill(winList, win);
+      fill(insList, ins);
+      fill(nextList, nxt);
+      fill(detList, det);
+      document.getElementById('reportStatus').textContent = '';
+    }
+
+    function openReport() {
+      renderReportModalContent();
+      document.getElementById('reportModal').classList.remove('hidden');
+      document.getElementById('reportModal').classList.add('flex');
+      reportOpen = true;
+    }
+    function closeReport() {
+      document.getElementById('reportModal').classList.add('hidden');
+      document.getElementById('reportModal').classList.remove('flex');
+      reportOpen = false;
+      cardState = 'done';
+      renderCard();
+    }
+    document.getElementById('reportCloseBtn').onclick = closeReport;
+    document.getElementById('btnCloseReport').onclick = closeReport;
+    document.getElementById('btnCopyReport').onclick = () => {
+      document.getElementById('reportStatus').textContent = '已复制文本（模拟）。';
+    };
+    document.getElementById('btnExportReport').onclick = () => {
+      document.getElementById('reportStatus').textContent = '已生成分享链接（模拟）。';
+    };
+
+    // 视图切换按钮已在上面绑定
+
+    // 初始渲染
+    renderAll();
+  </script>
+</body>
+</html>

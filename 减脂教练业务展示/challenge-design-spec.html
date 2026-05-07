@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>减脂教练 Challenge · 设计规范与任务库精选</title>
+  <style>
+    :root {
+      --bg: #070b10;
+      --card: #0f1623;
+      --card-hover: #121b2e;
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #34d399;
+      --accent-dim: rgba(52, 211, 153, 0.14);
+      --warn: #fbbf24;
+      --radius: 14px;
+      --font: ui-sans-serif, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 100% 70% at 50% -30%, rgba(52, 211, 153, 0.12), transparent 52%),
+        radial-gradient(ellipse 80% 50% at 100% 30%, rgba(45, 212, 191, 0.06), transparent 50%),
+        var(--bg);
+      line-height: 1.55;
+      padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.75rem) 3rem;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(110deg, #ecfdf5, #5eead4, #a7f3d0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    header .sub {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 42rem;
+      margin-inline: auto;
+    }
+    header .badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      background: var(--accent-dim);
+    }
+    h2 {
+      margin: 2rem 0 1rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--accent), #14b8a6);
+    }
+    .principles {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .principles { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .principles { grid-template-columns: repeat(2, 1fr); }
+    }
+    .p-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.15rem 1.15rem;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .p-card:hover {
+      background: var(--card-hover);
+      border-color: rgba(52, 211, 153, 0.22);
+    }
+    .p-card .top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.65rem;
+      margin-bottom: 0.65rem;
+    }
+    .p-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .p-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .p-title-en {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .p-plain {
+      margin: 0 0 0.5rem;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      padding: 0.5rem 0.65rem;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.65);
+      border-left: 3px solid var(--warn);
+    }
+    .p-plain strong { color: #fef3c7; }
+    .p-def {
+      margin: 0 0 0.45rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .p-def strong { color: #e2e8f0; }
+    .p-rules {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+    .p-rules li { margin-top: 0.35rem; }
+    .note-box {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius);
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.5);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .table-scroll {
+      margin-top: 0.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: auto;
+      background: var(--card);
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    caption {
+      caption-side: top;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+    }
+    thead th {
+      text-align: left;
+      padding: 0.75rem 0.85rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      background: rgba(7, 11, 16, 0.85);
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 0.85rem 0.85rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      color: #cbd5e1;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(52, 211, 153, 0.04); }
+    .tag-cell {
+      font-weight: 700;
+      color: #f8fafc;
+      white-space: nowrap;
+    }
+    .tag-pill {
+      display: inline-block;
+      margin-top: 0.25rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+    .ex-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .ex-sub {
+      margin: 0.25rem 0 0;
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    a.back {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      color: #6ee7b7;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    a.back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← 返回 SPARE 总览</a>
+    <header>
+      <h1>减脂教练 Challenge · 设计规范与默认任务库</h1>
+      <p class="sub">任务进入库前须同时满足下列<strong>全部</strong>原则；UI 标签为分类参考，下表为<strong>首期上架推荐</strong> 10 项与示例标题（≤15 字、动词+名词）。</p>
+      <span class="badge">Internal · Product &amp; Ops</span>
+    </header>
+
+    <h2>第一部分 · 任务设计原则（核心五条 + 扩展三条）</h2>
+    <p style="margin:0 0 1rem;font-size:0.85rem;color:var(--muted);max-width:52rem;">标准采用<strong style="color:#e2e8f0;">专业定义 + 朴素解释</strong>双层结构：前五条为任务库主线判据，<strong style="color:#e2e8f0;">06–08</strong> 为文案、安全与模型侧的硬约束。</p>
+
+    <div class="principles">
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">01</span>
+          <span class="p-title">视觉可验证性</span>
+          <span class="p-title-en">Visual Verifiability</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>必须是相机能拍到的「死物」。</p>
+        <p class="p-def"><strong>定义：</strong>任务目标须具物理实体特征与视觉显著性。AI 仅能据像素判断物体是否存在，不能判断动作过程（如咀嚼）或主观状态（如饱腹感）。</p>
+        <ul class="p-rules">
+          <li>拒绝形容词（清淡、慢）与动词（嚼、停），优先名词（蛋、水、菜）。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">02</span>
+          <span class="p-title">认知极简性</span>
+          <span class="p-title-en">Cognitive Simplicity</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>别让用户算数，一眼定输赢。</p>
+        <p class="p-def"><strong>定义：</strong>判定遵循<strong>零计算</strong>；用户接收任务瞬间可做二元 Yes/No，无需称重、量杯或查营养库。</p>
+        <ul class="p-rules">
+          <li>拒绝「摄入 300g 蔬菜」「低于 500 卡」；采用「半盘」「拳头大」等视觉度量。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">03</span>
+          <span class="p-title">高可得性与场景适配</span>
+          <span class="p-title-en">Accessibility &amp; Adaptability</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>便利店能买到的国民单品，或食堂剩菜也能凑的宽泛方向。</p>
+        <p class="p-def"><strong>定义：</strong>双轨策略：<strong>路径 A</strong> 高可得性（美市场标准化单品，如香蕉、黑咖啡、水煮蛋）；<strong>路径 B</strong> 高适配性（广义视觉类别，如「红色的菜」「叶子菜」）。</p>
+        <ul class="p-rules">
+          <li>须至少满足 A 或 B 之一，避免小众、难采购实体。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">04</span>
+          <span class="p-title">正向可执行性</span>
+          <span class="p-title-en">Positive Actionability</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>通过「加点好的」来赢，不是证明「没吃坏的」。</p>
+        <p class="p-def"><strong>定义：</strong>基于正向强化，要求用户通过<strong>展示某物</strong>完成。</p>
+        <ul class="p-rules">
+          <li>拒绝「不喝可乐」；改为「喝一杯气泡水」等可拍替代品。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">05</span>
+          <span class="p-title">即时满足感</span>
+          <span class="p-title-en">Instant Gratification</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>照片得像战利品，发得出手。</p>
+        <p class="p-def"><strong>定义：</strong>完成瞬间（Snapshot）宜具社交货币或审美价值。</p>
+        <ul class="p-rules">
+          <li>避免药片、粉末等病态主视觉；鼓励色彩饱满、摆放整齐的饮食画面。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">06</span>
+          <span class="p-title">指令清晰性</span>
+          <span class="p-title-en">Instructional Clarity</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>别写长难句，标题就是行动指南。</p>
+        <p class="p-def"><strong>定义：</strong>符合<strong>原子化指令</strong>；用户无需展开即可从标题理解动作。避免多重条件（若 A 则 B 否则 C）。</p>
+        <ul class="p-rules">
+          <li>标题：动词 + 名词，≤15 字。</li>
+          <li>禁用「适量」「一点」；改为「半掌」「一杯」等具体参照。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">07</span>
+          <span class="p-title">安全与医疗边界</span>
+          <span class="p-title-en">Safety &amp; Medical Boundaries</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>不能练伤、饿晕；AI 不背医疗锅。</p>
+        <p class="p-def"><strong>定义：</strong>任务须在通用生理安全阈值内；AI 无法实时体征监控，故须低风险。</p>
+        <ul class="p-rules">
+          <li>禁长时间断食、极限负重、停药或替代医嘱等医疗指令。</li>
+        </ul>
+      </article>
+
+      <article class="p-card">
+        <div class="top">
+          <span class="p-num">08</span>
+          <span class="p-title">AI 识别可行性</span>
+          <span class="p-title-en">AI Recognition Feasibility</span>
+        </div>
+        <p class="p-plain"><strong>大白话：</strong>人眼能认还不够，模型也得稳。</p>
+        <p class="p-def"><strong>定义：</strong>在原则 1 之上，目标须具通用视觉可分性；避免「低钠盐 vs 普通盐」「脱脂奶 vs 全脂奶」等仅靠液体难以区分的任务。</p>
+        <ul class="p-rules">
+          <li>若涉营养属性，改为拍<strong>包装标签</strong>或<strong>特定容器</strong>，而非拍液体/粉末本体。</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="note-box">
+      <strong style="color:#e2e8f0;">参考总表：</strong>完整 Challenge 清单与版本迭代请在飞书多维表 / 文档维护；本页不嵌入外链数据，仅作规范与精选展示。
+    </div>
+
+    <h2>第二部分 · UI 标签精选与示例任务</h2>
+    <p style="margin:0 0 0.75rem;font-size:0.85rem;color:var(--muted);max-width:52rem;">从「UI 标签全集」中选出<strong>10 个</strong>与八条原则耦合最强、最易做出一致拍照体验的标签；其余标签可二期按场景补库。</p>
+
+    <div class="table-scroll">
+      <table>
+        <caption>精选逻辑：优先「可拍实体 + 正向展示 + 国民/宽泛可得」；需营养细分的统一走标签或包装拍摄。</caption>
+        <thead>
+          <tr>
+            <th scope="col">UI 标签</th>
+            <th scope="col">精选理由（对应原则）</th>
+            <th scope="col">示例 Challenge 标题</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tag-cell">🍗 Protein Boost (all)<br /><span class="tag-pill">Path A</span></td>
+            <td>典型实体（鸡胸、蛋、希腊酸奶杯），<strong>1·4·5·8</strong> 易满足；注意避免「低脂」仅靠液体区分。</td>
+            <td>
+              <p class="ex-title">拍一盘水煮蛋</p>
+              <p class="ex-sub">动词+名词；整颗蛋边界清晰，避免「适量蛋白」表述。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🫛 Protein Boost (veggie)<br /><span class="tag-pill">Path B</span></td>
+            <td>适配素食与外食，豆腐/天贝等块面显著，<strong>3·8</strong> 优于液体蛋白。</td>
+            <td>
+              <p class="ex-title">拍一盒豆腐主菜</p>
+              <p class="ex-sub">强调「盒/块」可见轮廓；不写品牌与钠含量。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🍫 Smart Snacking</td>
+            <td>天然贴合<strong>4</strong>正向加餐；选「可整块展示」的零食实体（坚果小袋、水果块）。</td>
+            <td>
+              <p class="ex-title">拍一小把坚果</p>
+              <p class="ex-sub">手掌托或原包装开口朝上，满足 2·5 视觉度量与观感。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🥬 Fruit &amp; Vegetables</td>
+            <td>路径 B 范本（颜色/叶形），<strong>1·2·3·5</strong> 全覆盖；食堂外卖均可凑。</td>
+            <td>
+              <p class="ex-title">拍半盘绿色叶子菜</p>
+              <p class="ex-sub">「半盘」为零计算视觉锚；忌「清淡蔬菜」类形容词。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🥖 Grains &amp; Fiber</td>
+            <td>燕麦、全麦面包等国民单品，<strong>3·5·8</strong>；全谷物可与包装同框降低误判。</td>
+            <td>
+              <p class="ex-title">拍一碗燕麦早餐</p>
+              <p class="ex-sub">碗装成品 + 可选拍外包装一角，服务原则 8。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🥑 Healthy Fat</td>
+            <td>牛油果、橄榄油瓶等轮廓强，<strong>1·5</strong>；液体油建议「瓶身标签」子任务而非倒出油面。</td>
+            <td>
+              <p class="ex-title">拍半个牛油果</p>
+              <p class="ex-sub">实体显著；若上「橄榄油」则改为拍带营养标签的瓶身。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🌿 Nutrition Selection</td>
+            <td>用于「自选健康一餐」聚合展示，强调<strong>2·6</strong> 一眼读懂；具体食物仍须落到可拍名词。</td>
+            <td>
+              <p class="ex-title">拍一餐彩虹蔬菜</p>
+              <p class="ex-sub">「彩虹」用颜色可见性约束，不写克数；标题仍保持短。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">💧 Drink &amp; Hydration</td>
+            <td>水杯、气泡水瓶等<strong>1·4·5</strong>；正向替代含糖饮料，易做出清爽画面。</td>
+            <td>
+              <p class="ex-title">喝一杯白水</p>
+              <p class="ex-sub">透明杯+水面可见；或「拍一瓶无糖气泡水」强化原则 4。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🔤 Menu &amp; Label</td>
+            <td>承担<strong>8</strong> 与营养声明场景：强制标签面清晰、光线可读，而非拍糊汤。</td>
+            <td>
+              <p class="ex-title">拍包装营养成分表</p>
+              <p class="ex-sub">与「脱脂/低钠」类诉求绑定时的标准上架形态。</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="tag-cell">🍽️ Composition &amp; Portions</td>
+            <td>直接服务<strong>2</strong> 半盘/分餐视觉语言；与正餐场景强相关。</td>
+            <td>
+              <p class="ex-title">拍分格餐盘午饭</p>
+              <p class="ex-sub">格子天然提供「份量」视觉锚，少用文字解释。</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box" style="margin-top:1rem;">
+      <strong style="color:#e2e8f0;">未纳入首期精选的标签</strong>（可二期设计）：🍕 Takeout &amp; Processed（需严格改写为可拍的正向替代，避免纯否定）、💬 Emotion Awareness（难满足原则 1）、🧹 Environment Reset（指令易歧义）、🎯 SMART Goals（多非单帧可证）、🛒 Grocery List（偏清单行为弱单拍）、🍱 Batch Meal Prep（强依赖「整齐陈列」才满足 5，可作为专题批次上架）。
+    </div>
+
+    <footer>减脂教练 Challenge · 规范页 · 与任务库飞书表双向维护时请以飞书为数据主源。</footer>
+  </div>
+</body>
+</html>

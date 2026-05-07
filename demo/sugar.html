@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖分侦探 — 万物教练</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #080808; --card: #111; --card2: #161616;
+  --red: #ff3333; --orange: #ff6b00; --green: #22c55e;
+  --text: #f0f0f0; --muted: #777; --border: #1e1e1e;
+}
+body { background: #dcdedf; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; display:flex; justify-content:center; align-items:center; padding:40px 0; }
+
+/* ── Hero ── */
+.hero { padding: 80px 24px 48px; max-width: 680px; margin: 0 auto; text-align: center; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,51,51,0.1); border: 1px solid rgba(255,51,51,0.25);
+  color: var(--red); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 28px;
+}
+h1 { font-size: clamp(36px, 7vw, 68px); font-weight: 900; line-height: 1.08; margin-bottom: 18px; }
+h1 em { color: var(--red); font-style: normal; }
+.sub { font-size: 15px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; }
+
+/* ── Search ── */
+.search-wrap { max-width: 520px; margin: 0 auto; }
+.search-row { display: flex; gap: 10px; }
+.s-input {
+  flex: 1; background: #161616; border: 1.5px solid #2a2a2a; color: var(--text);
+  font-size: 15px; padding: 14px 18px; border-radius: 14px; outline: none; transition: border 200ms;
+}
+.s-input:focus { border-color: var(--red); }
+.s-input::placeholder { color: #444; }
+.s-btn {
+  background: var(--red); color: #fff; border: none; padding: 14px 22px;
+  border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer;
+  transition: all 180ms; white-space: nowrap;
+}
+.s-btn:hover { background: #e62929; transform: translateY(-1px); }
+.s-btn:disabled { background: #2a2a2a; color: #555; cursor: not-allowed; transform: none; }
+.quick-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; justify-content: center; }
+.qpick {
+  background: transparent; border: 1px solid #2a2a2a; color: var(--muted);
+  padding: 5px 13px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 150ms;
+}
+.qpick:hover { border-color: var(--red); color: var(--text); }
+
+/* ── Loading ── */
+.loading { display: none; text-align: center; padding: 72px 24px; }
+.loading.show { display: block; }
+.dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
+.dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: blink 1.4s infinite; }
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%,100%{opacity:.15;transform:scale(.7)} 50%{opacity:1;transform:scale(1)} }
+.loading-msg { font-size: 13px; color: var(--muted); letter-spacing: .05em; }
+
+/* ── Error ── */
+.err-box { display: none; background: rgba(255,51,51,.07); border: 1px solid rgba(255,51,51,.2); color: #ff7070; padding: 12px 18px; border-radius: 12px; font-size: 13px; margin: 14px auto 0; max-width: 520px; text-align: center; }
+.err-box.show { display: block; }
+
+/* ── Results ── */
+.results { display: none; max-width: 960px; margin: 0 auto; padding: 0 20px 160px; }
+.results.show { display: block; }
+
+/* ── Verdict banner ── */
+.verdict {
+  border-left: 3px solid var(--red); background: var(--card);
+  border-radius: 16px; padding: 22px 28px; margin-bottom: 18px;
+}
+.v-label { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.v-text { font-size: 14px; line-height: 1.7; color: #ccc; }
+
+/* ── Product hero ── */
+.prod-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 28px 28px; margin-bottom: 18px;
+  display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;
+}
+.prod-left { flex: 1; min-width: 200px; }
+.prod-name { font-size: 22px; font-weight: 800; margin-bottom: 2px; }
+.prod-brand { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+.macros { display: flex; flex-direction: column; gap: 9px; }
+.m-row { display: flex; align-items: center; gap: 10px; }
+.m-name { font-size: 11px; color: var(--muted); width: 52px; flex-shrink: 0; }
+.m-track { flex: 1; height: 5px; background: #1e1e1e; border-radius: 3px; overflow: hidden; }
+.m-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+.m-val { font-size: 11px; font-weight: 700; width: 44px; text-align: right; flex-shrink: 0; }
+
+.tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+.tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.t-add { background: rgba(255,107,0,.12); color: var(--orange); border: 1px solid rgba(255,107,0,.25); }
+.t-allergy { background: rgba(255,51,51,.1); color: #ff8080; border: 1px solid rgba(255,51,51,.2); }
+.t-ok { background: rgba(34,197,94,.09); color: var(--green); border: 1px solid rgba(34,197,94,.2); }
+
+.ing-text { font-size: 11px; color: #555; line-height: 1.6; margin-top: 12px; }
+
+/* ── Gauge ── */
+.gauge-wrap { text-align: center; width: 150px; flex-shrink: 0; }
+.g-label { font-size: 10px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.gauge-score { font-size: 32px; font-weight: 900; line-height: 1; }
+.gauge-unit { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.gauge-tag { font-size: 12px; font-weight: 700; margin-top: 6px; }
+.ns-badge { display: inline-block; font-size: 14px; font-weight: 900; padding: 4px 12px; border-radius: 8px; color: #fff; margin-top: 10px; }
+.ns-A{background:#038141} .ns-B{background:#85BB2F} .ns-C{background:#FECB02;color:#333} .ns-D{background:#EE8100} .ns-E{background:#E63E11}
+
+/* ── 2-col ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+@media(max-width:640px){ .two-col{grid-template-columns:1fr} .prod-card{flex-direction:column} }
+
+/* ── Section card ── */
+.sec {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 22px 22px;
+}
+.sec-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 7px;
+}
+.sec-label::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--red); display:block; }
+
+/* ── Paper ── */
+.paper { padding: 13px 0; border-bottom: 1px solid var(--border); }
+.paper:last-child { border-bottom: none; }
+.p-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+.p-meta { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+.p-link { font-size: 11px; color: var(--red); text-decoration: none; font-weight: 600; }
+.p-link:hover { text-decoration: underline; }
+
+/* ── Post ── */
+.post { padding: 13px 0; border-bottom: 1px solid var(--border); }
+.post:last-child { border-bottom: none; }
+.post-sub { font-size: 10px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 3px; }
+.post-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+.post-meta { font-size: 11px; color: var(--muted); display: flex; gap: 10px; }
+.post-link { font-size: 11px; color: var(--red); text-decoration: none; font-weight: 600; }
+
+.empty { font-size: 13px; color: #444; }
+
+/* ── Jovida Mobile Template (from Fitness Lab) ── */
+.app-container {
+  width: 390px;
+  height: 844px;
+  background: #f4f5f7;
+  border-radius: 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), inset 0 0 0 8px #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.jl-header {
+  background: linear-gradient(180deg, #ff3b30 0%, #ff453a 100%);
+  padding: 54px 24px 32px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+.user-avatar {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.streaks {
+  display:flex; gap:12px; font-weight:700; font-size:13px;
+  background: rgba(0,0,0,0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.tabs { display:flex; gap:20px; font-size:15px; font-weight:600; color: rgba(255,255,255,0.62); align-items:center; }
+.tab.active { color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; }
+.main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 160px;
+  margin-top: -8px;
+  position: relative;
+  z-index: 1;
+}
+.main-scroll::-webkit-scrollbar { display:none; }
+
+.ob-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  margin-top: 24px;
+  transition: all 300ms;
+}
+.ob-q {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 16px;
+  text-align:center;
+}
+.ob-opts { display:flex; flex-direction:column; gap: 12px; }
+.ob-opt {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #333;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor:pointer;
+  transition: all 150ms;
+  text-align:center;
+}
+.ob-opt.selected { background: #ffe5e5; border-color: #ff3b30; color: #ff3b30; }
+.sg-hidden { display:none !important; }
+
+/* hide original desktop hero/search, keep the underlying DOM for JS ids */
+.hero, .loading, .results, .err-box { }
+.hero { display:none !important; }
+
+/* bottom input */
+.bottom-input {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding: 24px 20px 32px;
+  background: linear-gradient(to top, rgba(244,245,247,1) 70%, transparent);
+  display:flex; align-items:center; gap: 12px;
+}
+.b-input {
+  flex:1;
+  background:white;
+  border:none;
+  border-radius:24px;
+  padding: 16px 20px;
+  font-size: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  outline:none;
+}
+.b-input::placeholder { color:#bbb; font-weight:500; }
+.b-fab {
+  width:52px; height:52px; border-radius:50%;
+  background:#8e62ff; color:white;
+  border:none;
+  font-size: 28px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 20px rgba(142,98,255,0.35);
+  font-weight:300;
+}
+
+/* --- Mobile UI Design System Overrides --- */
+:root {
+  --color-background: #E7E9EC;
+  --color-surface: #F2F2F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-text-primary: #000000;
+  --color-text-secondary: rgba(0,0,0,0.4);
+  --color-text-tertiary: rgba(0,0,0,0.2);
+  --color-border: rgba(255,255,255,0.5);
+  --color-divider: rgba(0,0,0,0.05);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 100px;
+  
+  --shadow-sm: 0px 4px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0px 8px 16px rgba(0,0,0,0.03);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+  font-variation-settings: 'wdth' 100;
+  background: var(--color-background);
+}
+
+.app-container {
+  background: var(--color-background);
+}
+
+/* Header */
+.jl-header {
+  background: linear-gradient(180deg, #FF6767 0%, #FFADAD 100%);
+}
+.tab.active { background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+
+/* Onboarding */
+.ob-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.ob-q { color: var(--color-text-primary); font-size: 20px; font-weight: 590; margin-bottom: 16px; }
+.ob-opt {
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-weight: 590;
+  height: 48px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.ob-opt.selected {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  border: none;
+}
+
+/* Results Cards */
+.verdict, .prod-card, .sec {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+}
+.prod-card { flex-direction: column; gap: 16px; }
+.prod-left { width: 100%; }
+.prod-name { font-size: 24px; font-weight: 700; color: var(--color-text-primary); }
+.prod-brand { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 16px; }
+
+.m-name { color: var(--color-text-secondary); font-weight: 590; }
+.m-track { background: var(--color-divider); border-radius: var(--radius-full); }
+.m-fill { border-radius: var(--radius-full); }
+.m-val { font-weight: 800; font-family: 'Urbanist', sans-serif; }
+
+.v-label, .sec-label { color: var(--color-text-secondary); font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+.v-text { color: var(--color-text-primary); font-size: 16px; }
+
+.gauge-wrap { width: 100%; margin-top: 16px; }
+.g-label { color: var(--color-text-secondary); font-weight: 700; font-size: 14px; }
+.gauge-score { font-family: 'Urbanist', sans-serif; font-size: 32px; font-weight: 800; }
+.gauge-unit { color: var(--color-text-secondary); font-size: 14px; }
+
+.paper, .post { border-bottom: 1px solid var(--color-divider); padding: 12px 0; }
+.p-title, .post-title { color: var(--color-text-primary); font-size: 16px; font-weight: 590; }
+.p-meta, .post-meta { color: var(--color-text-secondary); font-size: 14px; }
+.p-link, .post-link { color: #FF6767; font-weight: 590; }
+
+.bottom-input { background: linear-gradient(to top, var(--color-background) 70%, transparent); }
+.b-input {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+}
+.b-input::placeholder { color: var(--color-text-secondary); }
+.b-fab {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  box-shadow: var(--shadow-md);
+}
+
+.tags-row .tag { padding: 4px 8px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 590; }
+
+
+.main-scroll {
+  padding-bottom: 160px !important;
+}
+</style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="jl-header">
+    <div class="top-bar">
+      <div class="user-avatar"><i data-lucide="user"></i></div>
+      <div class="streaks">
+        <span style="color:#ffd1d1"><i data-lucide="star" style="width:14px"></i> 5/10</span>
+        <span style="color:#fff0b3"><i data-lucide="flame" style="width:14px"></i> 24</span>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active">Sugar Detective</div>
+      <div class="tab">Charts</div>
+      <div class="tab">+ Add</div>
+    </div>
+  </div>
+
+  <div class="main-scroll">
+
+    <!-- Onboarding -->
+    <div id="sg-onboard">
+      <div class="ob-card" id="sg-ob-q1">
+        <div class="ob-q"> 你今天想侦测哪种食物？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="sgObSelect(1, 'Coca-Cola', '可口可乐', event)"><i data-lucide="cup-soda" style="width:16px"></i> 可口可乐</button>
+          <button class="ob-opt" onclick="sgObSelect(1, 'Oreo', '奥利奥', event)"><i data-lucide="cookie" style="width:16px"></i> 奥利奥</button>
+          <button class="ob-opt" onclick="sgObSelect(1, 'Oatly oat milk', '燕麦奶', event)"><i data-lucide="glass-water" style="width:16px"></i> 燕麦奶</button>
+          <button class="ob-opt" onclick="sgObSelect(1, 'Kind bar', 'Kind Bar', event)"><i data-lucide="candy-bar" style="width:16px"></i> Kind Bar</button>
+          <button class="ob-opt" onclick="sgObSelect(1, 'Greek yogurt', '希腊酸奶', event)"><i data-lucide="jar" style="width:16px"></i> 希腊酸奶</button>
+        </div>
+      </div>
+
+      <div class="ob-card sg-hidden" id="sg-ob-q2">
+        <div class="ob-q"> 你吃含糖零食的频率？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="sgObSelect(2, '1-2次', '1-2次/天', event)"> 1-2次/天</button>
+          <button class="ob-opt" onclick="sgObSelect(2, '3-5次', '3-5次/天', event)"> 3-5次/天</button>
+          <button class="ob-opt" onclick="sgObSelect(2, '6+', '6次以上', event)"><i data-lucide="flame" style="width:14px"></i> 6次以上</button>
+        </div>
+      </div>
+
+      <div class="ob-card sg-hidden" id="sg-ob-q3">
+        <div class="ob-q"> 你的糖目标是？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="sgObSelect(3, '25g', '25g/天', event)"><i data-lucide="leaf" style="width:16px"></i> 25g/天</button>
+          <button class="ob-opt" onclick="sgObSelect(3, '50g', '50g/天', event)"><i data-lucide="dumbbell" style="width:16px"></i> 50g/天</button>
+          <button class="ob-opt" onclick="sgObSelect(3, '75g', '75g/天', event)"><i data-lucide="zap" style="width:16px"></i> 75g/天</button>
+        </div>
+      </div>
+    </div>
+
+<div class="hero">
+  <div class="badge">🔍 糖分侦探</div>
+  <h1>你今天<em>吃了</em><br>多少糖？</h1>
+  <p class="sub">输入任意食品名，侦探帮你揪出隐藏糖分、危险添加剂和营养真相。<br>数据来自 700万+ 真实产品库。</p>
+  <div class="search-wrap">
+    <div class="search-row">
+      <input class="s-input" id="inp" placeholder="如 Oreo / Oatly oat milk / Kind bar..." />
+      <button class="s-btn" id="btn" onclick="scan()">开始侦测</button>
+    </div>
+    <div class="quick-row">
+      <span class="qpick" onclick="q('Coca-Cola')">可口可乐</span>
+      <span class="qpick" onclick="q('Oreo')">奥利奥</span>
+      <span class="qpick" onclick="q('Oatly oat milk')">燕麦奶</span>
+      <span class="qpick" onclick="q('Kind bar')">Kind Bar</span>
+      <span class="qpick" onclick="q('Greek yogurt')">希腊酸奶</span>
+    </div>
+  </div>
+  <div class="err-box" id="err"></div>
+</div>
+
+<div class="loading" id="loading">
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="loading-msg" id="lmsg">正在扫描产品档案...</div>
+</div>
+
+<div class="results" id="results"></div>
+
+</div><!-- main-scroll -->
+
+  <!-- bottom input -->
+  <div class="bottom-input">
+    <input class="b-input" type="text" placeholder="Ask your coach..."/>
+    <button class="b-fab" type="button"><i data-lucide="arrow-up" style="width:24px"></i></button>
+  </div>
+</div><!-- app-container -->
+
+<script>
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const q = v => { document.getElementById('inp').value = v; scan(); };
+
+async function post(path, body) {
+  const r = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || '请求失败');
+  return d;
+}
+
+async function scan() {
+  const kw = document.getElementById('inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('btn');
+  btn.disabled = true; btn.textContent = '侦测中...';
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('err').classList.remove('show');
+
+  const msgs = ['正在扫描产品档案...','检索营养成分数据...','比对科学研究...','汇总社区情报...'];
+  let mi = 0;
+  const t = setInterval(() => { document.getElementById('lmsg').textContent = msgs[++mi % msgs.length]; }, 2200);
+
+  try {
+    const [foodRes, sciRes, comRes] = await Promise.allSettled([
+      post('/api/food', { keyword: kw }),
+      post('/api/pubmed', { keyword: kw + ' sugar health effects' }),
+      post('/api/reddit', { keyword: kw + ' quit sugar healthy' })
+    ]);
+    clearInterval(t);
+
+    const food = foodRes.status === 'fulfilled' ? foodRes.value : { products: [] };
+    const science = sciRes.status === 'fulfilled' ? sciRes.value : { articles: [] };
+    const community = comRes.status === 'fulfilled' ? comRes.value : { posts: [] };
+
+    if (foodRes.status === 'rejected' && sciRes.status === 'rejected' && comRes.status === 'rejected') {
+      const el = document.getElementById('err');
+      el.textContent = '❌ 后端 API 暂时不可用（可能是外网网络问题），稍后再试试～';
+      el.classList.add('show');
+  if (window.lucide) lucide.createIcons();
+    } else {
+      render(food.products||[], science.articles||[], community.posts||[], kw);
+    }
+  } catch(e) {
+    clearInterval(t);
+    const el = document.getElementById('err');
+    el.textContent = '❌ ' + e.message;
+    el.classList.add('show');
+  } finally {
+    btn.disabled = false; btn.textContent = '开始侦测';
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+function sugarInfo(g) {
+  if (g == null) return null;
+  if (g <= 5)  return { color:'#22c55e', label:'低糖', pct: Math.min(g/25*100,100) };
+  if (g <= 12) return { color:'#fbbf24', label:'适中', pct: Math.min(g/25*100,100) };
+  if (g <= 20) return { color:'#f97316', label:'偏高', pct: Math.min(g/25*100,100) };
+  return { color:'#ef4444', label:'危险!', pct: Math.min(g/25*100,100) };
+}
+
+function render(prods, papers, posts, kw) {
+  const el = document.getElementById('results');
+  const p = prods[0];
+  if (!p) {
+    el.innerHTML = `<div class="sec" style="text-align:center;padding:60px"><div style="font-size:44px;margin-bottom:14px">🕵️</div><div style="font-size:15px;font-weight:700;margin-bottom:8px">未找到「${esc(kw)}」的产品数据</div><div class="empty">建议使用英文名称，或更换关键词</div></div>`;
+    el.classList.add('show');
+    return;
+  }
+  const n = p.nutrition || {};
+  const si = sugarInfo(n.sugar);
+  const gc = si ? si.color : '#555';
+
+  // macros
+  const macroList = [
+    { name:'热量', val:n.calories, unit:'kcal', max:500, color:'#f97316' },
+    { name:'碳水', val:n.carbs,    unit:'g',    max:60,  color:'#fbbf24' },
+    { name:'糖',   val:n.sugar,   unit:'g',    max:30,  color: gc },
+    { name:'脂肪', val:n.fat,     unit:'g',    max:35,  color:'#a78bfa' },
+    { name:'蛋白', val:n.protein, unit:'g',    max:30,  color:'#22c55e' },
+  ].filter(m => m.val != null);
+
+  // verdict
+  let vtext = '';
+  if (si && n.sugar != null) {
+    const g = n.sugar;
+    if (si.label === '低糖')  vtext = `档案评估：「${esc(p.name)}」含糖量较低（每 100g 含 ${g}g 糖），属于安全范围。可以正常食用，建议留意总摄入量。`;
+    else if (si.label === '适中') vtext = `档案评估：「${esc(p.name)}」含糖量适中（每 100g 含 ${g}g 糖）。偶尔摄入问题不大，不建议每日大量食用。`;
+    else if (si.label === '偏高') vtext = `⚠️ 档案评估：「${esc(p.name)}」含糖量偏高（每 100g 含 ${g}g 糖），建议减少摄入频率，寻找低糖替代品。`;
+    else vtext = `🚨 档案评估：「${esc(p.name)}」含糖量极高（每 100g 含 ${g}g 糖），超过 WHO 每日游离糖建议量的 ${Math.round(g/25*100)}%。高度建议寻找替代品。`;
+  }
+
+  const macroHTML = macroList.map(m => {
+    const w = Math.min((m.val||0)/m.max*100, 100);
+    return `<div class="m-row">
+      <div class="m-name">${m.name}</div>
+      <div class="m-track"><div class="m-fill" style="width:${w}%;background:${m.color}"></div></div>
+      <div class="m-val" style="color:${m.color}">${m.val}${m.unit}</div>
+    </div>`;
+  }).join('');
+
+  const addHTML = (p.additives||[]).map(a=>`<span class="tag t-add">${esc(a)}</span>`).join('');
+  const allerHTML = p.allergens ? `<span class="tag t-allergy">⚠️ ${esc(p.allergens)}</span>` : '';
+  const okHTML = (!addHTML && !allerHTML) ? '<span class="tag t-ok">✓ 无标记添加剂</span>' : '';
+
+  const gaugeCircum = Math.PI * 60;
+  const gaugeOffset = si ? gaugeCircum * (1 - si.pct/100) : gaugeCircum;
+
+  const paperHTML = papers.length ? papers.slice(0,4).map(a=>`
+    <div class="paper">
+      <div class="p-title">${esc(a.title)}</div>
+      <div class="p-meta">📰 ${esc(a.journal||'-')} · ${esc(a.year||'-')} · ${esc(a.authors||'-')}</div>
+      <a class="p-link" href="${esc(a.url)}" target="_blank">阅读原文 →</a>
+    </div>`).join('') : '<div class="empty">暂无相关研究</div>';
+
+  const postHTML = posts.length ? posts.slice(0,4).map(pp=>`
+    <div class="post">
+      ${pp.subreddit?`<div class="post-sub">r/${esc(pp.subreddit)}</div>`:''}
+      <div class="post-title">${esc(pp.title)}</div>
+      <div class="post-meta">
+        <span>↑ ${(pp.score||0).toLocaleString()}</span>
+        ${pp.url?`<a class="post-link" href="${esc(pp.url)}" target="_blank">查看 →</a>`:''}
+      </div>
+    </div>`).join('') : '<div class="empty">暂无社区讨论</div>';
+
+  el.innerHTML = `
+    ${vtext ? `<div class="verdict"><div class="v-label">侦探结论</div><div class="v-text">${vtext}</div></div>` : ''}
+
+    <div class="prod-card">
+      <div class="prod-left">
+        <div class="prod-name">${esc(p.name)}</div>
+        <div class="prod-brand">${esc(p.brand||'未知品牌')}</div>
+        <div class="macros">${macroHTML}</div>
+        <div class="tags-row">${allerHTML}${addHTML}${okHTML}</div>
+        ${p.ingredients?`<div class="ing-text">配料：${esc(p.ingredients.slice(0,220))}${p.ingredients.length>220?'…':''}</div>`:''}
+      </div>
+
+      <div class="gauge-wrap">
+        <div class="g-label">糖分 / 100g</div>
+        ${si && n.sugar!=null ? `
+          <svg width="140" height="82" viewBox="0 0 140 82" style="display:block;margin:0 auto">
+            <path d="M12,76 A58,58 0 0,1 128,76" fill="none" stroke="#1e1e1e" stroke-width="10" stroke-linecap="round"/>
+            <path d="M12,76 A58,58 0 0,1 128,76" fill="none" stroke="${gc}" stroke-width="10" stroke-linecap="round"
+              stroke-dasharray="${Math.PI*58}" stroke-dashoffset="${Math.PI*58*(1-si.pct/100)}"
+              style="transition:stroke-dashoffset 1s ease"/>
+          </svg>
+          <div class="gauge-score" style="color:${gc}">${Math.round(n.sugar)}<span style="font-size:16px;font-weight:400;color:var(--muted)">g</span></div>
+          <div class="gauge-unit">每 100g 含糖</div>
+          <div class="gauge-tag" style="color:${gc}">${si.label}</div>
+        ` : '<div class="empty" style="padding:20px 0">暂无糖分数据</div>'}
+        ${p.nutriscore ? `<div class="ns-badge ns-${p.nutriscore}">Nutri-Score ${p.nutriscore}</div>` : ''}
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="sec">
+        <div class="sec-label">科学研究怎么说</div>
+        ${paperHTML}
+      </div>
+      <div class="sec">
+        <div class="sec-label">社区怎么说</div>
+        ${postHTML}
+      </div>
+    </div>
+  `;
+  el.classList.add('show');
+}
+
+document.getElementById('inp').addEventListener('keydown', e => { if(e.key==='Enter') scan(); });
+</script>
+
+<script>
+// Sugar Detective Onboarding (sequential, then triggers existing scan())
+window.sgObAnswers = { q1: null, q2: null, q3: null };
+
+function sgObSelect(step, value, label, evt) {
+  const qEl = document.getElementById('sg-ob-q' + step);
+  if (!qEl) return;
+  const btn = evt?.target;
+
+  // simple selection highlight
+  qEl.querySelectorAll('.ob-opt').forEach(x => x.classList.remove('selected'));
+  if (btn) btn.classList.add('selected');
+
+  if (step === 1) window.sgObAnswers.q1 = { value, label };
+  if (step === 2) window.sgObAnswers.q2 = { value, label };
+  if (step === 3) window.sgObAnswers.q3 = { value, label };
+
+  const next = document.getElementById('sg-ob-q' + (step + 1));
+
+  setTimeout(() => {
+    qEl.classList.add('sg-hidden');
+    if (next) {
+      next.classList.remove('sg-hidden');
+      return;
+    }
+
+    // Trigger original scan:
+    const inp = document.getElementById('inp');
+    if (inp) inp.value = window.sgObAnswers.q1?.value || '';
+    sgOnboardDone();
+  }, 220);
+}
+
+function sgOnboardDone() {
+  // onboarding container already hidden; kick off existing scan()
+  if (typeof scan === 'function') scan();
+}
+</script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

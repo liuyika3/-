@@ -1,0 +1,143 @@
+INFO - ============================================================
+INFO - 更新 description 和 ingredients
+INFO - ============================================================
+INFO - 读取Excel: 94 条记录
+INFO - [1/94] 2PC Mango Habanero Chicken Meal
+/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/El_Pollo_Loco/update_descriptions.py:108: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Savor the bold flavors of El Pollo Loco's 2pc Mango Habanero Chicken Meal. Featuring fire-grilled chicken coated in a sweet and spicy mango habanero sauce, this meal includes two of your favorite small sides and warm tortillas. Choose from a leg and thigh or a breast and wing for a well-crafted, flavorful meal that’s perfect for any occasion. Available for a limited time.' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.at[idx, 'description'] = data['description']
+/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/El_Pollo_Loco/update_descriptions.py:112: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'two of your favorite small sides and warm tortillas' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.at[idx, 'ingredients'] = data['ingredients']
+INFO -   ✓ Ingredients: two of your favorite small sides and warm tortillas...
+INFO - [2/94] 3PC Mango Habanero Chicken Meal
+INFO -   ✓ Ingredients: three pieces of chicken, two small sides, and warm tortillas...
+INFO - [3/94] 4PC Mango Habanero Half Chicken Meal
+INFO -   ✓ Ingredients: four pieces of chicken, two small sides, and warm tortillas...
+INFO - [4/94] Mango Habanero Chicken Meal for Two
+INFO -   ✓ Ingredients: 4 pieces of fire-grilled chicken (2 legs and 2 thighs) coate...
+INFO - [5/94] Mango Habanero Chicken Wing (A La Carte)
+INFO - [6/94] Mango Habanero Chicken Thigh (A La Carte)
+INFO - [7/94] Mango Habanero Chicken Leg (A La Carte)
+INFO - [8/94] Mango Habanero Chicken Breast (A La Carte)
+INFO - [9/94] 8PC Mango Habanero (Chicken Only)
+INFO - [10/94] 8PC Mango Habanero Family Meal
+INFO - [11/94] 12PC Mango Habanero Family Meal
+INFO - [12/94] 16PC Mango Habanero Family Meal
+INFO -   ✓ Ingredients: your choice of two large sides, warm flour tortillas, corn t...
+INFO - [13/94] Mexican Caesar Double Pollo Salad
+INFO - [14/94] Street Corn Double Pollo Salad
+INFO - [15/94] Bacon Ranch Double Pollo Salad
+INFO - [16/94] Classic Chicken Tostada
+INFO -   ✓ Ingredients: The Classic Chicken Tostada comes with fire-grilled chopped ...
+INFO - [17/94] Double Chicken Tostada
+INFO -   ✓ Ingredients: The Double Chicken Tostada comes with double-portion fire-gr...
+INFO - [18/94] Salsa Verde Chicken Quesadilla
+INFO -   ✓ Ingredients: The Salsa Verde Quesadilla features citrus-marinated, fire-g...
+INFO - [19/94] Creamy Chipotle Chicken Quesadilla
+INFO -   ✓ Ingredients: The Creamy Chipotle Quesadilla includes citrus-marinated, fi...
+INFO - [20/94] Shredded Chicken Nachos
+INFO -   ✓ Ingredients: The Shredded Chicken Nachos comes with fire-grilled shredded...
+INFO - [21/94] 2 Piece Meal
+INFO - [22/94] 3 Piece Meal
+INFO - [23/94] 4 Piece Meal
+INFO - [24/94] Fire-Grilled Chicken Breast
+INFO - [25/94] Fire-Grilled Chicken Wing
+INFO - [26/94] Fire-Grilled Chicken Thigh
+INFO - [27/94] Fire-Grilled Chicken Leg
+INFO - [28/94] Fam Feast
+INFO -   ✓ Ingredients: classic rice and beans, creamy Mac and cheese, veggies, and ...
+INFO - [29/94] 8pc Chicken Only Meal
+INFO -   ✓ Ingredients: Our 8pc Chicken Only Meal includes eight pieces of our famou...
+INFO - [30/94] 8PC Family Meal
+INFO - [31/94] 12PC Family Meal
+INFO -   ✓ Ingredients: twelve pieces of our legendary fire-grilled chicken—marinate...
+INFO - [32/94] 16PC Family Meal
+INFO - [33/94] Queso Crunch Double Chicken Burrito Bowl
+INFO - [34/94] Street Corn Double Chicken Burrito Bowl
+INFO - [35/94] Grande Avocado Chicken Bowl
+INFO -   ✓ Ingredients: The Grande Avocado Chicken Bowl comes with citrus-marinated,...
+INFO - [36/94] Double Chicken Bowl
+INFO -   ✓ Ingredients: The Double Chicken Bowl comes with double portion of our cit...
+INFO - [37/94] Original Pollo Bowl®
+INFO -   ✓ Ingredients: The Original Pollo Bowl® comes with fire-grilled chopped chi...
+INFO - [38/94] Guacamole Chicken Burrito
+INFO -   ✓ Ingredients: The Guacamole Chicken Burrito comes with citrus-marinated, f...
+INFO - [39/94] Chipotle Guacamole Chicken Burrito
+INFO -   ✓ Ingredients: The Chipotle Guacamole Chicken Burrito comes with fire-grill...
+INFO - [40/94] Queso Guacamole Chicken Burrito
+INFO -   ✓ Ingredients: The Queso Guacamole Chicken Burrito comes with fire-grilled,...
+INFO - [41/94] Original BRC Burrito
+INFO -   ✓ Ingredients: The Original BRC Burrito comes with savory pinto beans, seas...
+INFO - [42/94] Classic Chicken Burrito
+INFO -   ✓ Ingredients: The Classic Chicken Burrito comes with flame-grilled, shredd...
+INFO - [43/94] Original Pollo Bowl®  Combo
+INFO -   ✓ Ingredients: The Original Pollo Bowl Combo comes with fire-grilled choppe...
+INFO - [44/94] Chicken Tacos al Carbon Combo
+INFO -   ✓ Ingredients: The 3 Tacos al Carbon Combo comes with citrus-marinated chic...
+INFO - [45/94] Classic Chicken Burrito Combo
+INFO -   ✓ Ingredients: The Classic Chicken Burrito Combo comes with citrus-marinate...
+INFO - [46/94] Shredded Chicken Crunchy Taco
+INFO -   ✓ Ingredients: The Shredded Chicken Crunchy Taco comes with double layer cr...
+INFO - [47/94] Chicken Taco Al Carbon
+INFO -   ✓ Ingredients: The Chicken Taco Al Carbon comes with tender pieces of our c...
+INFO - [48/94] Chicken Avocado Taco
+INFO -   ✓ Ingredients: The Chicken Avocado Taco comes with fire-grilled chopped chi...
+INFO - [49/94] Caramel Flan
+INFO - [50/94] Cinnamon Churros
+INFO - [51/94] Homemade Tortilla Soup
+INFO -   ✓ Ingredients: shredded fire-grilled chicken, roasted corn, celery, carrots...
+INFO - [52/94] Original BRC Burrito
+INFO -   ✓ Ingredients: The Original BRC Burrito comes with savory pinto beans, seas...
+INFO - [53/94] Chicken Taco Al Carbon
+INFO -   ✓ Ingredients: The Chicken Taco Al Carbon comes with tender pieces of our c...
+INFO - [54/94] Chips & Guacamole
+INFO - [55/94] Chips & Queso
+INFO - [56/94] Tortilla Chips
+INFO - [57/94] Corn Tortillas
+INFO -   ✓ Ingredients: care to deliver a soft, authentic texture and flavor...
+INFO - [58/94] Flour Tortillas
+INFO - [59/94] Queso Blanco
+INFO - [60/94] Sour Cream
+INFO - [61/94] Mango Habanero Sauce
+INFO -   ✓ Ingredients: Each sauce side contains approximately 3 oz....
+INFO - [62/94] Creamy Cilantro Dressing
+INFO - [63/94] House Ranch Dressing
+INFO - [64/94] Mexican Caesar Dressing
+INFO - [65/94] Two Legs
+INFO - [66/94] Original BRC Burrito
+INFO -   ✓ Ingredients: care...
+INFO - [67/94] Rice
+INFO - [68/94] Pinto Beans
+INFO - [69/94] Corn
+INFO - [70/94] Broccoli
+INFO - [71/94] Macaroni and Cheese
+INFO - [72/94] Mashed Potatoes and Gravy
+INFO - [73/94] Loco Side Salad
+INFO - [74/94] Coleslaw
+INFO -   ✓ Ingredients: shredded green and red cabbage and carrots, tossed in a crea...
+INFO - [75/94] Coca-Cola®
+INFO - [76/94] Coke® Zero
+INFO - [77/94] Diet Coke®
+INFO - [78/94] Dr. Pepper®
+INFO - [79/94] Horchata
+INFO - [80/94] Diet Dr. Pepper
+INFO - [81/94] Fuze® Sweetened Raspberry Iced Tea
+INFO - [82/94] Gold Peak® Unsweetened Iced Tea
+INFO - [83/94] Gold Peak® Sweetened Iced Tea
+INFO - [84/94] Aguas Frescas Mango Lime
+INFO - [85/94] Aguas Frescas Strawberry Hibiscus
+INFO - [86/94] Hi-C® Flashin' Fruit Punch
+INFO - [87/94] Minute Maid® Lemonade
+INFO - [88/94] Minute Maid® Strawberry Lemonade
+INFO - [89/94] Sprite®
+INFO - [90/94] vitaminwater® xxx
+INFO - [91/94] Bottled Water
+INFO - [92/94] Avocado Salsa
+INFO - [93/94] Salsa Fresca
+INFO - [94/94] Salsa Roja
+INFO - 
+============================================================
+INFO - ✓ 数据已保存: El_Pollo_Loco_Complete_Updated.xlsx
+INFO - ✓ 更新了 94 条记录
+INFO - ✓ Description: 94 条
+INFO - ✓ Ingredients: 34 条
+INFO - ============================================================

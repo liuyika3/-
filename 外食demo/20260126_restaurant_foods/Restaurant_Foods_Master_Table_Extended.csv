@@ -1,0 +1,797 @@
+restaurant_name,food_name,calories,protein_g,total_fat_g,sodium_mg,total_carbs_g,saturated_fat_g,trans_fat_g,cholesterol_mg,fiber_g,sugars_g,food_id,food_name_cn,description,allergens,local_image_path,scraped_date
+McDonald's,Nonfat Latte (Large),120,12,0,160,18,0,0,5,0,18,953359,,"Nonfat Latte (Large), McCafe Coffees - Nonfat Milk",,,2026-02-04
+McDonald's,Nonfat Latte with Sugar Free Vanilla Syrup (Large),110,11,0,190,27,0,0,5,0,15,953383,,"Nonfat Latte with Sugar Free Vanilla Syrup (Large), McCafe Coffees - Nonfat Milk",,,2026-02-04
+McDonald's,Latte (Medium),180,10,10,130,13,6,0,30,0,13,948094,,"Latte (Medium), McCafe Coffees - Whole Milk",,,2026-02-04
+McDonald's,Latte with Sugar Free Vanilla Syrup (Large),180,10,10,180,25,6,0,30,0,13,953430,,"Latte with Sugar Free Vanilla Syrup (Large), McCafe Coffees - Whole Milk",,,2026-02-04
+McDonald's,Nonfat Latte (Medium),110,10,0,140,15,0,0,5,0,15,953358,,"Nonfat Latte (Medium), McCafe Coffees - Nonfat Milk",,,2026-02-04
+McDonald's,Chicken McNuggets (4 piece),190,9,12,360,12,2,0,25,1,0,180252,,"Chicken McNuggets (4 piece), Chicken McNuggets/Chicken Selects Premium Breast Strips/Sauces",,,2026-02-04
+McDonald's,Cappuccino (Large),180,9,10,130,13,6,0,30,0,13,175006,,"Cappuccino (Large), McCafe Coffees - Whole Milk",,,2026-02-04
+McDonald's,1% Low Fat Chocolate Milk Jug,170,9,3,150,26,1.5,0,5,1,25,948076,,"1% Low Fat Chocolate Milk Jug, Beverages",,,2026-02-04
+McDonald's,Premium Bacon Ranch Salad with Grilled Chicken,260,33,9,1010,12,4,0,90,3,5,953255,,"Premium Bacon Ranch Salad with Grilled Chicken, Salads",,,2026-02-04
+McDonald's,Premium Grilled Chicken Ranch BLT Sandwich,380,31,10,1000,41,3,0,75,4,9,953225,,"Premium Grilled Chicken Ranch BLT Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Premium Southwest Salad with Grilled Chicken,320,30,9,960,30,3,0,70,6,11,953252,,"Premium Southwest Salad with Grilled Chicken, Salads",,,2026-02-04
+McDonald's,Premium Caesar Salad with Grilled Chicken,220,30,6,890,12,3,0,75,3,5,953258,,"Premium Caesar Salad with Grilled Chicken, Salads",,,2026-02-04
+McDonald's,Premium Bacon Ranch Salad with Crispy Chicken,370,29,20,970,20,6,0,75,3,6,953256,,"Premium Bacon Ranch Salad with Crispy Chicken, Salads",,,2026-02-04
+McDonald's,Premium Grilled Chicken Classic Sandwich,360,27,9,820,41,2,0,65,4,8,953221,,"Premium Grilled Chicken Classic Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Premium Caesar Salad with Crispy Chicken,330,26,17,840,20,4.5,0,60,3,6,953259,,"Premium Caesar Salad with Crispy Chicken, Salads",,,2026-02-04
+McDonald's,Southern Style Crispy Chicken Sandwich,400,24,17,1030,39,3,0,45,1,6,953227,,"Southern Style Crispy Chicken Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Premium Grilled Chicken Club Sandwich,460,35,17,1040,43,6,0,90,4,9,953223,,"Premium Grilled Chicken Club Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Quarter Pounder with Cheese,510,29,26,1190,40,12,1.5,90,3,9,178,,"Quarter Pounder with Cheese, Sandwiches",,,2026-02-04
+McDonald's,Premium Crispy Chicken Ranch BLT Sandwich,540,27,23,1160,56,4.5,0,55,3,11,953226,,"Premium Crispy Chicken Ranch BLT Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Big N' Tasty with Cheese,510,27,28,960,38,11,1.5,85,3,8,953216,,"Big N' Tasty with Cheese, Sandwiches",,,2026-02-04
+McDonald's,Premium Southwest Salad with Crispy Chicken,430,26,20,920,38,4,0,55,6,12,953253,,"Premium Southwest Salad with Crispy Chicken, Salads",,,2026-02-04
+McDonald's,Big Mac,540,25,29,1040,45,10,1.5,75,3,9,180,,"Big Mac, Sandwiches",,,2026-02-04
+McDonald's,Double Cheeseburger,440,25,23,1150,34,11,1.5,80,2,7,176,,"Double Cheeseburger, Sandwiches",,,2026-02-04
+McDonald's,"Bacon, Egg & Cheese Bagel",560,24,27,1300,56,9,0.5,260,3,7,19154,,"Bacon, Egg & Cheese Bagel, Breakfast",,,2026-02-04
+McDonald's,Double Quarter Pounder with Cheese,740,48,42,1380,40,19,2.5,155,3,9,182,,"Double Quarter Pounder with Cheese, Sandwiches",,,2026-02-04
+McDonald's,Angus Chipotle BBQ Bacon,800,45,39,2020,66,18,2,145,4,16,953235,,"Angus Chipotle BBQ Bacon, Sandwiches",,,2026-02-04
+McDonald's,Angus Bacon & Cheese,790,45,39,2070,63,17,2,145,4,13,953217,,"Angus Bacon & Cheese, Sandwiches",,,2026-02-04
+McDonald's,Angus Mushroom & Swiss,770,44,40,1170,59,17,2,135,4,8,953219,,"Angus Mushroom & Swiss, Sandwiches",,,2026-02-04
+McDonald's,Angus Deluxe,750,40,39,1700,61,16,2,135,4,10,953218,,"Angus Deluxe, Sandwiches",,,2026-02-04
+McDonald's,Chicken Selects Premium Breast Strips (5 pc),660,38,40,1680,39,6,0,85,0,0,953247,,"Chicken Selects Premium Breast Strips (5 pc), Chicken McNuggets/Chicken Selects Premium Breast Strips/Sauces",,,2026-02-04
+McDonald's,"Steak, Egg & Cheese Bagel",660,33,33,1580,56,12,1,300,3,7,953278,,"Steak, Egg & Cheese Bagel, Breakfast",,,2026-02-04
+McDonald's,Premium Crispy Chicken Club Sandwich,620,31,29,1200,57,7,0,70,3,11,953224,,"Premium Crispy Chicken Club Sandwich, Sandwiches",,,2026-02-04
+McDonald's,Big Breakfast with Hotcakes (Large Size Biscuit),1150,36,60,2260,116,20,0,575,7,17,953282,,"Big Breakfast with Hotcakes (Large Size Biscuit), Breakfast",,,2026-02-04
+McDonald's,Big Breakfast with Hotcakes (Regular Size Biscuit),1090,36,56,2150,111,19,0,575,6,17,953281,,"Big Breakfast with Hotcakes (Regular Size Biscuit), Breakfast'",,,2026-02-04
+McDonald's,Chocolate Triple Thick Shake (32 fl oz cup),1160,27,27,510,203,16,2,100,2,168,953307,,"Chocolate Triple Thick Shake (32 fl oz cup), Desserts/ Shakes",,,2026-02-04
+McDonald's,Strawberry Triple Thick Shake (32 fl oz cup),1110,25,26,350,194,16,2,100,0,168,953316,,"Strawberry Triple Thick Shake (32 fl oz cup), Desserts/ Shakes",,,2026-02-04
+McDonald's,Vanilla Triple Thick Shake (32 fl oz cup),1110,25,26,370,193,16,2,100,0,145,953320,,"Vanilla Triple Thick Shake (32 fl oz cup), Desserts/ Shakes",,,2026-02-04
+McDonald's,Chocolate McCafé Shake (22 fl oz cup),880,18,24,370,147,15,1.5,75,1,121,953303,,"Chocolate McCafé Shake (22 fl oz cup), Desserts/ Shakes",,,2026-02-04
+McDonald's,Strawberry McCafé Shake (22 fl oz cup),860,18,24,260,144,15,1.5,75,0,124,953312,,"Strawberry McCafé Shake (22 fl oz cup), Desserts/ Shakes",,,2026-02-04
+McDonald's,Vanilla McCafé Shake (22 fl oz cup),830,17,24,270,138,14,1.5,75,0,103,953319,,"Vanilla McCafé Shake (22 fl oz cup), Desserts/ Shakes",,,2026-02-04
+Taco Bell,Soft Taco Supreme - Chicken,190,13,7,520,18,3.5,0,35,2,2,950233,,"Soft Taco Supreme - Chicken, Tacos",,,2026-02-04
+Taco Bell,Chicken Chipotle Melt - Value Menu,190,12,9,530,16,3,0,35,1,,950246,,"Chicken Chipotle Melt - Value Menu, New Cravings Value Menu",,,2026-02-04
+Taco Bell,Soft Taco - Chicken,160,12,5,510,16,2.5,0,30,1,1,24350,,"Soft Taco - Chicken, Tacos",,,2026-02-04
+Taco Bell,Soft Taco - Beef,180,9,9,500,18,4,0,25,3,1,2741,,"Soft Taco - Beef, Tacos",,,2026-02-04
+Taco Bell,Soft Taco - Specialties,180,9,9,500,18,4,0,25,3,1,954732,,Soft Taco - Specialties,,,2026-02-04
+Taco Bell,Crunchy Taco Supreme,190,8,11,320,15,4.5,0,25,3,2,2730,,"Crunchy Taco Supreme, Tacos",,,2026-02-04
+Taco Bell,Nacho Cheese Doritos Locos Taco Supreme,190,8,11,360,15,4.5,0,25,3,2,64352,,"Nacho Cheese Doritos Locos Taco Supreme, Tacos",,,2026-02-04
+Taco Bell,Cheesy Roll Up - Value Menu,180,8,9,430,17,6,0,20,1,1,4447,,"Cheesy Roll Up - Value Menu, New Cravings Value Menu, Specialties, Veggie Cravings",,,2026-02-04
+Taco Bell,Burrito Supreme - Steak,380,19,12,1160,50,6,0,30,7,5,2715,,"Burrito Supreme - Steak, Burritos",,,2026-02-04
+Taco Bell,Burrito Supreme - Chicken,370,19,11,1150,49,5,0,35,7,4,2714,,"Burrito Supreme - Chicken, Burritos",,,2026-02-04
+Taco Bell,Burrito Supreme - Beef,400,16,14,1130,51,6,0,25,8,4,2713,,"Burrito Supreme - Beef, Burritos",,,2026-02-04
+Taco Bell,Chalupa Supreme - Chicken,340,16,17,580,29,4,0,35,3,4,2755,,"Chalupa Supreme - Chicken, Tacos",,,2026-02-04
+Taco Bell,Chalupa Supreme - Steak,350,15,18,590,30,4.5,0,30,3,4,2756,,"Chalupa Supreme - Steak, Tacos",,,2026-02-04
+Taco Bell,Bean Burrito (V),350,13,9,1040,55,4,0,5,10,3,2707,,"Bean Burrito (V), Burritos, Veggie Cravings",,,2026-02-04
+Taco Bell,Cheesy Toasted Breakfast Burrito - Bacon,350,13,16,880,38,5,0,105,2,3,950247,,"Cheesy Toasted Breakfast Burrito - Bacon, Breakfast",,,2026-02-04
+Taco Bell,Chalupa Supreme - Beef,360,12,21,570,31,6,0,25,4,4,2754,,"Chalupa Supreme - Beef, Tacos",,,2026-02-04
+Taco Bell,Breakfast Quesadilla - Steak,510,28,25,1310,41,14,0,160,3,4,954725,,"Breakfast Quesadilla - Steak, Breakfast",,,2026-02-04
+Taco Bell,Grande Toasted Breakfast Burrito - Steak,570,27,28,1370,52,10,0,230,4,4,950252,,"Grande Toasted Breakfast Burrito - Steak, Breakfast",,,2026-02-04
+Taco Bell,Power Menu Bowl - Chicken,460,27,21,1250,41,6,0,70,8,3,34572,,"Power Menu Bowl - Chicken, Power Menu",,,2026-02-04
+Taco Bell,Power Menu Bowl - Specialties,460,27,21,1250,41,6,0,70,8,3,950234,,Power Menu Bowl - Specialties,,,2026-02-04
+Taco Bell,Quesadilla - Chicken,520,26,26,1260,41,13,0,75,3,3,2767,,"Quesadilla - Chicken, Quesadillas",,,2026-02-04
+Taco Bell,Quesadilla - Steak,520,26,27,1270,42,14,0,70,3,4,178778,,"Quesadilla - Steak, Quesadillas",,,2026-02-04
+Taco Bell,Quesadilla - Specialties,520,26,26,1260,41,13,0,75,3,3,950235,,Quesadilla - Specialties,,,2026-02-04
+Taco Bell,Breakfast Quesadilla - Bacon,510,25,27,1250,41,14,0,150,3,3,954723,,"Breakfast Quesadilla - Bacon, Breakfast",,,2026-02-04
+Taco Bell,Quesarito - Chicken,630,25,30,1430,65,11,0,60,4,4,180357,,"Quesarito - Chicken, Burritos",,,2026-02-04
+Taco Bell,Breakfast Crunchwrap - Steak,660,24,38,1360,53,12,0,140,4,3,102422,,"Breakfast Crunchwrap - Steak, Breakfast",,,2026-02-04
+Taco Bell,Quesarito - Steak,630,24,31,1440,65,12,0,55,4,5,134581,,"Quesarito - Steak, Burritos",,,2026-02-04
+Taco Bell,Breakfast Crunchwrap - Bacon,670,21,40,1300,52,13,0,135,4,3,34605,,"Breakfast Crunchwrap - Bacon, Breakfast",,,2026-02-04
+Taco Bell,Quesarito - Beef,650,21,33,1420,67,13,0.5,50,5,4,102403,,"Quesarito - Beef, Burritos, Quesadillas",,,2026-02-04
+Taco Bell,Quesarito - Online Exclusive,650,21,33,1420,67,13,0.5,50,5,4,954716,,Quesarito - Online Exclusive,,,2026-02-04
+Taco Bell,Quesarito - Specialties,650,21,33,1420,67,13,0.5,50,5,4,954731,,Quesarito - Specialties,,,2026-02-04
+Taco Bell,Breakfast Crunchwrap - Sausage,730,20,47,1290,52,15,0,140,4,3,34606,,"Breakfast Crunchwrap - Sausage, Breakfast",,,2026-02-04
+Taco Bell,Cinnabon Delights (12 Pk - Serves 4) (V),930,9,53,480,104,13,2,40,3,59,102369,,"Cinnabon Delights (12 Pk - Serves 4) (V), Sides & Sweets",,,2026-02-04
+Taco Bell,Cinnabon Delights (12 Pack - Serves 4) (V),930,9,53,480,104,13,2,40,3,59,954601,,"Cinnabon Delights (12 Pack - Serves 4) (V), Breakfast",,,2026-02-04
+Taco Bell,Cinnabon Delights (12 Pack - Serves 4),930,9,53,480,104,13,2,40,3,59,954602,,"Cinnabon Delights (12 Pack - Serves 4), Veggie Cravings",,,2026-02-04
+Taco Bell,Power Menu Bowl - Steak,480,25,23,1280,42,7,0,60,7,4,34573,,"Power Menu Bowl - Steak, Power Menu",,,2026-02-04
+Taco Bell,Hash Brown Toasted Breakfast Burrito - Steak,570,24,30,1350,53,10,0,135,3,3,950255,,"Hash Brown Toasted Breakfast Burrito - Steak, Breakfast",,,2026-02-04
+Taco Bell,Grande Toasted Breakfast Burrito - Bacon,570,23,30,1310,52,11,0,220,4,3,950250,,"Grande Toasted Breakfast Burrito - Bacon, Breakfast",,,2026-02-04
+Taco Bell,Breakfast Quesadilla - Sausage,510,23,29,1130,40,15,0,150,3,3,954724,,"Breakfast Quesadilla - Sausage, Breakfast",,,2026-02-04
+Taco Bell,Grande Toasted Breakfast Burrito - Sausage,570,21,31,1190,51,12,0,220,4,3,950251,,"Grande Toasted Breakfast Burrito - Sausage, Breakfast",,,2026-02-04
+Shake Shack,Burger Patty,190,19,12,690,0,4.5,0.5,65,0,0,941192,,"Burger Patty, Burgers",,,2026-02-04
+Shake Shack,Garden Dog,180,8,3,1060,27,0,0,10,1,7,941248,,"Garden Dog, Non-GMO Potato Bun, Flat-Top Dogs",,,2026-02-04
+Shake Shack,Martin's Potato Roll,180,7,6,170,24,3,0,10,0,5,941214,,"Martin's Potato Roll, Burgers",,,2026-02-04
+Shake Shack,Bacon (2 Slices),70,6,4.5,290,0,1.5,0,15,0,0,941187,,"Bacon (2 Slices), Burgers",,,2026-02-04
+Shake Shack,American Cheese,70,4,6,340,1,3.5,0,15,0,0,941186,,"American Cheese, Burgers",,,2026-02-04
+Shake Shack,Orange Juice,165,3,0,12,41,0,0,0,2,30,941329,,"Orange Juice, Drinks",,,2026-02-04
+Shake Shack,Gluten Free Bun,160,3,3,350,31,0,0,0,2,5,957781,,"Gluten Free Bun, Burgers",,,2026-02-04
+Shake Shack,Malt,90,2,1,70,19,0.5,0,5,0,16,941265,,"Malt, Shakes",,,2026-02-04
+Shake Shack,Single Hamburger,370,25,18,850,24,8,1,75,0,5,941204,,"Single Hamburger, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Bacon Breakfast Sandwich,400,23,23,890,25,10,0,230,0,5,941241,,"Bacon Breakfast Sandwich, Cage Free Eggs, Non-GMO Potato Bun, Breakfast",,,2026-02-04
+Shake Shack,Sausage Breakfast Sandwich,340,17,19,610,25,9,0,215,0,5,941245,,"Sausage Breakfast Sandwich, Cage Free Eggs, Non-GMO Potato Bun, Breakfast",,,2026-02-04
+Shake Shack,Chicken Bites (6 piece),300,17,19,780,15,3.5,0,50,0,1,957784,,"Chicken Bites (6 piece), Chicken",,,2026-02-04
+Shake Shack,Hot Dog,350,16,22,800,25,10,0,50,0,6,941249,,"Hot Dog, 100% All Natural Vienna Beef, Non-GMO Potato Bun, Flat-Top Dogs",,,2026-02-04
+Shake Shack,Grilled Cheese,320,14,18,850,25,10,0.5,45,0,5,941203,,"Grilled Cheese, Burgers",,,2026-02-04
+Shake Shack,Sausage Link,240,9,20,682,2,7,0,40,0,0,941251,,"Sausage Link, 100% All Natural Vienna Beef, Non-GMO Potato Bun, Flat-Top Dogs",,,2026-02-04
+Shake Shack,Single Vanilla Cup,280,7,15,180,30,9,0,100,0,30,941277,,"Single Vanilla Cup, Cups",,,2026-02-04
+Shake Shack,Double Hamburger,560,44,30,1540,24,12,1.5,140,0,5,941205,,"Double Hamburger, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Hot Ones Burger, Single",590,37,38,1400,25,14,1,120,0,5,957779,,"Hot Ones Burger, Single, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Single SmokeShack,570,36,35,2010,28,13,1,120,0,7,941225,,"Single SmokeShack, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Bacon Cheeseburger, Single",500,35,29,1480,25,13,1,110,0,5,941188,,"Bacon Cheeseburger, Single, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Chicken Shack,550,33,31,1170,34,7,0,110,0,6,957783,,"Chicken Shack, Non-GMO Potato Bun, Chicken",,,2026-02-04
+Shake Shack,"Golden State, Single",560,31,37,1310,26,13,1,100,0,5,941199,,"Golden State, Single, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Egg and Cheese Breakfast Sandwich,530,30,32,1220,28,14,0,260,0,8,941243,,"Egg and Cheese Breakfast Sandwich, Cage Free Eggs, Non-GMO Potato Bun, Breakfast",,,2026-02-04
+Shake Shack,"Green Chile CheddarShack, Single",470,30,26,1380,28,12,1,100,1,6,941201,,"Green Chile CheddarShack, Single, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Bacon Cheeseburger, Double",760,58,47,2510,25,21,2,190,0,6,941189,,"Bacon Cheeseburger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Mound City Double,780,56,48,2380,26,20,1.5,185,0,6,941217,,"Mound City Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Roadside Double Burger,770,53,46,2300,32,20,2,175,0,7,941220,,"Roadside Double Burger, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Green Chile CheddarShack, Double",750,53,46,2190,28,22,1.5,185,1,6,941202,,"Green Chile CheddarShack, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Double ShackBurger,760,51,48,2280,27,20,2,185,0,6,941224,,"Double ShackBurger, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Double Cheeseburger,700,51,42,2220,25,20,2,175,0,5,941194,,"Double Cheeseburger, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Slap Shot Burger, Double",680,47,40,1840,33,15,1.5,145,0,6,957778,,"Slap Shot Burger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Hot Ones Chicken,680,44,41,1360,34,13,0,145,0,6,957786,,"Hot Ones Chicken, Non-GMO Potato Bun, Chicken",,,2026-02-04
+Shake Shack,"Lockhart Link Burger, Triple",1300,83,92,4110,29,38,2.5,320,0,6,941213,,"Lockhart Link Burger, Triple, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Link Burger, Triple",1190,83,82,4070,28,34,2.5,305,0,7,941210,,"Link Burger, Triple, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Brat Burger, Double",1050,62,73,2530,34,25,2,205,0,6,941191,,"Brat Burger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Lockhart Link Burger, Double",1040,61,74,3080,28,29,2,235,0,5,941212,,"Lockhart Link Burger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Link Burger, Double",930,61,64,3040,28,26,2,220,0,6,941209,,"Link Burger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,"Hot Ones Burger, Double",860,61,56,2210,25,23,1.5,205,0,5,957780,,"Hot Ones Burger, Double, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Double SmokeShack,830,58,53,3030,28,22,2,200,0,7,941226,,"Double SmokeShack, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Shake Shack,Montlake Double Cut,980,54,68,2470,36,31,2,240,0,5,941216,,"Montlake Double Cut, 100% All Natural Angus Beef, Non-GMO Potato Bun, Burgers",,,2026-02-04
+Burger King,Fat Free Milk,90,9,0,125,13,0,0,,0,12,11681,,"Fat Free Milk, Drinks & Coffee",,,2026-02-04
+Burger King,"Soft Serve, Cup",170,5,4.5,150,28,3,0,20,0,24,11658,,"Soft Serve, Cup, Sweets",,,2026-02-04
+Burger King,"Sides, 1 Crispy Taco",170,5,9,360,19,3,0,10,2,1,926544,,"Sides, 1 Crispy Taco, Chicken & Fish",,,2026-02-04
+Burger King,"Jalapeno Cheddar Bites, 4 Piece",160,4,9,450,17,3.5,0,10,1,,951999,,"Jalapeno Cheddar Bites, 4 Piece, Sides",,,2026-02-04
+Burger King,"Soft Serve, Cone",140,3,4,100,24,3,0,15,0,17,11657,,"Soft Serve, Cone, Sweets",,,2026-02-04
+Burger King,Simply Orange Juice,140,2,0,20,33,0,0,0,0,30,952005,,"Simply Orange Juice, Drinks & Coffee",,,2026-02-04
+Burger King,"Iced Coffee Plain, Small",150,1,8,30,21,4,0,25,0,21,952004,,"Iced Coffee Plain, Small, Drinks & Coffee",,,2026-02-04
+Burger King,Value Sprite,200,0,0,90,49,0,0,0,0,49,952017,,"Value Sprite, Drinks & Coffee",,,2026-02-04
+Burger King,Bacon Double Cheeseburger,400,24,22,670,27,11,0,85,,7,11474,,"Bacon Double Cheeseburger, Flame Grilled Burgers",,,2026-02-04
+Burger King,Double Cheeseburger,390,23,21,590,27,9,0,85,,7,170894,,"Double Cheeseburger, Flame Grilled Burgers",,,2026-02-04
+Burger King,Bacon Cheeseburger,320,17,16,710,27,7,0,55,,7,11442,,"Bacon Cheeseburger, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Ham, Egg & Cheese Croissan'Wich",340,16,16,1000,31,7,0,175,1,5,879,,"Ham, Egg & Cheese Croissan'Wich, Breakfast",,,2026-02-04
+Burger King,"Chicken Nuggets, 8 Piece",340,16,22,630,21,3.5,0,45,1,0,951993,,"Chicken Nuggets, 8 Piece, Chicken & Fish",,,2026-02-04
+Burger King,Breakfast Burrito Jr.,370,15,23,930,27,8,0,170,3,2,926505,,"Breakfast Burrito Jr., Breakfast",,,2026-02-04
+Burger King,Cheeseburger,280,15,13,560,27,6,0,45,,7,8,,"Cheeseburger, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Ham, Egg & Cheese Biscuit Sandwich",370,13,23,1290,29,12,0,185,,3,882,,"Ham, Egg & Cheese Biscuit Sandwich, Breakfast",,,2026-02-04
+Burger King,"Sausage, Egg & Cheese French Toast Sandwich",590,30,38,1510,30,14,0,475,2,10,951985,,"Sausage, Egg & Cheese French Toast Sandwich, Breakfast",,,2026-02-04
+Burger King,"Fully Loaded Croissan'Wich (Bacon, Ham, Sausage)",570,27,37,1650,32,15,0,195,1,5,150521,,"Fully Loaded Croissan'Wich (Bacon, Ham, Sausage), Breakfast",,,2026-02-04
+Burger King,"Bacon, Sausage, Egg & Cheese Biscuit King Croissan'Wich",580,23,40,1260,31,16,0,245,1,5,951980,,"Bacon, Sausage, Egg & Cheese Biscuit King Croissan'Wich, Breakfast",,,2026-02-04
+Burger King,"Spicy Nuggets, 10 Piece",530,20,37,1420,28,7,0,55,4,,926492,,"Spicy Nuggets, 10 Piece, Chicken & Fish",,,2026-02-04
+Burger King,"Chicken Nuggets, 10 Piece",480,20,27,1010,39,4.5,0,55,2,11,29249,,"Chicken Nuggets, 10 Piece, Chicken & Fish",,,2026-02-04
+Burger King,"Sausage, Egg & Cheese Croissan'Wich",520,18,35,910,30,13,0,165,1,4,881,,"Sausage, Egg & Cheese Croissan'Wich, Breakfast",,,2026-02-04
+Burger King,"Sausage, Egg & Cheese Biscuit Sandwich",520,18,37,1400,29,17,0,165,,3,885,,"Sausage, Egg & Cheese Biscuit Sandwich, Breakfast",,,2026-02-04
+Burger King,Big Fish Sandwich,510,16,28,1180,51,4.5,0,30,2,7,60385,,"Big Fish Sandwich, Chicken & Fish",,,2026-02-04
+Burger King,"Build Your Own Sandwich, Whopper (Plain)",730,49,40,660,47,17,0,130,2,8,951986,,"Build Your Own Sandwich, Whopper (Plain), Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Stacker King Single",790,40,49,1710,49,20,0,145,1,11,926487,,"Flame Grilled Burgers, Stacker King Single, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Bacon, Sausage, Egg & Cheese Biscuit Sandwich",770,35,56,2550,35,26,1,440,1,4,951979,,"Bacon, Sausage, Egg & Cheese Biscuit Sandwich, Breakfast",,,2026-02-04
+Burger King,"Double Sausage, Egg & Cheese Croissan'Wich",790,33,59,1780,32,24,1,260,1,5,951983,,"Double Sausage, Egg & Cheese Croissan'Wich, Breakfast",,,2026-02-04
+Burger King,BBQ Bacon Crispy Chicken Sandwich,790,28,49,1630,60,10,0,80,2,13,170899,,"BBQ Bacon Crispy Chicken Sandwich, Chicken & Fish",,,2026-02-04
+Burger King,Original Chicken Sandwich,660,28,40,1170,48,7,1,75,2,5,280,,"Original Chicken Sandwich, Chicken & Fish",,,2026-02-04
+Burger King,Whopper,660,28,40,980,49,12,1,90,2,11,944749,,"Whopper, Flame Grilled Burgers",,,2026-02-04
+Burger King,Fully Loaded Buttermilk Biscuit Sandwich,610,28,42,2170,31,20,0,225,,4,170897,,"Fully Loaded Buttermilk Biscuit Sandwich, Breakfast",,,2026-02-04
+Burger King,Texas Double Whopper,1880,110,136,3080,58,51,2.5,355,4,13,951991,,"Texas Double Whopper, Flame Grilled Burgers",,,2026-02-04
+Burger King,Triple Whopper w/ Cheese,1300,76,89,1830,52,36,1.5,300,2,12,926485,,"Triple Whopper w/ Cheese, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Bacon King",1310,70,93,2870,52,39,2.5,285,2,11,150510,,"Flame Grilled Burgers, Bacon King, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Double Stacker King",1210,70,82,2580,52,37,0,280,1,12,926488,,"Flame Grilled Burgers, Double Stacker King, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Double Quarter Pound King",1070,65,67,2450,53,33,1.5,255,2,12,180049,,"Flame Grilled Burgers, Double Quarter Pound King, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Double Steakhouse King",1160,58,710,1690,57,26,0,215,2,9,951989,,"Flame Grilled Burgers, Double Steakhouse King, Flame Grilled Burgers",,,2026-02-04
+Burger King,"Flame Grilled Burgers, Big King XL",1010,57,63,1840,56,27,0,185,2,14,951988,,"Flame Grilled Burgers, Big King XL, Flame Grilled Burgers",,,2026-02-04
+Burger King,Double Whopper,900,48,58,1050,49,20,1,175,2,11,951987,,"Double Whopper, Flame Grilled Burgers",,,2026-02-04
+Wendy's,4pc Spicy Chicken Nuggets,190,10,12,480,9,3,0,25,1,0,943367,,"4pc Spicy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More, Fries & Sides",,,2026-02-04
+Wendy's,4pc Crispy Chicken Nuggets,180,10,12,380,9,2.5,0,30,0,0,954994,,"4pc Crispy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More, Fries & Sides",,,2026-02-04
+Wendy's,Chocolate Milk,140,7,2.5,160,23,1.5,0,10,1,22,955015,,"Chocolate Milk, Beverages",,,2026-02-04
+Wendy's,Milk,90,7,2,90,10,1,0,10,0,10,955014,,"Milk, Beverages",,,2026-02-04
+Wendy's,"Classic Chocolate Frosty, Junior",200,6,5,90,33,3,0,20,0,27,25073,,"Classic Chocolate Frosty, Junior, Frostys",,,2026-02-04
+Wendy's,"Vanilla Frosty, Junior",190,5,5,90,32,3,0,25,0,27,25151,,"Vanilla Frosty, Junior, Frostys",,,2026-02-04
+Wendy's,Ranch Dressing,180,2,18,310,3,3,0,15,0,2,954995,,"Ranch Dressing, Available In: Taco Salad, Parmesan Caesar Salad, Southwest Avocado Salad, Apple Pecan Salad",,,2026-02-04
+Wendy's,Caesar Dressing,140,1,14,320,2,2.5,0,15,0,1,951062,,"Caesar Dressing, Available In: Taco Salad, Parmesan Caesar Salad, Southwest Avocado Salad, Apple Pecan Salad",,,2026-02-04
+Wendy's,Parmesan Caesar Salad,280,32,14,1000,6,7,0,85,3,2,951063,,"Parmesan Caesar Salad, Grilled Chicken, Parmesan Crisps, Choice of Dressing: Pomegranate Vinaigrette, Southwest Ranch, Caesar or Ranch Dressing, Choice of Adding Lite, Regular or Xtra: Sweet Onion, Blue Cheese Crumbles, Shredded Cheddar, Choice of Adding: Applewood Smoked Bacon, Avocado, Roasted Pecans, Fresh Made Salads",,,2026-02-04
+Wendy's,Southwest Avocado Salad,400,30,25,1130,13,9,0,80,6,3,951065,,"Southwest Avocado Salad, Avocado, Applewood Smoked Bacon, Grilled Chicken, Choice of Dressing: Pomegranate Vinaigrette, Southwest Ranch, Caesar or Ranch Dressing, Choice of Adding Lite, Regular or Xtra: Sweet Onion, Blue Cheese Crumbles, Shredded Cheddar, Choice of Adding: Parmesan Crisps, Roasted Pecans, Fresh Made Salads",,,2026-02-04
+Wendy's,"Chili, Large",340,22,15,1270,31,6,1,30,8,8,1539,,"Chili, Large, Choice of Adding: Light Sour Cream, Hot Sauce, Saltine Packet, Choice of Adding Lite, Regular or Extra: Shredded Cheddar, Sweet Onion, Fries & Sides",,,2026-02-04
+Wendy's,Jr. Bacon Cheeseburger,370,18,23,650,25,8,1,45,1,5,229,,"Jr. Bacon Cheeseburger, Sandwich Bun, American Cheese Slice, Applewood Smoked Bacon, Jr. Hamburger Patties, Mayo, Tomato, Lettuce, Choice of Adding Lite, Regular or Xtra: Mustard, Ketchup, Crinkle Cut Pickles, Sweet Onion, Ranch, Bourbon Bacon Sauce, Smoky Honey Mustard, Shredded Cheddar Cheese, Beer Cheese Sauce, Tomato, Lettuce, Choice of Adding:  Muenster, Asiago, Hamburgers, Biggie Deals",,,2026-02-04
+Wendy's,"Chili, Small",240,16,11,910,22,4.5,0.5,20,6,6,1538,,"Chili, Small, Choice of Adding: Light Sour Cream, Hot Sauce, Saltine Packet, Choice of Adding Lite, Regular or Extra: Shredded Cheddar, Sweet Onion, Fries & Sides",,,2026-02-04
+Wendy's,Jr. Cheeseburger Deluxe,340,15,20,610,27,7,1,40,1,6,231,,"Jr. Cheeseburger Deluxe, Sandwich Bun, American Cheese Slice, Jr. Hamburger Patty, Mayo, Ketchup, Crinkle Cut Pickles, Sweet Onion, Tomato, Lettuce, Choice of Adding Lite, Regular or Xtra: Mustard, Ranch, Bourbon Bacon Sauce, Smoky Honey Mustard, Shredded Cheddar Cheese, Beer Cheese Sauce, Tomato, Lettuce, Choice of Adding:  Applewood Smoked Bacon, Muenster, Asiago, Hamburgers, Biggie Deals",,,2026-02-04
+Wendy's,6pc Spicy Chicken Nuggets,280,15,18,720,13,4,0,30,1,0,943368,,"6pc Spicy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More, Fries & Sides",,,2026-02-04
+Wendy's,6pc Crispy Chicken Nuggets,270,15,17,570,14,3.5,0,50,1,0,954993,,"6pc Crispy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More, Fries & Sides",,,2026-02-04
+Wendy's,Dave's Single,590,29,37,1030,37,15,1.5,80,2,8,943409,,"Dave's Single, Premium Bun, Lettuce, Sweet Onion, Crinkle Cut Pickles, Tomato, Ketchup, Mayo, American Cheese Slice, Hamburger Patty, Choice of Adding Lite, Regular or Xtra: Marinara, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Lettuce, Sweet Onion, Choice of Adding: Applewood Smoked Bacon, Muenster, Avocado, American Cheese Slice, Crispy Onions, Asiago, Hamburgers",,,2026-02-04
+Wendy's,Apple Pecan Salad,440,29,24,1290,27,10,0,90,5,18,951059,,"Apple Pecan Salad, Roasted Pecans, Blue Cheese Crumbles, Grilled Chicken, Choice of Dressing: Pomegranate Vinaigrette, Southwest Ranch, Caesar or Ranch Dressing, Choice of Adding Lite, Regular or Xtra: Sweet Onion, Choice of Adding: Parmesan Crisps, Avocado, Fresh Made Salads",,,2026-02-04
+Wendy's,Spicy Chicken Sandwich,490,28,20,1160,50,3.5,0,70,3,5,453,,"Spicy Chicken Sandwich, Premium Bun, Spicy Chicken Breast, Lettuce, Tomato, Mayo, Choice of Adding Lite, Regular or Xtra: Crispy Onions, Marinara, Ketchup, Smoky Honey Mustard, Mustard, Ranch, Bourbon Bacon Sauce, Cheddar Cheese Sauce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Fried Mozzarella, Applewood Smoked Bacon, Avocado, American Cheese Slice, Asiago, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Classic Chicken Sandwich,490,28,21,1450,49,3.5,0,75,2,5,954990,,"Classic Chicken Sandwich, Premium Bun, Classic Chicken Breast, Lettuce, Tomato, Crinkle Cut Pickles, Mayo, Choice of Adding Lite, Regular or Xtra: Crispy Onions, Marinara, Ketchup, Smoky Honey Mustard, Mustard, Ranch, Bourbon Bacon Sauce, Cheddar Cheese Sauce, Sweet Onion, Choice of Adding: Fried Mozzarella, Applewood Smoked Bacon, Avocado, American Cheese Slice, Asiago, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,10 pc Spicy Chicken Nuggets,470,26,31,1190,22,7,0,65,2,0,943369,,"10 pc Spicy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Bacon Double Stack,440,26,26,820,26,11,1.5,65,1,6,943402,,"Bacon Double Stack, Sandwich Bun, American Cheese Slice, Applewood Smoked Bacon, Jr. Hamburger Patties, Mustard, Ketchup, Crinkle Cut Pickles, Sweet Onion, Choice of Adding Lite, Regular or Xtra: Mayo, Ranch, Bourbon Bacon Sauce, Smoky Honey Mustard, Shredded Cheddar Cheese, Beer Cheese Sauce, Tomato, Lettuce, Choice of Adding:  Muenster, Asiago, Hamburgers, Biggie Deals",,,2026-02-04
+Wendy's,10pc Crispy Chicken Nuggets,450,25,29,950,23,6,0,80,1,0,954992,,"10pc Crispy Chicken Nuggets, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Grilled Chicken Wrap,410,25,16,1330,41,5,0,65,1,2,954991,,"Grilled Chicken Wrap, Choice of Adding Lite, Regular or Xtra: Smoky Honey Mustard, Lettuce, Shredded Cheddar, Sweet Onion, Choice of Adding:  American Cheese Slice, Asiago, Grilled Chicken, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Italian Mozzarella Chicken,780,45,31,2310,81,11,0,105,4,4,954987,,"Italian Mozzarella Chicken, Garlic Knot Bun, Asiago, Fried Mozzarella, Classic Chicken Breast, Marinara, Choice of Adding Lite, Regular or Xtra: Crinkle Cut Pickles, Tomato, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce,  Smoky Honey Mustard, Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Cheddar Cheese Sauce, Lettuce, Sweet Onion, Choice of Adding: Applewood Smoked Bacon, Muenster, Avocado, American Cheese Slice, Crispy Onions, Asiago, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,"Italian Mozzarella Cheeseburger, Single",780,42,40,1440,65,18,2,90,3,4,954980,,"Italian Mozzarella Cheeseburger, Single, Garlic Knot Bun, Asiago, Fried Mozzarella, Marinara, Hamburger Patty, Choice of Adding Lite, Regular or Xtra: Tomato, Ketchup, Mayo, Mustard, Ranch, Smoky Honey Mustard, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Cheddar Cheese Sauce, Lettuce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Applewood Smoked Bacon, Muenster, Avocado, Crispy Onions, American Cheese Slice, Hamburgers",,,2026-02-04
+Wendy's,Asiago Ranch Classic Chicken Club,630,36,31,1800,50,8,0,100,2,6,943388,,"Asiago Ranch Classic Chicken Club, Premium Bun, Asiago, Lettuce, Tomato, Ranch, Applewood Smoked Bacon, Classic Chicken Breast, Choice of Adding Lite, Regular or Xtra: Crinkle Cut Pickles, Marinara, Smoky Honey Mustard, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce, Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Cheddar Cheese Sauce, Lettuce, Sweet Onion, Choice of Adding: Fried Mozzarella, Crispy Onions, Avocado, American Cheese Slice, Muenster, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Spicy Asiago Ranch Club,620,36,31,1570,51,8,0,95,3,6,943360,,"Spicy Asiago Ranch Club, Premium Bun, Asiago, Lettuce, Tomato, Ranch, Applewood Smoked Bacon, Spicy Chicken Breast, Choice of Adding Lite, Regular or Xtra: Crinkle Cut Pickles, Marinara, Smoky Honey Mustard, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce, Blue Cheese Crumbles, Shredded Cheddar Cheese, Cheddar Cheese Sauce, Beer Cheese Sauce, Lettuce, Sweet Onion, Choice of Adding: Fried Mozzarella, Crispy Onions, Avocado, American Cheese Slice, Muenster, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Bourbon Bacon Cheeseburger,730,34,43,1360,52,16,1.5,85,1,15,954983,,"Bourbon Bacon Cheeseburger, Premium Bun, Crispy Onions, Bourbon Bacon Sauce, American Cheese Slice, Hamburger Patty, Applewood Smoked Bacon, Choice of Adding Lite, Regular or Xtra: Marinara, Tomato, Ketchup, Mayo, Mustard, Ranch, Smoky Honey Mustard, Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Lettuce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Muenster, Avocado, American Cheese Slice, Hamburgers",,,2026-02-04
+Wendy's,Big Bacon Classic,650,33,41,1230,37,16,1.5,90,2,8,951047,,"Big Bacon Classic, Premium Bun, Lettuce, Sweet Onion, Crinkle Cut Pickles, Tomato, Ketchup, Mayo, American Cheese Slice, Hamburger Patty, Applewood Smoked Bacon, Choice of Adding Lite, Regular or Xtra: Marinara, Mustard, Ranch, Bourbon Bacon Sauce, Smoky Honey Mustard,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Choice of Adding:  Muenster, Avocado, American Cheese Slice, Crispy Onions, Asiago, Hamburgers",,,2026-02-04
+Wendy's,Son of Baconator,630,32,40,1210,36,16,1.5,85,1,7,34714,,"Son of Baconator, Premium Bun, Ketchup, Mayo, Jr. Hamburger Patties, Applewood Smoked Bacon, American Cheese Slice, Choice of Adding Lite, Regular or Xtra: Marinara, Mustard, Ranch, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Lettuce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Applewood Smoked Bacon, Avocado, American Cheese Slice, Crispy Onions, Asiago, Hamburgers",,,2026-02-04
+Wendy's,Taco Salad,690,30,34,1870,68,13,1,60,12,16,161533,,"Taco Salad, Chili, Light Sour Cream, Signature Salsa, Taco Chips, Choice of Dressing: Pomegranate Vinaigrette, Southwest Ranch, Caesar or Ranch Dressing, Choice of Adding Lite, Regular or Xtra: Sweet Onion, Blue Cheese Crumbles, Shredded Cheddar, Choice of Adding: Saltine Packet, Avocado, Roasted Pecans, Fresh Made Salads",,,2026-02-04
+Wendy's,"Family Size Nuggets, Spicy",2340,128,153,5960,112,34,0,330,8,0,954988,,"Family Size Nuggets, Spicy, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,"Family Size Nuggets, Crispy",2260,123,145,4750,116,31,0,400,5,0,954989,,"Family Size Nuggets, Crispy, Choice of Sauce: Barbecue, Honey Mustard Dipping Sauce, Buttermilk Ranch, Ghost Pepper Ranch, Ketchup, Sweet & Sour, Chicken, Nuggets & More",,,2026-02-04
+Wendy's,Family Chili,1100,94,26,5020,130,10,1.5,175,34,36,954999,,"Family Chili, Fries & Sides",,,2026-02-04
+Wendy's,Pretzel Bacon Pub Triple,1530,89,107,1890,53,44,5,250,3,6,951051,,"Pretzel Bacon Pub Triple, Pretzel Bun, Crinkle Cut Pickles, Crispy Onions, Smoky Honey Mustard, Muenster, Beer Cheese Sauce, Hamburger Patty, Applewood Smoked Bacon, Choice of Adding Lite, Regular or Xtra: Marinara, Tomato, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Lettuce, Sweet Onion, Choice of Adding: Avocado, American Cheese Slice, Asiago, Hamburgers",,,2026-02-04
+Wendy's,"Italian Mozzarella Cheeseburger, Triple",1420,88,91,1990,65,40,5,225,3,5,954982,,"Italian Mozzarella Cheeseburger, Triple, Garlic Knot Bun, Asiago, Fried Mozzarella, Marinara, Hamburger Patty, Choice of Adding Lite, Regular or Xtra: Tomato, Ketchup, Mayo, Mustard, Ranch, Smoky Honey Mustard, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Lettuce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Applewood Smoked Bacon, Avocado, Crispy Onions, American Cheese Slice, Asiago, Hamburgers",,,2026-02-04
+Wendy's,"Bourbon Bacon Cheeseburger, Triple",1300,75,88,1900,53,35,4.5,205,1,16,954985,,"Bourbon Bacon Cheeseburger, Triple, Premium Bun, Crispy Onions, Bourbon Bacon Sauce, American Cheese Slice, Hamburger Patty, Applewood Smoked Bacon, Choice of Adding Lite, Regular or Xtra: Asiago, Marinara, Tomato, Ketchup, Mayo, Mustard, Ranch, Smoky Honey Mustard, Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Lettuce, Sweet Onion, Crinkle Cut Pickles, Choice of Adding: Muenster, Avocado, American Cheese Slice, Muenster Cheese Slice, Hamburgers",,,2026-02-04
+Wendy's,Big Bacon Classic Triple,1220,75,86,1770,38,36,4.5,210,2,9,951049,,"Big Bacon Classic Triple, Premium Bun, Lettuce, Sweet Onion, Crinkle Cut Pickles, Tomato, Ketchup, Mayo, American Cheese Slice, Hamburger Patty, Applewood Smoked Bacon, Choice of Adding Lite, Regular or Xtra: Marinara, Mustard, Ranch, Bourbon Bacon Sauce, Smoky Honey Mustard,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Choice of Adding:  Muenster, Muenster Cheese Slice, Avocado, American Cheese Slice, Crispy Onions, Asiago, Hamburgers",,,2026-02-04
+Wendy's,Dave's Triple,1160,70,81,1570,38,34,4.5,200,2,8,24979,,"Dave's Triple, Premium Bun, Lettuce, Sweet Onion, Crinkle Cut Pickles, Tomato, Ketchup, Mayo, American Cheese Slice, Hamburger Patty, Choice of Adding Lite, Regular or Xtra: Marinara, Ketchup, Mayo, Mustard, Ranch, Bourbon Bacon Sauce,  Blue Cheese Crumbles, Shredded Cheddar Cheese, Beer Cheese Sauce, Lettuce, Sweet Onion, Choice of Adding: Applewood Smoked Bacon, Muenster, Avocado, American Cheese Slice, Crispy Onions, Asiago, Hamburgers",,,2026-02-04
+KFC,Nashville Hot Kentucky Grilled Chicken Thigh,180,17,12,470,0,3.5,0,90,0,0,180587,,"Nashville Hot Kentucky Grilled Chicken Thigh, Nashville Hot Chicken",,,2026-02-04
+KFC,Kentucky Grilled Chicken Thigh,150,17,9,420,0,3,0,90,0,0,18390,,"Kentucky Grilled Chicken Thigh, Kentucky Grilled Chicken",,,2026-02-04
+KFC,Original Recipe Chicken Drumstick,130,12,8,430,4,1.5,0,55,1,0,1126,,"Original Recipe Chicken Drumstick, Original Recipe Chicken",,,2026-02-04
+KFC,BBQ Baked Beans,190,11,1,650,34,0,0,0,7,15,18419,,"BBQ Baked Beans, Homestyle Sides (Individual)",,,2026-02-04
+KFC,Nashville Hot Kentucky Grilled Chicken Drumstick,100,11,6,260,0,1.5,0,55,0,0,180586,,"Nashville Hot Kentucky Grilled Chicken Drumstick, Nashville Hot Chicken",,,2026-02-04
+KFC,Kentucky Grilled Chicken Drumstick,80,11,4,220,0,1,0,55,0,0,18389,,"Kentucky Grilled Chicken Drumstick, Kentucky Grilled Chicken",,,2026-02-04
+KFC,Extra Crispy Chicken Drumstick,170,10,12,390,5,2,0,50,0,0,1130,,"Extra Crispy Chicken Drumstick, Extra Crispy Chicken",,,2026-02-04
+KFC,Extra Crispy Chicken Whole Wing,170,10,13,340,5,2,0,45,0,0,96734,,"Extra Crispy Chicken Whole Wing, Extra Crispy Chicken",,,2026-02-04
+KFC,Original Recipe Chicken Breast,390,39,21,1190,11,4,0,120,2,0,1125,,"Original Recipe Chicken Breast, Original Recipe Chicken",,,2026-02-04
+KFC,Nashville Hot Kentucky Grilled Chicken Breast,260,38,12,790,1,3,0,130,0,0,180585,,"Nashville Hot Kentucky Grilled Chicken Breast, Nashville Hot Chicken",,,2026-02-04
+KFC,Kentucky Grilled Chicken Breast,210,38,7,710,0,2,0,130,0,0,18388,,"Kentucky Grilled Chicken Breast, Kentucky Grilled Chicken",,,2026-02-04
+KFC,Spicy Crispy Chicken Breast,350,30,20,1100,11,3.5,0,100,1,0,18414,,"Spicy Crispy Chicken Breast, Spicy Crispy Chicken",,,2026-02-04
+KFC,Extra Crispy Chicken Thigh,330,22,23,700,9,4.5,0,100,0,0,1131,,"Extra Crispy Chicken Thigh, Extra Crispy Chicken",,,2026-02-04
+KFC,Original Recipe Chicken Thigh,280,19,19,910,8,4.5,0,100,1,0,1127,,"Original Recipe Chicken Thigh, Original Recipe Chicken",,,2026-02-04
+KFC,Chicken Littles - Nashville Hot,340,14,19,680,27,3,0,30,1,3,174652,,"Chicken Littles - Nashville Hot, Sandwiches",,,2026-02-04
+KFC,Chicken Littles - Honey BBQ,320,14,15,680,31,2.5,0,30,1,7,935209,,"Chicken Littles - Honey BBQ, Sandwiches",,,2026-02-04
+KFC,Extra Crispy Chicken Breast,530,35,35,1150,18,6,0,105,0,0,1129,,"Extra Crispy Chicken Breast, Extra Crispy Chicken",,,2026-02-04
+KFC,Nashville Hot Spicy Crispy Chicken Breast,540,31,40,1390,14,7,0,100,2,1,180589,,"Nashville Hot Spicy Crispy Chicken Breast, Nashville Hot Chicken",,,2026-02-04
+KFC,Nashville Hot Extra Crispy Chicken Thigh,500,22,40,970,11,7,0,100,1,1,180583,,"Nashville Hot Extra Crispy Chicken Thigh, Nashville Hot Chicken",,,2026-02-04
+KFC,Macaroni & Cheese (Family),540,18,23,2220,66,6,0,10,5,8,127543,,"Macaroni & Cheese (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Mashed Potatoes With Gravy (Family),590,12,21,2590,88,5,0,0,6,1,127545,,"Mashed Potatoes With Gravy (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Mashed Potatoes (Family),460,9,15,1410,72,3,0,0,6,0,127546,,"Mashed Potatoes (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Macaroni Salad (Family),480,3,28,990,50,3.5,0,55,0,30,180631,,"Macaroni Salad (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Code Red Mountain Dew (30 fl oz),430,0,0,125,116,0,0,0,0,115,18516,,"Code Red Mountain Dew (30 fl oz), Beverages",,,2026-02-04
+KFC,Nashville Hot Extra Crispy Chicken Breast,770,35,60,1530,21,10,0,105,1,1,180581,,"Nashville Hot Extra Crispy Chicken Breast, Nashville Hot Chicken",,,2026-02-04
+KFC,Classic Chicken Sandwich,650,34,35,1260,49,4.5,0,90,1,6,947686,,"Classic Chicken Sandwich, Sandwiches",,,2026-02-04
+KFC,Spicy Chicken Sandwich,620,34,33,2140,49,4,0,85,1,6,947687,,"Spicy Chicken Sandwich, Sandwiches",,,2026-02-04
+KFC,Crispy Twister,630,28,34,1260,53,7,0,70,4,3,18366,,"Crispy Twister, Sandwiches",,,2026-02-04
+KFC,Popcorn Nuggets - Large,620,27,39,1820,39,5,0,65,2,0,1265,,"Popcorn Nuggets - Large, Popcorn Nuggets",,,2026-02-04
+KFC,KFC Famous Bowl,740,26,35,2350,81,6,0,45,6,2,1289,,"KFC Famous Bowl, Pot Pie and Bowls",,,2026-02-04
+KFC,Chicken Pot Pie,720,26,41,1750,60,25,0,80,7,5,1286,,"Chicken Pot Pie, Pot Pie and Bowls",,,2026-02-04
+KFC,Coleslaw (Family),640,4,46,670,54,7,0,15,14,37,127525,,"Coleslaw (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,BBQ Baked Beans (Family),830,47,5,2810,148,1,0,0,31,63,127522,,"BBQ Baked Beans (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Secret Recipe Fries (Family),840,13,40,2890,108,5,0,0,9,0,947685,,"Secret Recipe Fries (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Potato Salad (Family),1200,8,98,1010,65,16,0,80,8,12,180632,,"Potato Salad (Family), Homestyle Sides (Family)",,,2026-02-04
+KFC,Strawberry Lemonade (1/2 Gallon),950,0,0,790,270,0,0,0,0,264,135309,,"Strawberry Lemonade (1/2 Gallon), Beverages",,,2026-02-04
+KFC,Classic Lemonade (1/2 Gallon),880,0,0,780,234,0,0,0,0,228,135307,,"Classic Lemonade (1/2 Gallon), Beverages",,,2026-02-04
+KFC,Chicken Littles - Buffalo,310,14,17,790,27,2.5,0,30,1,3,935208,,"Chicken Littles - Buffalo, Sandwiches",,,2026-02-04
+KFC,Chicken Littles,300,14,15,620,27,2.5,0,30,1,3,31665,,"Chicken Littles, Sandwiches",,,2026-02-04
+KFC,Nashville Hot Spicy Crispy Chicken Thigh,390,13,32,900,12,6,0,65,2,1,180591,,"Nashville Hot Spicy Crispy Chicken Thigh, Nashville Hot Chicken",,,2026-02-04
+Subway,Grilled Chicken Protein Bowl,200,35,4,480,9,2,0,100,3,5,954464,,"Grilled Chicken Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls Limited Time Offer/Regional",,,2026-02-04
+Subway,Oven Roasted Chicken Protein Bowl,200,27,6,660,11,2,0,90,3,6,954465,,"Oven Roasted Chicken Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls Limited Time Offer/Regional",,,2026-02-04
+Subway,Oven Roasted Turkey Protein Bowl,150,25,3,1020,8,1,0,50,3,5,954455,,"Oven Roasted Turkey Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Oven Roasted Turkey & Ham Protein Bowl,160,23,4,1040,10,1,0,50,3,6,954466,,"Oven Roasted Turkey & Ham Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls Limited Time Offer/Regional",,,2026-02-04
+Subway,Black Forest Ham Protein Bowl,170,21,5,1050,12,2,0,55,3,6,954449,,"Black Forest Ham Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Grilled Chicken Salad,130,19,3,280,10,1,0,50,4,5,954444,,"Grilled Chicken Salad, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, W/o Dressing, Make any Sandwich into a Salad Limited Time Offer/Regional",,,2026-02-04
+Subway,Rotisserie-Style Chicken Salad,150,18,5,470,10,2,0,50,4,5,134368,,"Rotisserie-Style Chicken Salad, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing unless Noted, Salads",,,2026-02-04
+Subway,Subway Club Meats,110,18,3,700,3,1,0,45,0,2,954582,,"Subway Club Meats, Individual Proteins, Amount on 6"" Sub/Salad",,,2026-02-04
+Subway,Steak & Cheese Protein Bowl,380,42,19,1150,12,9,1,140,4,5,954459,,"Steak & Cheese Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Buffalo Chicken Protein Bowl,380,36,21,2080,13,4,0,115,4,7,954450,,"Buffalo Chicken Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Sweet Onion Chicken Teriyaki Protein Bowl,330,34,5,1090,41,2,0,95,3,42,954460,,"Sweet Onion Chicken Teriyaki Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Rotisserie-Style Chicken Protein Bowl,220,31,8,810,8,3,0,105,3,4,954457,,"Rotisserie-Style Chicken Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,Roast Beef Protein Bowl,230,30,7,920,12,2,0,75,3,7,954456,,"Roast Beef Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,"6"" Steak, Egg White & Cheese",350,28,12,1130,38,5,0,45,,3,954480,,"6"" Steak, Egg White & Cheese, Artisan Italian, American Cheese, Breakfast & Pizza & Sliders",,,2026-02-04
+Subway,"6"" Oven Roasted Chicken",400,26,15,1250,42,8,0,75,4,7,954441,,"6"" Oven Roasted Chicken, Bread, Cheese, Select Vegetables, Make any Sandwich into a 6"" Fresh Melt Limited Time Offer/Regional",,,2026-02-04
+Subway,"6"" Oven Roasted Turkey Fresh Melt",380,25,14,1420,41,7,0,55,4,6,950209,,"6"" Oven Roasted Turkey Fresh Melt, Bread, Cheese, Select Vegetables, Make any Sandwich into a 6"" Fresh Melt",,,2026-02-04
+Subway,Steak & Cheese on Plain Wrap,570,43,20,1700,55,7,0,120,3,4,950183,,"Steak & Cheese on Plain Wrap, Make any Build Your Own Sandwich into a Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,Buffalo Chicken Wrap (with Grilled Chicken) on Plain Wrap,560,42,19,1800,56,4,0,110,3,5,950179,,"Buffalo Chicken Wrap (with Grilled Chicken) on Plain Wrap, Make any Build Your Own Sandwich into a Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,Grilled Chicken on Plain Wrap,470,42,11,1010,54,2,0,100,3,5,954429,,"Grilled Chicken on Plain Wrap, Make any Sandwich into a Wrap Limited Time Offer/Regional Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,Sweet Onion Chicken Teriyaki on Plain Wrap,540,41,11,1300,71,2,0,95,3,23,921583,,"Sweet Onion Chicken Teriyaki on Plain Wrap, Make any Build Your Own Sandwich into a Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,"Black Forest Ham, Egg White & Cheese Wrap",580,39,21,1860,59,5,0,40,2,5,954485,,"Black Forest Ham, Egg White & Cheese Plain Wrap, Breakfast & Pizza & Sliders",,,2026-02-04
+Subway,"6"" Chicken & Bacon Ranch (with Rotisserie-Style Chicken) Fresh Melt",570,38,32,1400,39,12,1,110,2,5,436,,"6"" Chicken & Bacon Ranch (with Rotisserie-Style Chicken) Fresh Melt, Bread, Cheese, Select Vegetables, Make any Sandwich into a 6"" Fresh Melt",,,2026-02-04
+Subway,Roast Beef on Plain Wrap,500,38,14,1440,58,3,0,75,3,7,921580,,"Roast Beef on Plain Wrap, Make any Build Your Own Sandwich into a Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,Rotisserie-Style Chicken on Plain Wrap,500,38,15,1380,54,3,0,105,4,4,921581,,"Rotisserie-Style Chicken on Plain Wrap, Make any Build Your Own Sandwich into a Wrap, Select Fresh Vegetables and Footlong Meat Portion",,,2026-02-04
+Subway,"Grilled Chicken, Footlong",730,82,11,1470,80,3,0,200,9,13,954419,,"Grilled Chicken, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Limited Time Offer/ Regionals Footlong Pro Subs, Sandwiches",,,2026-02-04
+Subway,"Rotisserie-Style Chicken, Footlong",790,75,19,2220,80,5,0,210,9,11,954412,,"Rotisserie-Style Chicken, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Build Your Own  Sandwiches, Sandwiches",,,2026-02-04
+Subway,"Roast beef, Footlong",780,73,16,2330,87,5,0,155,8,17,954411,,"Roast beef, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Build Your Own  Sandwiches, Sandwiches",,,2026-02-04
+Subway,"Oven Roasted Chicken, Footlong",720,67,14,1830,85,4,0,175,9,15,954420,,"Oven Roasted Chicken, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Limited Time Offer/ Regionals Footlong Pro Subs, Sandwiches",,,2026-02-04
+Subway,"Oven Roasted Turkey, Footlong",640,62,9,2540,80,2,0,100,8,12,954410,,"Oven Roasted Turkey, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Build Your Own  Sandwiches, Sandwiches",,,2026-02-04
+Subway,"Oven Roasted Turkey and Ham, Footlong",650,58,10,2570,84,3,0,105,8,14,954421,,"Oven Roasted Turkey and Ham, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Limited Time Offer/ Regionals Footlong Pro Subs, Sandwiches",,,2026-02-04
+Subway,Chicken & Bacon Ranch (with Rotisserie-Style Chicken) Protein Bowl,760,55,55,1750,13,21,1,205,4,7,954451,,"Chicken & Bacon Ranch (with Rotisserie-Style Chicken) Protein Bowl, Footlong Meat Portion, Lettuce, Spinach, Tomatoes, Onions, Green Peppers, Cucumbers and Olives, w/o Dressing or Cheese Unless Noted, Protein Bowls",,,2026-02-04
+Subway,"Black Forest Ham, Footlong",670,55,12,2610,88,4,0,110,8,15,954404,,"Black Forest Ham, Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Build Your Own  Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#3 The Monster, Footlong",1470,114,80,3750,83,30,2,355,3,11,954392,,"#3 The Monster, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Subway,"Chicken & Bacon Ranch (with Rotisserie-Style Chicken), Footlong",1410,107,78,3540,80,29,1,345,4,11,954406,,"Chicken & Bacon Ranch (with Rotisserie-Style Chicken), Footlong, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Build Your Own  Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#8 The Great Garlic, Footlong",1290,101,69,3530,79,22,1,310,4,11,954398,,"#8 The Great Garlic, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#1 The Philly, Footlong",1190,95,60,3140,78,21,2,285,3,7,954390,,"#1 The Philly, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#12 Turkey Cali Club (with Smashed Avocado), Footlong",1460,94,83,3820,88,25,1,225,11,15,954402,,"#12 Turkey Cali Club (with Smashed Avocado, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches)",,,2026-02-04
+Subway,"#12 Turkey Cali Club (with Sliced Avocado), Footlong",1410,94,78,3570,87,24,1,225,11,15,954403,,"#12 Turkey Cali Club (with Sliced Avocado), Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#11 Subway Club, Footlong",1140,94,46,3790,87,13,1,220,8,16,954401,,"#11 Subway Club, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Subway,"#2 The Outlaw, Footlong",1120,93,52,3330,78,21,1,295,3,8,954391,,"#2 The Outlaw, Footlong of Vegetables and Cheese, Double Footlong Portion of Protein, Footlong Pro Subway Series Sandwiches, Sandwiches",,,2026-02-04
+Chick-fil-A,"Grilled Nuggets, 12ct",200,38,4.5,660,2,1,0,130,0,1,92129,,"Grilled Nuggets, 12ct, Entrees",,,2026-02-04
+Chick-fil-A,"Grilled Nuggets, 8ct",130,25,3,440,1,0.5,0,85,0,1,92128,,"Grilled Nuggets, 8ct, Entrees",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Chick-n-Strips, 2ct",200,19,9,580,11,2,0,50,0,1,150768,,"Chick-fil-A Chick-n-Strips, 2ct, Entrees",,,2026-02-04
+Chick-fil-A,2ct Chick-n-Strips Kid's Meal,200,19,9,580,11,2,0,50,0,1,952161,,"2ct Chick-n-Strips Kid's Meal, Kid's Meal Sides, Prize, Beverage, Kid's Meals",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Nuggets, 5ct",160,17,7,760,7,1.5,0,50,0,1,944949,,"Chick-fil-A Nuggets, 5ct, Entrees",,,2026-02-04
+Chick-fil-A,5ct Nuggets Kid's Meal,160,17,7,760,7,1.5,0,50,0,1,952160,,"5ct Nuggets Kid's Meal, Kid's Meal Sides, Prize, Beverage, Kid's Meals",,,2026-02-04
+Chick-fil-A,"Grilled Nuggets, 5ct",80,16,2,270,1,0,0,55,0,0,944961,,"Grilled Nuggets, 5ct, Entrees",,,2026-02-04
+Chick-fil-A,5ct Grilled Nuggets Kid's Meal,80,16,2,270,1,0,0,55,0,0,952162,,"5ct Grilled Nuggets Kid's Meal, Kid's Meal Sides, Prize, Beverage, Kid's Meals",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Nuggets, 12ct",380,40,17,1820,16,3.5,0,125,0,1,1180,,"Chick-fil-A Nuggets, 12ct, Entrees",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Chick-n-Strips, 3ct",310,29,14,870,16,2.5,0,75,0,2,12678,,"Chick-fil-A Chick-n-Strips, 3ct, Entrees",,,2026-02-04
+Chick-fil-A,"Hash Brown Scramble Bowl w/ Grilled Filet, no Hash Browns",260,29,16,950,2,7,0,415,1,2,927893,,"Hash Brown Scramble Bowl w/ Grilled Filet, no Hash Browns, Breakfast",,,2026-02-04
+Chick-fil-A,Grilled Chicken Sandwich,380,28,12,760,43,2,0,75,3,11,301,,"Grilled Chicken Sandwich, Entrees",,,2026-02-04
+Chick-fil-A,"Hash Brown Scramble Bowl w/ Nuggets, no Hash Browns",320,28,20,1100,7,7,0,415,0,2,927894,,"Hash Brown Scramble Bowl w/ Nuggets, no Hash Browns, Breakfast",,,2026-02-04
+Chick-fil-A,"Hash Brown Scramble Bowl w/ Spicy Chick-n-Strips, no Hash Browns",320,27,19,1210,10,7,0,360,2,2,952143,,"Hash Brown Scramble Bowl w/ Spicy Chick-n-Strips, no Hash Browns, Breakfast",,,2026-02-04
+Chick-fil-A,"Hash Brown Scramble Bowl w/ Spicy Chicken, no Hash Browns",310,27,20,1110,7,7,0,405,0,2,952144,,"Hash Brown Scramble Bowl w/ Spicy Chicken, no Hash Browns, Breakfast",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Nuggets, 8ct",250,27,11,1210,11,2.5,0,85,0,1,180298,,"Chick-fil-A Nuggets, 8ct, Entrees",,,2026-02-04
+Chick-fil-A,"Chicken Tortilla Soup, Bowl",580,44,16,1980,65,5,0,90,31,7,952159,,"Chicken Tortilla Soup, Bowl, Sides",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Chick-n-Strips, 4ct",410,39,19,1150,22,3.5,0,100,0,2,1181,,"Chick-fil-A Chick-n-Strips, 4ct, Entrees",,,2026-02-04
+Chick-fil-A,Grilled Chicken Club w/ Colby Jack,520,37,22,1110,44,8,0,105,3,12,303,,"Grilled Chicken Club w/ Colby Jack, Entrees",,,2026-02-04
+Chick-fil-A,Grilled Chicken Club w/ Pepper Jack,510,37,22,1110,44,7,0,5,3,11,927939,,"Grilled Chicken Club w/ Pepper Jack, Entrees",,,2026-02-04
+Chick-fil-A,Chick-fil-A Deluxe Sandwich w/ Colby Jack,530,35,24,1550,44,8,0,90,2,7,927932,,"Chick-fil-A Deluxe Sandwich w/ Colby Jack, Entrees",,,2026-02-04
+Chick-fil-A,Grilled Chicken Club w/ American,490,35,20,1200,44,6,0,100,3,12,927938,,"Grilled Chicken Club w/ American, Entrees",,,2026-02-04
+Chick-fil-A,Spicy Deluxe Sandwich w/ Colby Jack,550,34,25,1820,47,8,0,85,3,7,927936,,"Spicy Deluxe Sandwich w/ Colby Jack, Entrees",,,2026-02-04
+Chick-fil-A,Chick-fil-A Deluxe Sandwich w/ Pepper Jack,520,34,24,1550,44,8,0,90,2,7,927933,,"Chick-fil-A Deluxe Sandwich w/ Pepper Jack, Entrees",,,2026-02-04
+Chick-fil-A,Chick-fil-A Cool Wrap,660,43,45,1420,32,9,0,110,14,5,944962,,"Chick-fil-A Cool Wrap, Entrees",,,2026-02-04
+Chick-fil-A,Cobb Salad w/ Grilled Nuggets,730,41,52,1450,24,11,0,240,6,9,150774,,"Cobb Salad w/ Grilled Nuggets, Salads",,,2026-02-04
+Chick-fil-A,"Garden Salad Tray, Large",690,41,37,810,54,23,1.5,110,19,26,945027,,"Garden Salad Tray, Large, Trays",,,2026-02-04
+Chick-fil-A,Spicy Southwest Salad w/ Grilled Nuggets,720,39,50,1280,29,10,0,125,8,8,150778,,"Spicy Southwest Salad w/ Grilled Nuggets, Salads",,,2026-02-04
+Chick-fil-A,Cobb Salad w/ Grilled Filet (Hot or Cold),700,37,51,1380,25,11,0,225,5,9,150773,,"Cobb Salad w/ Grilled Filet (Hot or Cold), Salads",,,2026-02-04
+Chick-fil-A,Grilled Market Salad w/ Chick-fil-A Chick-n-Strips,750,36,43,1520,57,8,0,85,5,27,150769,,"Grilled Market Salad w/ Chick-fil-A Chick-n-Strips, Salads",,,2026-02-04
+Chick-fil-A,Cobb Salad w/ Spicy Grilled Filet (Cold),710,36,51,1770,25,11,0,220,6,9,171366,,"Cobb Salad w/ Spicy Grilled Filet (Cold), Salads",,,2026-02-04
+Chick-fil-A,Spicy Southwest Salad w/ Grilled Filet (Cold),690,35,49,1220,29,9.5,0,110,7,8,952150,,"Spicy Southwest Salad w/ Grilled Filet (Cold), Salads",,,2026-02-04
+Chick-fil-A,"Mac & Cheese Tray, Large",9850,442,624,26050,616,355,7,1500,63,71,945024,,"Mac & Cheese Tray, Large, Trays",,,2026-02-04
+Chick-fil-A,"Mac & Cheese Tray, Small",4920,221,312,13020,308,178,3.5,750,31,36,945023,,"Mac & Cheese Tray, Small, Trays",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Nuggets, 30ct",950,100,43,4550,41,9,0,315,0,4,180299,,"Chick-fil-A Nuggets, 30ct, Entrees",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Nuggets, 30ct Football-Shaped Tray",950,100,43,4550,41,9,0,315,0,4,952147,,"Chick-fil-A Nuggets, 30ct Football-Shaped Tray, Entrees",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Chick-n-Minis, 10ct",910,49,34,2640,103,10,0,150,6,19,952135,,"Chick-fil-A Chick-n-Minis, 10ct, Breakfast",,,2026-02-04
+Chick-fil-A,"Chick-fil-A Chick-n-Minis, 10ct Football-Shaped Tray",910,49,34,2640,103,10,0,150,6,19,952136,,"Chick-fil-A Chick-n-Minis, 10ct Football-Shaped Tray, Breakfast",,,2026-02-04
+Chick-fil-A,Cobb Salad w/ Chick-fil-A Chick-n-Strips,910,45,63,1870,40,13,0,230,6,10,180300,,"Cobb Salad w/ Chick-fil-A Chick-n-Strips, Salads",,,2026-02-04
+Chick-fil-A,Spicy Southwest Salad w/ Chick-fil-A Chick-n-Strips,890,43,61,1710,44,12,0,115,8,9,150776,,"Spicy Southwest Salad w/ Chick-fil-A Chick-n-Strips, Salads",,,2026-02-04
+Domino's,"Extra Cheese, 12"" Medium Crunchy Thin Crust",200,12,14,600,4,9,0.5,50,0,0,945718,,"Extra Cheese, 12"" Medium Crunchy Thin Crust, Cheese Only Pizza",,,2026-02-04
+Domino's,"Double Cheese, 12"" Medium Crunchy Thin Crust",200,12,14,600,4,9,0.5,50,0,0,945775,,"Double Cheese, 12"" Medium Crunchy Thin Crust, Cheese Only Pizza, Pizza w/ Other Toppings",,,2026-02-04
+Domino's,"Extra Cheese, 10"" Small Gluten Free",180,11,13,560,4,8,0,50,0,0,172131,,"Extra Cheese, 10"" Small Gluten Free, Cheese Only Pizza",,,2026-02-04
+Domino's,"Extra Cheese, 10"" Small Hand Tossed Crust",180,11,13,560,4,8,0,50,0,0,945747,,"Extra Cheese, 10"" Small Hand Tossed Crust, Cheese Only Pizza",,,2026-02-04
+Domino's,"Double Cheese, 10"" Small Hand Tossed",180,11,13,560,4,8,0,50,0,0,945820,,"Double Cheese, 10"" Small Hand Tossed, Cheese Only and Pizza w/ Other Toppings",,,2026-02-04
+Domino's,"Double Cheese, 10"" Small Gluten Free",180,11,13,560,4,8,0,50,0,0,956441,,"Double Cheese, 10"" Small Gluten Free, Cheese Only Pizza, Cheese Pizza w/ Other Toppings",,,2026-02-04
+Domino's,"Extra Cheese, 16"" Extra Large Brooklyn",180,10,14,490,3,9,0,50,0,0,151555,,"Extra Cheese, 16"" Extra Large Brooklyn, Cheese Only Pizza, Cheese Pizza w/ Other Toppings",,,2026-02-04
+Domino's,"Extra Cheese, 16"" Extra Large Hand Tossed",180,10,13,540,3,8,0,45,0,0,945790,,"Extra Cheese, 16"" Extra Large Hand Tossed, Cheese Only Pizzas",,,2026-02-04
+Domino's,Chicken Parm Sandwich,380,24,15,1080,36,7,0,60,2,2,956485,,"Chicken Parm Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,Sweet & Spicy Chicken Habanero Sandwich,400,22,16,1120,42,8,0,60,1,7,956489,,"Sweet & Spicy Chicken Habanero Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,Philly Cheese Steak Sandwich,360,19,15,1320,37,8,0.5,50,2,3,956488,,"Philly Cheese Steak Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,Chicken Caesar Salad,220,18,8,570,14,3,0,40,2,3,956503,,"Chicken Caesar Salad, Salads",,,2026-02-04
+Domino's,"Philly Cheese Steak, Hand Tossed Crust, Extra Large",400,17,17,920,43,8,0,45,2,3,151295,,"Philly Cheese Steak, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Wisconsin 6 Cheese, Hand Tossed Crust, Medium",390,17,18,780,39,9,0.5,45,2,4,151309,,"Wisconsin 6 Cheese, Hand Tossed Crust, Medium, Specialty Pizzas",,,2026-02-04
+Domino's,"Honolulu Hawaiian, Hand Tossed Crust, Medium",380,17,17,900,40,8,0,40,2,5,151281,,"Honolulu Hawaiian, Hand Tossed Crust, Medium, Specialty Pizzas",,,2026-02-04
+Domino's,"MeatZZa, Hand Tossed Crust, Small",400,16,19,920,38,8,0,45,2,3,151286,,"MeatZZa, Hand Tossed Crust, Small, Specialty Pizzas",,,2026-02-04
+Domino's,"Chicken Alfredo, Dish",600,25,29,1110,60,17,0.5,105,2,5,956497,,"Chicken Alfredo, Dish, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,Bacon Cheddar Hoagie,520,24,26,1300,48,10,0.5,60,2,12,930515,,"Bacon Cheddar Hoagie, Standard Builds, Domino's Hoagies",,,2026-02-04
+Domino's,Buffalo Ranch Hoagie,530,23,30,1750,39,10,1,65,2,4,930516,,"Buffalo Ranch Hoagie, Standard Builds, Domino's Hoagies",,,2026-02-04
+Domino's,"Cali Chicken Bacon Ranch, Hand Tossed Crust, Extra Large",530,22,29,1160,44,11,0.5,65,1,3,151267,,"Cali Chicken Bacon Ranch, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"ExtravaganZZa, Hand Tossed Crust, Extra Large",510,22,25,1270,47,11,0.5,60,2,5,151275,,"ExtravaganZZa, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,Zesty Hoagie,460,22,23,1340,40,8,1,55,2,5,930518,,"Zesty Hoagie, Standard Builds, Domino's Hoagies",,,2026-02-04
+Domino's,Chicken Bacon Ranch Sandwich,440,22,22,1260,35,8,0,60,1,2,956484,,"Chicken Bacon Ranch Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,"MeatZZa, Hand Tossed Crust, Extra Large",490,21,24,1210,45,10,0.5,60,2,4,151283,,"MeatZZa, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Chicken Carbonara, Dish",690,30,34,1370,63,19,0.5,120,2,6,956499,,"Chicken Carbonara, Dish, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,"Italian Sausage Marinara, Dish",700,27,36,1650,68,15,0.5,70,3,13,956495,,"Italian Sausage Marinara, Dish, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,"Chicken Carbonara, 1/2 Bread Bowl",730,26,28,1150,93,12,0.5,60,3,6,956498,,"Chicken Carbonara, 1/2 Bread Bowl, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,"Italian Sausage Marinara, 1/2 Bread Bowl",740,24,28,1290,96,10,0,35,3,9,956494,,"Italian Sausage Marinara, 1/2 Bread Bowl, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,"Chicken Alfredo, 1/2 Bread Bowl",690,23,25,1020,92,10,0.5,55,3,5,956496,,"Chicken Alfredo, 1/2 Bread Bowl, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,"Pasta Primavera, 1/2 Bread Bowl",660,18,23,910,92,10,0,35,3,6,956500,,"Pasta Primavera, 1/2 Bread Bowl, Penne Pasta, Sandwiches, Pasta, Chicken & Sides",,,2026-02-04
+Domino's,Classic Hoagie,430,21,20,1130,40,8,1,50,2,4,930514,,"Classic Hoagie, Standard Builds, Domino's Hoagies",,,2026-02-04
+Domino's,Mushroom Delight Hoagie,430,21,21,1210,39,8,1,50,2,3,930517,,"Mushroom Delight Hoagie, Standard Builds, Domino's Hoagies",,,2026-02-04
+Domino's,Italian Sandwich,410,21,20,1470,35,9,0.5,55,2,2,956486,,"Italian Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,"Cheeseburger, Hand Tossed Crust, Extra Large",490,20,24,1130,46,12,1,65,2,5,945938,,"Cheeseburger, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Ultimate Pepperoni, Hand Tossed Crust, Extra Large",480,20,24,1140,45,11,0.5,55,2,4,151303,,"Ultimate Pepperoni, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Memphis BBQ Chicken, Hand Tossed Crust, Extra Large",460,20,19,860,51,9,0.5,55,2,9,151287,,"Memphis BBQ Chicken, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Buffalo Chicken, Hand Tossed Crust, Extra Large",450,20,20,1090,44,10,0.5,60,1,3,151263,,"Buffalo Chicken, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,"Chicken Taco, Hand Tossed Crust, Extra Large",450,20,20,990,45,10,0.5,60,2,3,945942,,"Chicken Taco, Hand Tossed Crust, Extra Large, Specialty Pizzas",,,2026-02-04
+Domino's,Buffalo Chicken Sandwich,420,20,21,1300,37,8,0.5,60,1,2,956483,,"Buffalo Chicken Sandwich, Oven Baked Sandwiches",,,2026-02-04
+Domino's,"Cali Chicken Bacon Ranch, Hand Tossed Crust, Medium",480,19,27,1060,37,10,0.5,60,1,3,151269,,"Cali Chicken Bacon Ranch, Hand Tossed Crust, Medium, Specialty Pizzas",,,2026-02-04
+Pizza Hut,"Veggie Lover's, Small Express Thin 'N Crispy Pizza",200,3,6,500,28,3,0,15,9,4,953931,,"Veggie Lover's, Small Express Thin 'N Crispy Pizza",,,2026-02-04
+Pizza Hut,Hashbrowns,190,3,9,440,27,1.5,0,0,2,,938993,,"Hashbrowns, Express Breakfast",,,2026-02-04
+Pizza Hut,"Buffalo Chicken, Medium Hand Tossed Slice",200,2,6,560,28,2.5,0,20,10,1,155531,,"Buffalo Chicken, Medium Hand Tossed Slice",,,2026-02-04
+Pizza Hut,"Hawaiian Chicken, Medium Hand Tossed Slice",200,2,6,420,27,3,0,20,11,2,155762,,"Hawaiian Chicken, Medium Hand Tossed Slice",,,2026-02-04
+Pizza Hut,"Zesty Italian Side Salad, Express Salads",200,2,11,690,18,3.5,0,20,10,4,948712,,"Zesty Italian Side Salad, Express Salads",,,2026-02-04
+Pizza Hut,"Black Olive, Small Express Thin 'N Crispy Pizza",200,2,7,550,27,3,0,15,8,3,953812,,"Black Olive, Small Express Thin 'N Crispy Pizza",,,2026-02-04
+Pizza Hut,Zesty Italian Salad w/ Chicken,200,2,11,690,18,3.5,0,20,10,4,953932,,"Zesty Italian Salad w/ Chicken, Salad",,,2026-02-04
+Pizza Hut,"Veggie Lover's, Medium Hand Tossed Slice",190,2,6,370,27,2.5,0,15,8,2,2570,,"Veggie Lover's, Medium Hand Tossed Slice",,,2026-02-04
+Pizza Hut,"Coca-Cola, 32 fl oz",390,107,0,105,0,0,0,0,0,0,948785,,"Coca-Cola, 32 fl oz, Drinks",,,2026-02-04
+Pizza Hut,Zesty Italian Salad,390,4,23,1370,33,7,0,35,19,7,938590,,"Zesty Italian Salad, Salads, Express Salads",,,2026-02-04
+Pizza Hut,"Creamy Tomato Basil Soup w/ Crackers, Bowl",390,4,23,1800,37,9,0.5,40,9,17,938705,,"Creamy Tomato Basil Soup w/ Crackers, Bowl, Soup",,,2026-02-04
+Pizza Hut,"Meat Lover's, Large Hand Tossed Slice",390,3,21,830,34,8,0,50,17,2,2633,,"Meat Lover's, Large Hand Tossed Slice",,,2026-02-04
+Pizza Hut,"Pepperoni Lover's, Large Original Stuffed Crust Slice",390,3,20,860,36,9,0.5,55,18,2,21264,,"Pepperoni Lover's, Large Original Stuffed Crust Slice",,,2026-02-04
+Pizza Hut,"Pepperoni Lover's, Large Hand Tossed Slice",370,3,18,740,34,8,0,50,17,2,21231,,"Pepperoni Lover's, Large Hand Tossed Slice",,,2026-02-04
+Pizza Hut,"Supreme, Large Original Stuffed Crust Slice",350,3,16,750,36,8,0,45,16,3,2610,,"Supreme, Large Original Stuffed Crust Slice",,,2026-02-04
+Pizza Hut,Triple Chocolate Brownie,350,3,16,120,51,5,0,25,4,34,953929,,"Triple Chocolate Brownie, Dessert",,,2026-02-04
+Pizza Hut,Penne w/ Marinara & Mushrooms (1/2 Size),430,6,13,1110,57,7,0,40,21,16,953890,,"Penne w/ Marinara & Mushrooms (1/2 Size), Pasta",,,2026-02-04
+Pizza Hut,Penne w/ Marinara (1/2 Size),420,6,13,1110,57,7,0,40,20,15,953892,,"Penne w/ Marinara (1/2 Size), Pasta",,,2026-02-04
+Pizza Hut,Straight-Cut Fries w/ Cajun Style Seasoning w/ Ketchup,510,4,24,1600,69,4.5,0,0,4,7,953919,,"Straight-Cut Fries w/ Cajun Style Seasoning w/ Ketchup, Sides",,,2026-02-04
+Pizza Hut,Straight-Cut Fries w/ Lemon Pepper Seasoning w/ Ketchup,510,4,24,1520,69,4.5,0,0,4,8,953920,,"Straight-Cut Fries w/ Lemon Pepper Seasoning w/ Ketchup, Sides",,,2026-02-04
+Pizza Hut,Chicken Garden Salad,420,4,19,1030,39,4,0,75,32,10,938573,,"Chicken Garden Salad, Salads, Express Salads",,,2026-02-04
+Pizza Hut,"Loaded Baked Potato Soup w/ Crackers, Bowl",600,3,40,1810,41,19,1,95,21,7,938707,,"Loaded Baked Potato Soup w/ Crackers, Bowl, Soup",,,2026-02-04
+Pizza Hut,Fries w/ Ketchup,500,3,24,1230,67,4.5,0,0,4,7,953841,,"Fries w/ Ketchup, Sides",,,2026-02-04
+Pizza Hut,"Broccoli & Cheese Soup w/ Crackers, Bowl",530,2,37,2060,35,18,1,80,15,6,938703,,"Broccoli & Cheese Soup w/ Crackers, Bowl, Soup",,,2026-02-04
+Pizza Hut,Oven-Baked Veggie Pasta,640,9,16,1170,99,8,0,40,27,18,953887,,"Oven-Baked Veggie Pasta, Pasta",,,2026-02-04
+Pizza Hut,Penne w/ Marinara & Meatballs (1/2 Size),630,6,28,1570,62,13,1,95,33,17,953888,,"Penne w/ Marinara & Meatballs (1/2 Size), Pasta",,,2026-02-04
+Pizza Hut,Fried Quepapas w/ Ranch Dipping Cup,690,5,46,1680,55,11,0,30,13,4,922843,,"Fried Quepapas w/ Ranch Dipping Cup, Sides",,,2026-02-04
+Pizza Hut,Buffalo Chicken Salad,690,5,30,2180,77,7,0,70,35,9,948711,,"Buffalo Chicken Salad, Salad",,,2026-02-04
+Pizza Hut,"Buffalo Chicken Salad, Express Salads",690,5,30,2180,77,7,0,70,35,9,948805,,"Buffalo Chicken Salad, Express Salads",,,2026-02-04
+Pizza Hut,Cheesy Dip 'N Chips,660,5,36,1650,78,4.5,1,,9,6,938676,,"Cheesy Dip 'N Chips, Sides",,,2026-02-04
+Pizza Hut,Baked Quepapas w/ Ranch Dipping Cup,650,5,44,1430,51,12,0.5,35,13,7,922844,,"Baked Quepapas w/ Ranch Dipping Cup, Sides",,,2026-02-04
+Pizza Hut,"Black Forest Ham & Cheese, Express Sandwiches",730,3,32,2030,70,9,0,70,36,9,938980,,"Black Forest Ham & Cheese, Express Sandwiches",,,2026-02-04
+Pizza Hut,"Sampler Platter, Local Specialty, Full Order w/ Marinara, Ranch, and Honey Mustard Cups",2400,15,153,4650,204,42,2,135,53,28,938685,,"Sampler Platter, Local Specialty, Full Order w/ Marinara, Ranch, and Honey Mustard Cups, Sides",,,2026-02-04
+Pizza Hut,Penne w/ Marinara & Mushrooms (Regular),820,13,24,2050,114,13,1,75,39,32,953891,,"Penne w/ Marinara & Mushrooms (Regular), Pasta",,,2026-02-04
+Pizza Hut,Penne w/ Marinara & Meatballs (Regular),1120,12,46,2750,121,21,1.5,150,57,33,953889,,"Penne w/ Marinara & Meatballs (Regular), Pasta",,,2026-02-04
+Pizza Hut,Penne w/ Marinara (Regular),810,12,23,2050,112,13,1,75,38,31,953893,,"Penne w/ Marinara (Regular), Pasta",,,2026-02-04
+Pizza Hut,"Chicken Parmesan Sandwich, Breadstick Dipping Sauce, Fries",1790,10,99,4380,171,22,1,95,54,18,953821,,"Chicken Parmesan Sandwich, Breadstick Dipping Sauce, Fries, Sandwich",,,2026-02-04
+Pizza Hut,Buffalo Chicken Nachos,1110,10,50,3260,132,12,1.5,80,37,8,938674,,"Buffalo Chicken Nachos, Sides",,,2026-02-04
+Pizza Hut,"Sampler Platter, Local Specialty, Half Order w/ Marinara, Ranch, and Honey Mustard Cups",1430,9,95,2840,114,24,1,80,28,23,938686,,"Sampler Platter, Local Specialty, Half Order w/ Marinara, Ranch, and Honey Mustard Cups, Sides",,,2026-02-04
+Pizza Hut,Bacon Cheddar Fries w/ Ranch Dipping Cup,1420,9,99,3750,104,25,1,80,29,7,938665,,"Bacon Cheddar Fries w/ Ranch Dipping Cup, Sides",,,2026-02-04
+Popeyes,3 Handcrafted Tenders - Blackened,170,26,2,550,2,0,0,25,0,0,62888,,"3 Handcrafted Tenders - Blackened, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,Leg - Classic,160,14,9,460,5,4,0,40,1,0,156163,,"Leg - Classic, Kids Meals",,,2026-02-04
+Popeyes,Leg (Each),160,14,9,460,5,4,0,40,1,0,176260,,"Leg (Each), Classic Or Spicy, Bonafide Chicken",,,2026-02-04
+Popeyes,Handcrafted Tender - Classic,150,13,7,610,12,3,0,35,1,0,156162,,"Handcrafted Tender - Classic, Kids Meals",,,2026-02-04
+Popeyes,Handcrafted Nuggets,190,11,12,440,10,6,1,40,0,0,21344,,"Handcrafted Nuggets, Kids Meals",,,2026-02-04
+Popeyes,"Cajun Rice, Regular",180,9,6,580,24,3,0,50,2,0,1953,,"Cajun Rice, Regular, Signature Sides",,,2026-02-04
+Popeyes,"Jambalaya, Regular",190,8,9,640,17,3,0,25,1,0,176248,,"Jambalaya, Regular, Additional Menu Items",,,2026-02-04
+Popeyes,"Green Beans, Large",170,8,6,2030,22,0,0,20,6,4,21368,,"Green Beans, Large, Signature Sides",,,2026-02-04
+Popeyes,5 Handcrafted Tenders - Blackened,280,43,3,920,3,0,0,40,0,0,176257,,"5 Handcrafted Tenders - Blackened, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,Breast (Each),380,35,20,1230,16,8,1,125,2,0,953934,,"Breast (Each), Classic Or Spicy, Bonafide Chicken",,,2026-02-04
+Popeyes,8 Handcrafted Nuggets,380,22,24,880,19,11,1.5,80,1,0,953935,,"8 Handcrafted Nuggets, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,Cajun Fish Filet,380,16,19,1650,37,5,0,40,2,4,99968,,"Cajun Fish Filet, Seafood",,,2026-02-04
+Popeyes,Popcorn Shrimp,390,14,25,1390,28,8,1,80,3,0,2104,,"Popcorn Shrimp, Seafood",,,2026-02-04
+Popeyes,Thigh (Each),280,14,21,640,7,8,0,50,1,0,176261,,"Thigh (Each), Classic Or Spicy, Bonafide Chicken",,,2026-02-04
+Popeyes,Whole Wing (Each),210,13,14,610,8,4,0,60,1,0,176262,,"Whole Wing (Each), Classic Or Spicy, Bonafide Chicken",,,2026-02-04
+Popeyes,"Mac & Cheese, Regular",280,11,21,510,16,21,0.5,60,0,3,21348,,"Mac & Cheese, Regular, Signature Sides",,,2026-02-04
+Popeyes,3 Handcrafted Tenders - Classic Or Spicy,450,38,21,1820,29,9,1,100,2,0,176255,,"3 Handcrafted Tenders - Classic Or Spicy, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,12 Handcrafted Nuggets,570,34,36,1320,28,16,2,120,2,0.5,953936,,"12 Handcrafted Nuggets, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,"Cajun Rice, Large",550,28,18,1720,71,8,0,160,4,0,21362,,"Cajun Rice, Large, Signature Sides",,,2026-02-04
+Popeyes,Catfish Filet,460,21,29,1140,27,12,2,65,1,0,948822,,"Catfish Filet, Seafood",,,2026-02-04
+Popeyes,Chicken Biscuit,490,17,26,1280,47,14,1,30,1,2,411,,"Chicken Biscuit, Breakfast",,,2026-02-04
+Popeyes,Butterfly Shrimp,420,16,25,1100,34,9,1,85,4,0,2105,,"Butterfly Shrimp, Seafood",,,2026-02-04
+Popeyes,Sausage Biscuit,540,13,36,1100,41,18,0,30,1,2,21337,,"Sausage Biscuit, Breakfast",,,2026-02-04
+Popeyes,Egg Biscuit,510,13,29,1160,41,15,0,130,1,2,21333,,"Egg Biscuit, Breakfast",,,2026-02-04
+Popeyes,5 Handcrafted Tenders - Classic Or Spicy,740,63,34,3040,48,14,2,170,3,0,176256,,"5 Handcrafted Tenders - Classic Or Spicy, Handcrafted Tenders & Nuggets",,,2026-02-04
+Popeyes,"Jambalaya, Large",640,29,32,2200,58,9,0,100,3,0,176247,,"Jambalaya, Large, Additional Menu Items",,,2026-02-04
+Popeyes,Chicken Sandwich-Classic,700,28,42,1440,50,14,2,90,2,8,939200,,"Chicken Sandwich-Classic, Sandwiches & Wraps",,,2026-02-04
+Popeyes,Chicken Sandwich-Spicy,700,28,42,1470,50,14,2,90,2,8,939201,,"Chicken Sandwich-Spicy, Sandwiches & Wraps",,,2026-02-04
+Popeyes,Egg & Sausage Biscuit,690,20,45,1520,43,22,0,160,1,2,21332,,"Egg & Sausage Biscuit, Breakfast",,,2026-02-04
+Popeyes,"Red Beans & Rice, Large",610,19,40,1490,51,13,0,35,15,0,21376,,"Red Beans & Rice, Large, Signature Sides",,,2026-02-04
+Popeyes,"Cajun Fries, Large",800,10,42,1760,97,15,2,10,9,1,21358,,"Cajun Fries, Large, Signature Sides",,,2026-02-04
+Popeyes,"Corn On The Cob Cobbet (3), Large",630,0,18,90,102,9,0,30,12,18,176246,,"Corn On The Cob Cobbet (3), Large, Signature Sides",,,2026-02-04
+Popeyes,Chicken Livers,1190,54,80,2070,65,34,5,770,6,3,21338,,"Chicken Livers, Additional Menu Items",,,2026-02-04
+Popeyes,"Mac & Cheese, Large",850,33,63,1540,48,36,1.5,180,1,9,21347,,"Mac & Cheese, Large, Signature Sides",,,2026-02-04
+Popeyes,Sausage & Gravy Biscuit,510,10,33,1090,42,14,1,15,3,3,21336,,"Sausage & Gravy Biscuit, Breakfast",,,2026-02-04
+Popeyes,"Mashed Potatoes With Cajun Gravy, Large",330,9,12,1770,54,6,0,15,3,3,21371,,"Mashed Potatoes With Cajun Gravy, Large, Signature Sides",,,2026-02-04
+Popeyes,Bacon Biscuit,400,8,25,780,37,12,0,5,3,2,21324,,"Bacon Biscuit, Breakfast",,,2026-02-04
+Popeyes,"Red Beans & Rice, Regular",250,8,16,610,22,5,0,15,6,0,948817,,"Red Beans & Rice, Regular, Signature Sides",,,2026-02-04
+Popeyes,"Onion Rings, Large",560,6,38,920,50,17,3,20,5,3,21373,,"Onion Rings, Large, Signature Sides",,,2026-02-04
+Popeyes,Grits,370,5,5,30,80,0.5,0,0,7,0,21370,,"Grits, Breakfast",,,2026-02-04
+Chipotle,Chicken,180,32,7,310,0,3,0,125,0,0,13037,,Chicken,,,2026-02-04
+Chipotle,Barbacoa,170,24,7,530,2,2.5,0,65,1,0,13029,,Barbacoa,,,2026-02-04
+Chipotle,Steak,150,21,6,330,1,2.5,0,80,1,0,13067,,Steak,,,2026-02-04
+Chipotle,Sofritas,150,8,10,560,9,1.5,0,0,3,5,60626,,Sofritas,,,2026-02-04
+Chipotle,Black Beans,130,8,1.5,210,22,0,0,0,7,2,13031,,Black Beans,,,2026-02-04
+Chipotle,Pinto Beans,130,8,1.5,210,21,0,0,0,8,1,13054,,Pinto Beans,,,2026-02-04
+Chipotle,Cheese,110,6,8,190,1,5,0,30,0,0,928039,,Cheese,,,2026-02-04
+Chipotle,Flour Tortilla (taco),170,5,5,320,27,0,0,0,1,0,952304,,"Flour Tortilla (taco), Kids Menu",,,2026-02-04
+Chipotle,Carnitas,210,23,12,450,0,7,0,65,0,0,13033,,Carnitas,,,2026-02-04
+Chipotle,Queso Blanco (side),240,10,18,490,7,12,1,60,0,2,945078,,Queso Blanco (side),,,2026-02-04
+Chipotle,Flour Tortilla (burrito),320,8,9,600,50,0.5,0,0,3,0,13046,,Flour Tortilla (burrito),,,2026-02-04
+Chipotle,Cilantro-Lime White Rice,210,4,4,350,40,0.5,0,0,1,0,13041,,Cilantro-Lime White Rice,,,2026-02-04
+Chipotle,Cilantro-Lime Brown Rice,210,4,6,190,36,1,0,0,2,0,29665,,Cilantro-Lime Brown Rice,,,2026-02-04
+Chipotle,Guacamole (side),230,2,22,370,8,3.5,0,0,6,1,13052,,Guacamole (side),,,2026-02-04
+Chipotle,Vinaigrette,220,1,16,850,18,2.5,0,0,1,12,952261,,Vinaigrette,,,2026-02-04
+Chipotle,"Minute Maid, 32 fl oz",400,0,0,140,110,0,0,0,0,110,952281,,"Minute Maid, 32 fl oz",,,2026-02-04
+Chipotle,Queso Blanco (large),480,20,37,980,14,23,1.5,120,,5,945079,,Queso Blanco (large),,,2026-02-04
+Chipotle,Chips (regular),540,7,25,390,73,3.5,0,0,7,1,945076,,Chips (regular),,,2026-02-04
+Chipotle,Guacamole (large),460,4,44,740,16,7,0,0,12,2,921181,,Guacamole (large),,,2026-02-04
+Chipotle,"Lemonade, Blue, 32 fl oz",440,0,0,135,113,0,0,0,0,108,952287,,"Lemonade, Blue, 32 fl oz",,,2026-02-04
+Chipotle,"Mountain Dew, 32 fl oz",440,0,0,140,116,0,0,0,0,116,952328,,"Mountain Dew, 32 fl oz",,,2026-02-04
+Chipotle,"Barq's Root Beer, 32 fl oz",430,0,0,180,120,0,0,0,0,120,952263,,"Barq's Root Beer, 32 fl oz",,,2026-02-04
+Chipotle,"Fanta Orange, 32 fl oz",430,0,0,140,120,0,0,0,0,120,952279,,"Fanta Orange, 32 fl oz",,,2026-02-04
+Chipotle,"Mango Orange - Blue Sky, 32 fl oz",430,0,0,120,109,0,0,0,0,108,952289,,"Mango Orange - Blue Sky, 32 fl oz",,,2026-02-04
+Chipotle,"Chips & Queso Blanco, Regular",780,,,,,,,,,,945077,,"Chips & Queso Blanco, Regular",,,2026-02-04
+Chipotle,"Chips & Guacamole, Regular",770,,,,,,,,,,29670,,"Chips & Guacamole, Regular",,,2026-02-04
+Chipotle,Chips (large),810,11,38,590,110,5,0,0,11,2,171428,,Chips (large),,,2026-02-04
+Chipotle,"Chips & Queso Blanco, Large",1290,,,,,,,,,,171429,,"Chips & Queso Blanco, Large",,,2026-02-04
+Chipotle,"Chips & Guacamole, Large",1270,,,,,,,,,,921180,,"Chips & Guacamole, Large",,,2026-02-04
+Chipotle,Queso Blanco (entreé),120,5,9,250,4,6,0,30,0,1,945075,,"Queso Blanco (entreé), Kids Menu",,,2026-02-04
+Chipotle,Chicken (side),25,4,1,40,0,0.5,0,15,0,0,952310,,"Chicken (side), Kids Menu",,,2026-02-04
+Chipotle,Roasted Chili-Corn Salsa,80,3,1.5,330,16,0,0,0,3,4,13058,,Roasted Chili-Corn Salsa,,,2026-02-04
+Chipotle,Carnitas (side),25,3,2,55,0,1,0,10,0,0,952311,,"Carnitas (side), Kids Menu",,,2026-02-04
+Chipotle,Barbacoa (side),20,3,1,65,0,0.5,0,10,0,0,952309,,"Barbacoa (side), Kids Menu",,,2026-02-04
+Chipotle,Steak (side),20,3,1,40,0,0,0,10,0,0,952312,,"Steak (side), Kids Menu",,,2026-02-04
+Chipotle,Chips,140,2,6,95,18,1,0,0,2,0,952322,,"Chips, Kids Menu",,,2026-02-04
+Chipotle,Crispy Corn Tortilla,130,2,6,0,19,1,0,0,2,0,952306,,"Crispy Corn Tortilla, Kids Menu",,,2026-02-04
+Chipotle,Sour Cream,110,2,9,30,2,7,0,40,0,2,13065,,Sour Cream,,,2026-02-04
+Chipotle,Flour Tortilla (quesadilla),80,2,2.5,160,13,0,0,0,,0,952305,,"Flour Tortilla (quesadilla), Kids Menu",,,2026-02-04
+Chipotle,Guacamole,110,1,11,190,3,1.5,0,0,3,0,952240,,"Guacamole, Kids Menu",,,2026-02-04
+Starbucks,"Steamed Milk, Grande",200,13,8,190,19,4,0,30,0,19,941530,,"Steamed Milk, Grande, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"Cappuccino, Venti",200,13,8,180,20,5,0,30,0,19,949697,,"Cappuccino, Venti, 2 Shots of Signature Roast Espresso, Choice of Regular, Extra, Light or No Thick Milk Foam, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Chai, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Choice of Adding: Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel or Mocha Sauce, Cappuccinos, Hot Coffees",,,2026-02-04
+Starbucks,"SBC Milk, Tall",200,13,8,190,19,4,0,30,0,19,954357,,"SBC Milk, Tall, Choice of Adding Extra, Light, Regular or None: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel Sauce, Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Milk, Cold Drinks",,,2026-02-04
+Starbucks,"Caffe Latte, Grande",190,13,7,170,19,4.5,0,30,0,18,941748,,"Caffe Latte, Grande, 2 Shots Signature Espresso Roast, Steamed 2% Milk, Choice of Extra, Light, Regular or No Foam, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast Lattes, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Hot Coffees",,,2026-02-04
+Starbucks,"Iced Caffe Latte, Venti",180,12,6,160,18,3,0,25,0,15,941967,,"Iced Caffe Latte, Venti, 2% Milk, 3 Signature Espresso Roast Shot, Ice, Choice of Adding Extra, Light, Regular or None: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Cold Coffees",,,2026-02-04
+Starbucks,Egg White & Roasted Red Pepper Egg Bites,170,12,8,470,11,5,0,25,0,3,941431,,"Egg White & Roasted Red Pepper Egg Bites, Cage Free Egg Whites, Monterey Jack, Spinach, Fire Roasyed Red Peppers, Choice of Adding Sriracha, Sous Vide Egg Bites, Hot Breakfast",,,2026-02-04
+Starbucks,Country Archer Original Beef Jerky,70,11,1,330,5,0,0,25,0,4,954110,,"Country Archer Original Beef Jerky, Soy Sauce, Brown Sugar, Garlic, Pineapple Juice, Meat & Cheese, Snacks & Sweets",,,2026-02-04
+Starbucks,"Matcha Tea Latte, Tall",190,10,5,125,25,3.5,0,20,1,24,950012,,"Matcha Tea Latte, Tall, 2 Scoop Matcha Powder, 2% Steamed Milk Foam, Choice of Extra, Light or No Milk Foam, Choice of Adding: Chai, Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Hot Teas",,,2026-02-04
+Starbucks,"SBC Milk, Venti",370,24,15,350,36,7,0,60,0,36,954359,,"SBC Milk, Venti, Choice of Adding Extra, Light, Regular or None: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel Sauce, Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Milk, Cold Drinks",,,2026-02-04
+Starbucks,"Spinach, Feta & Egg White Wrap",290,20,8,840,34,3.5,0,20,3,5,949670,,"Spinach, Feta & Egg White Wrap, Cage Free Egg Whites, Spinach, Feta, Sun Dried Tomato Cream Cheese, Whole Wheat Wrap, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,"Bacon, Gouda & Egg Sandwich",360,19,18,720,35,7,0,155,1,2,132792,,"Bacon, Gouda & Egg Sandwich, Applewood Smoked Bacok, Parmesan Cage Free Egg Frittata, Aged Gouda on Artisan Roll, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,Bacon & Gruyere Egg Bites,300,19,20,680,9,12,0,215,0,2,941429,,"Bacon & Gruyere Egg Bites, Applewood Smoked Bacon, Aged Gruyere Monterey Jack Cheeses, Cage Free Eggs, Choice of Adding Sriracha, Sous Vide Egg Bites, Hot Breakfast",,,2026-02-04
+Starbucks,"Perfect Bar, Peanut Butter",330,17,18,60,26,3,0,15,4,18,954113,,"Perfect Bar, Peanut Butter, Ground Organic Peanut Butter, Honey, Snack Bars, Snacks & Sweets",,,2026-02-04
+Starbucks,"Steamed Milk, Venti",260,17,10,240,25,5,0,40,0,25,941526,,"Steamed Milk, Venti, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"SBC Milk, Grande",260,17,10,250,25,5,0,40,0,25,954358,,"SBC Milk, Grande, Choice of Adding Extra, Light, Regular or None: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line the Cup w/ Caramel Sauce, Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Milk, Cold Drinks",,,2026-02-04
+Starbucks,"Turkey Bacon, Cheddar & Egg White Sandwich",230,17,5,560,28,2.5,0,20,3,2,950139,,"Turkey Bacon, Cheddar & Egg White Sandwich, Cage Free Egg Whites, Reduced Fat White Cheddar, Wheat English Muffin, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,"Turkey, Provolone & Pesto on Ciabatta",520,32,19,1190,53,6,0,70,3,3,954088,,"Turkey, Provolone & Pesto on Ciabatta, Thick Sliced Turkey Breast, Provolone, Dry Roasted Red Peppers, Basil Pesto on Ciabatta Roll, Choice of Adding Sriracha, Warm Sandwiches, Lunch",,,2026-02-04
+Starbucks,Eggs & Gouda Protein Box,530,26,28,790,30,10,0,370,5,23,950147,,"Eggs & Gouda Protein Box, 2 Cage Free Hard Boiled Eggs, Gouda, Multigrain Crackers, Dried Apricots, Apples, Peanut Butter Spread, Salt, Pepper, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,Ham & Swiss on Baguette,480,24,23,1210,41,10,0,80,2,2,954087,,"Ham & Swiss on Baguette, Dijon Mustard, Choice of Adding Sriracha, Warm Sandwiches, Lunch",,,2026-02-04
+Starbucks,Eggs & Cheddar Protein Box,470,23,25,470,41,8,0,385,6,21,950152,,"Eggs & Cheddar Protein Box, 2 Cage Free Hard Boiled Eggs, Sliced Tart Apples, Grapes, White Cheddar, Multrigrain Muesli Bread, Honey Peanut Butter, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,Crispy Grilled Cheese on Sourdough,520,21,27,1040,47,16,1,70,4,1,941435,,"Crispy Grilled Cheese on Sourdough, White Cheddar, Mozzarella, Sourdough, Parmesan Butter Spread, Choice of Adding Sriracha, Warm Sandwiches, Lunch",,,2026-02-04
+Starbucks,"Double-Smoked Bacon, Cheddar & Egg Sandwich",500,21,27,960,43,13,0,225,2,8,124305,,"Double-Smoked Bacon, Cheddar & Egg Sandwich, Smoked Bacon, Cage Free Fried Egg, Sharp Cheddar Slice, Croissant Bun, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,Impossible Breakfast Sandwich,420,21,22,800,36,8,0,190,3,4,950138,,"Impossible Breakfast Sandwich, Impossible Sausage, Cage Free Fried Egg, Aged Cheddar, Artisan Sesame Ciabatta Bun, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,PB & J Protein Box,520,20,27,630,51,8,0,20,6,30,124329,,"PB & J Protein Box, Natural Peanut Butter, Strawberry Jam, Soft Honey Wheat Bread, String Cheese, Apples, Mini Carrots, Greek Yogurt Ranch Dip, Chocolate Covered Raisins, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,"Bacon, Sausage & Egg Wrap",640,28,33,1090,58,13,0,340,3,2,954075,,"Bacon, Sausage & Egg Wrap, Double Smoked Bacon, Pork Sausage, Cage Free Scrambled Eggs, Cheddar Cheese, Potatoes, Flour Tortilla, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,"Peppermint White Hot Chocolate, Venti",630,18,22,320,93,15,0.5,55,0,92,954175,,"Peppermint White Hot Chocolate, Venti, Choice of Extra, Regular, Light or No Steamed 2% Milk Foam, 2 Pumps Peppermint Syrup, 2 Pumps White Chocolate Mocha Sauce, Dark Chocolate Curls Topping, Whipped Cream, Choice of Adding:  Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"Peppermint White Chocolate Mocha, Venti",620,18,21,300,93,14,0.5,55,0,91,954148,,"Peppermint White Chocolate Mocha, Venti, 2 Shot Signature Espresso Roast, 5 Pumps Peppermint Syrup, 5 Pumps White Chocolate Mocha Sauce, 2% Steamed Milk, Sweet Whipped Cream, Dark Chocolate Curls, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Mochas, Hot Coffees",,,2026-02-04
+Starbucks,"Iced Peppermint White Chocolate Mocha, Venti",660,14,23,270,101,16,0.5,55,0,98,954265,,"Iced Peppermint White Chocolate Mocha, Venti, 2% Milk, Ice, 6 Pumps Peppermint Syrup, 6 Pumps White Chocolate Mocha Sauce, Dark Chocolate Curls, Whipped Cream, 3 Signature Espresso Roast Shot, Choice of Adding Extra, Light, Regular or None: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Cold Coffees",,,2026-02-04
+Starbucks,Cheese Trio Protein Box,520,20,24,710,59,14,1,70,5,40,950148,,"Cheese Trio Protein Box, Brie, Gouda, Aged Sharp Cheddar, Olive Oil & Sea Salt Crackers, Dried Apricots, Cranberries, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,Cheese & Fruit Protein Box,470,20,28,770,37,16,1,75,3,17,23393,,"Cheese & Fruit Protein Box, Brie, Gouda, Aged Cheddar, Olive Oil & Sea Salt Crackers, Apples, Grapes, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,Cheddar & Uncured Salami Protein Box,470,20,31,810,31,11,0.5,60,3,14,950149,,"Cheddar & Uncured Salami Protein Box, Salami, Aged Sharp and White Cheddar, Olive Oil & Sea Salt Crackers, Dried Cranberries, Almonds, Walnuts, Pepitas, Protein Boxes, Lunch",,,2026-02-04
+Starbucks,"White Hot Chocolate, Venti",540,19,22,330,69,15,0.5,60,0,68,941503,,"White Hot Chocolate, Venti, Choice of Extra, Regular, Light or No Steamed 2% Milk Foam, 5 Pumps White Chocolate Mocha Sauce, Whipped Cream, Choice of Adding:  Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"White Chocolate Mocha, Venti",530,19,21,310,68,14,0.5,60,0,67,33802,,"White Chocolate Mocha, Venti, 2 Shot Signature Espresso Roast, 5 Pumps White Chocolate Mocha Sauce, Choice of Extra, Light, Regular or No Foam, Steamed 2% Milk, Sweetened Whipped Cream, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Mochas, Hot Coffees",,,2026-02-04
+Starbucks,"Starbucks Reserve Hazelnut Bianco Latte, Venti",520,19,25,220,55,10,0,50,2,50,941731,,"Starbucks Reserve Hazelnut Bianco Latte, Venti, House-made Hazelnut- Praline Infused Milk, 3 Shots Small Lot Starbucks Reserve Espresso, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam,  Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Decaf Starbucks Reserve Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Hot Coffees",,,2026-02-04
+Starbucks,"Toasted White Hot Chocolate, Venti",520,19,18,510,71,12,0.5,60,0,71,954180,,"Toasted White Hot Chocolate, Venti, Choice of Extra, Regular, Light or No Steamed 2% Milk Foam, White Pearls, 5 Pumps Toasted White Chocolate Mocha Sauce, Holiday Sugar Sparkles, Whipped Cream, Choice of Adding:  Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"Toasted White Chocolate Mocha, Venti",510,19,18,490,70,11,0.5,55,0,69,954152,,"Toasted White Chocolate Mocha, Venti, 2 Shot Signature Espresso Roast, 5 Pumps Toasted White Chocolate Mocha Sauce, Choice of Extra, Light, Regular or No Foam, Caramelized White Chocolate, Steamed 2% Milk, Whipped Cream, Holiday Sugar Sparkles, White Pearls, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Mochas, Hot Coffees",,,2026-02-04
+Starbucks,"Pumpkin Spice Crème, Venti",480,19,17,320,65,11,0.5,60,0,65,950029,,"Pumpkin Spice Crème, Venti, Pumpkin, Cinnamon, Nutmeg, Clove, Choice of Extra, Light, Regular or No Steamed 2% Milk Foam, 2 Pumps Pumpkin Sauce, Pumpkin Spice Topping, Whipped Cream, Choice of Adding:  Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Cinnamon Powder, Whipped Cream, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Line Cup w/ Caramel or Mocha Sauce, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Hot Drinks",,,2026-02-04
+Starbucks,"Sausage, Cheddar & Egg Sandwich",480,18,29,890,34,10,0,165,1,2,949669,,"Sausage, Cheddar & Egg Sandwich, Sausage Patty, Cage Free Eggs, Aged Cheddar, English Muffin, Choice of Adding Sriracha, Breakfast Sandwiches & Wraps, Hot Breakfast",,,2026-02-04
+Starbucks,"Pumpkin Spice Latte, Venti",470,18,16,300,65,10,0.5,60,0,63,949946,,"Pumpkin Spice Latte, Venti, 2 Shot Signature Espresso Roast, Choice of Extra, Regular, Light or No: Steamed 2% Milk Foam, 2 Pumps of Pumpkin Sauce, Pumpkin Spice Topping, Pumpkin, Cinnamon, Nutmeg, Clove, Whipped Cream, Pumpkin Pie Spices, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Lattes, Hot Coffees",,,2026-02-04
+Starbucks,"Caffe Mocha, Venti",450,18,18,190,54,11,0.5,55,5,45,949694,,"Caffe Mocha, Venti, 2 Shot Signature Espresso Roast, Choice of Extra, Light, Regular or No Foam, 5 Pumps Mocha Sauce, Steamed 2% Milk, Sweetened Whipped Cream, Choice of Milk: 2% Milk, Almondmilk, Coconutmilk, Half & Half, Heavy Cream, Nonfat Milk, Oatmilk, Soymilk, Whole Milk, Vanilla Sweet Cream, Choice of Adding: Apple Brown Sugar, Brown Sugar Syrup, Caramel Syrup, Chestnut Praline Syrup, Cinnamon Dolce Syrup, Hazelnut Syrup, Irish Cream Syrup, Peppermint Syrup, Raspberry Syrup, Sugar Cookie Syrup, Toasted Vanilla Syrup, Toffee Nut Syrup, Vanilla Syrup, Sugar Free Vanilla Syrup, Caramel Brulee Sauce, Mocha Sauce, Dark Caramel Sauce, Pumpkin Sauce, Toasted White Chocolate Mocha Sauce, White Chocolate Mocha Sauce, Choice of Regular, Light, Extra, or No: Barista Cocoa Powder, Caramel Brulee Topping, Chestnut Praline Topping, Chocolate Curls Topping, Holiday Sugar Sparkles, Pumpkin Spice Topping, Red & Green Sprinkle Topping, Cinnamon Dolce Sprinkles, Caramel Drizzle, Mocha Drizzle, Spiced Apple Drizzle, Chocolate Cream Cold Foam, Irish Cream Cold Foam, Peppermint Chocolate Cream Cold Foam, Pumpkin Cream Cold Foam, Salted Caramel Cream Cold Foam, Vanilla Sweet Cream Cold Foam, Cinnamon Powder, Whipped Cream, Chocolate Malt Powder, Vanilla Bean Powder, Sugar, Sugar in The Raw, Honey, Splenda, Stevia in the Raw, Classic Syrup, Liquid Cane Sugar, Honey Blend, Chai, Add Espresso Shot: Signature Espresso Roast, Blonde Espresso Roast, Decaf Espresso Roast, 1/3 Decaf Espresso Roast, 1/2 Decaf Espresso Roast, 2/3 Decaf Espresso Roast, Ristretto or Long Shot, Line the Cup w/ Caramel or Mocha Sauce, Mochas, Hot Coffees",,,2026-02-04
+Dunkin',"Iced Latte with Skim Milk, Large",130,12,0,180,20,0,0,5,0,18,27320,,"Iced Latte with Skim Milk, Large, Iced Latte, Permanent Products",,,2026-02-04
+Dunkin',"Hot Latte with Skim Milk, Large",130,12,0,170,20,0,0,5,0,18,30834,,"Hot Latte with Skim Milk, Large, Hot Latte, Permanent Products",,,2026-02-04
+Dunkin',Matcha Iced Latte with Skim Milk- Medium,180,11,0,125,34,0,0,5,1,32,945966,,"Matcha Iced Latte with Skim Milk- Medium, Iced Latte, Permanent Products",,,2026-02-04
+Dunkin',Matcha Hot Latte with Skim Milk- Medium,180,11,0,115,34,0,0,5,1,32,945974,,"Matcha Hot Latte with Skim Milk- Medium, Hot Latte, Permanent Products",,,2026-02-04
+Dunkin',Maple Sugar Snacking Bacon,190,10,12,500,10,4.5,0,35,0,9,946328,,"Maple Sugar Snacking Bacon, Snacking Bacon",,,2026-02-04
+Dunkin',"Hot Latte with Skim Milk and Sugar, Medium",200,9,0,125,41,0,0,5,0,40,30830,,"Hot Latte with Skim Milk and Sugar, Medium, Hot Latte, Permanent Products",,,2026-02-04
+Dunkin',"Iced Latte with Skim Milk and Sugar, Medium",200,9,0,135,41,0,0,5,0,40,94337,,"Iced Latte with Skim Milk and Sugar, Medium, Iced Latte, Permanent Products",,,2026-02-04
+Dunkin',"Iced Latte with Whole Milk, Medium",170,9,9,135,14,5,0,25,0,13,27322,,"Iced Latte with Whole Milk, Medium, Iced Latte, Permanent Products",,,2026-02-04
+Dunkin',"Bacon, Egg and Cheese on English Muffin",400,18,19,840,39,7,0,190,1,4,27107,,"Bacon, Egg and Cheese on English Muffin, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Bacon & Cheddar Omelet Bites,280,17,19,520,7,10,0.5,185,0,2,952994,,"Bacon & Cheddar Omelet Bites, Omelet Bites, Permanent Products",,,2026-02-04
+Dunkin',White Cheddar Bagel Twist,390,16,8,760,64,4.5,0,20,4,7,15366,,"White Cheddar Bagel Twist, Bagels, Permanent Products",,,2026-02-04
+Dunkin',"Pumpkin Swirl Hot Latte with Skim Milk, Large",350,16,0.5,280,69,0,0,10,0,67,946052,,"Pumpkin Swirl Hot Latte with Skim Milk, Large, Hot Latte",,,2026-02-04
+Dunkin',"Pumpkin Swirl Iced Latte with Skim Milk, Large",350,16,0.5,300,69,0,0,10,0,67,946053,,"Pumpkin Swirl Iced Latte with Skim Milk, Large, Iced Latte",,,2026-02-04
+Dunkin',"Peanut Butter Cup Swirl Hot Latte with Skim Milk, Large",340,16,0.5,240,68,0,0,10,0,66,946223,,"Peanut Butter Cup Swirl Hot Latte with Skim Milk, Large, Hot Latte",,,2026-02-04
+Dunkin',"Peanut Butter Cup Swirl Iced Latte with Skim Milk, Large",340,16,0.5,250,68,0,0,10,0,66,946289,,"Peanut Butter Cup Swirl Iced Latte with Skim Milk, Large, Iced Latte",,,2026-02-04
+Dunkin',Kolache,390,15,23,1020,31,7,0,60,1,7,136124,,"Kolache, Kolache, Regional",,,2026-02-04
+Dunkin',Kosher Dunkin' Double Veggie Sausage Sandwich,600,37,18,1460,74,6,0,180,6,8,923149,,"Kosher Dunkin' Double Veggie Sausage Sandwich, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',Kosher Tuna Salad on a Plain Bagel,510,24,17,1060,64,3,0,45,4,7,172459,,"Kosher Tuna Salad on a Plain Bagel, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',Kosher Veggie Sausage Egg and Cheese on a Croissant,570,23,33,840,44,13,0,180,2,6,172464,,"Kosher Veggie Sausage Egg and Cheese on a Croissant, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',"Bacon, Egg and Cheese on a Plain Bagel",520,23,18,1200,67,6,0,190,4,8,908,,"Bacon, Egg and Cheese on a Plain Bagel, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Turkey Sausage Sandwich on English Muffin,470,23,25,1080,39,8,0,215,1,4,172460,,"Turkey Sausage Sandwich on English Muffin, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',"Sausage, Egg and Cheese on English Muffin",560,21,35,1140,40,12,0,220,2,4,15496,,"Sausage, Egg and Cheese on English Muffin, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Kosher Veggie Bacon Egg and Cheese on a Plain Bagel,510,21,17,1170,68,5,0,180,4,7,172462,,"Kosher Veggie Bacon Egg and Cheese on a Plain Bagel, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',Grilled Cheese,480,21,20,1120,54,11,0,55,3,1,923064,,"Grilled Cheese, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Sourdough Breakfast Sandwich,650,31,32,1360,58,11,0,365,3,2,946327,,"Sourdough Breakfast Sandwich, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Kosher Sourdough Breakfast Sandwich,660,29,34,1470,61,10,0,345,3,1,946321,,"Kosher Sourdough Breakfast Sandwich, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',Chicken Croissant Sandwich,650,28,36,1240,55,14,0,65,2,9,923150,,"Chicken Croissant Sandwich, Sandwiches, Regional, Permanent Products",,,2026-02-04
+Dunkin',"Sausage, Egg and Cheese on a Plain Bagel",680,26,34,1500,68,12,0,220,5,8,912,,"Sausage, Egg and Cheese on a Plain Bagel, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Kosher Tuna Melt on a Croissant,630,24,42,820,38,15,0,65,1,5,172463,,"Kosher Tuna Melt on a Croissant, Kosher Sandwiches and Wraps, Permanent Products",,,2026-02-04
+Dunkin',Maple Sugar Bacon Breakfast,650,23,41,850,46,17,0,205,1,11,946326,,"Maple Sugar Bacon Breakfast, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',"Sausage, Egg and Cheese on Croissant",720,21,52,1120,42,20,0,220,2,6,913,,"Sausage, Egg and Cheese on Croissant, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',Kosher Maple Sugar Bacon Breakfast Sandwich,670,21,43,970,50,16,0,185,1,11,946319,,"Kosher Maple Sugar Bacon Breakfast Sandwich, Kosher Sandwiches and Wraps",,,2026-02-04
+Dunkin',Double Sausage Breakfast Sandwich,900,33,54,1980,70,19,0,265,5,8,172469,,"Double Sausage Breakfast Sandwich, Sandwiches, Permanent Products",,,2026-02-04
+Dunkin',"Pumpkin Swirl Frozen Chocolate, Large",900,12,18,430,173,13,0,40,1,162,946180,,"Pumpkin Swirl Frozen Chocolate, Large, Frozen Chocolate",,,2026-02-04
+Dunkin',"Peanut Butter Cup Swirl Frozen Chocolate, Large",890,12,18,380,172,13,0,40,2,159,946177,,"Peanut Butter Cup Swirl Frozen Chocolate, Large, Frozen Chocolate",,,2026-02-04
+Dunkin',"Pumpkin Swirl Frozen Coffee with Skim Milk, Large",880,12,5,290,194,3.5,0,25,0,185,946085,,"Pumpkin Swirl Frozen Coffee with Skim Milk, Large, Frozen Coffee",,,2026-02-04
+Dunkin',"Peanut Butter Cup Swirl Frozen Coffee with Skim Milk, Large",820,12,6,240,180,3.5,0,25,1,170,946001,,"Peanut Butter Cup Swirl Frozen Coffee with Skim Milk, Large, Frozen Coffee",,,2026-02-04
+Dunkin',"Pumpkin Swirl Frozen Coffee with Cream, Large",1160,11,40,340,190,22,1.5,125,0,181,946083,,"Pumpkin Swirl Frozen Coffee with Cream, Large, Frozen Coffee",,,2026-02-04
+Dunkin',"Peanut Butter Cup Swirl Frozen Coffee with Cream, Large",1100,11,40,290,176,22,1.5,125,1,166,945996,,"Peanut Butter Cup Swirl Frozen Coffee with Cream, Large, Frozen Coffee",,,2026-02-04
+Dunkin',"Pumpkin Swirl Frozen Coffee with Whole Milk, Large",930,11,11,290,194,7,0,40,0,185,946097,,"Pumpkin Swirl Frozen Coffee with Whole Milk, Large, Frozen Coffee",,,2026-02-04
+Panera Bread,Turkey Chili with Beans - Cup,200,14,7,460,20,3,0,25,9,6,62721,,"Turkey Chili with Beans - Cup, Soups",,,2026-02-04
+Panera Bread,Asian Sesame with Chicken Salad - Half,200,13,11,400,15,1.5,0,35,3,4,957320,,"Asian Sesame with Chicken Salad - Half, Salads",,,2026-02-04
+Panera Bread,Iced Caffe Latte - 20 fl oz,160,11,6,130,16,4,0,25,0,14,132060,,"Iced Caffe Latte - 20 fl oz, Drinks",,,2026-02-04
+Panera Bread,Caffe Latte - 20 fl oz,160,11,6,125,16,4,0,25,0,14,957108,,"Caffe Latte - 20 fl oz, Drinks",,,2026-02-04
+Panera Bread,Cappuccino - 20 fl oz,160,11,6,125,16,4,0,25,0,14,957113,,"Cappuccino - 20 fl oz, Drinks",,,2026-02-04
+Panera Bread,Hazelnut Coffee - Group,140,10,0,60,24,0,0,0,0,0,957217,,"Hazelnut Coffee - Group, Drinks",,,2026-02-04
+Panera Bread,Whole Grain Lahvash,150,9,2.5,250,27,0,0,0,2,2,957041,,"Whole Grain Lahvash, Breads",,,2026-02-04
+Panera Bread,Caffe Latte - 16 fl oz,130,9,5,100,13,3,0,20,0,11,133761,,"Caffe Latte - 16 fl oz, Drinks",,,2026-02-04
+Panera Bread,Smokehouse BBQ Chicken on Classic White Miche -Half,380,22,14,820,41,7,0,65,2,9,957349,,"Smokehouse BBQ Chicken on Classic White Miche -Half, Sandwiches",,,2026-02-04
+Panera Bread,Scrambled Egg & Cheese on Brioche,400,21,21,530,32,11,0,345,2,6,923517,,"Scrambled Egg & Cheese on Brioche, Breakfast",,,2026-02-04
+Panera Bread,Turkey Chili with Beans - Bowl,300,21,10,690,31,4.5,0,35,14,8,62720,,"Turkey Chili with Beans - Bowl, Soups",,,2026-02-04
+Panera Bread,Kids Deli Turkey on White Whole Grain,290,21,9,910,30,4.5,0,45,3,3,957299,,"Kids Deli Turkey on White Whole Grain, Kids",,,2026-02-04
+Panera Bread,Scrambled Egg & Cheese on Artisan Ciabatta,380,20,16,610,40,7,0,285,2,1,957056,,"Scrambled Egg & Cheese on Artisan Ciabatta, Breakfast",,,2026-02-04
+Panera Bread,Egg & Cheese on Brioche,380,19,19,510,32,10,0,265,2,6,175420,,"Egg & Cheese on Brioche, Breakfast",,,2026-02-04
+Panera Bread,Egg & Cheese on Artisan Ciabatta,360,19,14,590,40,6,0,205,2,1,957047,,"Egg & Cheese on Artisan Ciabatta, Breakfast",,,2026-02-04
+Panera Bread,"Avocado, Egg White, Spinach & Cheese on Sprouted Grain Bagel Flat",350,19,14,680,39,5,0,20,5,5,937570,,"Avocado, Egg White, Spinach & Cheese on Sprouted Grain Bagel Flat, Breakfast",,,2026-02-04
+Panera Bread,The Chef's Chicken Sandwich - The Signature Take on Brioche,570,40,29,920,37,10,0,180,2,5,957352,,"The Chef's Chicken Sandwich - The Signature Take on Brioche, Sandwiches",,,2026-02-04
+Panera Bread,The Chef's Chicken Sandwich - The Spicy Take on Brioche,580,37,30,1210,41,8,0,170,2,6,957353,,"The Chef's Chicken Sandwich - The Spicy Take on Brioche, Sandwiches",,,2026-02-04
+Panera Bread,Citrus Asian Crunch Salad with Chicken - Whole,600,36,33,1310,46,5,0,105,8,26,957329,,"Citrus Asian Crunch Salad with Chicken - Whole, Salads",,,2026-02-04
+Panera Bread,Green Goddess Cobb Salad with Chicken - Whole,500,36,29,1040,27,6,0,275,8,14,32154,,"Green Goddess Cobb Salad with Chicken - Whole, Salads",,,2026-02-04
+Panera Bread,Deli Turkey on Country Rustic Sourdough - Whole,600,35,19,1510,73,3,0,55,5,5,957338,,"Deli Turkey on Country Rustic Sourdough - Whole, Sandwiches",,,2026-02-04
+Panera Bread,BBQ Chicken Salad - Whole,490,29,23,1290,45,3.5,0,80,10,14,948476,,"BBQ Chicken Salad - Whole, Salads",,,2026-02-04
+Panera Bread,Caesar Salad with Chicken - Whole,440,29,27,1070,21,7,0.5,115,4,3,957325,,"Caesar Salad with Chicken - Whole, Salads",,,2026-02-04
+Panera Bread,"Sausage, Scrambled Egg & Cheese on Artisan Ciabatta",590,27,35,880,40,15,0,320,2,1,957053,,"Sausage, Scrambled Egg & Cheese on Artisan Ciabatta, Breakfast",,,2026-02-04
+Panera Bread,Turkey Chili - Group,700,49,24,1620,72,11,1,80,32,19,948520,,"Turkey Chili - Group, Soups",,,2026-02-04
+Panera Bread,Smokehouse BBQ Chicken on Classic White Miche -Whole,760,45,29,1640,81,14,0.5,135,3,18,948505,,"Smokehouse BBQ Chicken on Classic White Miche -Whole, Sandwiches",,,2026-02-04
+Panera Bread,Teriyaki Chicken & Broccoli Bowl,740,38,28,2070,84,6,0,155,6,27,948509,,"Teriyaki Chicken & Broccoli Bowl, Bowls/Mac/Flatbread Pizzas",,,2026-02-04
+Panera Bread,Homestyle Chicken Noodle Soup - Bread Bowl,780,35,5,2100,148,0.5,0,15,5,5,957363,,"Homestyle Chicken Noodle Soup - Bread Bowl, Soups",,,2026-02-04
+Panera Bread,Tuna Salad on Black Pepper Focaccia - Whole,740,35,32,1710,77,5,0,65,5,6,154923,,"Tuna Salad on Black Pepper Focaccia - Whole, Sandwiches",,,2026-02-04
+Panera Bread,"Sausage, Scrambled Egg & Cheese on Asiago Bagel",790,30,48,1230,61,18,0,340,2,5,957054,,"Sausage, Scrambled Egg & Cheese on Asiago Bagel, Breakfast",,,2026-02-04
+Panera Bread,Ten Vegetable Soup - Bread Bowl,730,30,6,1890,140,0.5,0,0,7,6,957371,,"Ten Vegetable Soup - Bread Bowl, Soups",,,2026-02-04
+Panera Bread,"Sausage, Egg & Cheese on Asiago Bagel",770,29,47,1210,60,17,0,260,2,5,957051,,"Sausage, Egg & Cheese on Asiago Bagel, Breakfast",,,2026-02-04
+Panera Bread,Bacon Turkey Bravo on Tomato Basil - Whole,1000,53,41,2560,104,15,1,135,4,11,957334,,"Bacon Turkey Bravo on Tomato Basil - Whole, Sandwiches",,,2026-02-04
+Panera Bread,Steak & White Cheddar Panini on Artisan Ciabatta -Whole,940,47,45,1510,87,15,1,125,4,7,957351,,"Steak & White Cheddar Panini on Artisan Ciabatta -Whole, Sandwiches",,,2026-02-04
+Panera Bread,Dozen Mixed Cookies,4850,46,216,3200,684,130,6,685,20,397,957306,,"Dozen Mixed Cookies, Pastries & Sweets",,,2026-02-04
+Panera Bread,Chipotle Chicken Avocado Melt on Black Pepper Focaccia - Whole,940,46,49,2020,80,15,0.5,130,7,5,154913,,"Chipotle Chicken Avocado Melt on Black Pepper Focaccia - Whole, Sandwiches",,,2026-02-04
+Panera Bread,Pepperoni Flatbread Pizza,1030,45,51,2530,94,24,1,120,3,7,948487,,"Pepperoni Flatbread Pizza, Bowls/Mac/Flatbread Pizzas",,,2026-02-04
+Panera Bread,Sausage & Pepperoni Flatbread Pizza,960,44,43,2650,94,17,1,120,3,7,957298,,"Sausage & Pepperoni Flatbread Pizza, Bowls/Mac/Flatbread Pizzas",,,2026-02-04
+Panera Bread,Roasted Turkey & Avocado BLT on Country Rustic Sourdough - Whole,940,44,53,1770,73,10,0.5,100,8,5,957348,,"Roasted Turkey & Avocado BLT on Country Rustic Sourdough - Whole, Sandwiches",,,2026-02-04
+Panera Bread,Mac & Cheese - Bread Bowl,1150,43,36,2310,164,18,1,85,4,9,957295,,"Mac & Cheese - Bread Bowl, Bowls/Mac/Flatbread Pizzas",,,2026-02-04
+Five Guys,"Meat, Bacon",80,4,7,260,0,3,0,15,0,0,15893,,"Meat, Bacon, Meat",,,2026-02-04
+Five Guys,"Mix-ins, Bacon",80,4,7,260,0,3,0,15,0,0,956522,,"Mix-ins, Bacon, Mix-ins",,,2026-02-04
+Five Guys,"Toppings, Cheese",70,4,6,310,,3.5,0,20,0,,15892,,"Toppings, Cheese, Toppings",,,2026-02-04
+Five Guys,"Mix-ins, Chocolate",160,2,4,40,32,3,0,0,2,25,127470,,"Mix-ins, Chocolate, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Salted Caramel",170,1,1,100,41,1,0,,0,30,127467,,"Mix-ins, Salted Caramel, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Cherry",160,0,0,5,39,0,0,0,0,26,127475,,"Mix-ins, Cherry, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Banana",120,0,0,10,28,0,0,0,0,24,127476,,"Mix-ins, Banana, Mix-ins",,,2026-02-04
+Five Guys,"Toppings, Mayonnaise",110,0,11,70,0,1.5,0,10,0,0,15900,,"Toppings, Mayonnaise, Toppings",,,2026-02-04
+Five Guys,"Meat, Hamburger Patty",300,16,17,50,0,8,1,60,0,0,61276,,"Meat, Hamburger Patty, Meat",,,2026-02-04
+Five Guys,"Mix-ins, Peanut Butter",340,13,29,290,13,6,0,0,4,6,127474,,"Mix-ins, Peanut Butter, Mix-ins",,,2026-02-04
+Five Guys,"Meat, Hot Dog",280,11,26,800,1,12,1,55,0,0,61277,,"Meat, Hot Dog, Meat",,,2026-02-04
+Five Guys,Bun,240,7,9,330,39,3.5,0,,2,8,61278,,"Bun, Bun",,,2026-02-04
+Five Guys,"Mix-ins, Malted Milk",240,5,5,270,40,3,0,15,0,27,127477,,"Mix-ins, Malted Milk, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Oreo Cookie Pieces",260,2,10,210,40,3,0,0,1,22,127473,,"Mix-ins, Oreo Cookie Pieces, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Oreo Creme",360,0,28,55,27,8,0,0,0,26,127466,,"Mix-ins, Oreo Creme, Mix-ins",,,2026-02-04
+Five Guys,"Fries, Little",530,8,23,530,72,4,0,0,8,2,61271,,"Fries, Little, Fries",,,2026-02-04
+Five Guys,"Milkshakes, Five Guys Shake Base",670,13,32,360,84,21,1,130,0,82,127479,,"Milkshakes, Five Guys Shake Base, Milkshakes",,,2026-02-04
+Five Guys,"Fries, Large",1310,20,57,1330,181,10,1,0,21,6,15888,,"Fries, Large, Fries",,,2026-02-04
+Five Guys,"Fries, Regular",950,15,41,960,131,7,1,0,15,4,15887,,"Fries, Regular, Fries",,,2026-02-04
+Five Guys,"Mix-ins, Dark Vanilla Syrup",80,0,0,10,19,0,0,0,0,19,127469,,"Mix-ins, Dark Vanilla Syrup, Mix-ins",,,2026-02-04
+Five Guys,"Mix-ins, Strawberry",80,0,0,20,0,0,0,0,0,18,127471,,"Mix-ins, Strawberry, Mix-ins",,,2026-02-04
+Five Guys,"Toppings, Ketchup",30,0,0,160,5,0,0,0,0,4,15901,,"Toppings, Ketchup, Toppings",,,2026-02-04
+Five Guys,"Toppings, Grilled Mushrooms",20,0,0,55,1,0,0,0,0,1,15894,,"Toppings, Grilled Mushrooms, Toppings",,,2026-02-04
+Five Guys,"Milkshakes, Whipped Cream",20,0,1.5,0,1,1,0,,0,1,127478,,"Milkshakes, Whipped Cream, Milkshakes",,,2026-02-04
+Five Guys,"Toppings, A.1. Original Steak Sauce",15,0,0,280,3,0,0,0,0,2,15889,,"Toppings, A.1. Original Steak Sauce, Toppings",,,2026-02-04
+Five Guys,"Toppings, Relish",15,0,0,85,4,0,0,0,0,3,15903,,"Toppings, Relish, Toppings",,,2026-02-04
+Five Guys,"Toppings, Grilled Onions",10,0,0,0,2,0,0,0,,1,15896,,"Toppings, Grilled Onions, Toppings",,,2026-02-04
+Five Guys,"Mix-ins, Coffee",10,0,0,0,0,0,0,,0,0,127465,,"Mix-ins, Coffee, Mix-ins",,,2026-02-04
+Five Guys,"Toppings, Hot Sauce",0,0,0,200,0,0,0,0,0,0,15891,,"Toppings, Hot Sauce, Toppings",,,2026-02-04
+Five Guys,"Toppings, Green Peppers",0,0,0,0,1,0,0,0,,,15895,,"Toppings, Green Peppers, Toppings",,,2026-02-04
+Five Guys,"Toppings, Jalapeno Peppers",0,0,0,0,,0,0,0,0,0,15897,,"Toppings, Jalapeno Peppers, Toppings",,,2026-02-04
+Five Guys,"Toppings, Lettuce",0,0,0,0,1,0,0,0,,,15898,,"Toppings, Lettuce, Toppings",,,2026-02-04
+Five Guys,"Toppings, Mustard",0,0,0,55,0,0,0,0,0,0,15902,,"Toppings, Mustard, Toppings",,,2026-02-04
+Five Guys,"Toppings, Pickles",0,0,0,260,1,0,0,0,0,0,15904,,"Toppings, Pickles, Toppings",,,2026-02-04
+Five Guys,"Toppings, BBQ Sauce",50,,0,400,15,0,0,0,,10,15890,,"Toppings, BBQ Sauce, Toppings",,,2026-02-04
+Five Guys,"Toppings, Tomatoes",10,,0,0,2,0,0,0,,1,15899,,"Toppings, Tomatoes, Toppings",,,2026-02-04
+Sonic,2 Crispy Tenders,170,14,8,490,11,0.5,0,40,1,0,941372,,"2 Crispy Tenders, Wacky Pack Kids Meals",,,2026-02-04
+Sonic,1% Milk Jug,130,10,2.5,160,16,1.5,0,15,0,15,23111,,"1% Milk Jug, Wacky Pack Kids Meals",,,2026-02-04
+Sonic,Crispy Bacon,80,6,7,290,1,2.5,0,20,0,0,23092,,"Crispy Bacon, Make It Yours",,,2026-02-04
+Sonic,"Original Cold Brew Iced Coffee,  Small",190,4,9,110,24,6,0,30,0,12,941379,,"Original Cold Brew Iced Coffee,  Small, Coffee",,,2026-02-04
+Sonic,American Cheese,70,4,6,330,1,3,0,20,0,0,23089,,"American Cheese, Make It Yours",,,2026-02-04
+Sonic,Minute Maid Orange Juice Medium,200,3,0,35,47,0,0,0,0,42,949528,,"Minute Maid Orange Juice Medium, Juices",,,2026-02-04
+Sonic,"Pickle O'S, Small",190,3,21,850,23,3.5,0,10,1,2,941389,,"Pickle O'S, Small, Snacks & Sides",,,2026-02-04
+Sonic,Hot Chili,60,3,4,170,3,1.5,0,10,1,1,23097,,"Hot Chili, Make It Yours",,,2026-02-04
+Sonic,3 Crispy Tenders,260,21,12,730,16,1,0,60,2,0,23053,,"3 Crispy Tenders, Chicken",,,2026-02-04
+Sonic,"Jumbo Popcorn Chicken, Small",330,16,19,1100,24,3.5,0,40,3,1,134737,,"Jumbo Popcorn Chicken, Small, Chicken, Snacks & Sides",,,2026-02-04
+Sonic,"4 Mozzarella Sticks, Small",370,15,19,950,40,7,0,30,2,5,101296,,"4 Mozzarella Sticks, Small, Snacks & Sides",,,2026-02-04
+Sonic,Chicken Slinger,350,14,16,680,35,3.5,0,35,3,6,949584,,"Chicken Slinger, Chicken",,,2026-02-04
+Sonic,Jr Burger,310,14,14,710,32,4,0,20,2,5,183,,"Jr Burger, Burgers, Wacky Pack Kids Meals",,,2026-02-04
+Sonic,"Ched 'R'Bites, Small",280,14,27,970,23,8,0.5,40,1,1,941383,,"Ched 'R'Bites, Small, Snacks & Sides",,,2026-02-04
+Sonic,"6"" New York Dog",400,13,23,1110,35,8,1,35,3,5,22984,,"6"" New York Dog, Hot Dogs",,,2026-02-04
+Sonic,"6"" All Beef Regular Hot Dog",360,12,21,800,31,8,1,35,2,4,22985,,"6"" All Beef Regular Hot Dog, Hot Dogs",,,2026-02-04
+Sonic,5 Crispy Tenders,430,35,20,1210,27,2,0,95,3,0,23054,,"5 Crispy Tenders, Chicken",,,2026-02-04
+Sonic,Bagel Breakfast Sandwich w/ Ham,570,31,19,2550,70,6,0,320,2,6,22992,,"Bagel Breakfast Sandwich w/ Ham, Breakfast Items",,,2026-02-04
+Sonic,"Chicken Wrap, Grilled",480,31,14,1720,39,4,0,80,2,3,424,,"Chicken Wrap, Grilled, Wraps",,,2026-02-04
+Sonic,"Classic Chicken Sandwich, Grilled",470,30,22,1340,39,4,0,75,3,10,33136,,"Classic Chicken Sandwich, Grilled, Chicken",,,2026-02-04
+Sonic,6 Asian Sweet Chili Boneless Wings,470,30,24,1450,32,9,0,80,2,14,101276,,"6 Asian Sweet Chili Boneless Wings, Chicken",,,2026-02-04
+Sonic,Breakfast Toaster Ham,540,29,22,1850,54,7,0,330,2,9,987,,"Breakfast Toaster Ham, Breakfast Items",,,2026-02-04
+Sonic,6 Honey BBQ Boneless Wings,470,29,24,1380,33,9,0,80,2,16,124252,,"6 Honey BBQ Boneless Wings, Chicken",,,2026-02-04
+Sonic,6 Buffalo Boneless Wings,440,29,28,1430,17,10,0.5,85,2,1,101270,,"6 Buffalo Boneless Wings, Chicken",,,2026-02-04
+Sonic,Philly Cheesesteak Sandwich,750,46,39,1710,53,16,1.5,125,1,5,23030,,"Philly Cheesesteak Sandwich, Sandwiches",,,2026-02-04
+Sonic,Bacon on Bacon Quarter Pound Double Cheeseburger,780,38,54,1820,36,18,0,95,1,7,954068,,"Bacon on Bacon Quarter Pound Double Cheeseburger, Limited Time Only",,,2026-02-04
+Sonic,"Jumbo Popcorn Chicken, Large",750,36,43,2520,55,8,0.5,90,6,2,1269,,"Jumbo Popcorn Chicken, Large, Chicken, Snacks & Sides",,,2026-02-04
+Sonic,Breakfast Burrito Steak & Egg,650,33,36,1960,48,14,1.5,345,2,2,941373,,"Breakfast Burrito Steak & Egg, Breakfast Items",,,2026-02-04
+Sonic,Chicken Club Toaster Sandwich,770,32,43,1590,63,11,0,80,3,8,4436,,"Chicken Club Toaster Sandwich, Toaster Sandwiches",,,2026-02-04
+Sonic,Footlong Quarter Pound Coney,790,31,49,2300,55,19,1,105,3,9,23015,,"Footlong Quarter Pound Coney, Hot Dogs",,,2026-02-04
+Sonic,Biscuit Sandwich w/ Sausage,750,31,39,2240,68,13,0,335,3,5,22989,,"Biscuit Sandwich w/ Sausage, Breakfast Items",,,2026-02-04
+Sonic,Bagel Breakfast Sandwich w/ Sausage,750,31,39,2240,68,13,0,335,3,5,22993,,"Bagel Breakfast Sandwich w/ Sausage, Breakfast Items",,,2026-02-04
+Sonic,24 Asian Sweet Chili Boneless Wings,1860,119,95,5820,129,37,2,330,9,56,101278,,"24 Asian Sweet Chili Boneless Wings, Chicken",,,2026-02-04
+Sonic,24 Honey BBQ Boneless Wings,1860,117,95,5530,133,37,2,330,9,65,124251,,"24 Honey BBQ Boneless Wings, Chicken",,,2026-02-04
+Sonic,24 Buffalo Boneless Wings,1760,117,113,5720,68,40,2,345,9,2,101272,,"24 Buffalo Boneless Wings, Chicken",,,2026-02-04
+Sonic,12 Asian Sweet Chili Boneless Wings,930,60,48,2910,65,19,1,165,4,28,101277,,"12 Asian Sweet Chili Boneless Wings, Chicken",,,2026-02-04
+Sonic,12 Buffalo Boneless Wings,880,59,57,2860,34,20,1,175,4,1,101271,,"12 Buffalo Boneless Wings, Chicken",,,2026-02-04
+Sonic,SuperSonic  Bacon Double Cheeseburger w/ Mayo,1140,58,77,2020,52,23,0,150,5,10,23039,,"SuperSonic  Bacon Double Cheeseburger w/ Mayo, Burgers",,,2026-02-04
+Sonic,12 Honey BBQ Boneless Wings,930,58,48,2760,67,19,1,165,4,32,124250,,"12 Honey BBQ Boneless Wings, Chicken",,,2026-02-04
+Sonic,Supersonic Double Cheeseburger w/ Ketchup & Mayo,1070,53,71,2020,54,21,0,135,2,12,949524,,"Supersonic Double Cheeseburger w/ Ketchup & Mayo, Burgers",,,2026-02-04
+Dairy Queen,Eggs (2),150,12,9,340,2,3,0,340,0,0,952566,,"Eggs (2), Breakfast",,,2026-02-04
+Dairy Queen,Protein Boost,50,12,0,90,0,0,0,0,0,0,136467,,"Protein Boost, Supplemental Facts, Julius Originals",,,2026-02-04
+Dairy Queen,Ham (2),60,9,2,720,2,1,0,20,0,1,952567,,"Ham (2), Breakfast",,,2026-02-04
+Dairy Queen,Sausages (2),190,8,17,290,0,6,0,40,0,0,952578,,"Sausages (2), Breakfast",,,2026-02-04
+Dairy Queen,"Dipped Cone, Chocolate - Kids'",200,4,9,65,28,7,0,15,0,20,14202,,"Dipped Cone, Chocolate - Kids', Cones",,,2026-02-04
+Dairy Queen,Chocolate Cone - Kids',160,4,5,60,25,3,0,15,0,17,14172,,"Chocolate Cone - Kids', Cones",,,2026-02-04
+Dairy Queen,Vanilla Cone - Kids',160,4,4.5,65,25,3,0.2,15,0,18,14362,,"Vanilla Cone - Kids', Cones",,,2026-02-04
+Dairy Queen,Swiss Cheese,60,4,4.5,30,0,3,0,15,0,0,945402,,"Swiss Cheese, Mobile Add Ons",,,2026-02-04
+Dairy Queen,Bacon (3),390,20,35,1280,1,12,0,60,0,1,952546,,"Bacon (3), Breakfast",,,2026-02-04
+Dairy Queen,Pancake Platter with Ham,390,18,9,1410,61,3,0,80,3,11,952574,,"Pancake Platter with Ham, Breakfast",,,2026-02-04
+Dairy Queen,Milk - 16 oz,280,18,11,260,27,7,0,45,0,27,952571,,"Milk - 16 oz, Breakfast",,,2026-02-04
+Dairy Queen,Chicken and Gravy Burrito,320,15,15,840,31,5,1,95,2,1,952557,,"Chicken and Gravy Burrito, Breakfast",,,2026-02-04
+Dairy Queen,Chicken Strips (2),240,15,12,660,19,2,0,30,1,0,29854,,"Chicken Strips (2), Breakfast",,,2026-02-04
+Dairy Queen,Milk - 12 oz,220,15,9,210,21,6,0,35,0,21,952570,,"Milk - 12 oz, Breakfast",,,2026-02-04
+Dairy Queen,Biscuit Sandwich with Ham,350,13,18,980,19,6,0,185,1,1,952550,,"Biscuit Sandwich with Ham, Breakfast",,,2026-02-04
+Dairy Queen,Classic Breakfast Burrito with Bacon,340,11,19,830,30,6,1,90,2,1,952558,,"Classic Breakfast Burrito with Bacon, Breakfast",,,2026-02-04
+Dairy Queen,Pancake Platter with Sausage,520,17,24,980,60,8,0,100,4,11,952575,,"Pancake Platter with Sausage, Breakfast",,,2026-02-04
+Dairy Queen,Chicken & Gravy Biscuit Sandwich,500,17,24,1160,37,6,0,30,2,1,952556,,"Chicken & Gravy Biscuit Sandwich, Breakfast",,,2026-02-04
+Dairy Queen,Banana Shake - Medium,590,16,22,240,83,16,1,55,1,68,14447,,"Banana Shake - Medium, Shakes",,,2026-02-04
+Dairy Queen,Reese's Peanut Butter Cups Blizzard -Small,570,15,23,290,79,12,0.5,45,1,68,14334,,"Reese's Peanut Butter Cups Blizzard -Small, Blizzard Treats",,,2026-02-04
+Dairy Queen,Biscuit Sandwich with Bacon,420,14,26,940,19,9,0,190,1,1,952549,,"Biscuit Sandwich with Bacon, Breakfast",,,2026-02-04
+Dairy Queen,Peanut Butter Sundae - Medium,560,13,32,380,56,10,0,30,2,40,14347,,"Peanut Butter Sundae - Medium, Sundaes",,,2026-02-04
+Dairy Queen,Caramel Shake - Small,550,13,20,240,79,14,1,50,0,65,14451,,"Caramel Shake - Small, Shakes",,,2026-02-04
+Dairy Queen,Hot Fudge Shake - Small,550,13,22,240,75,17,1,45,0,61,14460,,"Hot Fudge Shake - Small, Shakes",,,2026-02-04
+Dairy Queen,Breakfast Bowl – Salsa,780,29,56,1510,39,17,4,360,4,2,952555,,"Breakfast Bowl – Salsa, Breakfast",,,2026-02-04
+Dairy Queen,Pancake Platter with Bacon,730,29,42,1970,60,14,0,120,3,11,952573,,"Pancake Platter with Bacon, Breakfast",,,2026-02-04
+Dairy Queen,Strawberry Shake - Large,800,21,27,340,120,19,1.5,75,1,105,14463,,"Strawberry Shake - Large, Shakes",,,2026-02-04
+Dairy Queen,Reese's Take Five Blizzard - Small,770,21,34,580,99,15,0.5,50,3,76,952603,,"Reese's Take Five Blizzard - Small, Limited Time Offers",,,2026-02-04
+Dairy Queen,Banana Shake - Large,750,21,27,310,109,19,1.5,75,2,88,14446,,"Banana Shake - Large, Shakes",,,2026-02-04
+Dairy Queen,Snickers Blizzard - Medium,800,19,28,340,120,15,1,65,1,102,928795,,"Snickers Blizzard - Medium, Blizzard Treats",,,2026-02-04
+Dairy Queen,Reese's Peanut Butter Cups Blizzard - Medium,750,19,31,380,102,16,1,60,2,88,14332,,"Reese's Peanut Butter Cups Blizzard - Medium, Blizzard Treats",,,2026-02-04
+Dairy Queen,Peanut Butter Sundae - Large,780,18,44,520,79,13,0.5,45,3,58,14346,,"Peanut Butter Sundae - Large, Sundaes",,,2026-02-04
+Dairy Queen,Caramel Drumstick Blizzard - Medium,2530,58,136,940,301,83,1,140,10,231,952583,,"Caramel Drumstick Blizzard - Medium, Limited Time Offers",,,2026-02-04
+Dairy Queen,OREO Dirt Pie Blizzard - Medium,2380,41,95,1290,327,40,1,120,8,235,952630,,"OREO Dirt Pie Blizzard - Medium, Blizzard Treats",,,2026-02-04
+Dairy Queen,Reese's Take Five Blizzard - Large,1510,39,66,1150,198,28,1.5,90,6,151,952605,,"Reese's Take Five Blizzard - Large, Limited Time Offers",,,2026-02-04
+Dairy Queen,Country Platter with Bacon,1150,39,73,2790,55,24,1,400,3,2,952563,,"Country Platter with Bacon, Breakfast",,,2026-02-04
+Dairy Queen,Country Platter with Sausage,1080,32,66,2030,59,22,1,400,3,2,952565,,"Country Platter with Sausage, Breakfast",,,2026-02-04
+Dairy Queen,Caramel Drumstick Blizzard - Large,1590,31,78,550,196,55,1.5,85,5,154,952582,,"Caramel Drumstick Blizzard - Large, Limited Time Offers",,,2026-02-04
+Dairy Queen,Nestle Drumstick with Peanuts Blizzard -Large,1410,30,75,460,156,53,1,80,5,125,952626,,"Nestle Drumstick with Peanuts Blizzard -Large, Blizzard Treats",,,2026-02-04
+Dairy Queen,Peanut Butter Shake - Large,1250,30,72,830,119,26,1.5,75,4,89,14461,,"Peanut Butter Shake - Large, Shakes",,,2026-02-04
+Arby's,Curly Fries – Snack,180,13,5,660,21,1.5,0,20,1,2,951614,,"Curly Fries – Snack, Sides & Snacks",,,2026-02-04
+Arby's,Crinkle Fries – Snack,180,13,5,660,21,1.5,0,20,1,2,951618,,"Crinkle Fries – Snack, Sides & Snacks",,,2026-02-04
+Arby's,Bronco Berry Sauce Adds,150,7,2.5,170,26,1.5,0,10,1,23,951626,,"Bronco Berry Sauce Adds, Sides & Snacks",,,2026-02-04
+Arby's,Jalapeno Bites – (8),90,7,2,105,10,1.5,0,10,0,10,951625,,"Jalapeno Bites – (8), Sides & Snacks",,,2026-02-04
+Arby's,Natural Cheddar- 1 slice,80,5,6,120,0,3.5,0,20,0,0,951685,,"Natural Cheddar- 1 slice, Toppings",,,2026-02-04
+Arby's,Bacon- 3 half strips,70,5,5,250,1,1.5,0,15,0,1,951681,,"Bacon- 3 half strips, Toppings",,,2026-02-04
+Arby's,Processed Swiss- 1 slice,40,3,3,200,0,2,0,10,0,0,951690,,"Processed Swiss- 1 slice, Toppings",,,2026-02-04
+Arby's,Simply Orange Juice,140,2,0,0,33,0,0,0,1,26,951680,,"Simply Orange Juice, Breakfast",,,2026-02-04
+Arby's,Chocolate Shake-Large,310,25,15,910,18,4.5,0,50,1,1,951609,,"Chocolate Shake-Large, Desserts",,,2026-02-04
+Arby's,Crinkle Fries – Medium,310,25,15,910,18,4.5,0,50,1,1,951620,,"Crinkle Fries – Medium, Sides & Snacks",,,2026-02-04
+Arby's,Chicken Slider,370,23,18,1190,28,3,0,60,2,0,943956,,"Chicken Slider, Sliders",,,2026-02-04
+Arby's,Buffalo Chicken Slider,360,23,14,970,37,5,0.5,50,2,5,150130,,"Buffalo Chicken Slider, Sliders, Kids Meals",,,2026-02-04
+Arby's,"Ham, Egg & Cheese Wrap",340,17,17,910,29,10,0,70,1,2,951669,,"Ham, Egg & Cheese Wrap, Breakfast",,,2026-02-04
+Arby's,Chocolate Shake-Medium,210,17,10,600,12,3,0,35,1,1,951608,,"Chocolate Shake-Medium, Desserts",,,2026-02-04
+Arby's,Crinkle Fries – Small,210,17,10,600,12,3,0,35,1,1,951619,,"Crinkle Fries – Small, Sides & Snacks",,,2026-02-04
+Arby's,Ham & Swiss Croissant,330,14,19,740,27,10,0,50,1,2,951670,,"Ham & Swiss Croissant, Breakfast",,,2026-02-04
+Arby's,Potato Cakes (2),570,42,25,1390,45,14,1,60,2,4,1636,,"Potato Cakes (2), Breakfast",,,2026-02-04
+Arby's,Roast Beef Gyro,510,38,24,1610,38,9,1.5,95,2,5,150132,,Roast Beef Gyro,,,2026-02-04
+Arby's,"Coca-Cola Zero Sugar, 13oz",470,38,23,1360,28,7,0,75,2,2,943948,,"Coca-Cola Zero Sugar, 13oz, Beverages",,,2026-02-04
+Arby's,"Hi-C Flashin’ Fruit Punch, 13oz",560,36,29,1140,42,11,1,95,3,3,924904,,"Hi-C Flashin’ Fruit Punch, 13oz, Beverages",,,2026-02-04
+Arby's,"Mello Yello, 13oz",530,34,21,2540,50,10,1,85,2,3,924888,,"Mello Yello, 13oz, Beverages",,,2026-02-04
+Arby's,Classic Beef ‘n Cheddar,470,29,19,1230,45,8,0,70,3,9,530,,"Classic Beef ‘n Cheddar, Slow Roasted Beef",,,2026-02-04
+Arby's,"Sausage, Egg & Cheese Wrap",460,26,18,1290,47,5,0,155,2,4,951665,,"Sausage, Egg & Cheese Wrap, Breakfast",,,2026-02-04
+Arby's,Market Fresh Classic Lemonade - Large,470,25,20,1530,48,3.5,0,45,3,6,951574,,"Market Fresh Classic Lemonade - Large, Limited Time Offers",,,2026-02-04
+Arby's,Salted Caramel & Chocolate Cookie,740,49,39,2530,48,14,2,130,2,9,150125,,"Salted Caramel & Chocolate Cookie, Desserts",,,2026-02-04
+Arby's,Curly Fries – Kids,610,48,30,2040,38,12,2,130,2,5,170222,,"Curly Fries – Kids, Kids Meals",,,2026-02-04
+Arby's,Market Fresh Peach Lemonade - Small,660,43,34,1970,47,9,0.5,85,3,12,951575,,"Market Fresh Peach Lemonade - Small, Limited Time Offers",,,2026-02-04
+Arby's,Market Fresh Peach Lemonade - Medium,790,39,45,2490,61,9,0,75,5,7,951576,,"Market Fresh Peach Lemonade - Medium, Limited Time Offers",,,2026-02-04
+Arby's,Tree Top Applesauce,630,39,32,2100,48,11,1.5,100,2,9,150106,,"Tree Top Applesauce, Kids Meals",,,2026-02-04
+Arby's,Roast Beef Slider,610,39,30,1990,47,4.5,0,100,3,0,943958,,"Roast Beef Slider, Sliders",,,2026-02-04
+Arby's,Strawberries & Cream Fried Pie - Small,720,38,28,1930,79,7,0,65,5,15,951568,,"Strawberries & Cream Fried Pie - Small, Limited Time Offers",,,2026-02-04
+Arby's,Prime Rib Cheesesteak,680,37,31,2420,62,8,0.5,80,4,5,951570,,"Prime Rib Cheesesteak, Limited Time Offers",,,2026-02-04
+Arby's,Real Country Style Rib Sandwich,810,46,35,2520,79,10,0.5,80,5,15,951566,,"Real Country Style Rib Sandwich, Limited Time Offers",,,2026-02-04
+Arby's,Horsey Sauce Adds,870,23,29,560,129,19,0.5,95,1,119,951588,,"Horsey Sauce Adds, Slow Roasted Beef",,,2026-02-04
+Arby's,Market Fresh Strawberry Lemonade - Large,980,22,28,600,161,18,0.5,90,1,136,951580,,"Market Fresh Strawberry Lemonade - Large, Limited Time Offers",,,2026-02-04
+Arby's,Classic Roast Beef,970,22,29,590,158,19,0.5,90,2,138,951584,,"Classic Roast Beef, Slow Roasted Beef",,,2026-02-04
+Arby's,"Bacon, Egg & Cheese Biscuit",4990,21,26,1380,41,10,0,145,4,4,951660,,"Bacon, Egg & Cheese Biscuit, Breakfast",,,2026-02-04
+Arby's,Sausage Gravy Biscuit,970,18,56,3540,96,27,0,35,3,5,951674,,"Sausage Gravy Biscuit, Breakfast",,,2026-02-04
+Arby's,"Sprite, 13oz",610,35,30,1580,51,9,0,80,4,9,924916,,"Sprite, 13oz, Beverages",,,2026-02-04
+Arby's,Jamocha Shake-Small,650,29,35,2110,56,14,1,55,3,4,951603,,"Jamocha Shake-Small, Desserts",,,2026-02-04
+Jack in the Box,"Taco, Regular (1 Taco)",170,6,9,360,16,3,0,15,2,1,96335,,"Taco, Regular (1 Taco), Snacks & Sides",,,2026-02-04
+Jack in the Box,Real Swiss Cheese,70,5,6,80,0,3.5,0,20,0,0,933720,,"Real Swiss Cheese, Cheeses",,,2026-02-04
+Jack in the Box,Mini Pancakes (8 pc.),140,4,1.5,350,28,0,0,0,1,6,17525,,"Mini Pancakes (8 pc.) , Kids, Breakfast",,,2026-02-04
+Jack in the Box,Seasoned Curly Fries (Kid’s),200,2,11,440,21,1,0,0,2,0,17535,,"Seasoned Curly Fries (Kid’s), Kids",,,2026-02-04
+Jack in the Box,Hash Browns,190,2,13,350,17,1,0,0,2,0,27979,,"Hash Browns, Breakfast",,,2026-02-04
+Jack in the Box,American Cheese,40,2,3.5,200,0,2,0,10,0,0,933717,,"American Cheese , Cheeses",,,2026-02-04
+Jack in the Box,Swiss Style Cheese,40,2,3,140,1,2,0,10,0,0,933721,,"Swiss Style Cheese, Cheeses",,,2026-02-04
+Jack in the Box,Creamy Southwest Dressing,190,1,19,740,3,3,0,20,0,1,2877,,"Creamy Southwest Dressing , Salads",,,2026-02-04
+Jack in the Box,Chicken Club Salad with Julienne Chicken,350,39,18,910,10,8,0,105,3,5,947427,,"Chicken Club Salad with Julienne Chicken, Salads",,,2026-02-04
+Jack in the Box,Southwest Chicken Salad with Grilled Chicken,340,29,14,780,28,7,0,75,7,4,61650,,"Southwest Chicken Salad with Grilled Chicken, Salads",,,2026-02-04
+Jack in the Box,Southwest Chicken Salad with Julienne Chicken,340,29,13,780,28,6,0,75,7,4,953137,,"Southwest Chicken Salad with Julienne Chicken, Salads",,,2026-02-04
+Jack in the Box,Chicken Fajita Pita made with Whole Grain (with salsa),330,27,9,790,35,4.5,0,60,4,4,17469,,"Chicken Fajita Pita made with Whole Grain (with salsa)  , Chicken & More",,,2026-02-04
+Jack in the Box,Chicken Fajita Pita made with Whole Grain (no salsa),320,27,9,670,34,4.5,0,60,3,3,336,,"Chicken Fajita Pita made with Whole Grain (no salsa), Better for You, Chicken & More",,,2026-02-04
+Jack in the Box,Chicken Club Salad with Grilled Chicken,220,25,8,700,13,2.5,0,60,3,5,933759,,"Chicken Club Salad with Grilled Chicken, Salads",,,2026-02-04
+Jack in the Box,Grilled Chicken Salad with Julienne Chicken,230,23,8,590,12,3.5,0,80,4,4,947430,,"Grilled Chicken Salad with Julienne Chicken, Salads",,,2026-02-04
+Jack in the Box,Grilled Chicken Salad,220,23,9,520,14,4,0,65,4,4,947367,,"Grilled Chicken Salad , Better for You",,,2026-02-04
+Jack in the Box,Sourdough Grilled Chicken Club,580,39,30,1500,38,8,0,95,3,6,337,,"Sourdough Grilled Chicken Club, Chicken & More",,,2026-02-04
+Jack in the Box,Chicken Club Salad with Crispy Chicken Strips,540,37,31,1620,29,9,0,95,5,4,933758,,"Chicken Club Salad with Crispy Chicken Strips , Salads",,,2026-02-04
+Jack in the Box,Grilled Sourdough Swiss Sandwich,580,36,34,1490,36,12,0,500,2,4,933715,,"Grilled Sourdough Swiss Sandwich, Breakfast",,,2026-02-04
+Jack in the Box,Southwest Chicken Salad with Crispy Chicken Strips,530,34,26,1560,45,7,0,85,9,5,61651,,"Southwest Chicken Salad with Crispy Chicken Strips , Salads",,,2026-02-04
+Jack in the Box,Ultimate Breakfast Sandwich,520,31,31,1540,30,11,0,490,1,4,958,,"Ultimate Breakfast Sandwich, Breakfast",,,2026-02-04
+Jack in the Box,Jumbo Jack Cheeseburger,600,28,40,1110,33,14,1.5,80,2,6,159,,"Jumbo Jack Cheeseburger , Burgers & More, Jack's Deals",,,2026-02-04
+Jack in the Box,Grilled Chicken Salad with Crispy Chicken Strips,420,28,21,1300,31,4.5,0,70,6,6,947428,,"Grilled Chicken Salad with Crispy Chicken Strips, Salads",,,2026-02-04
+Jack in the Box,Jumbo Breakfast Platter with Bacon,540,23,29,1390,47,6,0,345,3,7,17523,,"Jumbo Breakfast Platter with Bacon, Breakfast",,,2026-02-04
+Jack in the Box,Crispy Chicken Strips (4 pc.),620,44,31,2350,42,3,0,115,4,2,921920,,"Crispy Chicken Strips (4 pc.)    , Chicken & More",,,2026-02-04
+Jack in the Box,Homestyle Ranch Chicken Club,760,40,39,2040,65,8,0,80,4,8,339,,"Homestyle Ranch Chicken Club, Chicken & More",,,2026-02-04
+Jack in the Box,Meat Lovers Breakfast Burrito (no salsa),790,39,50,1500,48,22,0.5,390,3,3,135603,,"Meat Lovers Breakfast Burrito (no salsa), Breakfast",,,2026-02-04
+Jack in the Box,Jack's Spicy Chicken with Cheese,760,36,44,1790,56,8,0,80,4,5,340,,"Jack's Spicy Chicken with Cheese  , Chicken & More",,,2026-02-04
+Jack in the Box,Loaded Breakfast Sandwich,710,36,47,1690,36,16,0,515,2,4,31542,,"Loaded Breakfast Sandwich, Breakfast",,,2026-02-04
+Jack in the Box,Sourdough Jack,700,35,45,1370,39,15,1.5,95,3,7,158,,"Sourdough Jack, Burgers & More",,,2026-02-04
+Jack in the Box,Chicken Teriyaki Bowl,630,34,6,2120,109,1.5,0,65,3,34,27640,,"Chicken Teriyaki Bowl, Chicken & More, Better For You",,,2026-02-04
+Jack in the Box,Classic Buttery Jack,790,33,51,1030,51,21,2,110,4,13,121770,,"Classic Buttery Jack , Burgers & More",,,2026-02-04
+Jack in the Box,Crispy Chicken Strips (6 pc.),930,65,46,3520,63,5,0,170,6,4,947426,,"Crispy Chicken Strips (6 pc.), Chicken & More",,,2026-02-04
+Jack in the Box,Stacked Grilled Cheese Burger Munchie Meal,1870,55,92,3400,211,27,2.5,130,13,78,96322,,"Stacked Grilled Cheese Burger Munchie Meal , Jack's Munchie Meals",,,2026-02-04
+Jack in the Box,Bacon Ultimate Cheeseburger,930,55,65,1960,32,25,3,165,1,6,164,,"Bacon Ultimate Cheeseburger , Burgers & More",,,2026-02-04
+Jack in the Box,Spicy Nacho Chicken Munchie Meal,1940,53,93,3930,231,15,1,90,14,77,121779,,"Spicy Nacho Chicken Munchie Meal , Jack's Munchie Meals",,,2026-02-04
+Jack in the Box,Ultimate Cheeseburger,840,47,59,1550,31,23,3,150,1,5,163,,"Ultimate Cheeseburger, Burgers & More",,,2026-02-04
+Jack in the Box,Double Jack,830,46,58,1430,33,21,3,140,2,7,121769,,"Double Jack , Burgers & More",,,2026-02-04
+Jack in the Box,Sriracha Curly Fry Burger Munchie Meal,1720,44,87,2890,196,20,2,105,11,75,153527,,"Sriracha Curly Fry Burger Munchie Meal, Jack's Munchie Meals",,,2026-02-04
+Jack in the Box,Chick-N-Tater Melt Munchie Meal,1940,43,103,3420,215,25,1.5,110,12,77,96327,,"Chick-N-Tater Melt Munchie Meal , Jack's Munchie Meals",,,2026-02-04

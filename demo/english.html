@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语教练 — 万物教练</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #faf8f4; --card: #ffffff; --card2: #f5f2ec;
+  --ink: #1a1a2e; --indigo: #3b3b8a; --blue: #4f6ef7;
+  --gold: #e8a020; --green: #2da44e; --red: #e5534b;
+  --muted: #888; --border: #e8e4dc;
+}
+body { background: #dcdedf; color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; display:flex; justify-content:center; align-items:center; padding:40px 0; }
+
+/* ── Top nav ── */
+.nav {
+  padding: 0 40px; height: 56px; display: flex; align-items: center; gap: 20px;
+  border-bottom: 1px solid var(--border); background: var(--card);
+  position: sticky; top: 0; z-index: 20;
+}
+.nav-brand { font-size: 15px; font-weight: 800; color: var(--indigo); }
+.nav-sub { font-size: 12px; color: var(--muted); }
+.nav-pill {
+  margin-left: auto; background: var(--indigo); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+  letter-spacing: .05em;
+}
+
+/* ── Hero ── */
+.hero { padding: 64px 40px 48px; max-width: 800px; margin: 0 auto; }
+.eyebrow { font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 16px; }
+h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
+h1 em { color: var(--blue); font-style: normal; position: relative; }
+h1 em::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:3px; background:var(--blue); border-radius:2px; opacity:.4; }
+.sub { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 500px; }
+
+/* ── Search ── */
+.search-zone { padding: 0 40px 52px; max-width: 800px; margin: 0 auto; }
+.search-label { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+.search-row { display: flex; gap: 10px; max-width: 540px; }
+.s-input {
+  flex: 1; background: var(--card); border: 2px solid var(--border);
+  color: var(--ink); font-size: 15px; padding: 13px 18px;
+  border-radius: 14px; outline: none; transition: border 200ms;
+}
+.s-input:focus { border-color: var(--blue); }
+.s-input::placeholder { color: #bbb; }
+.s-btn {
+  background: var(--indigo); color: #fff; border: none;
+  padding: 13px 24px; border-radius: 14px; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 180ms; white-space: nowrap;
+}
+.s-btn:hover { background: var(--blue); transform: translateY(-1px); }
+.s-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+.quick-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+.qp {
+  background: var(--card); border: 1.5px solid var(--border); color: var(--muted);
+  padding: 5px 14px; border-radius: 20px; font-size: 13px; cursor: pointer;
+  transition: all 150ms;
+}
+.qp:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── Loading ── */
+.loading { display: none; padding: 80px 40px; text-align: center; }
+.loading.show { display: block; }
+.l-icon { font-size: 40px; animation: float 2s ease-in-out infinite; display: inline-block; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.l-text { font-size: 14px; color: var(--muted); margin-top: 16px; }
+
+/* ── Error ── */
+.err-box { display:none; background:#fff0f0; border:1.5px solid #ffd0d0; color:var(--red); padding:12px 18px; border-radius:12px; font-size:13px; margin-top:12px; max-width:540px; }
+.err-box.show { display:block; }
+
+/* ── Phase 1: Video picker ── */
+.phase { display: none; max-width: 960px; margin: 0 auto; padding: 0 40px; }
+.phase.show { display: block; }
+
+.phase-title { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+
+.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.v-card {
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 180ms;
+}
+.v-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,110,247,.12); }
+.v-card.selected { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79,110,247,.15); }
+.v-thumb { width: 100%; height: 148px; object-fit: cover; background: #eee; display: block; }
+.v-thumb-ph { width: 100%; height: 148px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+.v-info { padding: 12px 14px; }
+.v-title { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.v-meta { font-size: 11px; color: var(--muted); }
+.v-check { display: none; position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; background: var(--blue); border-radius: 50%; color: #fff; align-items: center; justify-content: center; font-size: 12px; }
+.v-card.selected .v-check { display: flex; }
+.v-card { position: relative; }
+
+.pick-btn {
+  display: block; width: 100%; max-width: 540px;
+  background: var(--indigo); color: #fff; border: none;
+  padding: 15px; border-radius: 14px; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 180ms; text-align: center;
+}
+.pick-btn:hover { background: var(--blue); }
+.pick-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+/* ── Phase 2: Transcript loading ── */
+.transcript-loading { display: none; padding: 48px 0; text-align: center; }
+.transcript-loading.show { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.spin { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Phase 3: Learning content ── */
+.learn-hero {
+  background: var(--indigo); color: #fff;
+  border-radius: 20px; overflow: hidden; margin-bottom: 24px;
+  display: flex; gap: 0;
+}
+.learn-hero-img { width: 260px; flex-shrink: 0; object-fit: cover; display: block; }
+.learn-hero-img-ph { width: 260px; flex-shrink: 0; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.learn-hero-body { padding: 28px 28px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.lh-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 8px; }
+.lh-title { font-size: 18px; font-weight: 800; line-height: 1.3; margin-bottom: 6px; }
+.lh-meta { font-size: 13px; opacity: .7; margin-bottom: 16px; }
+.lh-stats { display: flex; gap: 20px; }
+.lhs { }
+.lhs-num { font-size: 22px; font-weight: 900; }
+.lhs-lbl { font-size: 10px; opacity: .6; text-transform: uppercase; letter-spacing: .1em; }
+@media(max-width:600px){ .learn-hero{flex-direction:column} .learn-hero-img,.learn-hero-img-ph{width:100%;height:160px} }
+
+/* ── Vocab cards ── */
+.section-label { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 28px; }
+.vocab-card {
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 16px; cursor: pointer;
+  transition: all 180ms; position: relative; overflow: hidden;
+}
+.vocab-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,110,247,.1); }
+.vocab-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); opacity: 0; transition: opacity 200ms; }
+.vocab-card:hover::before { opacity: 1; }
+.vc-word { font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 2px; }
+.vc-count { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+.vc-ex { font-size: 11px; color: var(--muted); line-height: 1.4; font-style: italic; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ── Sentences ── */
+.sentence-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.sent {
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 14px 18px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.sent-time { font-size: 12px; font-weight: 700; color: var(--blue); white-space: nowrap; padding-top: 1px; min-width: 36px; }
+.sent-text { font-size: 14px; line-height: 1.6; }
+
+/* ── Captions ── */
+.caption-wrap {
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 20px; max-height: 320px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.cap-row { display: flex; gap: 12px; }
+.cap-time { font-size: 11px; font-weight: 700; color: var(--blue); min-width: 36px; padding-top: 2px; }
+.cap-text { font-size: 13px; line-height: 1.5; color: var(--ink); }
+
+.pb-40 { padding-bottom: 100px; }
+.empty { font-size: 13px; color: var(--muted); }
+
+/* ── Jovida Mobile Template (from Fitness Lab) ── */
+.app-container {
+  width: 390px;
+  height: 844px;
+  background: #f4f5f7;
+  border-radius: 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), inset 0 0 0 8px #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.jl-header {
+  background: linear-gradient(180deg, #3b3b8a 0%, #4f6ef7 100%);
+  padding: 54px 24px 32px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+.user-avatar {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.streaks {
+  display:flex; gap:12px; font-weight:700; font-size:13px;
+  background: rgba(0,0,0,0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.tabs { display:flex; gap:20px; font-size:15px; font-weight:600; color: rgba(255,255,255,0.62); align-items:center; }
+.tab.active { color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; }
+.main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 160px;
+  margin-top: -8px;
+  position: relative;
+  z-index: 1;
+}
+.main-scroll::-webkit-scrollbar { display:none; }
+.ob-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  margin-top: 24px;
+  transition: all 300ms;
+}
+.ob-q {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 16px;
+  text-align:center;
+}
+.ob-opts { display:flex; flex-direction:column; gap: 12px; }
+.ob-opt {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #333;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor:pointer;
+  transition: all 150ms;
+  text-align:center;
+}
+.ob-opt.selected { background: #e7e9ff; border-color: #4f6ef7; color: #3b3b8a; }
+.en-hidden { display:none !important; }
+
+/* hide original desktop hero/search */
+.nav, .hero, .search-zone { display:none !important; }
+
+.bottom-input {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding: 24px 20px 32px;
+  background: linear-gradient(to top, rgba(244,245,247,1) 70%, transparent);
+  display:flex; align-items:center; gap: 12px;
+}
+.b-input {
+  flex:1;
+  background:white;
+  border:none;
+  border-radius:24px;
+  padding: 16px 20px;
+  font-size: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  outline:none;
+}
+.b-input::placeholder { color:#bbb; font-weight:500; }
+.b-fab {
+  width:52px; height:52px; border-radius:50%;
+  background:#4f6ef7; color:white;
+  border:none;
+  font-size: 28px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 20px rgba(79,110,247,0.35);
+  font-weight:300;
+}
+
+/* --- Mobile UI Design System Overrides --- */
+:root {
+  --color-background: #E7E9EC;
+  --color-surface: #F2F2F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-text-primary: #000000;
+  --color-text-secondary: rgba(0,0,0,0.4);
+  --color-text-tertiary: rgba(0,0,0,0.2);
+  --color-border: rgba(255,255,255,0.5);
+  --color-divider: rgba(0,0,0,0.05);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 100px;
+  
+  --shadow-sm: 0px 4px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0px 8px 16px rgba(0,0,0,0.03);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+  font-variation-settings: 'wdth' 100;
+  background: var(--color-background);
+}
+
+.app-container {
+  background: var(--color-background);
+}
+
+/* Header */
+.jl-header {
+  background: linear-gradient(180deg, #5D57FF 0%, #ADAAFF 100%);
+}
+.tab.active { background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+
+/* Onboarding */
+.ob-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.ob-q { color: var(--color-text-primary); font-size: 20px; font-weight: 590; margin-bottom: 16px; }
+.ob-opt {
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-weight: 590;
+  height: 48px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.ob-opt.selected {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  border: none;
+}
+
+/* Phase 1 grid overrides */
+.v-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+}
+.v-card.selected { border-color: #5D57FF; box-shadow: 0 0 0 2px #5D57FF; }
+.v-info { padding: 16px; }
+.v-title { font-size: 16px; font-weight: 590; color: var(--color-text-primary); margin-bottom: 4px; }
+.v-meta { font-size: 14px; color: var(--color-text-secondary); }
+.pick-btn {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  border-radius: var(--radius-full);
+  height: 48px;
+}
+
+/* Results Overrides */
+.learn-hero {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+}
+.lh-label { color: var(--color-text-secondary); }
+.lh-title { color: var(--color-text-primary); font-size: 20px; }
+.lh-meta { color: var(--color-text-secondary); font-size: 14px; }
+.lhs-num { color: var(--color-text-primary); font-family: 'Urbanist', sans-serif; font-size: 24px; }
+.lhs-lbl { color: var(--color-text-secondary); }
+
+.section-label { color: var(--color-text-secondary); font-size: 14px; margin-top: 24px; }
+
+.vocab-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.vc-word { font-size: 18px; color: var(--color-text-primary); font-weight: 700; }
+.vc-count { color: var(--color-text-secondary); font-size: 14px; }
+.vc-ex { color: var(--color-text-primary); font-size: 14px; }
+
+.sent, .caption-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.sent-time, .cap-time { color: #5D57FF; font-family: 'Urbanist', sans-serif; }
+.sent-text, .cap-text { color: var(--color-text-primary); font-size: 16px; }
+
+.bottom-input { background: linear-gradient(to top, var(--color-background) 70%, transparent); }
+.b-input {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+}
+.b-input::placeholder { color: var(--color-text-secondary); }
+.b-fab {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  box-shadow: var(--shadow-md);
+}
+
+
+.main-scroll {
+  padding-bottom: 160px !important;
+}
+</style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="jl-header">
+    <div class="top-bar">
+      <div class="user-avatar"><i data-lucide="user"></i></div>
+      <div class="streaks">
+        <span style="color:#b9c6ff"><i data-lucide="star" style="width:14px"></i> 5/10</span>
+        <span style="color:#fff0b3"><i data-lucide="flame" style="width:14px"></i> 24</span>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active">English Coach</div>
+      <div class="tab">Learn</div>
+      <div class="tab">+ Add</div>
+    </div>
+  </div>
+
+  <div class="main-scroll">
+
+    <!-- Onboarding -->
+    <div id="en-onboard">
+      <div class="ob-card" id="en-ob-q1">
+        <div class="ob-q"> 你的英语基础？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="enObSelect(1, 'beginner', '初学', event)"><i data-lucide="leaf" style="width:16px"></i> 初学</button>
+          <button class="ob-opt" onclick="enObSelect(1, 'intermediate', '中级', event)"><i data-lucide="dumbbell" style="width:16px"></i> 中级</button>
+          <button class="ob-opt" onclick="enObSelect(1, 'advanced', '高级', event)"><i data-lucide="flame" style="width:14px"></i> 高级</button>
+        </div>
+      </div>
+      <div class="ob-card en-hidden" id="en-ob-q2">
+        <div class="ob-q"> 今天想学什么主题？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="enObSelect(2, 'psychology', '心理学', event)"><i data-lucide="brain" style="width:16px"></i> psychology</button>
+          <button class="ob-opt" onclick="enObSelect(2, 'entrepreneurship', '创业', event)"><i data-lucide="rocket" style="width:16px"></i> entrepreneurship</button>
+          <button class="ob-opt" onclick="enObSelect(2, 'artificial intelligence', 'AI科技', event)"><i data-lucide="bot" style="width:16px"></i> AI</button>
+          <button class="ob-opt" onclick="enObSelect(2, 'health science', '健康科学', event)"><i data-lucide="dna" style="width:16px"></i> health science</button>
+          <button class="ob-opt" onclick="enObSelect(2, 'climate change', '气候', event)"><i data-lucide="globe" style="width:16px"></i> climate</button>
+          <button class="ob-opt" onclick="enObSelect(2, 'meditation', '冥想', event)"><i data-lucide="flower" style="width:16px"></i> meditation</button>
+        </div>
+      </div>
+    </div>
+
+<div class="nav">
+  <div class="nav-brand">Daily Drop</div>
+  <div class="nav-sub">每日英语沉浸</div>
+  <div class="nav-pill">英语教练</div>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Today's Drop</div>
+  <h1>今天，<em>沉浸</em><br>进一个主题</h1>
+  <p class="sub">输入你感兴趣的话题，教练帮你找到最合适的英文视频，从真实语境中学习词汇和表达。</p>
+</div>
+
+<div class="search-zone">
+  <div class="search-label">今日主题</div>
+  <div class="search-row">
+    <input class="s-input" id="inp" placeholder="如 psychology / climate / startup..." />
+    <button class="s-btn" id="btn" onclick="findVideos()">找视频</button>
+  </div>
+  <div class="quick-row">
+    <span class="qp" onclick="q('psychology')">psychology</span>
+    <span class="qp" onclick="q('climate change')">climate</span>
+    <span class="qp" onclick="q('artificial intelligence')">AI</span>
+    <span class="qp" onclick="q('mindfulness')">mindfulness</span>
+    <span class="qp" onclick="q('entrepreneurship')">startup</span>
+  </div>
+  <div class="err-box" id="err"></div>
+</div>
+
+<div class="loading" id="loading">
+  <div class="l-icon">🎬</div>
+  <div class="l-text" id="lmsg">正在寻找今日视频...</div>
+</div>
+
+<!-- Phase 1: Pick a video -->
+<div class="phase" id="phase1">
+  <div class="phase-title">选一个视频开始今日学习</div>
+  <div class="video-grid" id="video-grid"></div>
+  <button class="pick-btn" id="pick-btn" onclick="loadTranscript()" disabled>开始学习这个视频 →</button>
+</div>
+
+<!-- Phase 2: Loading transcript -->
+<div class="transcript-loading" id="trans-loading">
+  <div class="spin"></div>
+  <span style="font-size:14px;color:var(--muted)">正在提取字幕，生成词汇卡...</span>
+</div>
+
+<!-- Phase 3: Learning content -->
+<div class="phase pb-40" id="phase3"></div>
+
+</div><!-- main-scroll -->
+
+  <div class="bottom-input">
+    <input class="b-input" type="text" placeholder="Ask your coach..." />
+    <button class="b-fab" type="button"><i data-lucide="arrow-up" style="width:24px"></i></button>
+  </div>
+</div><!-- app-container -->
+
+<script>
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const q = v => { document.getElementById('inp').value = v; findVideos(); };
+let selectedVideo = null;
+
+async function post(path, body) {
+  const r = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || '请求失败');
+  return d;
+}
+
+async function findVideos() {
+  const kw = document.getElementById('inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('btn');
+  btn.disabled = true; btn.textContent = '搜索中...';
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('err').classList.remove('show');
+  document.getElementById('phase1').classList.remove('show');
+  document.getElementById('phase3').classList.remove('show');
+  document.getElementById('phase3').innerHTML = '';
+  selectedVideo = null;
+  document.getElementById('lmsg').textContent = '正在寻找今日视频...';
+
+  try {
+    const data = await post('/api/youtube-search', { keyword: kw });
+    renderVideos(data.videos||[]);
+  } catch(e) {
+    const el = document.getElementById('err');
+    el.textContent = '❌ ' + e.message;
+    el.classList.add('show');
+  if (window.lucide) lucide.createIcons();
+  } finally {
+    btn.disabled = false; btn.textContent = '找视频';
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+function renderVideos(videos) {
+  const grid = document.getElementById('video-grid');
+  grid.innerHTML = videos.map((v,i) => `
+    <div class="v-card" id="vc-${i}" onclick="pickVideo(${i}, ${JSON.stringify(v).replace(/"/g,'&quot;')})">
+      <div class="v-check">✓</div>
+      ${v.thumbnail
+        ? `<img class="v-thumb" src="${esc(v.thumbnail)}" onerror="this.style.display='none'" />`
+        : `<div class="v-thumb-ph">🎬</div>`}
+      <div class="v-info">
+        <div class="v-title">${esc(v.title)}</div>
+        <div class="v-meta">${esc(v.channel)} · ${esc(v.duration||'-')}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('phase1').classList.add('show');
+}
+
+function pickVideo(i, v) {
+  document.querySelectorAll('.v-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('vc-'+i).classList.add('selected');
+  selectedVideo = v;
+  document.getElementById('pick-btn').disabled = false;
+}
+
+async function loadTranscript() {
+  if (!selectedVideo) return;
+  document.getElementById('pick-btn').disabled = true;
+  document.getElementById('trans-loading').classList.add('show');
+  document.getElementById('phase3').classList.remove('show');
+  document.getElementById('phase3').innerHTML = '';
+
+  const msgs = ['正在提取字幕...', '分析词汇频率...', '提取练习句...', '整理学习材料...'];
+  let mi = 0;
+  const t = setInterval(() => {
+    document.getElementById('lmsg').textContent = msgs[++mi % msgs.length];
+  }, 2500);
+
+  try {
+    const data = await post('/api/transcript', { videoUrl: selectedVideo.url });
+    clearInterval(t);
+    renderLearn(data.captions||[], data.analysis||{}, selectedVideo);
+  } catch(e) {
+    clearInterval(t);
+    alert('字幕提取失败: ' + e.message);
+  } finally {
+    document.getElementById('pick-btn').disabled = false;
+    document.getElementById('trans-loading').classList.remove('show');
+  }
+}
+
+function renderLearn(captions, analysis, video) {
+  const el = document.getElementById('phase3');
+
+  const vocabHTML = (analysis.vocab||[]).length
+    ? `<div class="vocab-grid">${(analysis.vocab||[]).map(v=>`
+        <div class="vocab-card">
+          <div class="vc-word">${esc(v.word)}</div>
+          <div class="vc-count">出现 ${v.count} 次</div>
+          <div class="vc-ex">"${esc(v.example)}"</div>
+        </div>`).join('')}</div>`
+    : '<div class="empty">暂无词汇数据</div>';
+
+  const sentHTML = (analysis.longSentences||[]).length
+    ? `<div class="sentence-list">${(analysis.longSentences||[]).map(s=>`
+        <div class="sent">
+          <div class="sent-time">${s.start}s</div>
+          <div class="sent-text">${esc(s.text)}</div>
+        </div>`).join('')}</div>`
+    : '<div class="empty">暂无长句数据</div>';
+
+  const capHTML = captions.length
+    ? `<div class="caption-wrap">${captions.map(c=>`
+        <div class="cap-row">
+          <div class="cap-time">${Number(c.start).toFixed(0)}s</div>
+          <div class="cap-text">${esc(c.text.replace(/\n/g,' '))}</div>
+        </div>`).join('')}</div>`
+    : '<div class="empty">暂无字幕</div>';
+
+  el.innerHTML = `
+    <div class="learn-hero">
+      ${video.thumbnail
+        ? `<img class="learn-hero-img" src="${esc(video.thumbnail)}" />`
+        : `<div class="learn-hero-img-ph">🎬</div>`}
+      <div class="learn-hero-body">
+        <div class="lh-label">今日视频</div>
+        <div class="lh-title">${esc(video.title)}</div>
+        <div class="lh-meta">${esc(video.channel)} · ${esc(video.duration||'-')}</div>
+        <div class="lh-stats">
+          <div class="lhs"><div class="lhs-num">${analysis.total||0}</div><div class="lhs-lbl">字幕段</div></div>
+          <div class="lhs"><div class="lhs-num">${analysis.wordCount||0}</div><div class="lhs-lbl">词汇量</div></div>
+          <div class="lhs"><div class="lhs-num">${(analysis.vocab||[]).length}</div><div class="lhs-lbl">推荐单词</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">📚 今日词汇卡 — 高频词提取</div>
+    ${vocabHTML}
+
+    <div class="section-label">🎧 听力练习句 — 8词以上长句</div>
+    ${sentHTML}
+
+    <div class="section-label">📄 字幕原文</div>
+    ${capHTML}
+  `;
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.getElementById('inp').addEventListener('keydown', e => { if(e.key==='Enter') findVideos(); });
+</script>
+
+<script>
+// English Coach Onboarding (sequential, then triggers existing findVideos())
+window.enObAnswers = { level: null, topic: null };
+
+function enObSelect(step, value, label, evt) {
+  const qEl = document.getElementById('en-ob-q' + step);
+  if (!qEl) return;
+  const btn = evt?.target;
+
+  qEl.querySelectorAll('.ob-opt').forEach(x => x.classList.remove('selected'));
+  if (btn) btn.classList.add('selected');
+
+  if (step === 1) window.enObAnswers.level = { value, label };
+  if (step === 2) window.enObAnswers.topic = { value, label };
+
+  const next = document.getElementById('en-ob-q' + (step + 1));
+  setTimeout(() => {
+    qEl.classList.add('en-hidden');
+    if (next) {
+      next.classList.remove('en-hidden');
+      return;
+    }
+    const inp = document.getElementById('inp');
+    if (inp) inp.value = window.enObAnswers.topic?.value || '';
+    enOnboardDone();
+  }, 220);
+}
+
+function enOnboardDone() {
+  if (typeof findVideos === 'function') findVideos();
+}
+</script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "total": 474,
+  "jobs": [
+    {
+      "job_name": "batches/met4oos9zhzbjrhg946969j40dpq5j52ei1h",
+      "batch_start": 0,
+      "batch_end": 100,
+      "input_file": "/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/batch_input_master_0_100.jsonl"
+    },
+    {
+      "job_name": "batches/ru0ti53qe0dz94r7a90is5r27jw72svygnyh",
+      "batch_start": 100,
+      "batch_end": 200,
+      "input_file": "/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/batch_input_master_100_200.jsonl"
+    },
+    {
+      "job_name": "batches/x42hiplzjrdc8o339s68x04xpfwmu6vw1vxf",
+      "batch_start": 200,
+      "batch_end": 300,
+      "input_file": "/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/batch_input_master_200_300.jsonl"
+    },
+    {
+      "job_name": "batches/oitsyqwr9xckv6sm6zgvgq8iqi14nwa244vc",
+      "batch_start": 300,
+      "batch_end": 400,
+      "input_file": "/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/batch_input_master_300_400.jsonl"
+    },
+    {
+      "job_name": "batches/f757sepby1gja8lz8ovoot4ic4clja4eh99t",
+      "batch_start": 400,
+      "batch_end": 474,
+      "input_file": "/Users/maodedog/Desktop/CodeProject/business/20260126_restaurant_foods/batch_input_master_400_474.jsonl"
+    }
+  ],
+  "created_at": "2026-01-30T21:17:01.310540"
+}

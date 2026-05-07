@@ -1,0 +1,1866 @@
+[
+  {
+    "name": "Bell Sauce Dipping Sauce",
+    "ref": "e93"
+  },
+  {
+    "name": "Chicken Nuggets - 5 Piece",
+    "ref": "e108"
+  },
+  {
+    "name": "Chicken Nuggets - 10 Piece",
+    "ref": "e123"
+  },
+  {
+    "name": "Dragonfruit Freeze® (16 oz)",
+    "ref": "e138"
+  },
+  {
+    "name": "Dragonfruit Freeze® (20 oz)",
+    "ref": "e153"
+  },
+  {
+    "name": "Dragonfruit Freeze® with Dragonfruit Syrup (16 oz)",
+    "ref": "e168"
+  },
+  {
+    "name": "Dragonfruit Freeze® with Dragonfruit Syrup (20 oz)",
+    "ref": "e183"
+  },
+  {
+    "name": "Dragonfruit Strawberry Limonada",
+    "ref": "e198"
+  },
+  {
+    "name": "Hidden Valley™ Diablo Ranch Dipping Sauce",
+    "ref": "e213"
+  },
+  {
+    "name": "Jalapeno Honey Mustard Dipping Sauce",
+    "ref": "e228"
+  },
+  {
+    "name": "Loaded Taco Fries",
+    "ref": "e243"
+  },
+  {
+    "name": "Mango Peach Limonada",
+    "ref": "e258"
+  },
+  {
+    "name": "Orange Vanilla Cream Soda Freeze™ (16 oz)",
+    "ref": "e273"
+  },
+  {
+    "name": "Orange Vanilla Cream Soda Freeze™ (20 oz)",
+    "ref": "e288"
+  },
+  {
+    "name": "Pineapple Dream Refresca",
+    "ref": "e303"
+  },
+  {
+    "name": "Strawberry Dream Refresca",
+    "ref": "e318"
+  },
+  {
+    "name": "Strawberry Passionfruit Limonada",
+    "ref": "e333"
+  },
+  {
+    "name": "Supreme Nacho Fries",
+    "ref": "e348"
+  },
+  {
+    "name": "Vanilla Cream Soda Freeze™ (16 oz)",
+    "ref": "e363"
+  },
+  {
+    "name": "Vanilla Cream Soda Freeze™ (20 oz)",
+    "ref": "e378"
+  },
+  {
+    "name": "Avocado Salsa Verde Packet",
+    "ref": "e396"
+  },
+  {
+    "name": "Cantina Chicken Bowl",
+    "ref": "e411"
+  },
+  {
+    "name": "Cantina Chicken Burrito",
+    "ref": "e426"
+  },
+  {
+    "name": "Cantina Chicken Crispy Taco",
+    "ref": "e441"
+  },
+  {
+    "name": "Cantina Chicken Quesadilla",
+    "ref": "e456"
+  },
+  {
+    "name": "Cantina Chicken Soft Taco",
+    "ref": "e471"
+  },
+  {
+    "name": "Black Bean Chalupa Supreme® (V)",
+    "ref": "e489"
+  },
+  {
+    "name": "Chalupa Supreme® - Beef",
+    "ref": "e504"
+  },
+  {
+    "name": "Chalupa Supreme® - Chicken",
+    "ref": "e519"
+  },
+  {
+    "name": "Chalupa Supreme® - Steak",
+    "ref": "e534"
+  },
+  {
+    "name": "Cheesy Gordita Crunch",
+    "ref": "e549"
+  },
+  {
+    "name": "Crunchy Taco",
+    "ref": "e564"
+  },
+  {
+    "name": "Crunchy Taco Supreme®",
+    "ref": "e579"
+  },
+  {
+    "name": "Doritos® Cheesy Gordita Crunch - Nacho Cheese",
+    "ref": "e594"
+  },
+  {
+    "name": "Double Stacked Taco",
+    "ref": "e609"
+  },
+  {
+    "name": "Nacho Cheese Doritos® Locos Taco",
+    "ref": "e624"
+  },
+  {
+    "name": "Nacho Cheese Doritos® Locos Taco Supreme®",
+    "ref": "e639"
+  },
+  {
+    "name": "Soft Taco - Beef",
+    "ref": "e654"
+  },
+  {
+    "name": "Soft Taco - Chicken",
+    "ref": "e669"
+  },
+  {
+    "name": "Soft Taco Supreme® - Beef",
+    "ref": "e684"
+  },
+  {
+    "name": "Soft Taco Supreme® - Chicken",
+    "ref": "e699"
+  },
+  {
+    "name": "Spicy Potato Soft Taco (V)",
+    "ref": "e714"
+  },
+  {
+    "name": "Bean Burrito (V)",
+    "ref": "e732"
+  },
+  {
+    "name": "Beefy 5-Layer Burrito",
+    "ref": "e747"
+  },
+  {
+    "name": "Black Bean Grilled Cheese Burrito",
+    "ref": "e762"
+  },
+  {
+    "name": "Burrito Supreme® - Beef",
+    "ref": "e777"
+  },
+  {
+    "name": "Burrito Supreme® - Chicken",
+    "ref": "e792"
+  },
+  {
+    "name": "Burrito Supreme® - Steak",
+    "ref": "e807"
+  },
+  {
+    "name": "Cheesy Bean & Rice Burrito (V)",
+    "ref": "e822"
+  },
+  {
+    "name": "Cheesy Double Beef Burrito",
+    "ref": "e837"
+  },
+  {
+    "name": "Chicken Enchilada Burrito",
+    "ref": "e852"
+  },
+  {
+    "name": "Chili Cheese Burrito (regional)",
+    "ref": "e867"
+  },
+  {
+    "name": "Grilled Cheese Burrito",
+    "ref": "e882"
+  },
+  {
+    "name": "Grilled Cheese Burrito - Chicken",
+    "ref": "e897"
+  },
+  {
+    "name": "Grilled Cheese Burrito - Steak",
+    "ref": "e912"
+  },
+  {
+    "name": "Chips and Nacho Cheese Sauce (V)",
+    "ref": "e930"
+  },
+  {
+    "name": "Loaded Beef Nachos",
+    "ref": "e945"
+  },
+  {
+    "name": "Nachos BellGrande® - Beef",
+    "ref": "e960"
+  },
+  {
+    "name": "Nachos BellGrande® - Chicken",
+    "ref": "e975"
+  },
+  {
+    "name": "Nachos BellGrande® - Steak",
+    "ref": "e990"
+  },
+  {
+    "name": "Quesadilla - Cheese (V)",
+    "ref": "e1008"
+  },
+  {
+    "name": "Quesadilla - Chicken",
+    "ref": "e1023"
+  },
+  {
+    "name": "Quesadilla - Steak",
+    "ref": "e1038"
+  },
+  {
+    "name": "3-Cheese Chicken Flatbread Melt",
+    "ref": "e1056"
+  },
+  {
+    "name": "Black Bean Crunchwrap Supreme® (V)",
+    "ref": "e1071"
+  },
+  {
+    "name": "Cheesy Roll Up (V)",
+    "ref": "e1086"
+  },
+  {
+    "name": "Crunchwrap Supreme®",
+    "ref": "e1101"
+  },
+  {
+    "name": "Mexican Pizza",
+    "ref": "e1116"
+  },
+  {
+    "name": "Stacker",
+    "ref": "e1131"
+  },
+  {
+    "name": "Veggie Mexican Pizza (V)",
+    "ref": "e1146"
+  },
+  {
+    "name": "Black Beans & Rice (V)",
+    "ref": "e1164"
+  },
+  {
+    "name": "Black Beans (V)",
+    "ref": "e1179"
+  },
+  {
+    "name": "Cheesy Fiesta Potatoes (V)",
+    "ref": "e1194"
+  },
+  {
+    "name": "Cinnabon® Delights™ (2 Pk) (V)",
+    "ref": "e1209"
+  },
+  {
+    "name": "Cinnabon® Delights™ (12 Pk - Serves 4) (V)",
+    "ref": "e1224"
+  },
+  {
+    "name": "Cinnamon Twists (V)",
+    "ref": "e1239"
+  },
+  {
+    "name": "Diablo Sauce Packet (V)",
+    "ref": "e1254"
+  },
+  {
+    "name": "Fire Sauce Packet (V)",
+    "ref": "e1269"
+  },
+  {
+    "name": "Hot Sauce Packet (V)",
+    "ref": "e1284"
+  },
+  {
+    "name": "Large Nacho Fries",
+    "ref": "e1299"
+  },
+  {
+    "name": "Mild Sauce Packet (V)",
+    "ref": "e1314"
+  },
+  {
+    "name": "Nacho Fries",
+    "ref": "e1329"
+  },
+  {
+    "name": "Pintos N Cheese (V)",
+    "ref": "e1344"
+  },
+  {
+    "name": "Blue Raspberry Freeze™ (16 oz)",
+    "ref": "e1362"
+  },
+  {
+    "name": "Blue Raspberry Freeze™ (20 oz)",
+    "ref": "e1377"
+  },
+  {
+    "name": "Caramel Dulce Churro Chiller (16 oz)",
+    "ref": "e1392"
+  },
+  {
+    "name": "Caramel Dulce Churro Chiller (20 oz)",
+    "ref": "e1407"
+  },
+  {
+    "name": "Cinnabon® Caramel Coffee - Hot",
+    "ref": "e1422"
+  },
+  {
+    "name": "Cinnabon® Caramel Coffee - Iced (16 oz)",
+    "ref": "e1437"
+  },
+  {
+    "name": "Cinnabon® Caramel Coffee - Iced (20 oz)",
+    "ref": "e1452"
+  },
+  {
+    "name": "Cinnabon® Caramel Latte Chiller (16 oz)",
+    "ref": "e1467"
+  },
+  {
+    "name": "Cinnabon® Caramel Latte Chiller (19 oz)",
+    "ref": "e1482"
+  },
+  {
+    "name": "Cinnabon® Delights™ Coffee - Hot",
+    "ref": "e1497"
+  },
+  {
+    "name": "Cinnabon® Delights™ Coffee - Iced",
+    "ref": "e1512"
+  },
+  {
+    "name": "Confetti Cookie Freeze™ (16 oz)",
+    "ref": "e1527"
+  },
+  {
+    "name": "Confetti Cookie Freeze™ (20 oz)",
+    "ref": "e1542"
+  },
+  {
+    "name": "Dragonfruit Berry Agua Refresca",
+    "ref": "e1557"
+  },
+  {
+    "name": "Hot Coffee with Creamer",
+    "ref": "e1572"
+  },
+  {
+    "name": "Iced Coffee with Creamer",
+    "ref": "e1587"
+  },
+  {
+    "name": "Lowfat Milk - CA (Regional)",
+    "ref": "e1602"
+  },
+  {
+    "name": "Lowfat Milk - Federal (Regional)",
+    "ref": "e1617"
+  },
+  {
+    "name": "Mango Peach Agua Refresca",
+    "ref": "e1632"
+  },
+  {
+    "name": "Mexican Chocolate Churro Chiller (16 oz)",
+    "ref": "e1647"
+  },
+  {
+    "name": "Mexican Chocolate Churro Chiller (20 oz)",
+    "ref": "e1662"
+  },
+  {
+    "name": "Mexican Mocha Coffee - Hot",
+    "ref": "e1677"
+  },
+  {
+    "name": "Mexican Mocha Coffee - Iced (16 oz)",
+    "ref": "e1692"
+  },
+  {
+    "name": "Mexican Mocha Coffee - Iced (20 oz)",
+    "ref": "e1707"
+  },
+  {
+    "name": "Mexican Mocha Latte Chiller (16 oz)",
+    "ref": "e1722"
+  },
+  {
+    "name": "Mexican Mocha Latte Chiller (20 oz)",
+    "ref": "e1737"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "ref": "e1752"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "ref": "e1767"
+  },
+  {
+    "name": "Orange Juice",
+    "ref": "e1782"
+  },
+  {
+    "name": "Pineapple Lime Rockstar Refresca",
+    "ref": "e1797"
+  },
+  {
+    "name": "Pink Lemonade Frost (16 oz)",
+    "ref": "e1812"
+  },
+  {
+    "name": "Pink Lemonade Frost (20 oz)",
+    "ref": "e1827"
+  },
+  {
+    "name": "Premium Roast Coffee - Hot",
+    "ref": "e1842"
+  },
+  {
+    "name": "Premium Roast Coffee - Iced",
+    "ref": "e1857"
+  },
+  {
+    "name": "Strawberry Matcha Chiller (16 oz)",
+    "ref": "e1872"
+  },
+  {
+    "name": "Strawberry Matcha Chiller (20 oz)",
+    "ref": "e1887"
+  },
+  {
+    "name": "Strawberry Passionfruit Agua Refresca",
+    "ref": "e1902"
+  },
+  {
+    "name": "Tropical Punch Rockstar Refresca",
+    "ref": "e1917"
+  },
+  {
+    "name": "Vanilla Crema Coffee - Hot",
+    "ref": "e1932"
+  },
+  {
+    "name": "Vanilla Crema Coffee - Iced (16 oz)",
+    "ref": "e1947"
+  },
+  {
+    "name": "Vanilla Crema Coffee - Iced (20 oz)",
+    "ref": "e1962"
+  },
+  {
+    "name": "Vanilla Crema Latte Chiller (16 oz)",
+    "ref": "e1977"
+  },
+  {
+    "name": "Vanilla Crema Latte Chiller (20 oz)",
+    "ref": "e1992"
+  },
+  {
+    "name": "Water",
+    "ref": "e2007"
+  },
+  {
+    "name": "Wild Strawberry Churro Chiller (16 oz)",
+    "ref": "e2022"
+  },
+  {
+    "name": "Wild Strawberry Churro Chiller (20 oz)",
+    "ref": "e2037"
+  },
+  {
+    "name": "3-Cheese Chicken Flatbread Melt - Value Menu",
+    "ref": "e2055"
+  },
+  {
+    "name": "Avocado Ranch Chicken Stacker",
+    "ref": "e2070"
+  },
+  {
+    "name": "Beefy Potato Loaded Griller",
+    "ref": "e2085"
+  },
+  {
+    "name": "Cheesy Bean & Rice Burrito - Value Menu",
+    "ref": "e2100"
+  },
+  {
+    "name": "Cheesy Double Beef Burrito - Value Menu",
+    "ref": "e2115"
+  },
+  {
+    "name": "Cheesy Fiesta Potatoes - Value Menu",
+    "ref": "e2130"
+  },
+  {
+    "name": "Cheesy Roll Up - Value Menu",
+    "ref": "e2145"
+  },
+  {
+    "name": "Chicken Enchilada Burrito - Value Menu",
+    "ref": "e2160"
+  },
+  {
+    "name": "Chips and Nacho Supreme Dip",
+    "ref": "e2175"
+  },
+  {
+    "name": "Double Stacked Taco - Value Menu",
+    "ref": "e2190"
+  },
+  {
+    "name": "Loaded Beef Nachos - Value Menu",
+    "ref": "e2205"
+  },
+  {
+    "name": "Mini Taco Salad",
+    "ref": "e2220"
+  },
+  {
+    "name": "Spicy Potato Soft Taco - Value Menu",
+    "ref": "e2235"
+  },
+  {
+    "name": "Bean Burrito",
+    "ref": "e2255"
+  },
+  {
+    "name": "Black Bean Chalupa Supreme®",
+    "ref": "e2270"
+  },
+  {
+    "name": "Black Bean Crunchwrap Supreme®",
+    "ref": "e2285"
+  },
+  {
+    "name": "Black Beans",
+    "ref": "e2300"
+  },
+  {
+    "name": "Black Beans & Rice",
+    "ref": "e2315"
+  },
+  {
+    "name": "Cheese Quesadilla",
+    "ref": "e2330"
+  },
+  {
+    "name": "Cheesy Bean & Rice Burrito",
+    "ref": "e2345"
+  },
+  {
+    "name": "Cheesy Fiesta Potatoes",
+    "ref": "e2360"
+  },
+  {
+    "name": "Cheesy Roll Up",
+    "ref": "e2375"
+  },
+  {
+    "name": "Chips and Nacho Cheese Sauce",
+    "ref": "e2390"
+  },
+  {
+    "name": "Cinnabon® Delights™ (2 Pack)",
+    "ref": "e2405"
+  },
+  {
+    "name": "Cinnabon® Delights™ (12 Pack - Serves 4)",
+    "ref": "e2420"
+  },
+  {
+    "name": "Cinnamon Twists",
+    "ref": "e2435"
+  },
+  {
+    "name": "Hash Brown",
+    "ref": "e2450"
+  },
+  {
+    "name": "Pintos N Cheese",
+    "ref": "e2465"
+  },
+  {
+    "name": "Spicy Potato Soft Taco",
+    "ref": "e2480"
+  },
+  {
+    "name": "Veggie Bowl",
+    "ref": "e2495"
+  },
+  {
+    "name": "Veggie Mexican Pizza",
+    "ref": "e2510"
+  },
+  {
+    "name": "Breakfast California Crunchwrap - Bacon",
+    "ref": "e2528"
+  },
+  {
+    "name": "Breakfast California Crunchwrap - Sausage",
+    "ref": "e2543"
+  },
+  {
+    "name": "Breakfast Crunchwrap - Bacon",
+    "ref": "e2558"
+  },
+  {
+    "name": "Breakfast Crunchwrap - Sausage Patty",
+    "ref": "e2573"
+  },
+  {
+    "name": "Breakfast Crunchwrap - Steak",
+    "ref": "e2588"
+  },
+  {
+    "name": "Breakfast Quesadilla - Bacon",
+    "ref": "e2603"
+  },
+  {
+    "name": "Breakfast Quesadilla - Sausage",
+    "ref": "e2618"
+  },
+  {
+    "name": "Breakfast Quesadilla - Steak",
+    "ref": "e2633"
+  },
+  {
+    "name": "Breakfast Salsa Packet (V)",
+    "ref": "e2648"
+  },
+  {
+    "name": "Cheesy Toasted Breakfast Burrito - Bacon",
+    "ref": "e2663"
+  },
+  {
+    "name": "Cheesy Toasted Breakfast Burrito - Fiesta Potato (V)",
+    "ref": "e2678"
+  },
+  {
+    "name": "Cheesy Toasted Breakfast Burrito - Sausage",
+    "ref": "e2693"
+  },
+  {
+    "name": "Cinnabon® Delights™ (2 Pack) (V)",
+    "ref": "e2708"
+  },
+  {
+    "name": "Cinnabon® Delights™ (12 Pack - Serves 4) (V)",
+    "ref": "e2723"
+  },
+  {
+    "name": "Cinnabon® Delights™ Coffee - Hot",
+    "ref": "e2738"
+  },
+  {
+    "name": "Cinnabon® Delights™ Coffee - Iced",
+    "ref": "e2753"
+  },
+  {
+    "name": "Grande Toasted Breakfast Burrito - Bacon",
+    "ref": "e2768"
+  },
+  {
+    "name": "Grande Toasted Breakfast Burrito - Sausage",
+    "ref": "e2783"
+  },
+  {
+    "name": "Grande Toasted Breakfast Burrito - Steak",
+    "ref": "e2798"
+  },
+  {
+    "name": "Hash Brown (V)",
+    "ref": "e2813"
+  },
+  {
+    "name": "Hash Brown Toasted Breakfast Burrito - Bacon",
+    "ref": "e2828"
+  },
+  {
+    "name": "Hash Brown Toasted Breakfast Burrito - Sausage",
+    "ref": "e2843"
+  },
+  {
+    "name": "Hash Brown Toasted Breakfast Burrito - Steak",
+    "ref": "e2858"
+  },
+  {
+    "name": "Hot Coffee with Creamer",
+    "ref": "e2873"
+  },
+  {
+    "name": "Iced Coffee with Creamer",
+    "ref": "e2888"
+  },
+  {
+    "name": "Orange Juice",
+    "ref": "e2903"
+  },
+  {
+    "name": "Premium Roast Coffee - Hot",
+    "ref": "e2918"
+  },
+  {
+    "name": "Premium Roast Coffee - Iced",
+    "ref": "e2933"
+  },
+  {
+    "name": "Vanilla Creamer",
+    "ref": "e2948"
+  },
+  {
+    "name": "Mad Tasty Grapefruit Sparkling Water",
+    "ref": "e2967"
+  },
+  {
+    "name": "Mad Tasty Unicorn Tears Sparkling Water",
+    "ref": "e2982"
+  },
+  {
+    "name": "Mad Tasty Watermelon Kiwi Sparkling Water",
+    "ref": "e2997"
+  },
+  {
+    "name": "Mad Tasty Yuzu Citrus Sparkling Water",
+    "ref": "e3012"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "ref": "e3027"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "ref": "e3042"
+  },
+  {
+    "name": "Prosecco Sparkling Wine (350 mL)",
+    "ref": "e3057"
+  },
+  {
+    "name": "Red Wine (6.3 fl oz)",
+    "ref": "e3072"
+  },
+  {
+    "name": "Rum (80 proof)",
+    "ref": "e3087"
+  },
+  {
+    "name": "Tequila (80 proof)",
+    "ref": "e3102"
+  },
+  {
+    "name": "Vodka (80 proof)",
+    "ref": "e3117"
+  },
+  {
+    "name": "Anchor Steam (16 oz)",
+    "ref": "e3135"
+  },
+  {
+    "name": "Angel Island IPA (12 oz)",
+    "ref": "e3150"
+  },
+  {
+    "name": "Angel Island IPA (16 oz)",
+    "ref": "e3165"
+  },
+  {
+    "name": "Angry Orchard (16 oz)",
+    "ref": "e3180"
+  },
+  {
+    "name": "Angry Orchard - Crisp Apple (12 oz)",
+    "ref": "e3195"
+  },
+  {
+    "name": "Angry Orchard - Crisp Apple (16 oz)",
+    "ref": "e3210"
+  },
+  {
+    "name": "Barrio Blonde (12 oz)",
+    "ref": "e3225"
+  },
+  {
+    "name": "Barrio Blonde (16 oz)",
+    "ref": "e3240"
+  },
+  {
+    "name": "Beach Bell Beer (12 oz)",
+    "ref": "e3255"
+  },
+  {
+    "name": "Beach Bell Beer (16 oz)",
+    "ref": "e3270"
+  },
+  {
+    "name": "Beer - General (12 oz)",
+    "ref": "e3285"
+  },
+  {
+    "name": "Beer - General (16 oz)",
+    "ref": "e3300"
+  },
+  {
+    "name": "Bell's Two Hearted Ale (12 oz)",
+    "ref": "e3315"
+  },
+  {
+    "name": "Bell's Two Hearted Ale (16 oz)",
+    "ref": "e3330"
+  },
+  {
+    "name": "Bell Tower Cerveza (12 oz)",
+    "ref": "e3345"
+  },
+  {
+    "name": "Bell Tower Cerveza (16 oz)",
+    "ref": "e3360"
+  },
+  {
+    "name": "Black Abbey - The Rose (12 oz)",
+    "ref": "e3375"
+  },
+  {
+    "name": "Black Abbey - The Rose (16 oz)",
+    "ref": "e3390"
+  },
+  {
+    "name": "Blue Moon Belgian White (12 oz)",
+    "ref": "e3405"
+  },
+  {
+    "name": "Blue Moon Belgian White (16 oz)",
+    "ref": "e3420"
+  },
+  {
+    "name": "Blue Moon Belgian White (24 oz)",
+    "ref": "e3435"
+  },
+  {
+    "name": "Blue Moon Belgian White Bottle (12 oz)",
+    "ref": "e3450"
+  },
+  {
+    "name": "Blue Moon Mango Wheat (12 oz)",
+    "ref": "e3465"
+  },
+  {
+    "name": "Blue Moon Mango Wheat (16 oz)",
+    "ref": "e3480"
+  },
+  {
+    "name": "Blue Point Big City Bells Pilsner (12 oz)",
+    "ref": "e3495"
+  },
+  {
+    "name": "Blue Point Big City Bells Pilsner (16 oz)",
+    "ref": "e3510"
+  },
+  {
+    "name": "Blue Point Hoptical Illusion IPA (12 oz)",
+    "ref": "e3525"
+  },
+  {
+    "name": "Blue Point Hoptical Illusion IPA (16 oz)",
+    "ref": "e3540"
+  },
+  {
+    "name": "Blue Point Toasted Lager (12 oz)",
+    "ref": "e3555"
+  },
+  {
+    "name": "Blue Point Toasted Lager (16 oz)",
+    "ref": "e3570"
+  },
+  {
+    "name": "Boulevard Cherry Blossom and Lime (12 oz)",
+    "ref": "e3585"
+  },
+  {
+    "name": "Boulevard Cherry Blossom and Lime (16 oz)",
+    "ref": "e3600"
+  },
+  {
+    "name": "Boulevard Space Camper Cosmic IPA (12 oz)",
+    "ref": "e3615"
+  },
+  {
+    "name": "Boulevard Space Camper Cosmic IPA (16 oz)",
+    "ref": "e3630"
+  },
+  {
+    "name": "Boulevard Unfiltered Wheat Beer (12 oz)",
+    "ref": "e3645"
+  },
+  {
+    "name": "Boulevard Unfiltered Wheat Beer (16 oz)",
+    "ref": "e3660"
+  },
+  {
+    "name": "Boulevard Unfiltered Wheat Beer 100 (12 oz)",
+    "ref": "e3675"
+  },
+  {
+    "name": "Boulevard Unfiltered Wheat Beer 100 (16 oz)",
+    "ref": "e3690"
+  },
+  {
+    "name": "Breaking Bud (12 oz)",
+    "ref": "e3705"
+  },
+  {
+    "name": "Breaking Bud (16 oz)",
+    "ref": "e3720"
+  },
+  {
+    "name": "Brooklyn Lager (12 oz)",
+    "ref": "e3735"
+  },
+  {
+    "name": "Brooklyn Lager (16 oz)",
+    "ref": "e3750"
+  },
+  {
+    "name": "Bud Light (12 oz)",
+    "ref": "e3765"
+  },
+  {
+    "name": "Bud Light (16 oz)",
+    "ref": "e3780"
+  },
+  {
+    "name": "Bud Light Bottle (16 oz)",
+    "ref": "e3795"
+  },
+  {
+    "name": "Budweiser (12 oz)",
+    "ref": "e3810"
+  },
+  {
+    "name": "Budweiser (16 oz)",
+    "ref": "e3825"
+  },
+  {
+    "name": "Budweiser Bottle (16 oz)",
+    "ref": "e3840"
+  },
+  {
+    "name": "Busch Light (16 oz)",
+    "ref": "e3855"
+  },
+  {
+    "name": "Calicraft Coast (12 oz)",
+    "ref": "e3870"
+  },
+  {
+    "name": "Calicraft Coast (16 oz)",
+    "ref": "e3885"
+  },
+  {
+    "name": "Captain Lawrence Hop Commander (12 oz)",
+    "ref": "e3900"
+  },
+  {
+    "name": "Cool Kidz IPA (16 oz)",
+    "ref": "e3915"
+  },
+  {
+    "name": "Coors (Coors Banquet) (12 oz)",
+    "ref": "e3930"
+  },
+  {
+    "name": "Coors (Coors Banquet) (16 oz)",
+    "ref": "e3945"
+  },
+  {
+    "name": "Coors Light (12 oz)",
+    "ref": "e3960"
+  },
+  {
+    "name": "Coors Light (16 oz)",
+    "ref": "e3975"
+  },
+  {
+    "name": "Coors Light (24 oz)",
+    "ref": "e3990"
+  },
+  {
+    "name": "Copperhead Red (12 oz)",
+    "ref": "e4005"
+  },
+  {
+    "name": "Copperhead Red (16 oz)",
+    "ref": "e4020"
+  },
+  {
+    "name": "Corona Extra (12 oz)",
+    "ref": "e4035"
+  },
+  {
+    "name": "Corona Extra (16 oz)",
+    "ref": "e4050"
+  },
+  {
+    "name": "Corona Light (12 oz)",
+    "ref": "e4065"
+  },
+  {
+    "name": "Corona Light (16 oz)",
+    "ref": "e4080"
+  },
+  {
+    "name": "Corona Premier (12 oz)",
+    "ref": "e4095"
+  },
+  {
+    "name": "Corona Premier (16 oz)",
+    "ref": "e4110"
+  },
+  {
+    "name": "Dos Equis Lager Especial (12 oz)",
+    "ref": "e4125"
+  },
+  {
+    "name": "Dos Equis Lager Especial (16 oz)",
+    "ref": "e4140"
+  },
+  {
+    "name": "Dos Equis Mexican Pale Ale (12 oz)",
+    "ref": "e4155"
+  },
+  {
+    "name": "Dos Equis Mexican Pale Ale (16 oz)",
+    "ref": "e4170"
+  },
+  {
+    "name": "Elysian Space Dust IPA (16 oz)",
+    "ref": "e4185"
+  },
+  {
+    "name": "Elysian Space Dust IPA (24 oz)",
+    "ref": "e4200"
+  },
+  {
+    "name": "Estrella Jalisco (12 oz)",
+    "ref": "e4215"
+  },
+  {
+    "name": "Estrella Jalisco (16 oz)",
+    "ref": "e4230"
+  },
+  {
+    "name": "Fair Winds® Howling Gail (12 oz)",
+    "ref": "e4245"
+  },
+  {
+    "name": "Fair Winds® Howling Gail (16 oz)",
+    "ref": "e4260"
+  },
+  {
+    "name": "Fat Tire Amber Ale (12 oz)",
+    "ref": "e4275"
+  },
+  {
+    "name": "Fat Tire Amber Ale (16 oz)",
+    "ref": "e4290"
+  },
+  {
+    "name": "Firestone 805 (12 oz)",
+    "ref": "e4305"
+  },
+  {
+    "name": "Firestone 805 (16 oz)",
+    "ref": "e4320"
+  },
+  {
+    "name": "Firestone 805 (24 oz)",
+    "ref": "e4335"
+  },
+  {
+    "name": "Flybird Lime Margarita",
+    "ref": "e4350"
+  },
+  {
+    "name": "Flybird Lime Margarita (Can)",
+    "ref": "e4365"
+  },
+  {
+    "name": "Flybird Mangonada",
+    "ref": "e4380"
+  },
+  {
+    "name": "Flybird Mojito",
+    "ref": "e4395"
+  },
+  {
+    "name": "Flybird Pina Colada",
+    "ref": "e4410"
+  },
+  {
+    "name": "Flybird Prickly Pear Margarita",
+    "ref": "e4425"
+  },
+  {
+    "name": "Flybird Strawberry Margarita",
+    "ref": "e4440"
+  },
+  {
+    "name": "Flybird Strawberry Margarita (Can)",
+    "ref": "e4455"
+  },
+  {
+    "name": "Four Peaks Kilt Lifter (12 oz)",
+    "ref": "e4470"
+  },
+  {
+    "name": "Four Peaks Kilt Lifter (16 oz)",
+    "ref": "e4485"
+  },
+  {
+    "name": "Goose Island IPA (12 oz)",
+    "ref": "e4500"
+  },
+  {
+    "name": "Goose Island IPA (16 oz)",
+    "ref": "e4515"
+  },
+  {
+    "name": "Hard Mtn Dew - Baja Blast (12 oz)",
+    "ref": "e4530"
+  },
+  {
+    "name": "Hard Mtn Dew - Baja Blast (24 oz)",
+    "ref": "e4545"
+  },
+  {
+    "name": "Hard Mtn Dew - Black Cherry (12 oz)",
+    "ref": "e4560"
+  },
+  {
+    "name": "Hard Mtn Dew - Black Cherry (24 oz)",
+    "ref": "e4575"
+  },
+  {
+    "name": "Hard Mtn Dew - Original (12 oz)",
+    "ref": "e4590"
+  },
+  {
+    "name": "Hard Mtn Dew - Original (24 oz)",
+    "ref": "e4605"
+  },
+  {
+    "name": "Hard Mtn Dew - Watermelon (12 oz)",
+    "ref": "e4620"
+  },
+  {
+    "name": "Hard Mtn Dew - Watermelon (24 oz)",
+    "ref": "e4635"
+  },
+  {
+    "name": "Harpoon IPA (12 oz)",
+    "ref": "e4650"
+  },
+  {
+    "name": "Harpoon IPA (16 oz)",
+    "ref": "e4665"
+  },
+  {
+    "name": "Heineken (12 oz)",
+    "ref": "e4680"
+  },
+  {
+    "name": "Heineken (16 oz)",
+    "ref": "e4695"
+  },
+  {
+    "name": "Heineken 0.0 (12 oz)",
+    "ref": "e4710"
+  },
+  {
+    "name": "Heineken 0.0 (16 oz)",
+    "ref": "e4725"
+  },
+  {
+    "name": "Heineken Bottle (12 oz)",
+    "ref": "e4740"
+  },
+  {
+    "name": "Heineken Light (12 oz)",
+    "ref": "e4755"
+  },
+  {
+    "name": "Heineken Light (16 oz)",
+    "ref": "e4770"
+  },
+  {
+    "name": "Hop Commander IPA (12 oz)",
+    "ref": "e4785"
+  },
+  {
+    "name": "Hop Commander IPA (16 oz)",
+    "ref": "e4800"
+  },
+  {
+    "name": "Kansas City Dunkel (12 oz)",
+    "ref": "e4815"
+  },
+  {
+    "name": "Kansas City Dunkel (16 oz)",
+    "ref": "e4830"
+  },
+  {
+    "name": "Kansas City Helles (12 oz)",
+    "ref": "e4845"
+  },
+  {
+    "name": "Kansas City Helles (16 oz)",
+    "ref": "e4860"
+  },
+  {
+    "name": "Kona Big Wave Golden Ale (12 oz)",
+    "ref": "e4875"
+  },
+  {
+    "name": "Kona Big Wave Golden Ale (16 oz)",
+    "ref": "e4890"
+  },
+  {
+    "name": "Lagunitas IPA (12 oz)",
+    "ref": "e4905"
+  },
+  {
+    "name": "Lagunitas IPA (16 oz)",
+    "ref": "e4920"
+  },
+  {
+    "name": "Landshark Lager (12 oz)",
+    "ref": "e4935"
+  },
+  {
+    "name": "Landshark Lager (16 oz)",
+    "ref": "e4950"
+  },
+  {
+    "name": "Loose Cannon IPA (12 oz)",
+    "ref": "e4965"
+  },
+  {
+    "name": "Loose Cannon IPA (16 oz)",
+    "ref": "e4980"
+  },
+  {
+    "name": "Michelob Original Lager (12 oz)",
+    "ref": "e4995"
+  },
+  {
+    "name": "Michelob Original Lager (16 oz)",
+    "ref": "e5010"
+  },
+  {
+    "name": "Michelob Ultra (12 oz)",
+    "ref": "e5025"
+  },
+  {
+    "name": "Michelob Ultra (16 oz)",
+    "ref": "e5040"
+  },
+  {
+    "name": "Michelob Ultra Bottle (16 oz)",
+    "ref": "e5055"
+  },
+  {
+    "name": "Miller Genuine Draft (12 oz)",
+    "ref": "e5070"
+  },
+  {
+    "name": "Miller Genuine Draft (16 oz)",
+    "ref": "e5085"
+  },
+  {
+    "name": "Miller High Life (12 oz)",
+    "ref": "e5100"
+  },
+  {
+    "name": "Miller High Life (16 oz)",
+    "ref": "e5115"
+  },
+  {
+    "name": "Miller Lite (12 oz)",
+    "ref": "e5130"
+  },
+  {
+    "name": "Miller Lite (16 oz)",
+    "ref": "e5145"
+  },
+  {
+    "name": "Modelo Chelada (16 oz)",
+    "ref": "e5160"
+  },
+  {
+    "name": "Modelo Especial (12 oz)",
+    "ref": "e5175"
+  },
+  {
+    "name": "Modelo Especial (16 oz)",
+    "ref": "e5190"
+  },
+  {
+    "name": "Modelo Especial (24 oz)",
+    "ref": "e5205"
+  },
+  {
+    "name": "Modelo Negra (12 oz)",
+    "ref": "e5220"
+  },
+  {
+    "name": "Modelo Negra (16 oz)",
+    "ref": "e5235"
+  },
+  {
+    "name": "Motorworks Intellectual Property IPA (12 oz)",
+    "ref": "e5250"
+  },
+  {
+    "name": "Motorworks Intellectual Property IPA (16 oz)",
+    "ref": "e5265"
+  },
+  {
+    "name": "Motorworks Pulp Fiction IPA (12 oz)",
+    "ref": "e5280"
+  },
+  {
+    "name": "Motorworks Pulp Fiction IPA (16 oz)",
+    "ref": "e5295"
+  },
+  {
+    "name": "Newcastle Brown Ale (12 oz)",
+    "ref": "e5310"
+  },
+  {
+    "name": "Newcastle Brown Ale (16 oz)",
+    "ref": "e5325"
+  },
+  {
+    "name": "Old Elephant IPA (12 oz)",
+    "ref": "e5340"
+  },
+  {
+    "name": "Old Elephant IPA (16 oz)",
+    "ref": "e5355"
+  },
+  {
+    "name": "Pabst Blue Ribbon Original (12 oz)",
+    "ref": "e5370"
+  },
+  {
+    "name": "Pabst Blue Ribbon Original (16 oz)",
+    "ref": "e5385"
+  },
+  {
+    "name": "Pacifico (12 oz)",
+    "ref": "e5400"
+  },
+  {
+    "name": "Pacifico (16 oz)",
+    "ref": "e5415"
+  },
+  {
+    "name": "Patriot Ale (12 oz)",
+    "ref": "e5430"
+  },
+  {
+    "name": "Patriot Ale (16 oz)",
+    "ref": "e5445"
+  },
+  {
+    "name": "Revolution Anti Hero (12 oz)",
+    "ref": "e5460"
+  },
+  {
+    "name": "Revolution Anti Hero (16 oz)",
+    "ref": "e5475"
+  },
+  {
+    "name": "Road 2 Ruin Double IPA (12 oz)",
+    "ref": "e5490"
+  },
+  {
+    "name": "Road 2 Ruin Double IPA (16 oz)",
+    "ref": "e5505"
+  },
+  {
+    "name": "Samuel Adams '76 (12 oz)",
+    "ref": "e5520"
+  },
+  {
+    "name": "Samuel Adams® Winter Lager (12 oz)",
+    "ref": "e5535"
+  },
+  {
+    "name": "Samuel Adams® Winter Lager (16 oz)",
+    "ref": "e5550"
+  },
+  {
+    "name": "Sea Hag IPA (12 oz)",
+    "ref": "e5565"
+  },
+  {
+    "name": "Sea Hag IPA (16 oz)",
+    "ref": "e5580"
+  },
+  {
+    "name": "Shock Top Belgian White (12 oz)",
+    "ref": "e5595"
+  },
+  {
+    "name": "Shock Top Belgian White (16 oz)",
+    "ref": "e5610"
+  },
+  {
+    "name": "Sierra Nevada Hazy Little Thing IPA (12 oz)",
+    "ref": "e5625"
+  },
+  {
+    "name": "Sierra Nevada Hazy Little Thing IPA (16 oz)",
+    "ref": "e5640"
+  },
+  {
+    "name": "Sol Cervesa (12 oz)",
+    "ref": "e5655"
+  },
+  {
+    "name": "Sol Cervesa (16 oz)",
+    "ref": "e5670"
+  },
+  {
+    "name": "St. Archer (16 oz)",
+    "ref": "e5685"
+  },
+  {
+    "name": "Stella Artois (12 oz)",
+    "ref": "e5700"
+  },
+  {
+    "name": "Stella Artois (16 oz)",
+    "ref": "e5715"
+  },
+  {
+    "name": "Stella Artois (24 oz)",
+    "ref": "e5730"
+  },
+  {
+    "name": "Sweetwater 420 Extra Pale Ale (12 oz)",
+    "ref": "e5745"
+  },
+  {
+    "name": "Sweetwater 420 Extra Pale Ale (16 oz)",
+    "ref": "e5760"
+  },
+  {
+    "name": "Tampa Bay Reef Donkey (16 oz)",
+    "ref": "e5775"
+  },
+  {
+    "name": "Tecate Light (12 oz)",
+    "ref": "e5790"
+  },
+  {
+    "name": "Tecate Light (16 oz)",
+    "ref": "e5805"
+  },
+  {
+    "name": "Tecate Original (12 oz)",
+    "ref": "e5820"
+  },
+  {
+    "name": "Tecate Original (16 oz)",
+    "ref": "e5835"
+  },
+  {
+    "name": "Victoria (12 oz)",
+    "ref": "e5850"
+  },
+  {
+    "name": "Victoria (16 oz)",
+    "ref": "e5865"
+  },
+  {
+    "name": "Voodoo Ranger Juicy Haze IPA (12 oz)",
+    "ref": "e5880"
+  },
+  {
+    "name": "Voodoo Ranger Juicy Haze IPA (16 oz)",
+    "ref": "e5895"
+  },
+  {
+    "name": "White Claw Hard Seltzer (12 oz)",
+    "ref": "e5910"
+  },
+  {
+    "name": "Yuengling - Black and Tan (12 oz)",
+    "ref": "e5925"
+  },
+  {
+    "name": "Yuengling - Black and Tan (16 oz)",
+    "ref": "e5940"
+  },
+  {
+    "name": "Yuengling - Golden Pilsner (12 oz)",
+    "ref": "e5955"
+  },
+  {
+    "name": "Yuengling - Golden Pilsner (16 oz)",
+    "ref": "e5970"
+  },
+  {
+    "name": "Yuengling - Lager (12 oz)",
+    "ref": "e5985"
+  },
+  {
+    "name": "Yuengling - Lager (16 oz)",
+    "ref": "e6000"
+  },
+  {
+    "name": "Yuengling - Light Lager (12 oz)",
+    "ref": "e6015"
+  },
+  {
+    "name": "Yuengling - Light Lager (16 oz)",
+    "ref": "e6030"
+  },
+  {
+    "name": "Yuengling - Porter (12 oz)",
+    "ref": "e6045"
+  },
+  {
+    "name": "Yuengling - Porter (16 oz)",
+    "ref": "e6060"
+  },
+  {
+    "name": "Yuengling - Premium (12 oz)",
+    "ref": "e6075"
+  },
+  {
+    "name": "Yuengling - Premium (16 oz)",
+    "ref": "e6090"
+  },
+  {
+    "name": "Yuengling - Premium Light (12 oz)",
+    "ref": "e6105"
+  },
+  {
+    "name": "Yuengling - Premium Light (16 oz)",
+    "ref": "e6120"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (16 oz)",
+    "ref": "e6139"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (20 oz)",
+    "ref": "e6154"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Freeze™ (32 oz)",
+    "ref": "e6169"
+  },
+  {
+    "name": "Red Sangria - LV",
+    "ref": "e6184"
+  },
+  {
+    "name": "Rum (80 proof) - Double - LV",
+    "ref": "e6199"
+  },
+  {
+    "name": "Rum (80 proof) - Single - LV",
+    "ref": "e6214"
+  },
+  {
+    "name": "Tequila (80 proof) - Double - LV",
+    "ref": "e6229"
+  },
+  {
+    "name": "Tequila (80 proof) - Single - LV",
+    "ref": "e6244"
+  },
+  {
+    "name": "Vodka (80 proof) - Double - LV",
+    "ref": "e6259"
+  },
+  {
+    "name": "Vodka (80 proof) - Single - LV",
+    "ref": "e6274"
+  },
+  {
+    "name": "Whiskey (80 proof) - Double - LV",
+    "ref": "e6289"
+  },
+  {
+    "name": "Whiskey (80 proof) - Single - LV",
+    "ref": "e6304"
+  },
+  {
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (16 fl oz)",
+    "ref": "e6322"
+  },
+  {
+    "name": "Brisk® Mango Iced Tea (16 fl oz)",
+    "ref": "e6337"
+  },
+  {
+    "name": "Diet Dr Pepper® (16 fl oz)",
+    "ref": "e6352"
+  },
+  {
+    "name": "Diet Pepsi® (16 fl oz)",
+    "ref": "e6367"
+  },
+  {
+    "name": "Dr Pepper® (16 fl oz)",
+    "ref": "e6382"
+  },
+  {
+    "name": "G2 - Fruit Punch (16 fl oz)",
+    "ref": "e6397"
+  },
+  {
+    "name": "Lipton Unsweetened Iced Tea (16 fl oz)",
+    "ref": "e6412"
+  },
+  {
+    "name": "Midnight Mtn Dew® Baja Blast™ (16 fl oz)",
+    "ref": "e6427"
+  },
+  {
+    "name": "Mtn Dew® (16 fl oz)",
+    "ref": "e6442"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast™ (16 fl oz)",
+    "ref": "e6457"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Zero Sugar (16 fl oz)",
+    "ref": "e6472"
+  },
+  {
+    "name": "Mtn Dew® Zero Sugar (16 fl oz)",
+    "ref": "e6487"
+  },
+  {
+    "name": "Mug® Root Beer (16 fl oz)",
+    "ref": "e6502"
+  },
+  {
+    "name": "Pepsi® (16 fl oz)",
+    "ref": "e6517"
+  },
+  {
+    "name": "Pepsi® Wild Cherry (16 fl oz)",
+    "ref": "e6532"
+  },
+  {
+    "name": "Pepsi® Zero Sugar (16 fl oz)",
+    "ref": "e6547"
+  },
+  {
+    "name": "Starry® (16 fl oz)",
+    "ref": "e6562"
+  },
+  {
+    "name": "Tropicana Original Lemonade (16 oz)",
+    "ref": "e6577"
+  },
+  {
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (20 fl oz)",
+    "ref": "e6595"
+  },
+  {
+    "name": "Brisk® Mango Iced Tea (20 fl oz)",
+    "ref": "e6610"
+  },
+  {
+    "name": "Diet Dr Pepper® (20 fl oz)",
+    "ref": "e6625"
+  },
+  {
+    "name": "Diet Pepsi® (20 fl oz)",
+    "ref": "e6640"
+  },
+  {
+    "name": "Dr Pepper® (20 fl oz)",
+    "ref": "e6655"
+  },
+  {
+    "name": "G2 - Fruit Punch (20 fl oz)",
+    "ref": "e6670"
+  },
+  {
+    "name": "Lipton Unsweetened Iced Tea (20 fl oz)",
+    "ref": "e6685"
+  },
+  {
+    "name": "Midnight Mtn Dew® Baja Blast™ (20 fl oz)",
+    "ref": "e6700"
+  },
+  {
+    "name": "Mtn Dew® (20 fl oz)",
+    "ref": "e6715"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast™ (20 fl oz)",
+    "ref": "e6730"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Zero Sugar (20 fl oz)",
+    "ref": "e6745"
+  },
+  {
+    "name": "Mtn Dew® Zero Sugar (20 fl oz)",
+    "ref": "e6760"
+  },
+  {
+    "name": "Mug® Root Beer (20 fl oz)",
+    "ref": "e6775"
+  },
+  {
+    "name": "Pepsi® (20 fl oz)",
+    "ref": "e6790"
+  },
+  {
+    "name": "Pepsi® Wild Cherry (20 fl oz)",
+    "ref": "e6805"
+  },
+  {
+    "name": "Pepsi® Zero Sugar (20 fl oz)",
+    "ref": "e6820"
+  },
+  {
+    "name": "Starry® (20 fl oz)",
+    "ref": "e6835"
+  },
+  {
+    "name": "Tropicana Original Lemonade (20 oz)",
+    "ref": "e6850"
+  },
+  {
+    "name": "Brisk® Dragon Paradise Sparkling Iced Tea (30 fl oz)",
+    "ref": "e6868"
+  },
+  {
+    "name": "Brisk® Mango Iced Tea (30 fl oz)",
+    "ref": "e6883"
+  },
+  {
+    "name": "Diet Dr Pepper® (30 fl oz)",
+    "ref": "e6898"
+  },
+  {
+    "name": "Diet Pepsi® (30 fl oz)",
+    "ref": "e6913"
+  },
+  {
+    "name": "Dr Pepper® (30 fl oz)",
+    "ref": "e6928"
+  },
+  {
+    "name": "G2 - Fruit Punch (30 fl oz)",
+    "ref": "e6943"
+  },
+  {
+    "name": "Lipton Unsweetened Iced Tea (30 fl oz)",
+    "ref": "e6958"
+  },
+  {
+    "name": "Midnight Mtn Dew® Baja Blast™ (30 fl oz)",
+    "ref": "e6973"
+  },
+  {
+    "name": "Mtn Dew® (30 fl oz)",
+    "ref": "e6988"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast™ (30 fl oz)",
+    "ref": "e7003"
+  },
+  {
+    "name": "Mtn Dew® Baja Blast Zero Sugar (30 fl oz)",
+    "ref": "e7018"
+  },
+  {
+    "name": "Mtn Dew® Zero Sugar (30 fl oz)",
+    "ref": "e7033"
+  },
+  {
+    "name": "Mug® Root Beer (30 fl oz)",
+    "ref": "e7048"
+  },
+  {
+    "name": "Pepsi® (30 fl oz)",
+    "ref": "e7063"
+  },
+  {
+    "name": "Pepsi® Wild Cherry (30 fl oz)",
+    "ref": "e7078"
+  },
+  {
+    "name": "Pepsi® Zero Sugar (30 fl oz)",
+    "ref": "e7093"
+  },
+  {
+    "name": "Starry® (30 fl oz)",
+    "ref": "e7108"
+  },
+  {
+    "name": "Tropicana Original Lemonade (30oz)",
+    "ref": "e7123"
+  }
+]

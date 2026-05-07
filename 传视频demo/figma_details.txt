@@ -1,0 +1,1 @@
+=== AI 创业 (11087:7488) ===\nFRAME AI 创业\n BG: rgba(1,1,1,1)\n  RECTANGLE image 1636403830\n  TEXT AI\n   TEXT: "AI"\n   FONT: SF Pro Rounded 900, Size: 36\n   COLOR: rgba(1,0.6231796145439148,0.13621169328689575,1)\n\n=== 英语学习 (11087:7503) ===\nFRAME 英语学习\n BG: rgba(1,1,1,1)\n  RECTANGLE imagen-1773737173742-1 1\n

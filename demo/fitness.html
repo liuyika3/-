@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Lab — Jovida</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+body { background: #dcdedf; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 0; }
+
+/* ── Mobile App Container ── */
+.app-container {
+  width: 390px;
+  height: 844px;
+  background: #f4f5f7;
+  border-radius: 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), inset 0 0 0 8px #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(180deg, #1A8C22 0%, #35B93E 100%);
+  padding: 54px 24px 32px;
+  color: white;
+  border-radius: 0 0 32px 32px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.user-avatar { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.streaks { display: flex; gap: 12px; font-weight: 700; font-size: 13px; background: rgba(0,0,0,0.15); padding: 8px 14px; border-radius: 20px; }
+
+.tabs { display: flex; gap: 20px; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.6); align-items: center; }
+.tab.active { color: white; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; }
+
+/* ── Main Scroll Area ── */
+.main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 160px;
+  margin-top: -16px;
+  position: relative;
+  z-index: 1;
+}
+.main-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Onboarding ── */
+.ob-card {
+  background: white; border-radius: 24px; padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  margin-top: 32px;
+  transition: all 300ms;
+}
+.ob-q { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 16px; text-align: center; }
+.ob-opts { display: flex; flex-direction: column; gap: 12px; }
+.ob-opt {
+  background: #f8f9fa; border: 1px solid #e9ecef; color: #333;
+  padding: 16px; border-radius: 16px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 150ms; text-align: center;
+}
+.ob-opt.selected, .ob-opt:active { background: #e3fbee; border-color: #35B93E; color: #1A8C22; }
+
+.hidden { display: none !important; }
+
+/* ── Dashboard Cards ── */
+.dash-card {
+  background: white; border-radius: 24px; padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  margin-bottom: 16px;
+}
+.dash-card:first-child { margin-top: 32px; }
+.dash-title { font-size: 14px; font-weight: 700; color: #888; display: flex; align-items: center; gap: 6px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ── Plan Ring ── */
+.plan-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+.plan-ring { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+.plan-ring svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.plan-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #111; }
+.plan-info { flex: 1; }
+.plan-num { font-size: 24px; font-weight: 800; color: #111; line-height: 1.1; }
+.plan-sub { font-size: 13px; color: #f5a623; font-weight: 600; margin-top: 4px; }
+
+.ex-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f4f5f7; }
+.ex-item:last-child { border-bottom: none; padding-bottom: 0; }
+.ex-img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; background: #f8f9fa; }
+.ex-name { font-size: 14px; font-weight: 700; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 2px; }
+.ex-meta { font-size: 12px; color: #888; }
+.ex-action { width: 32px; height: 32px; background: #f4f5f7; color: #aaa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+.ex-action.done { background: #35B93E; color: white; }
+
+/* ── Science & Gear ── */
+.sci-item { background: #f8f9fa; border-radius: 12px; padding: 14px; margin-bottom: 10px; border-left: 3px solid #35B93E; }
+.sci-title { font-size: 13px; font-weight: 700; color: #333; line-height: 1.4; margin-bottom: 6px; }
+.sci-meta { font-size: 11px; color: #888; }
+
+.gear-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -4px; padding: 0 4px; }
+.gear-scroll::-webkit-scrollbar { display: none; }
+.gear-card { min-width: 110px; flex-shrink: 0; border-radius: 16px; border: 1px solid #f4f5f7; padding: 10px; text-decoration: none; display: block; }
+.gear-img { width: 100%; height: 80px; object-fit: contain; margin-bottom: 8px; }
+.gear-name { font-size: 11px; font-weight: 600; color: #333; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.gear-price { font-size: 13px; font-weight: 800; color: #35B93E; }
+
+/* ── Feed ── */
+.section-label { font-size: 13px; font-weight: 700; color: #888; margin: 24px 8px 12px; }
+.feed-item { background: white; border-radius: 20px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
+.feed-icon { font-size: 20px; background: #f8f9fa; padding: 10px; border-radius: 14px; }
+.feed-body { flex: 1; }
+.feed-title { font-size: 14px; font-weight: 700; color: #111; line-height: 1.4; margin-bottom: 4px; }
+.feed-desc { font-size: 12px; color: #666; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.feed-time { font-size: 10px; color: #aaa; margin-top: 6px; }
+
+/* ── Bottom Input ── */
+.bottom-input {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 20px 32px;
+  background: linear-gradient(to top, #f4f5f7 70%, transparent);
+  display: flex; align-items: center; gap: 12px;
+  pointer-events: none;
+}
+.b-input {
+  flex: 1; background: white; border: none; border-radius: 24px; padding: 16px 20px;
+  font-size: 15px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); outline: none; pointer-events: auto;
+}
+.b-input::placeholder { color: #bbb; font-weight: 500; }
+.b-fab {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #8e62ff; color: white; border: none; font-size: 28px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(142,98,255,0.35); font-weight: 300; cursor: pointer;
+  pointer-events: auto; transition: transform 150ms;
+}
+.b-fab:active { transform: scale(0.95); }
+
+/* ── Status ── */
+.loading { display: none; text-align: center; padding: 60px 0; }
+.loading.show { display: block; }
+.spin { width: 28px; height: 28px; border: 3px solid #e9ecef; border-top-color: #35B93E; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ltext { font-size: 14px; color: #888; font-weight: 600; }
+.err-box { display: none; background: #fff0f0; color: #e5534b; padding: 16px; border-radius: 16px; font-size: 14px; text-align: center; margin-top: 32px; }
+.err-box.show { display: block; }
+
+/* --- Mobile UI Design System Overrides --- */
+:root {
+  --color-background: #E7E9EC;
+  --color-surface: #F2F2F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-text-primary: #000000;
+  --color-text-secondary: rgba(0,0,0,0.4);
+  --color-text-tertiary: rgba(0,0,0,0.2);
+  --color-border: rgba(255,255,255,0.5);
+  --color-divider: rgba(0,0,0,0.05);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 100px;
+  
+  --shadow-sm: 0px 4px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0px 8px 16px rgba(0,0,0,0.03);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+  font-variation-settings: 'wdth' 100;
+  background: var(--color-background);
+}
+
+.app-container {
+  background: var(--color-background);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(180deg, #00C040 0%, #41F58A 100%);
+}
+.tab.active { background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+
+/* Onboarding */
+.ob-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  margin-top: 24px;
+}
+.ob-q { color: var(--color-text-primary); font-size: 20px; font-weight: 590; margin-bottom: 16px; }
+.ob-opt {
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-weight: 590;
+  height: 48px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.ob-opt.selected, .ob-opt:active {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  border: none;
+}
+
+/* Results overrides */
+.dash-card, .feed-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+}
+.dash-title { color: var(--color-text-secondary); font-weight: 700; margin-bottom: 16px; }
+.plan-num { font-size: 24px; font-weight: 700; color: var(--color-text-primary); }
+.plan-sub { font-size: 14px; color: var(--color-text-secondary); font-weight: 590; }
+
+.ex-item { border-bottom: 1px solid var(--color-divider); }
+.ex-name { color: var(--color-text-primary); font-size: 16px; font-weight: 590; }
+.ex-meta { color: var(--color-text-secondary); font-size: 14px; }
+.ex-action.done { background: linear-gradient(180deg, #000000 0%, #575757 100%); color: #ACFF4E; }
+
+.sci-item { background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid #00C040; border-radius: var(--radius-lg); }
+.sci-title { color: var(--color-text-primary); font-size: 14px; font-weight: 590; }
+.sci-meta { color: var(--color-text-secondary); font-size: 12px; }
+.sci-link { color: #00C040; font-weight: 590; font-size: 12px; }
+
+.gear-card { background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.gear-name { color: var(--color-text-primary); font-size: 12px; font-weight: 590; }
+.gear-price { color: #00C040; font-size: 14px; font-family: 'Urbanist', sans-serif; font-weight: 800; }
+
+.section-label { color: var(--color-text-secondary); font-weight: 700; font-size: 14px; margin-top: 24px; }
+
+.feed-title { color: var(--color-text-primary); font-size: 16px; font-weight: 590; }
+.feed-desc { color: var(--color-text-secondary); font-size: 14px; }
+.feed-time { color: var(--color-text-tertiary); font-size: 12px; font-family: 'Urbanist', sans-serif; }
+
+.bottom-input { background: linear-gradient(to top, var(--color-background) 70%, transparent); }
+.b-input {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+}
+.b-input::placeholder { color: var(--color-text-secondary); }
+.b-fab {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  box-shadow: var(--shadow-md);
+}
+
+
+.main-scroll {
+  padding-bottom: 160px !important;
+}
+</style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Status bar indicator (fake) -->
+  <div style="position:absolute;top:0;left:0;right:0;height:44px;z-index:10;display:flex;justify-content:space-between;padding:14px 24px;color:white;font-size:14px;font-weight:600">
+    <span>9:41</span>
+    <div style="display:flex;gap:6px;align-items:center">
+      <div style="width:16px;height:12px;background:white;border-radius:2px"></div>
+      <div style="width:14px;height:12px;background:white;border-radius:2px;clip-path:polygon(0 30%,100% 0,100% 100%,0 100%)"></div>
+      <div style="width:20px;height:10px;border:1px solid white;border-radius:3px;position:relative"><div style="background:white;position:absolute;inset:1px;right:4px;border-radius:1px"></div></div>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="top-bar">
+      <div class="user-avatar"><i data-lucide="user"></i></div>
+      <div class="streaks">
+        <span style="color:#8dfb96"><i data-lucide="star" style="width:14px"></i> 5/10</span>
+        <span style="color:#ffc444"><i data-lucide="flame" style="width:14px"></i> 24</span>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab">Loss Weight</div>
+      <div class="tab active">Fit Lab</div>
+      <div class="tab">+ Add</div>
+    </div>
+  </div>
+
+  <div class="main-scroll">
+    <!-- Onboarding -->
+    <div id="onboard">
+      <div class="ob-card" id="ob-q1">
+        <div class="ob-q"> 今天想练哪个部位？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="obSelect(1,'chest','<i data-lucide='dumbbell' style='width:16px'></i> 胸部 / 上肢',event)"><i data-lucide="dumbbell" style="width:16px"></i> 胸部 / 上肢</button>
+          <button class="ob-opt" onclick="obSelect(1,'back','<i data-lucide='dumbbell' style='width:16px'></i> 背部',event)"><i data-lucide="dumbbell" style="width:16px"></i> 背部</button>
+          <button class="ob-opt" onclick="obSelect(1,'legs','<i data-lucide='activity' style='width:16px'></i> 腿部 / 臀部',event)"><i data-lucide="activity" style="width:16px"></i> 腿部 / 臀部</button>
+          <button class="ob-opt" onclick="obSelect(1,'abs','<i data-lucide='zap' style='width:16px'></i> 核心 / 腹部',event)"><i data-lucide="zap" style="width:16px"></i> 核心 / 腹部</button>
+        </div>
+      </div>
+      
+      <div class="ob-card hidden" id="ob-q2">
+        <div class="ob-q"> 你的训练经验如何？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="obSelect(2,'新手','<i data-lucide='leaf' style='width:16px'></i> 刚开始健身',event)"><i data-lucide="leaf" style="width:16px"></i> 刚开始健身</button>
+          <button class="ob-opt" onclick="obSelect(2,'有一定基础','<i data-lucide='dumbbell' style='width:16px'></i> 练过一段时间',event)"><i data-lucide="dumbbell" style="width:16px"></i> 练过一段时间</button>
+          <button class="ob-opt" onclick="obSelect(2,'长期训练','<i data-lucide='flame' style='width:14px'></i> 健身老手',event)"><i data-lucide="flame" style="width:14px"></i> 健身老手</button>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" id="inp" />
+    <div class="err-box" id="err"></div>
+
+    <div class="loading" id="loading">
+      <div class="spin"></div>
+      <div class="ltext" id="lmsg">正在生成 Jovida 专属计划...</div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="results" style="display:none"></div>
+  </div>
+
+  <!-- Bottom Input -->
+  <div class="bottom-input" id="bottom-input">
+    <input class="b-input" type="text" placeholder="Tell me anytime..." />
+    <button class="b-fab"><i data-lucide="arrow-up" style="width:24px"></i></button>
+  </div>
+</div>
+
+<script>
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+// API Helper
+async function post(path, body) {
+  const r = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || '请求失败');
+  return d;
+}
+
+// Onboarding Logic
+let obAnswers = {};
+function obSelect(step, value, label, evt) {
+  obAnswers['q' + step] = { value, label };
+  const stepEl = document.getElementById('ob-q' + step);
+  stepEl.querySelectorAll('.ob-opt').forEach(b => b.classList.remove('selected'));
+  evt.target.classList.add('selected');
+  
+  const nextStep = document.getElementById('ob-q' + (step + 1));
+  setTimeout(() => {
+    stepEl.classList.add('hidden');
+    if (nextStep) {
+      nextStep.classList.remove('hidden');
+    } else {
+      document.getElementById('inp').value = obAnswers.q1.value;
+      runLab();
+    }
+  }, 250);
+}
+
+// Main Logic
+async function runLab() {
+  const kw = document.getElementById('inp').value.trim();
+  if (!kw) return;
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('err').classList.remove('show');
+  
+  const msgs=['正在生成专属训练方案...','检索权威科学文献...','搜索最佳运动装备...','汇总 Reddit 真实反馈...'];
+  let mi=0;
+  const t=setInterval(()=>{ document.getElementById('lmsg').textContent=msgs[++mi%msgs.length]; }, 2000);
+  
+  try {
+    const [exercisesRes, scienceRes, gearRes, communityRes] = await Promise.allSettled([
+      post('/api/exercises', { keyword: kw }),
+      post('/api/pubmed', { keyword: kw + ' muscle training exercise science' }),
+      post('/api/shopping', { keyword: kw + ' workout equipment gym' }),
+      post('/api/reddit', { keyword: kw + ' workout training gains' })
+    ]);
+    clearInterval(t);
+    if (exercisesRes.status === 'rejected') throw exercisesRes.reason;
+    const exercises = exercisesRes.value;
+    const science = scienceRes.status === 'fulfilled' ? scienceRes.value : { articles: [] };
+    const gear = gearRes.status === 'fulfilled' ? gearRes.value : { products: [] };
+    const community = communityRes.status === 'fulfilled' ? communityRes.value : { posts: [] };
+    
+    renderDashboard(exercises.exercises||[], science.articles||[], gear.products||[], community.posts||[], kw);
+  } catch(e) {
+    clearInterval(t);
+    const el = document.getElementById('err');
+    el.textContent = '❌ ' + e.message;
+    el.classList.add('show');
+  if (window.lucide) lucide.createIcons();
+  } finally {
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+// Render Dashboard
+function renderDashboard(exercises, papers, products, posts, kw) {
+  const el = document.getElementById('results');
+
+  // 1. Plan Dashboard Card
+  const planItems = exercises.slice(0,3).map((ex, i) => `
+    <div class="ex-item">
+      ${ex.image ? `<img class="ex-img" src="${esc(ex.image)}" onerror="this.style.display='none'"/>` : `<div class="ex-img" style="display:flex;align-items:center;justify-content:center;font-size:20px"></div>`}
+      <div class="plan-info">
+        <div class="ex-name">${esc(ex.name)}</div>
+        <div class="ex-meta">${(ex.muscles||[]).map(esc).join(', ')} · 3 sets x 12</div>
+      </div>
+      <div class="ex-action ${i===0 ? 'done' : ''}">${i===0 ? '<i data-lucide="check" style="width:16px"></i>' : ''}</div>
+    </div>
+  `).join('');
+
+  const targetLabel = obAnswers.q1 ? obAnswers.q1.label : kw;
+  const levelLabel = obAnswers.q2 ? obAnswers.q2.label : '';
+  const cleanTarget = targetLabel.replace(/[\p{Emoji}\u200D]/gu, '').trim();
+  const cleanLevel = levelLabel.replace(/[\p{Emoji}\u200D]/gu, '').trim();
+
+  const dashCard = `
+    <div class="dash-card">
+      <div class="dash-title" style="color:#35B93E"><i data-lucide="droplet" style="width:16px;display:inline-block"></i> Today's Plan</div>
+      <div class="plan-row">
+        <div class="plan-ring">
+          <svg viewBox="0 0 36 36">
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f4f5f7" stroke-width="4"/>
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#35B93E" stroke-width="4" stroke-dasharray="33, 100" stroke-linecap="round"/>
+          </svg>
+          <div class="plan-val">33%</div>
+        </div>
+        <div class="plan-info">
+          <div class="plan-num">${cleanTarget}</div>
+          <div class="plan-sub">${cleanLevel} Program</div>
+        </div>
+      </div>
+      ${planItems}
+    </div>
+  `;
+
+  // 2. Science Card
+  let sciContent = '<div style="font-size:12px;color:#888;text-align:center">No recent studies found.</div>';
+  if (papers.length) {
+    sciContent = papers.slice(0, 2).map(p => `
+      <div class="sci-item">
+        <div class="sci-title">${esc(p.title)}</div>
+        <div class="sci-meta"><i data-lucide="newspaper" style="width:12px;display:inline-block"></i> ${esc(p.journal||'')} ${esc(p.year||'')}</div>
+        <a class="sci-link" href="${esc(p.url)}" target="_blank">View Paper →</a>
+      </div>
+    `).join('');
+  }
+  const sciCard = `
+    <div class="dash-card">
+      <div class="dash-title"><i data-lucide="microscope" style="width:16px;display:inline-block"></i> Scientific Basis</div>
+      ${sciContent}
+    </div>
+  `;
+
+  // 3. Gear Card
+  let gearContent = '<div style="font-size:12px;color:#888;text-align:center">No gear found.</div>';
+  if (products.length) {
+    gearContent = `<div class="gear-scroll">${products.slice(0, 4).map(p => `
+      <a class="gear-card" href="${esc(p.url)}" target="_blank">
+        <img class="gear-img" src="${esc(p.thumbnail)}" onerror="this.style.display='none'" />
+        <div class="gear-name">${esc(p.title||'')}</div>
+        <div class="gear-price">${esc(String(p.price))}</div>
+      </a>
+    `).join('')}</div>`;
+  }
+  const gearCard = `
+    <div class="dash-card">
+      <div class="dash-title"><i data-lucide="shopping-cart" style="width:16px;display:inline-block"></i> Equipment</div>
+      ${gearContent}
+    </div>
+  `;
+
+  // 4. Feed Items (Community)
+  let feedContent = '';
+  if (posts.length) {
+    feedContent = '<div class="section-label">Today\'s Record</div>' + posts.slice(0, 3).map(p => `
+      <div class="feed-item">
+        <div class="feed-icon"><i data-lucide="message-circle" style="width:20px;display:inline-block"></i></div>
+        <div class="feed-body">
+          <div class="feed-title">${esc(p.title)}</div>
+          <div class="feed-desc">${esc(p.body || '')}</div>
+          <div class="feed-time">r/${esc(p.subreddit)} · ${(p.score||0).toLocaleString()} upvotes</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  el.innerHTML = `
+    ${dashCard}
+    ${sciCard}
+    ${gearCard}
+    ${feedContent}
+  `;
+  el.style.display = 'block';
+  if (window.lucide) lucide.createIcons();
+}
+</script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

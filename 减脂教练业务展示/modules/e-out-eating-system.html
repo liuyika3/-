@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>外食体系 · SPARE-E 可落地性 · 减脂教练业务展示</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121826;
+      --line: #2d3a52;
+      --text: #e8edf5;
+      --muted: #94a3b8;
+      --e: #34d399;
+      --r: #f472b6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1.25rem clamp(1rem, 3vw, 2rem) 2.5rem;
+      line-height: 1.55;
+    }
+    a.back { color: #6ee7b7; text-decoration: none; font-size: 0.9rem; }
+    a.back:focus-visible { outline: 2px solid var(--e); outline-offset: 2px; }
+    .crumb { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.75rem; }
+    h1 { font-size: clamp(1.2rem, 2.4vw, 1.45rem); margin: 0.5rem 0; letter-spacing: -0.02em; }
+    .map {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--line);
+      background: rgba(52, 211, 153, 0.06);
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 52rem;
+    }
+    .map strong { color: var(--e); font-weight: 700; }
+    .map .r { color: var(--r); font-weight: 600; }
+    .intro { color: var(--muted); max-width: 52rem; font-size: 0.92rem; margin: 1rem 0 0; }
+
+    /* 两张长图：左右并列，单列内竖向铺满（自然高度） */
+    .long-pair {
+      margin-top: 1.75rem;
+      max-width: min(1040px, 100%);
+      margin-left: auto;
+      margin-right: auto;
+      display: grid;
+      gap: 1.25rem 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .long-pair {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    figure {
+      margin: 0;
+      padding: 0;
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      overflow: hidden;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+      display: block;
+      background: #0f172a;
+    }
+    figcaption {
+      padding: 0.85rem 1rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    figcaption .label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--e);
+      margin-bottom: 0.35rem;
+    }
+
+    .strip-wrap {
+      margin-top: 1.25rem;
+      max-width: min(1040px, 100%);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← 返回 SPARE 总览</a>
+  <p class="crumb">SPARE · E 可落地性 / 落地资源包 / 餐前决策</p>
+  <h1>外食体系 · 设计展示</h1>
+  <p class="map">
+    <span>在总览 <strong>SPARE 大括号结构</strong> 中，外食推荐落在 <strong>E · 可落地性</strong> → 落地资源包 → <strong>餐前决策</strong>；</span>
+    <span class="r">与 R · 结果导向（日常饮食 → 激素与外食行为）互为解释层。</span>
+  </p>
+  <p class="intro">
+    下方为界面截图：两张<strong>竖向长图</strong>左右并列，其下为外食套餐详情横条切图（门店、营养与地图等）。
+  </p>
+
+  <div class="long-pair" aria-label="外食长图两列">
+    <figure>
+      <img src="../assets/waishe-home.png" alt="首页 Next Meal Ideas 外食推荐" width="288" loading="lazy" />
+      <figcaption>
+        <span class="label">左 · 首页外食推荐</span>
+        「Today」与 Next Meal Ideas 横滑卡片入口。
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/waishe-detail-recipe.png" alt="菜谱与备餐详情" width="296" loading="lazy" />
+      <figcaption>
+        <span class="label">右 · 菜谱 / 备餐详情</span>
+        食材、步骤与第三方下单等可执行信息。
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="strip-wrap">
+    <figure>
+      <img src="../assets/waishe-detail-out.png" alt="外食套餐详情页" width="290" loading="lazy" />
+      <figcaption>
+        <span class="label">外食套餐详情（横条切图）</span>
+        门店信息、宏量营养与地图导流等。
+      </figcaption>
+    </figure>
+  </div>
+</body>
+</html>

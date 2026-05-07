@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gmail 邮件群发工具</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0891B2',
+            secondary: '#22D3EE',
+            cta: '#22C55E',
+            background: '#ECFEFF',
+            text: '#164E63'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom simple reset / base styles outside tailwind */
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: #ECFEFF; color: #164E63; }
+    .container { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 22px; font-weight: 600; color: #1f2329; margin-bottom: 24px; }
+    .card { background: #fff; border-radius: 8px; padding: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 16px; }
+    label { display: block; font-size: 13px; font-weight: 500; color: #646a73;
+            margin-bottom: 6px; letter-spacing: 0.02em; }
+    textarea, input[type="text"] {
+      width: 100%; border: 1px solid #dde0e6; border-radius: 6px;
+      padding: 10px 12px; font-size: 14px; color: #1f2329; line-height: 1.6;
+      transition: border-color 0.15s; resize: vertical; font-family: inherit;
+    }
+    textarea:focus, input[type="text"]:focus {
+      outline: none; border-color: #3370ff; box-shadow: 0 0 0 2px rgba(51,112,255,0.15);
+    }
+    .field { margin-bottom: 16px; }
+    .recipients-area { min-height: 100px; }
+    .body-area { min-height: 180px; }
+    .hint { font-size: 12px; color: #8f959e; margin-top: 6px;
+            background: #f7f8fa; border-radius: 4px; padding: 8px 10px;
+            display: none; line-height: 1.6; }
+    .hint.visible { display: block; }
+    .hint code { background: #eaecf0; padding: 1px 4px; border-radius: 3px;
+                 font-family: monospace; font-size: 12px; }
+    .toggle-row { display: flex; align-items: center; gap: 10px; padding: 14px 0 2px; }
+    .toggle-label { font-size: 14px; color: #1f2329; font-weight: 500; }
+    /* Toggle switch */
+    .switch { position: relative; display: inline-block; width: 36px; height: 20px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top:0; left:0; right:0; bottom:0;
+              background:#dde0e6; border-radius: 20px; transition:.2s; }
+    .slider:before { position:absolute; content:""; height:14px; width:14px; left:3px; bottom:3px;
+                     background:#fff; border-radius:50%; transition:.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    input:checked + .slider { background: #3370ff; }
+    input:checked + .slider:before { transform: translateX(16px); }
+    .actions { display: flex; gap: 12px; margin-top: 20px; }
+    button { padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500;
+             cursor: pointer; border: none; transition: all 0.15s; }
+    .btn-preview { background: #fff; color: #3370ff; border: 1px solid #3370ff; }
+    .btn-preview:hover { background: #f0f4ff; }
+    .btn-send { background: #3370ff; color: #fff; }
+    .btn-send:hover { background: #2a5fd4; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Status area */
+    #status-area { display: none; }
+    .section-title { font-size: 13px; font-weight: 500; color: #646a73;
+                     margin-bottom: 12px; letter-spacing: 0.02em; }
+    .status-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .status-table th { text-align: left; padding: 8px 10px; background: #f5f6f7;
+                       font-weight: 500; color: #646a73; border-bottom: 1px solid #eaecf0; }
+    .status-table td { padding: 9px 10px; border-bottom: 1px solid #f0f1f3; color: #1f2329; vertical-align: middle; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px;
+             font-size: 12px; font-weight: 500; }
+    .badge-success { background: #e4f7e4; color: #1a7a30; }
+    .badge-fail { background: #fde8e8; color: #c0280e; }
+    .summary { font-size: 13px; color: #646a73; margin-top: 12px;
+               padding-top: 10px; border-top: 1px solid #f0f1f3; }
+
+    /* Scheduler */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .small { font-size: 12px; color: #8f959e; line-height: 1.6; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .job-line { display:flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f0f1f3; }
+    .job-line:last-child { border-bottom: none; }
+    .job-k { color: #646a73; min-width: 92px; }
+    .job-v { color: #1f2329; word-break: break-all; }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0;
+                     background: rgba(0,0,0,0.4); z-index: 1000;
+                     align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 10px; width: 680px; max-width: 95vw;
+             max-height: 85vh; overflow-y: auto;
+             box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center;
+                    padding: 18px 24px 14px; border-bottom: 1px solid #eaecf0;
+                    position: sticky; top: 0; background: #fff; z-index: 1; }
+    .modal-title { font-size: 15px; font-weight: 600; color: #1f2329; }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer;
+                   color: #8f959e; padding: 0 4px; line-height: 1; }
+    .modal-close:hover { color: #1f2329; }
+    .mail-preview { padding: 20px 24px; }
+
+    /* Recipient tabs */
+    .recipient-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .recipient-tab { padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 500;
+                     background: #f0f4ff; color: #3370ff; cursor: pointer;
+                     border: 1px solid #c7d8ff; transition: all 0.12s; }
+    .recipient-tab:hover { background: #dce8ff; }
+    .recipient-tab.active { background: #3370ff; color: #fff; border-color: #3370ff; }
+
+    /* Lark mail style */
+    .mail-meta { background: #f7f8fa; border-radius: 6px; padding: 14px 16px; margin-bottom: 16px; }
+    .meta-row { display: flex; gap: 8px; margin-bottom: 7px; font-size: 13px; }
+    .meta-row:last-child { margin-bottom: 0; }
+    .meta-key { color: #646a73; min-width: 48px; font-weight: 500; flex-shrink: 0; }
+    .meta-val { color: #1f2329; word-break: break-all; }
+    .mail-subject-preview { font-size: 17px; font-weight: 600; color: #1f2329;
+                            margin-bottom: 16px; padding-bottom: 14px;
+                            border-bottom: 1px solid #eaecf0; line-height: 1.4; }
+    .mail-body-preview { font-size: 14px; color: #1f2329; line-height: 1.7;
+                         word-break: break-word;
+                         font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif; }
+    .mail-body-preview p, .mail-body-preview div { margin: 0; padding: 0; min-height: 1em; }
+    .mail-body-preview a { color: #3370ff; }
+    .mail-body-preview b, .mail-body-preview strong { font-weight: 700; }
+    .mail-body-preview i, .mail-body-preview em { font-style: italic; }
+    .mail-body-preview u { text-decoration: underline; }
+    .mail-body-preview ul, .mail-body-preview ol { padding-left: 20px; margin: 4px 0; }
+    .mail-body-preview h1, .mail-body-preview h2, .mail-body-preview h3 { font-weight: 700; margin: 4px 0; }
+    .mail-body-preview b, .mail-body-preview strong { font-weight: 700; }
+    .mail-body-preview i, .mail-body-preview em { font-style: italic; }
+    .mail-body-preview u { text-decoration: underline; }
+    .mail-body-preview s, .mail-body-preview strike, .mail-body-preview del { text-decoration: line-through; }
+    .mail-body-preview h1, .mail-body-preview h2 { font-weight: 700; margin: 8px 0 4px; }
+    .mail-body-preview h1 { font-size: 20px; }
+    .mail-body-preview h2 { font-size: 16px; }
+    .mail-body-preview ul { padding-left: 20px; margin: 4px 0; }
+    .mail-body-preview ol { padding-left: 20px; margin: 4px 0; }
+    .mail-body-preview li { margin: 2px 0; }
+    .mail-body-preview div { min-height: 1em; }
+    .mail-body-preview a { color: #3370ff; text-decoration: underline; }
+    .no-recipients { color: #c0280e; font-size: 13px; padding: 8px 0; }
+
+    /* Rich text editor */
+    .editor-wrap { border: 1px solid #dde0e6; border-radius: 6px; overflow: hidden;
+                   transition: border-color 0.15s; }
+    .editor-wrap:focus-within { border-color: #3370ff; box-shadow: 0 0 0 2px rgba(51,112,255,0.15); }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 2px; padding: 6px 8px;
+               background: #f7f8fa; border-bottom: 1px solid #eaecf0; }
+    .tb-btn { background: none; border: none; border-radius: 4px; padding: 4px 7px;
+              font-size: 13px; cursor: pointer; color: #1f2329; line-height: 1;
+              transition: background 0.1s; min-width: 28px; }
+    .tb-btn:hover { background: #eaecf0; }
+    .tb-btn.active { background: #e0e9ff; color: #3370ff; }
+    .tb-sep { width: 1px; background: #dde0e6; margin: 2px 4px; align-self: stretch; }
+    #body-editor { min-height: 180px; padding: 10px 12px; font-size: 14px;
+                   color: #1f2329; line-height: 1.7; outline: none;
+                   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+                   word-break: break-word; white-space: pre-wrap; }
+    #body-editor:empty:before { content: attr(data-placeholder); color: #b0b7c0; pointer-events: none; }
+    #body-editor p { margin: 0; padding: 0; min-height: 1em; }
+    #body-editor div { margin: 0; padding: 0; min-height: 1em; }
+    #body-editor b, #body-editor strong { font-weight: 700; }
+    #body-editor ul { padding-left: 20px; margin: 4px 0; }
+    #body-editor ol { padding-left: 20px; margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="fixed inset-0 bg-gray-900/60 z-[9999] items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 hidden" style="display: none; opacity: 0;">
+    <div class="bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh] transition-transform duration-300 scale-95">
+      <!-- Header -->
+      <div class="px-8 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900 m-0">Gmail 账号切换与授权向导</h2>
+          <p class="text-sm text-gray-500 mt-1 mb-0">为了保证你可以用任何 Gmail 账号群发，我们需要进行一次简单的 API 配置。</p>
+        </div>
+        <button id="close-auth-btn" class="text-gray-400 hover:text-gray-600 text-3xl leading-none bg-transparent border-none cursor-pointer transition-colors">&times;</button>
+      </div>
+
+      <!-- Content -->
+      <div class="p-8 overflow-y-auto bg-gray-50/50">
+        
+        <!-- Step 1: Who are you logging in as? -->
+        <div class="mb-8 bg-white p-6 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-sm">1</span>
+            确定你要用哪个邮箱发件？
+          </h3>
+          <p class="text-sm text-gray-600 mb-4 ml-8">我们需要把你将要登录的邮箱，先加入到 Google Cloud 的白名单里，否则 Google 会拦截你。</p>
+          <div class="ml-8">
+            <input type="email" id="target-email-input" class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="例如：yourname@gmail.com">
+            <p class="text-xs text-gray-500 mt-2">💡 把上面这个邮箱填好并复制下来，下一步会用到。</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Google Cloud Setup -->
+        <div class="mb-8 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span class="bg-gray-100 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span>
+            去 Google Cloud 把邮箱加白名单
+          </h3>
+          
+          <div class="space-y-4 ml-8">
+            <div class="flex items-start gap-3">
+              <div class="mt-1 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></div>
+              <p class="text-sm text-gray-700 m-0">打开并登录 <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 underline-offset-2">Google Cloud OAuth 同意屏幕 ↗</a> <em>(记得挂全局代理)</em></p>
+            </div>
+            
+            <div class="flex items-start gap-3">
+              <div class="mt-1 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></div>
+              <div>
+                <p class="text-sm text-gray-700 m-0">如果是第一次进，它可能会让你 <strong>新建项目 (Create Project)</strong>，名字随便起。</p>
+                <p class="text-sm text-gray-700 mt-1 mb-0">然后 User Type 选 <strong>External (外部)</strong>，填一下必填的 App 名称和支持邮箱。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-amber-50 p-3 rounded-lg border border-amber-200">
+              <div class="mt-1 text-amber-500 shrink-0">⚠️</div>
+              <div>
+                <p class="text-sm font-bold text-amber-900 m-0">最关键的一步 (防止 403 拒绝访问)：</p>
+                <p class="text-sm text-amber-800 mt-1 mb-0">在这个页面的下面找到 <strong>Test users (测试用户)</strong>，点击 <strong>+ ADD USERS</strong>，把你刚才第一步填的那个邮箱加进去，点保存！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Credentials -->
+        <div class="mb-8 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span class="bg-gray-100 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-sm">3</span>
+            拿到登录钥匙 (Client ID / Secret)
+          </h3>
+          
+          <div class="space-y-4 ml-8">
+            <p class="text-sm text-gray-700 m-0">1. 点击左侧菜单的 <strong>Credentials (凭据)</strong>，点击顶部的 <strong>+ Create Credentials</strong> > <strong>OAuth client ID</strong>。</p>
+            <p class="text-sm text-gray-700 m-0">2. Application type 选 <strong>Web application</strong>。</p>
+            <div class="text-sm text-gray-700 m-0">
+              3. 在 <strong>Authorized redirect URIs (已获授权的重定向 URI)</strong> 这里，点击 ADD URI，把下面这两行分别粘贴进去：
+              <div class="mt-2 flex gap-2 flex-col items-start">
+                <code class="bg-gray-100 px-3 py-1.5 rounded text-xs border border-gray-200 select-all font-mono">http://127.0.0.1:3012/oauth/callback</code>
+                <code class="bg-gray-100 px-3 py-1.5 rounded text-xs border border-gray-200 select-all font-mono">http://localhost:3012/oauth/callback</code>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700 m-0">4. 点击底部的 Create，它会弹出一个窗口，把你看到的 <strong>Client ID</strong> 和 <strong>Client Secret</strong> 复制下来。</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Login -->
+        <div class="bg-white p-6 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-sm">4</span>
+            填入钥匙，发起登录
+          </h3>
+          
+          <div class="ml-8 space-y-4">
+            <p class="text-sm text-gray-500 mb-2">如果你之前已经成功填过这俩个钥匙，它们可能已经保存在本地了，此时你只需要直接点下面那个蓝色大按钮去授权即可，不需要重复填。</p>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wider">Client ID</label>
+              <input type="text" id="auth-client-id" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all font-mono" placeholder="123456789-xxxx.apps.googleusercontent.com">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wider">Client Secret</label>
+              <input type="text" id="auth-client-secret" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all font-mono" placeholder="GOCSPX-xxxxxxxxxxxxx">
+            </div>
+            
+            <div class="pt-4">
+              <button id="auth-submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 border-none cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                去 Google 页面登录那个邮箱！
+              </button>
+              <p class="text-xs text-center text-gray-500 mt-3">跳转后，如果提示 "Google hasn't verified this app"，点击左下角的 <strong>"Advanced (高级)"</strong> -> <strong>"Go to ... (unsafe)"</strong> 即可通过。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
+      <h1 class="!mb-0 text-2xl font-bold text-gray-900 m-0">Gmail 邮件群发工具</h1>
+      <div id="auth-status-container" class="flex items-center gap-3">
+        <span id="auth-status-indicator" class="text-sm font-medium text-gray-500 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-gray-400"></span> 检查状态中...
+        </span>
+        <button id="auth-open-btn" class="text-sm px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-md shadow-sm transition cursor-pointer font-medium relative z-[50]" style="display: inline-block;">
+          登录 / 换号
+        </button>
+        <button id="auth-logout-btn" class="text-sm px-3 py-1.5 border border-red-200 text-red-600 hover:bg-red-50 bg-white rounded-md shadow-sm transition cursor-pointer relative z-[50]" style="display: none;">
+          退出当前账号
+        </button>
+      </div>
+    </div>
+
+  <div class="card">
+    <div class="field">
+      <label>收件人列表</label>
+      <textarea id="recipients" class="recipients-area"
+        placeholder="每行一个，或用逗号 / 分号分隔&#10;&#10;支持格式：&#10;  alice@example.com&#10;  张三 &lt;zhangsan@example.com&gt;"></textarea>
+    </div>
+
+    <div class="field">
+      <label>邮件主题</label>
+      <input type="text" id="subject" placeholder="主题（原样发送，不做任何修改）" />
+    </div>
+
+    <div class="field">
+      <label>邮件正文</label>
+      <div class="editor-wrap">
+        <div class="toolbar" style="border-bottom:0; align-items:center;">
+          <button class="tb-btn" id="tb-banner-file" title="上传本地图片作为顶部 Banner">🖼️ 上传本地 Banner</button>
+          <input type="file" id="banner-file" accept="image/png, image/jpeg, image/gif, image/webp" style="display:none;" />
+          <span class="small" style="margin-left:6px">提示：使用已授权的 Gmail 接口发送（直接在正文内联显示）</span>
+        </div>
+        <div class="toolbar" id="toolbar">
+          <button class="tb-btn" data-cmd="bold" title="加粗"><b>B</b></button>
+          <button class="tb-btn" data-cmd="italic" title="斜体"><i>I</i></button>
+          <button class="tb-btn" data-cmd="underline" title="下划线"><u>U</u></button>
+          <button class="tb-btn" data-cmd="strikeThrough" title="删除线"><s>S</s></button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="h2" title="标题">H1</button>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="h3" title="小标题">H2</button>
+          <button class="tb-btn" data-cmd="formatBlock" data-val="p" title="正文">¶</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" data-cmd="insertUnorderedList" title="无序列表">• 列表</button>
+          <button class="tb-btn" data-cmd="insertOrderedList" title="有序列表">1. 列表</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" id="tb-link" title="插入链接">🔗</button>
+          <button class="tb-btn" data-cmd="removeFormat" title="清除格式">✕ 格式</button>
+        </div>
+        <div id="body-editor" contenteditable="true"
+             data-placeholder="正文内容（支持加粗、斜体、列表等富文本格式）"></div>
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <label class="switch">
+        <input type="checkbox" id="personalization" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">个性化</span>
+    </div>
+    <div class="toggle-row" style="padding-top:10px">
+      <label class="switch">
+        <input type="checkbox" id="plainTextMode" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">纯文本发送（强一致，推荐解决“怪空格/标签外露/样式乱”）</span>
+    </div>
+    <div class="hint" id="personalization-hint">
+      开启后，主题和正文中的 <code>{{姓名}}</code> 将自动替换为每位收件人的姓名。<br>
+      收件人格式需为：<code>姓名 &lt;email@example.com&gt;</code>（无姓名则用邮箱前缀代替）
+    </div>
+
+    <div class="actions">
+      <button class="btn-preview" id="btn-preview">预览</button>
+      <button class="btn-send" id="btn-send">发送</button>
+    </div>
+  </div>
+
+  <div class="card" id="scheduler-card">
+    <div class="section-title">定时 / 分批发送（防风控）</div>
+    <div class="grid-3">
+      <div class="field" style="margin-bottom:0">
+        <label>每批发送（封）</label>
+        <input type="text" id="batchSize" placeholder="例如 20" value="20" />
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>间隔（分钟）</label>
+        <input type="text" id="intervalMinutes" placeholder="例如 10" value="10" />
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>开始时间（可选）</label>
+        <input type="text" id="startAt" placeholder="留空=立刻开始；或填 2026-04-16T20:30" />
+      </div>
+    </div>
+    <div class="small" style="margin-top:10px">
+      - 建议：先用「预览」确认样式，再创建定时任务。<br>
+      - 任务在本机 Node 进程内运行；关闭 `server.mjs` 会停止任务。<br>
+    </div>
+    <div class="actions" style="margin-top:14px">
+      <button class="btn-send" id="btn-schedule">创建定时任务</button>
+      <button class="btn-preview" id="btn-job-pause" disabled>暂停</button>
+      <button class="btn-preview" id="btn-job-resume" disabled>继续</button>
+      <button class="btn-preview" id="btn-job-cancel" disabled>取消</button>
+    </div>
+
+    <div id="job-status" class="hint visible" style="margin-top:12px; display:block">
+      <div class="job-line"><span class="job-k">当前任务</span><span class="job-v">无</span></div>
+      <div class="job-line"><span class="job-k">状态</span><span class="job-v">-</span></div>
+      <div class="job-line"><span class="job-k">进度</span><span class="job-v">-</span></div>
+      <div class="job-line"><span class="job-k">下次执行</span><span class="job-v">-</span></div>
+      <div class="job-line"><span class="job-k">最近错误</span><span class="job-v">-</span></div>
+    </div>
+  </div>
+
+  <div class="card" id="status-area">
+    <div class="section-title">发送结果</div>
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>收件人</th>
+          <th style="width:80px">状态</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody id="status-body"></tbody>
+    </table>
+    <div class="summary" id="summary"></div>
+  </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">邮件预览</span>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+    <div class="mail-preview" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+    // Avoid global collisions with other script blocks
+    const $ = (id) => document.getElementById(id);
+    // Use `var` so multiple script blocks won't crash on redeclare
+    var escHtml = window.__escHtml || ((s) =>
+      String(s || '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m])
+    );
+    window.__escHtml = escHtml;
+
+    // Auth flow handling
+    async function checkAuthStatus() {
+      try {
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), 2500);
+        const res = await fetch('/api/auth/status', { signal: controller.signal });
+        clearTimeout(t);
+        const data = await res.json();
+        
+        const indicator = $('auth-status-indicator');
+        const loginBtn = $('auth-open-btn');
+        const logoutBtn = $('auth-logout-btn');
+
+        // Always keep “登录/换号” button visible (UX: user can always open the wizard)
+        if (loginBtn) loginBtn.style.display = 'inline-block';
+
+        if (data.authenticated) {
+          indicator.innerHTML = `<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span> 已登录: ${escHtml(data.activeAccount || 'Gmail')}`;
+          indicator.className = 'text-sm font-medium text-green-700 flex items-center gap-1.5';
+          if (loginBtn) loginBtn.textContent = '换号 / 重新授权';
+          logoutBtn.style.display = 'inline-block';
+        } else {
+          indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-400"></span> 未登录';
+          indicator.className = 'text-sm font-medium text-red-600 flex items-center gap-1.5';
+          if (loginBtn) loginBtn.textContent = '登录 / 换号';
+          logoutBtn.style.display = 'none';
+        }
+      } catch (e) {
+        // 兜底：就算后端暂时不可用，也必须让“登录/换号”按钮可点
+        console.error('Failed to check auth status', e);
+        const indicator = $('auth-status-indicator');
+        const loginBtn = $('auth-open-btn');
+        const logoutBtn = $('auth-logout-btn');
+        if (indicator) {
+          indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span> 状态检查失败（仍可登录）';
+          indicator.className = 'text-sm font-medium text-amber-700 flex items-center gap-1.5';
+        }
+        if (loginBtn) loginBtn.style.display = 'inline-block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      }
+    }
+
+    $('auth-open-btn').addEventListener('click', () => {
+      const modal = $('auth-modal');
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        const inner = modal.querySelector('.max-w-2xl');
+        if(inner) inner.style.transform = 'scale(1)';
+      }, 10);
+    });
+
+    $('close-auth-btn').addEventListener('click', () => {
+      const modal = $('auth-modal');
+      modal.style.opacity = '0';
+      const inner = modal.querySelector('.max-w-2xl');
+      if(inner) inner.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }, 300);
+    });
+
+    $('auth-logout-btn').addEventListener('click', async () => {
+      if(!confirm('确定要退出当前 Gmail 账号吗？')) return;
+      try {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        checkAuthStatus();
+        alert('已退出账号');
+      } catch (e) {}
+    });
+
+    $('auth-submit-btn').addEventListener('click', async () => {
+      const clientId = $('auth-client-id').value.trim();
+      const clientSecret = $('auth-client-secret').value.trim();
+      const targetEmail = $('target-email-input').value.trim();
+      
+      if(!clientId || !clientSecret) {
+        alert('请在第 4 步填入完整的 Client ID 和 Client Secret');
+        return;
+      }
+      
+      if(!targetEmail || !targetEmail.includes('@gmail.com')) {
+        alert('请在第 1 步填入有效的你要登录的 Gmail 邮箱！');
+        $('target-email-input').focus();
+        return;
+      }
+
+      const btn = $('auth-submit-btn');
+      const originalText = btn.innerHTML;
+      btn.textContent = '保存中并准备跳转...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/auth/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ client_id: clientId, client_secret: clientSecret, email: targetEmail })
+        });
+        const data = await res.json();
+        
+        if (data.error) throw new Error(data.error);
+        if (data.authUrl) {
+          // append login_hint to pre-fill the email in Google OAuth
+          let finalUrl = data.authUrl;
+          if (targetEmail) {
+            finalUrl += `&login_hint=${encodeURIComponent(targetEmail)}`;
+          }
+          window.location.href = finalUrl;
+        }
+      } catch (e) {
+        alert('出错了: ' + e.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    // Check auth on page load
+    checkAuthStatus();
+
+  // Snapshot: ensure "Send" uses the exact same payload as "Preview"
+  let editorVersion = 0;
+  let lastPreviewSnapshot = null; // { version, data, bodyHash }
+
+  // Inline images for CID attachments
+  // [{ cid, file_path, url }]
+  let inlineImages = [];
+
+  // ── Autosave (localStorage) ───────────────────────────────────────────
+  const LS_KEY = 'mailTool.draft.v1';
+  let autosaveTimer = null;
+
+  function scheduleAutosave() {
+    if (autosaveTimer) clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(() => {
+      try {
+        const draft = {
+          recipients: $('recipients').value || '',
+          subject: $('subject').value || '',
+          editorHtml: $('body-editor').innerHTML || '',
+          personalization: !!$('personalization')?.checked,
+          plainTextMode: !!$('plainTextMode')?.checked,
+          inlineImages: inlineImages || [],
+          savedAt: Date.now(),
+        };
+        localStorage.setItem(LS_KEY, JSON.stringify(draft));
+      } catch {
+        // ignore
+      }
+    }, 250);
+  }
+
+  function restoreDraft() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (!d) return;
+      if (typeof d.recipients === 'string') $('recipients').value = d.recipients;
+      if (typeof d.subject === 'string') $('subject').value = d.subject;
+      if (typeof d.editorHtml === 'string') $('body-editor').innerHTML = d.editorHtml;
+      if (typeof d.personalization === 'boolean') $('personalization').checked = d.personalization;
+      if (typeof d.plainTextMode === 'boolean') $('plainTextMode').checked = d.plainTextMode;
+      if (Array.isArray(d.inlineImages)) inlineImages = d.inlineImages;
+      // Update hint visibility
+      $('personalization-hint').classList.toggle('visible', $('personalization').checked);
+      bumpEditorVersion();
+    } catch {
+      // ignore
+    }
+  }
+
+  function bumpEditorVersion() {
+    editorVersion += 1;
+    lastPreviewSnapshot = null;
+    scheduleAutosave();
+  }
+
+  // Use <p> as paragraph separator so Enter creates <p> not <div>
+  document.execCommand('defaultParagraphSeparator', false, 'p');
+
+  // Build the final HTML body that will be sent.
+  // Key goals:
+  // - Preserve rich text when pasting (bold/list/link/etc)
+  // - Normalize to a small safe tag set
+  // - Add inline styles needed by email clients (avoid relying on external CSS)
+  function prepareBodyForSend() {
+    const html = $('body-editor').innerHTML || '';
+    const normalized = normalizeEmailHtml(html);
+    const wrapped = wrapForEmail(normalized);
+    // Replace internal /uploads/ urls with cid: for send
+    const withCid = replaceImgSrcWithCid(wrapped);
+    return hardRemoveNewlinesInTextNodes(withCid);
+  }
+
+  function prepareBodyForPreview() {
+    const html = $('body-editor').innerHTML || '';
+    const normalized = normalizeEmailHtml(html);
+    const wrapped = wrapForEmail(normalized);
+    // Preview should keep /uploads/... so iframe can load it.
+    return hardRemoveNewlinesInTextNodes(wrapped);
+  }
+
+  function replaceImgSrcWithCid(html) {
+    let out = html;
+    for (const img of inlineImages) {
+      if (img.url && img.cid) {
+        out = out.split(img.url).join(`cid:${img.cid}`);
+      }
+    }
+    return out;
+  }
+
+  // Hard fix for pipelines inserting line breaks into stored HTML
+  // If the HTML contains literal newlines in TEXT nodes, mail clients render them as spaces
+  // and you get "t hought s" / "credit s". We only want newlines via <p>/<br>.
+  function hardRemoveNewlinesInTextNodes(html) {
+    const doc = new DOMParser().parseFromString(html || '', 'text/html');
+    const root = doc.body;
+    const walker = doc.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const texts = [];
+    while (walker.nextNode()) texts.push(walker.currentNode);
+    for (const t of texts) {
+      let s = t.nodeValue || '';
+      // Remove all line separators and collapse adjacent spaces.
+      s = s.replace(/[\r\n\u2028\u2029]+/g, ' ');
+      s = s.replace(/ {2,}/g, ' ');
+      t.nodeValue = s;
+    }
+    return root.innerHTML || '';
+  }
+
+  function wrapForEmail(innerHtml) {
+    // Use DOM serialization to ensure tags are properly closed.
+    const wrapper = document.createElement('div');
+    wrapper.style.fontFamily = "-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif";
+    wrapper.style.fontSize = '14px';
+    wrapper.style.lineHeight = '1.7';
+    wrapper.style.color = '#1f2329';
+    // Avoid wordBreak=break-word: some mail clients will split English words strangely.
+    // Use overflow-wrap instead for long URLs.
+    wrapper.style.overflowWrap = 'anywhere';
+    wrapper.innerHTML = innerHtml || '';
+    // Send as an HTML fragment (more compatible than full document wrappers in some pipelines).
+    return wrapper.outerHTML;
+  }
+
+  function normalizeEmailHtml(html) {
+    const doc = new DOMParser().parseFromString(html || '', 'text/html');
+    const frag = doc.body;
+    // Drop zero-width characters that commonly appear after copy/paste.
+    stripZeroWidth(frag);
+    const out = sanitizeNodeChildren(frag);
+    const safe = out && out.trim() ? out : '<p style="margin:0 0 12px 0;padding:0;"><br></p>';
+    // Re-parse and re-serialize once to fix any accidental unclosed tags
+    // from paste/execCommand fragments.
+    const doc2 = new DOMParser().parseFromString(safe, 'text/html');
+    return doc2.body.innerHTML || '<p><br></p>';
+  }
+
+  function stripZeroWidth(root) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const texts = [];
+    while (walker.nextNode()) texts.push(walker.currentNode);
+    for (const t of texts) {
+      // Remove common invisible / layout control chars introduced by copy/paste.
+      // - Zero-width chars: \u200B-\u200D, \u2060, \uFEFF
+      // - Soft hyphen: \u00AD (often causes in-word breaks after reflow)
+      // - NBSP: \u00A0 -> normal space
+      t.textContent = (t.textContent || '')
+        .replace(/[\u200B\u200C\u200D\u2060\uFEFF]/g, '')
+        .replace(/\u00AD/g, '')
+        .replace(/\u00A0/g, ' ')
+        // Unicode thin spaces & friends -> normal space
+        .replace(/[\u2000-\u200A\u202F\u205F\u3000]/g, ' ');
+    }
+  }
+
+  function sanitizeNodeChildren(node) {
+    let out = '';
+    for (const child of node.childNodes) out += sanitizeNode(child);
+    return out;
+  }
+
+  function sanitizeNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // Normalize whitespace to reduce "random spaces inside words" after email reflow.
+      // 1) Join hard line breaks that split alphanumerics: "though\n ts" -> "thoughts"
+      // 2) Convert other newlines/tabs to a single space (layout should come from <p>/<br>)
+      let t = node.textContent || '';
+      t = t.replace(/\r\n/g, '\n');
+      // Handle cases like: "though \n ts" or "though\u00A0\n\u00A0ts"
+      t = t.replace(/([A-Za-z0-9])[\s\u00A0]*\n+[\s\u00A0]*([A-Za-z0-9])/g, '$1$2');
+      // Also join unicode line separators if they appear
+      t = t.replace(/([A-Za-z0-9])[\s\u00A0]*[\u2028\u2029]+[\s\u00A0]*([A-Za-z0-9])/g, '$1$2');
+      // Remaining line breaks/tabs collapse to single spaces
+      t = t.replace(/[\n\t\u2028\u2029]+/g, ' ');
+      // Collapse repeated spaces
+      t = t.replace(/ {2,}/g, ' ');
+      return escHtml(t);
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+    const tag = node.tagName.toLowerCase();
+
+    if (tag === 'br') return '<br>';
+
+    if (tag === 'img') {
+      const cid = node.getAttribute('data-cid') || '';
+      const srcRaw = node.getAttribute('src') || '';
+      const src = srcRaw.trim();
+      // Only allow our own preview URLs or cid: references.
+      const isAllowedSrc =
+        /^\/uploads\/[a-zA-Z0-9._-]+$/i.test(src) ||
+        /^cid:[a-zA-Z0-9._-]+$/i.test(src);
+      if (!isAllowedSrc) return '';
+
+      const style = node.getAttribute('style') || 'max-width:100%;height:auto;display:block;border-radius:8px;';
+      const safeCidAttr = cid ? ` data-cid="${escHtml(cid)}"` : '';
+      return `<img${safeCidAttr} src="${escHtml(src)}" style="${escHtml(style)}" />`;
+    }
+
+    // Inline formatting
+    if (['b','strong','i','em','u','s','strike','del'].includes(tag)) {
+      const inner = sanitizeNodeChildren(node);
+      return inner ? `<${tag}>${inner}</${tag}>` : '';
+    }
+
+    if (tag === 'a') {
+      const inner = sanitizeNodeChildren(node);
+      const hrefRaw = node.getAttribute('href') || '';
+      const href = hrefRaw.trim();
+      if (!inner) return '';
+      // Keep only http/https/mailto links; otherwise render as plain text.
+      if (!/^(https?:|mailto:)/i.test(href)) return inner;
+      return `<a href="${escHtml(href)}" style="color:#3370ff;text-decoration:underline;">${inner}</a>`;
+    }
+
+    // Lists
+    if (tag === 'ul' || tag === 'ol') {
+      const items = Array.from(node.children)
+        .filter(el => el.tagName && el.tagName.toLowerCase() === 'li')
+        .map(li => sanitizeNode(li))
+        .join('');
+      if (!items) return '';
+      const style = 'margin:4px 0;padding-left:20px;';
+      return `<${tag} style="${style}">${items}</${tag}>`;
+    }
+    if (tag === 'li') {
+      const inner = sanitizeNodeChildren(node).trim() || '<br>';
+      return `<li style="margin:2px 0;">${inner}</li>`;
+    }
+
+    // Headings -> render as h2/h3 with inline styles (keep it simple)
+    if (tag === 'h1' || tag === 'h2') {
+      const inner = sanitizeNodeChildren(node).trim() || '<br>';
+      return `<h2 style="margin:8px 0 4px;font-size:18px;font-weight:700;">${inner}</h2>`;
+    }
+    if (tag === 'h3') {
+      const inner = sanitizeNodeChildren(node).trim() || '<br>';
+      return `<h3 style="margin:6px 0 4px;font-size:15px;font-weight:700;">${inner}</h3>`;
+    }
+
+    // Blocks: normalize most blocks to <p>
+    if (['p','div','section','article','header','footer','blockquote','pre'].includes(tag)) {
+      const inner = sanitizeNodeChildren(node);
+      // Drop empty paragraphs. Spacing is controlled by paragraph margins.
+      const content = inner && inner.trim() ? inner : '';
+      if (!content) return '';
+      return `<p style="margin:0 0 12px 0;padding:0;">${content}</p>`;
+    }
+
+    // Tables etc: flatten
+    return sanitizeNodeChildren(node);
+  }
+
+  // ── Paste: keep formatting, strip junk styles ─────────────────────────
+  $('body-editor').addEventListener('paste', async e => {
+    e.preventDefault();
+    
+    // Support image pasting
+    const items = e.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.startsWith('image/')) {
+        const file = items[i].getAsFile();
+        if (!file) continue;
+        try {
+          const { cid, url, filePath } = await uploadAndInsertBanner(file);
+          inlineImages.push({ cid, url, file_path: filePath });
+          bumpEditorVersion();
+        } catch (err) {
+          alert('粘贴图片上传失败: ' + err.message);
+        }
+        return; // handle one image
+      }
+    }
+
+    const html = e.clipboardData.getData('text/html');
+    const text = e.clipboardData.getData('text/plain');
+    if (html) {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      document.execCommand('insertHTML', false, sanitizeNodeChildren(doc.body));
+    } else {
+      const trimmed = (text || '').trim();
+      // If user pasted an HTML string (e.g. from GPT output), treat it as HTML.
+      if (trimmed.startsWith('<') && /<\/?(p|br|strong|b|em|i|u|ul|ol|li|a)\b/i.test(trimmed)) {
+        const doc = new DOMParser().parseFromString(trimmed, 'text/html');
+        document.execCommand('insertHTML', false, sanitizeNodeChildren(doc.body));
+        bumpEditorVersion();
+        return;
+      }
+      const out = text.split('\n').map(l =>
+        l === '' ? '<p><br></p>' : `<p>${escHtml(l)}</p>`
+      ).join('');
+      document.execCommand('insertHTML', false, out);
+    }
+    bumpEditorVersion();
+  });
+  $('body-editor').addEventListener('input', bumpEditorVersion);
+  $('recipients').addEventListener('input', scheduleAutosave);
+  $('subject').addEventListener('input', scheduleAutosave);
+  $('personalization').addEventListener('change', scheduleAutosave);
+  $('plainTextMode')?.addEventListener('change', scheduleAutosave);
+
+  // Banner File button
+  $('tb-banner-file').addEventListener('click', () => {
+    $('banner-file').click();
+  });
+
+  $('banner-file').addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const { cid, url, filePath } = await uploadAndInsertBanner(file);
+      inlineImages.push({ cid, url, file_path: filePath });
+      bumpEditorVersion();
+    } catch (err) {
+      alert('图片上传失败: ' + err.message);
+    } finally {
+      e.target.value = '';
+    }
+  });
+
+  function fileToDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadAndInsertBanner(file) {
+    const dataUrl = await fileToDataUrl(file);
+    const res = await fetch('/api/inline-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dataUrl, filename: file.name }),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || res.statusText);
+    }
+    const result = await res.json();
+
+    const editor = $('body-editor');
+    const bannerHtml = `<p style="margin:0 0 12px 0;padding:0;"><img data-cid="${escHtml(result.cid)}" src="${escHtml(result.url)}" style="max-width:100%;height:auto;display:block;border-radius:8px;" /></p>`;
+    
+    // Replace existing banner if present, else prepend
+    const existing = editor.querySelector('img');
+    if (existing) {
+      existing.setAttribute('src', result.url);
+      existing.setAttribute('data-cid', result.cid);
+    } else {
+      editor.insertAdjacentHTML('afterbegin', bannerHtml);
+    }
+    return result;
+  }
+
+  // ── Toolbar ──────────────────────────────────────────────────────────
+  $('toolbar').addEventListener('mousedown', e => {
+    const btn = e.target.closest('.tb-btn');
+    if (!btn) return;
+    e.preventDefault();
+    const cmd = btn.dataset.cmd;
+    const val = btn.dataset.val || null;
+    if (cmd) document.execCommand(cmd, false, val);
+  });
+
+  $('tb-link').addEventListener('mousedown', e => {
+    e.preventDefault();
+    const url = prompt('输入链接地址：', 'https://');
+    if (url) document.execCommand('createLink', false, url);
+  });
+
+  document.addEventListener('selectionchange', () => {
+    ['bold','italic','underline','strikeThrough','insertUnorderedList','insertOrderedList'].forEach(cmd => {
+      const btn = $('toolbar').querySelector(`[data-cmd="${cmd}"]`);
+      if (btn) btn.classList.toggle('active', document.queryCommandState(cmd));
+    });
+  });
+
+  // Personalization toggle hint
+  $('personalization').addEventListener('change', () => {
+    $('personalization-hint').classList.toggle('visible', $('personalization').checked);
+  });
+
+  // Restore draft ASAP
+  restoreDraft();
+
+  // Modal close
+  $('modal-close').addEventListener('click', () => $('modal').classList.remove('open'));
+  $('modal').addEventListener('click', e => {
+    if (e.target === $('modal')) $('modal').classList.remove('open');
+  });
+
+  function getFormData() {
+    const plainText = $('plainTextMode')?.checked;
+    return {
+      recipients: $('recipients').value,
+      subject: $('subject').value,
+      body: plainText ? preparePlainTextFromEditor() : prepareBodyForSend(),
+      personalization: $('personalization').checked,
+      plainText,
+      inlineImages: buildInlineImagesForSend(),
+    };
+  }
+
+  function getPreviewData() {
+    const plainText = $('plainTextMode')?.checked;
+    return {
+      recipients: $('recipients').value,
+      subject: $('subject').value,
+      body: plainText ? preparePlainTextFromEditor() : prepareBodyForPreview(),
+      personalization: $('personalization').checked,
+      plainText,
+      inlineImages: [],
+    };
+  }
+
+  function buildInlineImagesForSend() {
+    const editorHtml = $('body-editor').innerHTML || '';
+    return inlineImages.filter(img => editorHtml.includes(img.url));
+  }
+
+  function preparePlainTextFromEditor() {
+    // Convert editor content to plain text with stable newlines.
+    // This yields maximum consistency across mail clients.
+    let t = $('body-editor').innerText || '';
+    t = t.replace(/\r\n/g, '\n');
+    // Remove invisible chars and normalize unicode spaces
+    t = t
+      .replace(/[\u200B\u200C\u200D\u2060\uFEFF]/g, '')
+      .replace(/\u00AD/g, '')
+      .replace(/\u00A0/g, ' ')
+      .replace(/[\u2000-\u200A\u202F\u205F\u3000]/g, ' ');
+    // Collapse repeated spaces (but keep newlines)
+    t = t.replace(/[ \t]{2,}/g, ' ');
+    // Trim trailing spaces on each line
+    t = t.split('\n').map(l => l.replace(/[ \t]+$/g, '')).join('\n');
+    return t.trimEnd();
+  }
+
+  // ── Preview ──────────────────────────────────────────────────────────
+  $('btn-preview').addEventListener('click', async () => {
+    const data = getPreviewData();
+    if (!data.recipients.trim()) { alert('请输入收件人'); return; }
+    if (!data.subject.trim()) { alert('请输入邮件主题'); return; }
+    try {
+      const res = await fetch('/api/preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      // store snapshot so "send" can reuse the exact payload
+      lastPreviewSnapshot = { version: editorVersion, data, bodyHash: result?.bodyHash || null };
+      renderPreviewModal(result);
+      $('modal').classList.add('open');
+    } catch (err) {
+      alert('预览失败: ' + err.message);
+    }
+  });
+
+  function renderPreviewModal(result) {
+    const { from, previews, bodyHash } = result;
+    const content = $('modal-content');
+
+    if (!previews || previews.length === 0) {
+      content.innerHTML = '<p class="no-recipients">未解析到有效收件人，请检查格式。</p>';
+      return;
+    }
+
+    function renderItem(idx) {
+      const p = previews[idx];
+      const tabsHtml = previews.length > 1
+        ? `<div class="recipient-tabs">${previews.map((r, i) =>
+            `<span class="recipient-tab ${i === idx ? 'active' : ''}" data-idx="${i}">${escHtml(r.name || r.email)}</span>`
+          ).join('')}</div>`
+        : '';
+      return `
+        ${tabsHtml}
+        <div class="mail-meta">
+          <div class="meta-row">
+            <span class="meta-key">发件人</span>
+            <span class="meta-val">${escHtml(from)}</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">收件人</span>
+            <span class="meta-val">${p.name ? escHtml(p.name) + ' &lt;' + escHtml(p.email) + '&gt;' : escHtml(p.email)}</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">BodyHash</span>
+            <span class="meta-val mono">${escHtml(bodyHash || p.bodyHash || '')}</span>
+          </div>
+        </div>
+        <div class="mail-subject-preview">${escHtml(p.subject)}</div>
+        <div class="mail-body-preview">
+          <iframe
+            title="preview"
+            style="width:100%;border:0;min-height:320px;"
+          ></iframe>
+        </div>
+      `;
+    }
+
+    content.innerHTML = renderItem(0);
+    hydratePreviewIFrame(content, previews[0]?.body || '', !!previews[0]?.plainText);
+
+    content.addEventListener('click', e => {
+      const tab = e.target.closest('.recipient-tab');
+      if (!tab) return;
+      const idx = parseInt(tab.dataset.idx, 10);
+      content.innerHTML = renderItem(idx);
+      hydratePreviewIFrame(content, previews[idx]?.body || '', !!previews[idx]?.plainText);
+    });
+  }
+
+  function hydratePreviewIFrame(container, htmlOrText, isPlainText) {
+    const iframe = container.querySelector('iframe');
+    if (!iframe) return;
+    const body = isPlainText
+      ? `<pre style="margin:0;padding:0;white-space:pre-wrap;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;font-size:14px;line-height:1.7;color:#1f2329;">${escHtml(htmlOrText || '')}</pre>`
+      : (htmlOrText || '');
+    iframe.srcdoc = `
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin:0;padding:0;background:#fff;">
+${body}
+</body>
+</html>`;
+  }
+
+  // ── Send ─────────────────────────────────────────────────────────────
+  $('btn-send').addEventListener('click', async () => {
+    const data = getFormData();
+    if (!data.recipients.trim()) { alert('请输入收件人'); return; }
+    if (!data.subject.trim()) { alert('请输入邮件主题'); return; }
+    if (!$('body-editor').innerText.trim()) { alert('请输入邮件正文'); return; }
+
+    $('btn-send').disabled = true;
+    $('btn-preview').disabled = true;
+    $('btn-send').textContent = '发送中…';
+    $('status-body').innerHTML = '';
+    $('summary').textContent = '';
+    $('status-area').style.display = 'block';
+    $('status-area').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        const msg = result?.message || result?.error || `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
+      renderSendResults(result);
+    } catch (err) {
+      $('summary').textContent = '请求失败: ' + err.message;
+    } finally {
+      $('btn-send').disabled = false;
+      $('btn-preview').disabled = false;
+      $('btn-send').textContent = '发送';
+    }
+  });
+
+  function renderSendResults({ results = [], sent = 0, failed = 0, bodyHash } = {}) {
+    $('status-body').innerHTML = results.map(r => `
+      <tr>
+        <td>${r.name ? escHtml(r.name) + '<br><span style="font-size:11px;color:#8f959e">' + escHtml(r.email) + '</span>' : escHtml(r.email)}</td>
+        <td>${r.success
+          ? '<span class="badge badge-success">成功</span>'
+          : '<span class="badge badge-fail">失败</span>'}</td>
+        <td style="font-size:12px;color:#8f959e;word-break:break-all">
+          ${r.success
+            ? (r.deliveryStatusText ? escHtml(r.deliveryStatusText) : '已提交')
+            : escHtml(r.error || r.note || '')}
+          ${r.note ? '<div class="mono" style="margin-top:4px;color:#646a73"> ' + escHtml(r.note) + '</div>' : ''}
+          ${r.message_id ? '<div class="mono" style="margin-top:4px">ID: ' + escHtml(r.message_id) + '</div>' : ''}
+          ${(r.bodyHash || bodyHash) ? '<div class="mono" style="margin-top:4px;color:#646a73">BodyHash: ' + escHtml(r.bodyHash || bodyHash) + '</div>' : ''}
+        </td>
+      </tr>
+    `).join('');
+    $('summary').textContent = `共 ${results.length} 封 — 成功 ${sent} 封，失败 ${failed} 封`;
+  }
+
+  // ── Scheduler ────────────────────────────────────────────────────────
+  $('btn-schedule').addEventListener('click', async () => {
+    const data = getFormData();
+    if (!data.recipients.trim()) { alert('请输入收件人'); return; }
+    if (!data.subject.trim()) { alert('请输入邮件主题'); return; }
+
+    const batchSize = $('batchSize').value;
+    const intervalMinutes = $('intervalMinutes').value;
+    const startAt = $('startAt').value;
+
+    try {
+      const res = await fetch('/api/schedule', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, batchSize, intervalMinutes, startAt }),
+      });
+      const result = await res.json();
+      if (result.error) throw new Error(result.error);
+      alert('任务创建成功！');
+      startJobPolling();
+    } catch (err) {
+      alert('创建失败: ' + err.message);
+    }
+  });
+
+  let pollTimer = null;
+  function startJobPolling() {
+    if (pollTimer) return;
+    pollTimer = setInterval(pollJobs, 2000);
+    pollJobs();
+  }
+
+  async function pollJobs() {
+    try {
+      const res = await fetch('/api/jobs');
+      const { jobs } = await res.json();
+      const active = jobs.find(j => j.status === 'scheduled' || j.status === 'running' || j.status === 'paused');
+      if (active) renderJob(active);
+      else {
+        const last = jobs[0];
+        if (last) renderJob(last);
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  function renderJob(job) {
+    $('job-status').innerHTML = `
+      <div class="job-line"><span class="job-k">当前任务</span><span class="job-v">${job.id}</span></div>
+      <div class="job-line"><span class="job-k">状态</span><span class="job-v">${job.status}</span></div>
+      <div class="job-line"><span class="job-k">进度</span><span class="job-v">${job.cursor} / ${job.total} (成功 ${job.sent}, 失败 ${job.failed})</span></div>
+      <div class="job-line"><span class="job-k">下次执行</span><span class="job-v">${job.nextRunAt ? new Date(job.nextRunAt).toLocaleTimeString() : '-'}</span></div>
+      <div class="job-line"><span class="job-k">最近错误</span><span class="job-v">${job.lastError || '-'}</span></div>
+    `;
+    $('btn-job-pause').disabled = job.status !== 'running' && job.status !== 'scheduled';
+    $('btn-job-resume').disabled = job.status !== 'paused';
+    $('btn-job-cancel').disabled = job.status === 'completed' || job.status === 'cancelled';
+    
+    // bind actions
+    $('btn-job-pause').onclick = () => fetch(`/api/jobs/${job.id}/pause`, { method: 'POST' });
+    $('btn-job-resume').onclick = () => fetch(`/api/jobs/${job.id}/resume`, { method: 'POST' });
+    $('btn-job-cancel').onclick = () => fetch(`/api/jobs/${job.id}/cancel`, { method: 'POST' });
+  }
+
+  startJobPolling(); // start immediately to show existing jobs
+</script>
+</body>
+</html>

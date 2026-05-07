@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg:            #050505;
+  --card:          #141415;
+  --inner-card:    #1E1E20;
+  --deep-green:    #0B2B1D;
+  --accent-green:  #ACFF4E;
+  --accent-orange: #FF8A00;
+  --white:         #FFFFFF;
+  --gray:          rgba(255,255,255,0.5);
+  --gray-light:    rgba(255,255,255,0.15);
+  --radius-xl:     24px;
+  --radius-lg:     16px;
+  --radius-md:     12px;
+  --radius-pill:   100px;
+}
+
+body {
+  background: #000;
+  font-family: 'SF Pro Display', 'SF Pro Text', 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+  font-variation-settings: 'wdth' 100;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}

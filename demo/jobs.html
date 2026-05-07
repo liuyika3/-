@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>求职情报站 — 万物教练</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #050508; --card: #0c0c10; --card2: #101016;
+  --cyan: #00e5ff; --green: #00ff87; --purple: #a78bfa;
+  --text: #dde0ff; --muted: #55557a; --border: #16161f;
+  --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+body { background: #dcdedf; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; display:flex; justify-content:center; align-items:center; padding:40px 0; }
+
+/* ── Top bar ── */
+.topbar {
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; gap: 24px; height: 52px;
+  position: sticky; top: 0; background: rgba(5,5,8,.9); backdrop-filter: blur(12px); z-index: 10;
+}
+.topbar-logo { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--cyan); letter-spacing: .08em; }
+.topbar-status { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50%{opacity:0} }
+.topbar-right { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+/* ── Hero ── */
+.hero { padding: 72px 32px 56px; max-width: 720px; }
+.pre-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--cyan);
+  letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.pre-label::before { content:'//'; opacity:.5; }
+h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 900; line-height: 1.08; margin-bottom: 14px; }
+h1 span { color: var(--cyan); }
+.sub { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 480px; }
+
+/* ── Search ── */
+.search-zone { padding: 0 32px 48px; max-width: 680px; }
+.search-row { display: flex; gap: 0; }
+.s-input {
+  flex: 1; background: var(--card); border: 1px solid #1e1e2a; border-right: none;
+  color: var(--text); font-size: 15px; padding: 14px 20px;
+  border-radius: 12px 0 0 12px; outline: none; transition: border 200ms;
+  font-family: inherit;
+}
+.s-input:focus { border-color: var(--cyan); }
+.s-input::placeholder { color: var(--muted); font-family: var(--font-mono); font-size: 13px; }
+.s-btn {
+  background: var(--cyan); color: #000; border: none; padding: 14px 24px;
+  border-radius: 0 12px 12px 0; font-size: 13px; font-weight: 800; cursor: pointer;
+  transition: all 180ms; white-space: nowrap; letter-spacing: .05em;
+  font-family: var(--font-mono);
+}
+.s-btn:hover { background: #33eaff; }
+.s-btn:disabled { background: #1e1e2a; color: var(--muted); cursor: not-allowed; }
+.quick-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+.qp {
+  background: transparent; border: 1px solid #1e1e2a; color: var(--muted);
+  padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
+  transition: all 150ms; font-family: var(--font-mono);
+}
+.qp:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* ── Loading ── */
+.loading { display: none; padding: 80px 32px; }
+.loading.show { display: block; }
+.scan-lines { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); }
+.scan-line { opacity: 0; animation: fadein .3s forwards; margin-bottom: 4px; }
+.scan-line::before { content: '> '; color: var(--muted); }
+@keyframes fadein { to{ opacity: 1 } }
+
+/* ── Stats strip ── */
+.stats-strip {
+  display: flex; gap: 1px; margin: 0 0 20px;
+  background: var(--border); border-radius: 12px; overflow: hidden;
+}
+.stat-cell {
+  flex: 1; background: var(--card); padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.stat-num { font-size: 24px; font-weight: 900; color: var(--cyan); font-family: var(--font-mono); }
+.stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+
+/* ── Main layout ── */
+.main-layout { padding: 0 24px 160px; display: grid; grid-template-columns: 1fr 360px; gap: 16px; max-width: 1200px; }
+@media(max-width:900px){ .main-layout{grid-template-columns:1fr} }
+.results-zone { display: none; max-width: 1200px; padding: 0 24px; }
+.results-zone.show { display: block; }
+
+/* ── Job cards ── */
+.jobs-col {}
+.col-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 12px; padding-left: 4px; }
+.job-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 20px; margin-bottom: 10px;
+  cursor: pointer; transition: all 180ms; border-left: 2px solid transparent;
+}
+.job-card:hover { border-left-color: var(--cyan); background: var(--card2); }
+.job-card.open { border-left-color: var(--cyan); }
+.jc-top { display: flex; align-items: flex-start; gap: 12px; }
+.jc-body { flex: 1; }
+.jc-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.jc-company { font-size: 13px; color: var(--cyan); font-weight: 600; margin-bottom: 6px; }
+.jc-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.jc-tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 4px;
+  font-family: var(--font-mono);
+}
+.jc-loc { background: rgba(0,229,255,.08); color: var(--cyan); }
+.jc-type { background: rgba(0,255,135,.08); color: var(--green); }
+.jc-salary { background: rgba(167,139,250,.1); color: var(--purple); font-weight: 700; }
+.jc-posted { background: rgba(255,255,255,.05); color: var(--muted); }
+.jc-arr { font-size: 14px; color: var(--muted); transition: transform 200ms; margin-top: 2px; }
+.job-card.open .jc-arr { transform: rotate(180deg); }
+.jc-desc {
+  display: none; margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--border); font-size: 12px; color: var(--muted);
+  line-height: 1.7; font-family: var(--font-mono);
+}
+.jc-desc.open { display: block; }
+.jc-link { font-size: 11px; font-weight: 700; color: var(--cyan); text-decoration: none; margin-top: 8px; display: inline-block; font-family: var(--font-mono); }
+
+/* ── Intel panel ── */
+.intel-col {}
+.intel-sec { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px; margin-bottom: 12px; }
+.intel-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.intel-label .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
+
+.reddit-item { padding: 11px 0; border-bottom: 1px solid var(--border); }
+.reddit-item:last-child { border-bottom: none; }
+.ri-sub { font-size: 10px; color: var(--green); font-family: var(--font-mono); margin-bottom: 3px; }
+.ri-title { font-size: 12px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+.ri-meta { font-size: 10px; color: var(--muted); display: flex; gap: 8px; }
+.ri-link { font-size: 10px; color: var(--cyan); text-decoration: none; font-family: var(--font-mono); }
+
+.wiki-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.wiki-desc { font-size: 12px; color: var(--cyan); margin-bottom: 8px; }
+.wiki-extract { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.wiki-link { font-size: 11px; color: var(--cyan); text-decoration: none; display: inline-block; margin-top: 8px; font-family: var(--font-mono); }
+
+.empty { font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+.err-box { display:none; font-size:13px; color:#ff6666; font-family:var(--font-mono); padding:14px 0; }
+.err-box.show { display:block; }
+
+/* ── Jovida Mobile Template (from Fitness Lab) ── */
+.app-container {
+  width: 390px;
+  height: 844px;
+  background: #f4f5f7;
+  border-radius: 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), inset 0 0 0 8px #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.jl-header {
+  background: linear-gradient(180deg, #00e5ff 0%, #a78bfa 100%);
+  padding: 54px 24px 32px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; }
+.user-avatar {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.streaks {
+  display:flex; gap:12px; font-weight:700; font-size:13px;
+  background: rgba(0,0,0,0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.tabs { display:flex; gap:20px; font-size:15px; font-weight:600; color: rgba(255,255,255,0.62); align-items:center; }
+.tab.active { color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; }
+.main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 160px;
+  margin-top: -8px;
+  position: relative;
+  z-index: 1;
+}
+.main-scroll::-webkit-scrollbar { display:none; }
+.ob-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  margin-top: 24px;
+  transition: all 300ms;
+}
+.ob-q {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 16px;
+  text-align:center;
+}
+.ob-opts { display:flex; flex-direction:column; gap: 12px; }
+.ob-opt {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #333;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor:pointer;
+  transition: all 150ms;
+  text-align:center;
+}
+.ob-opt.selected { background: #eefcff; border-color: #00e5ff; color: #007c8a; }
+.jobs-hidden { display:none !important; }
+
+/* hide original desktop hero/search (keep DOM for JS ids) */
+.topbar, .hero, .search-zone { display:none !important; }
+
+/* ── Mobile-only layout overrides (make results look like Fitness UI) ── */
+.results-zone { max-width: none !important; padding: 0 !important; }
+.results-zone.show { padding: 0 !important; }
+.job-card {
+  background: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 16px !important;
+  padding: 14px 14px !important;
+  margin-bottom: 10px !important;
+  border-left: 3px solid transparent !important;
+}
+.job-card:hover { background: #eef6ff !important; }
+.jc-title { color: #111 !important; font-size: 14px !important; font-weight: 800 !important; }
+.jc-company { color: #00e5ff !important; font-size: 12px !important; font-weight: 700 !important; margin-bottom: 6px !important; }
+.jc-meta { gap: 8px !important; }
+.jc-tag {
+  background: rgba(0,0,0,0.04) !important;
+  color: rgba(0,0,0,0.65) !important;
+  border-radius: 999px !important;
+  padding: 4px 10px !important;
+}
+.jc-loc, .jc-type, .jc-salary, .jc-posted { background: rgba(0,0,0,0.04) !important; color: rgba(0,0,0,0.65) !important; }
+.intel-sec {
+  background: white !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 16px !important;
+  padding: 16px 16px !important;
+  margin-bottom: 14px !important;
+}
+.intel-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: 12px !important;
+  color: rgba(0,0,0,0.45) !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  margin-bottom: 12px !important;
+}
+.intel-label .dot { background: rgba(0,0,0,0.2) !important; }
+.reddit-item { border-bottom: 1px solid rgba(0,0,0,0.06) !important; padding: 10px 0 !important; }
+.reddit-item:last-child { border-bottom: none !important; }
+.ri-sub { color: rgba(0,229,255,0.85) !important; }
+.ri-title { color: #111 !important; font-weight: 800 !important; font-size: 13px !important; }
+.ri-meta, .wiki-extract { color: rgba(0,0,0,0.55) !important; }
+.wiki-title { color: #111 !important; font-weight: 900 !important; font-size: 14px !important; margin-bottom: 8px !important; }
+.wiki-link { color: #00e5ff !important; }
+
+.bottom-input {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding: 24px 20px 32px;
+  background: linear-gradient(to top, rgba(244,245,247,1) 70%, transparent);
+  display:flex; align-items:center; gap: 12px;
+}
+.b-input {
+  flex:1;
+  background:white;
+  border:none;
+  border-radius:24px;
+  padding: 16px 20px;
+  font-size: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  outline:none;
+}
+.b-input::placeholder { color:#bbb; font-weight:500; }
+.b-fab {
+  width:52px; height:52px; border-radius:50%;
+  background:#a78bfa; color:white;
+  border:none;
+  font-size: 28px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 20px rgba(167,139,250,0.35);
+  font-weight:300;
+}
+
+/* --- Mobile UI Design System Overrides --- */
+:root {
+  --color-background: #E7E9EC;
+  --color-surface: #F2F2F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-text-primary: #000000;
+  --color-text-secondary: rgba(0,0,0,0.4);
+  --color-text-tertiary: rgba(0,0,0,0.2);
+  --color-border: rgba(255,255,255,0.5);
+  --color-divider: rgba(0,0,0,0.05);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 100px;
+  
+  --shadow-sm: 0px 4px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0px 8px 16px rgba(0,0,0,0.03);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+  font-variation-settings: 'wdth' 100;
+  background: var(--color-background);
+}
+
+.app-container {
+  background: var(--color-background);
+}
+
+/* Header */
+.jl-header {
+  background: linear-gradient(180deg, #00e5ff 0%, #a78bfa 100%);
+}
+.tab.active { background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+
+/* Onboarding */
+.ob-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl) !important;
+  padding: 16px !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin-top: 24px;
+}
+.ob-q { color: var(--color-text-primary) !important; font-size: 20px !important; font-weight: 590 !important; margin-bottom: 16px !important; text-align: center; }
+.ob-opts { display:flex; flex-direction:column; gap: 12px; }
+.ob-opt {
+  background: var(--color-surface-elevated) !important;
+  border-radius: var(--radius-3xl) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  color: var(--color-text-primary) !important;
+  font-weight: 590 !important;
+  height: 48px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.ob-opt.selected {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%) !important;
+  color: #ACFF4E !important;
+  border: none !important;
+}
+
+/* Results overrides - aligning with others */
+.job-card {
+  background: var(--color-surface-elevated) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.jc-title { color: var(--color-text-primary) !important; }
+.intel-sec {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.intel-label { color: var(--color-text-secondary) !important; font-weight: 700 !important; font-family: inherit !important; }
+
+.bottom-input { background: linear-gradient(to top, var(--color-background) 70%, transparent); }
+.b-input {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+}
+.b-input::placeholder { color: var(--color-text-secondary); }
+.b-fab {
+  background: linear-gradient(180deg, #000000 0%, #575757 100%);
+  color: #ACFF4E;
+  box-shadow: var(--shadow-md);
+}
+
+
+.main-scroll {
+  padding-bottom: 160px !important;
+}
+</style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="jl-header">
+    <div class="top-bar">
+      <div class="user-avatar"><i data-lucide="user"></i></div>
+      <div class="streaks">
+        <span style="color:#c7fbff"><i data-lucide="star" style="width:14px"></i> 5/10</span>
+        <span style="color:#fff0b3"><i data-lucide="flame" style="width:14px"></i> 24</span>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active">Career Intel</div>
+      <div class="tab">Plan</div>
+      <div class="tab">+ Add</div>
+    </div>
+  </div>
+
+  <div class="main-scroll">
+
+    <!-- Onboarding -->
+    <div id="ca-onboard">
+      <div class="ob-card" id="ca-ob-q1">
+        <div class="ob-q"> 你想找哪类工作？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="caObSelect(1, 'product manager', 'product manager', event)"><i data-lucide="trending-up" style="width:16px"></i> product manager</button>
+          <button class="ob-opt" onclick="caObSelect(1, 'UX designer', 'UX designer', event)"><i data-lucide="palette" style="width:16px"></i> UX designer</button>
+          <button class="ob-opt" onclick="caObSelect(1, 'data scientist', 'data scientist', event)"><i data-lucide="brain" style="width:16px"></i> data scientist</button>
+          <button class="ob-opt" onclick="caObSelect(1, 'software engineer', 'software engineer', event)"><i data-lucide="puzzle" style="width:16px"></i> software engineer</button>
+          <button class="ob-opt" onclick="caObSelect(1, 'marketing manager', 'marketing', event)"><i data-lucide="megaphone" style="width:16px"></i> marketing</button>
+        </div>
+      </div>
+
+      <div class="ob-card jobs-hidden" id="ca-ob-q2">
+        <div class="ob-q"> 你现在的求职状态？</div>
+        <div class="ob-opts">
+          <button class="ob-opt" onclick="caObSelect(2, 'ready', '已准备好', event)"><i data-lucide="check-circle" style="width:16px"></i> 已准备好</button>
+          <button class="ob-opt" onclick="caObSelect(2, 'applying', '正在投递', event)"><i data-lucide="mail" style="width:16px"></i> 正在投递</button>
+          <button class="ob-opt" onclick="caObSelect(2, 'switching', '转行探索', event)"><i data-lucide="repeat" style="width:16px"></i> 转行探索</button>
+        </div>
+      </div>
+    </div>
+
+<div class="topbar">
+  <div class="topbar-logo">CAREER_LAB<span class="blink">▌</span></div>
+  <div class="topbar-status">求职情报终端 v1.0</div>
+  <div class="topbar-right" id="ts">—</div>
+</div>
+
+<div class="hero">
+  <div class="pre-label">INTELLIGENCE BRIEFING</div>
+  <h1>掌握<span>市场情报</span><br>再出发</h1>
+  <p class="sub">输入目标职位，实时获取招聘动态、行业内幕与职场真实讨论。数据来自 Indeed + Reddit + Wikipedia。</p>
+</div>
+
+<div class="search-zone">
+  <div class="search-row">
+    <input class="s-input" id="inp" placeholder="_ 输入职位名，如 product manager / UX designer..." />
+    <button class="s-btn" id="btn" onclick="search()">扫描市场</button>
+  </div>
+  <div class="quick-row">
+    <span class="qp" onclick="q('product manager')">product manager</span>
+    <span class="qp" onclick="q('UX designer')">UX designer</span>
+    <span class="qp" onclick="q('data scientist')">data scientist</span>
+    <span class="qp" onclick="q('software engineer')">software engineer</span>
+    <span class="qp" onclick="q('marketing manager')">marketing</span>
+  </div>
+  <div class="err-box" id="err"></div>
+</div>
+
+<div class="loading" id="loading">
+  <div class="scan-lines" id="scan-lines"></div>
+</div>
+
+<div class="results-zone" id="results">
+  <div class="stats-strip" id="stats-strip"></div>
+  <div class="main-layout">
+    <div class="jobs-col" id="jobs-col"></div>
+    <div class="intel-col" id="intel-col"></div>
+  </div>
+</div>
+
+</div><!-- main-scroll -->
+
+  <div class="bottom-input">
+    <input class="b-input" type="text" placeholder="Ask your coach..." />
+    <button class="b-fab" type="button"><i data-lucide="arrow-up" style="width:24px"></i></button>
+  </div>
+</div><!-- app-container -->
+
+<script>
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const q = v => { document.getElementById('inp').value = v; search(); };
+
+// Timestamp
+setInterval(() => {
+  document.getElementById('ts').textContent = new Date().toLocaleTimeString('en-US', {hour12:false});
+}, 1000);
+
+const SCAN_MSGS = [
+  'CONNECTING TO INDEED API...',
+  'PARSING JOB LISTINGS...',
+  'FETCHING REDDIT INTELLIGENCE...',
+  'QUERYING WIKIPEDIA DATABASE...',
+  'COMPILING BRIEFING REPORT...',
+];
+
+async function post(path, body) {
+  const r = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || '请求失败');
+  return d;
+}
+
+async function search() {
+  const kw = document.getElementById('inp').value.trim();
+  if (!kw) return;
+  const btn = document.getElementById('btn');
+  btn.disabled = true; btn.textContent = 'SCANNING...';
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('err').classList.remove('show');
+  document.getElementById('loading').classList.add('show');
+
+  const sl = document.getElementById('scan-lines');
+  sl.innerHTML = '';
+  SCAN_MSGS.forEach((m, i) => {
+    const div = document.createElement('div');
+    div.className = 'scan-line';
+    div.style.animationDelay = i * 0.5 + 's';
+    div.textContent = m;
+    sl.appendChild(div);
+  });
+
+  try {
+    const [jobsRes, redditRes, wikiRes] = await Promise.allSettled([
+      post('/api/jobs', { keyword: kw }),
+      post('/api/reddit', { keyword: kw + ' career jobs industry' }),
+      post('/api/wikipedia', { keyword: kw })
+    ]);
+
+    const jobs = jobsRes.status === 'fulfilled' ? jobsRes.value : { jobs: [] };
+    const reddit = redditRes.status === 'fulfilled' ? redditRes.value : { posts: [] };
+    const wiki = wikiRes.status === 'fulfilled' ? wikiRes.value : { article: null };
+
+    if (jobsRes.status === 'rejected' && redditRes.status === 'rejected' && wikiRes.status === 'rejected') {
+      const el = document.getElementById('err');
+      el.textContent = '// ERROR: 后端 API 网络异常（可能是外网被挡），稍后再试试～';
+      el.classList.add('show');
+  if (window.lucide) lucide.createIcons();
+    } else {
+      render(jobs.jobs||[], reddit.posts||[], wiki.article, kw);
+    }
+  } catch(e) {
+    const el = document.getElementById('err');
+    el.textContent = '// ERROR: ' + e.message;
+    el.classList.add('show');
+  } finally {
+    btn.disabled = false; btn.textContent = '扫描市场';
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+function render(jobs, posts, wiki, kw) {
+  const el = document.getElementById('results');
+  const total = jobs.length;
+  const companies = [...new Set(jobs.map(j=>j.company).filter(Boolean))];
+  const salaries = jobs.filter(j=>j.salary);
+
+  const topJobs = jobs.slice(0,3).map((j,i) => `
+    <div class="job-card" id="jc-${i}">
+      <div class="jc-top">
+        <div class="jc-body">
+          <div class="jc-title">${esc(j.title)}</div>
+          <div class="jc-company">${esc(j.company)}</div>
+          <div class="jc-meta">
+            ${j.location?`<span class="jc-tag jc-loc">📍 ${esc(j.location)}</span>`:''}
+            ${j.type?`<span class="jc-tag jc-type">${esc(j.type)}</span>`:''}
+            ${j.salary?`<span class="jc-tag jc-salary">💰 ${esc(j.salary)}</span>`:''}
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const jobsHTML = total
+    ? topJobs
+    : '<div class="empty">// 暂无职位数据 — 尝试其他关键词</div>';
+
+  const redditHTML = posts.length ? posts.slice(0,4).map(p=>`
+    <div class="reddit-item">
+      ${p.subreddit?`<div class="ri-sub">r/${esc(p.subreddit)}</div>`:''}
+      <div class="ri-title">${esc(p.title)}</div>
+      <div class="ri-meta">
+        <span>↑ ${(p.score||0).toLocaleString()}</span>
+        <span>💬 ${p.comments||0}</span>
+        ${p.url?`<a class="ri-link" href="${esc(p.url)}" target="_blank">[ OPEN ]</a>`:''}
+      </div>
+    </div>`).join('') : '<div class="empty">// 暂无讨论数据</div>';
+
+  const wikiHTML = wiki ? `
+    <div class="wiki-title">${esc(wiki.title)}</div>
+    ${wiki.description?`<div class="wiki-desc">${esc(wiki.description)}</div>`:''}
+    <div class="wiki-extract">${esc((wiki.extract||'').slice(0,300))}${(wiki.extract||'').length>300?'…':''}</div>
+    ${wiki.url?`<a class="wiki-link" href="${esc(wiki.url)}" target="_blank">[ READ MORE → ]</a>`:''}
+  ` : '<div class="empty">// 暂无背景资料</div>';
+
+  el.innerHTML = `
+    <div class="ob-card" style="margin-top:24px">
+      <div class="ob-q" style="margin-bottom:12px;font-size:16px">📊 市场快照 — ${esc(kw)}</div>
+      <div style="display:flex;gap:10px;justify-content:space-between;font-family:${'var(--font-mono)'};font-size:11px;color:var(--muted);margin-bottom:10px">
+        <span>职位：<strong>${total}</strong></span>
+        <span>公司：<strong>${companies.length}</strong></span>
+        <span>有薪资：<strong>${salaries.length}</strong></span>
+      </div>
+      ${jobsHTML}
+    </div>
+
+    <div class="intel-sec" style="margin-top:16px">
+      <div class="intel-label"><div class="dot"></div>Reddit 情报流</div>
+      ${redditHTML}
+    </div>
+    <div class="intel-sec">
+      <div class="intel-label"><div class="dot"></div>行业背景</div>
+      ${wikiHTML}
+    </div>
+  `;
+
+  el.classList.add('show');
+}
+
+function toggleJob(i) {
+  const card = document.getElementById('jc-'+i);
+  const desc = document.getElementById('jd-'+i);
+  card.classList.toggle('open');
+  if (desc) desc.classList.toggle('open');
+}
+
+document.getElementById('inp').addEventListener('keydown', e => { if(e.key==='Enter') search(); });
+</script>
+
+<script>
+// Career Intel Onboarding (sequential, then triggers existing search())
+window.caObAnswers = { q1: null, q2: null };
+
+function caObSelect(step, value, label, evt) {
+  const qEl = document.getElementById('ca-ob-q' + step);
+  if (!qEl) return;
+  const btn = evt?.target;
+
+  qEl.querySelectorAll('.ob-opt').forEach(x => x.classList.remove('selected'));
+  if (btn) btn.classList.add('selected');
+
+  if (step === 1) window.caObAnswers.q1 = { value, label };
+  if (step === 2) window.caObAnswers.q2 = { value, label };
+
+  const next = document.getElementById('ca-ob-q' + (step + 1));
+  setTimeout(() => {
+    qEl.classList.add('jobs-hidden');
+    if (next) {
+      next.classList.remove('jobs-hidden');
+      return;
+    }
+    const inp = document.getElementById('inp');
+    if (inp) inp.value = window.caObAnswers.q1?.value || '';
+    caOnboardDone();
+  }, 220);
+}
+
+function caOnboardDone() {
+  if (typeof search === 'function') search();
+}
+</script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

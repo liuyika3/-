@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API & 工具使用清单</title>
+  <style>
+    :root {
+      --bg: #F4F5F7;
+      --card: #FFFFFF;
+      --green: #45C400;
+      --text: #111111;
+      --text-muted: #666666;
+      --border: rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 16px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+    }
+    th {
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.03);
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      background: rgba(0,0,0,0.05);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: monospace;
+      color: var(--text-muted);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .status-ok { color: #00C040; font-weight: bold; }
+    .status-warn { color: #FF9D00; font-weight: bold; }
+    .status-err { color: #FF6767; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>API & 工具使用清单</h1>
+    <p style="color: var(--text-muted); margin-bottom: 32px;">万物教练后端服务器 (server.cjs) 提供 9 个核心 API 端点，支持 5 大 Showcase 场景的数据抓取。数据来源主要为 Apify Actor 及各类免费开放 API。</p>
+    
+    <div class="card">
+      <h2>核心 API 端点状态</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>API 端点</th>
+            <th>数据源 / Actor</th>
+            <th>用途</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">POST /api/food</span></td>
+            <td>Open Food Facts</td>
+            <td>食品营养成分及配料信息 (700万+ 库)</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/pubmed</span></td>
+            <td>NCBI PubMed</td>
+            <td>权威科学文献及医学论文检索</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/reddit</span></td>
+            <td>HackerNews / Algolia</td>
+            <td>社区真实讨论反馈 (替代失效的 Reddit API)</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/wikipedia</span></td>
+            <td>Wikipedia API</td>
+            <td>目的地及名词背景资料</td>
+            <td class="status-warn">⚠️ 限制</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/shopping</span></td>
+            <td>Apify: Amazon/Google</td>
+            <td>商品价格及购买选项</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/youtube-search</span></td>
+            <td>Apify YouTube Scraper</td>
+            <td>搜索相关教育及 Vlog 视频</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/transcript</span></td>
+            <td>Apify YouTube Transcript</td>
+            <td>提取视频字幕并进行词汇频率分析</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/jobs</span></td>
+            <td>Apify: Indeed Scraper</td>
+            <td>获取最新招聘职位及薪资分布</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/hotels</span></td>
+            <td>Apify: Booking Scraper</td>
+            <td>检索当地酒店、评分及价格信息</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+          <tr>
+            <td><span class="badge">POST /api/exercises</span></td>
+            <td>wger.de API</td>
+            <td>开源健身动作库及肌肉部位数据</td>
+            <td class="status-ok">✅ 稳定</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>各 Showcase 调用的 API 清单</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Showcase</th>
+            <th>调用 API 列表</th>
+            <th>场景用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🍬 戒糖侦探</td>
+            <td>
+              <span class="badge">food</span>
+              <span class="badge">pubmed</span>
+              <span class="badge">reddit</span>
+            </td>
+            <td>侦测隐藏糖分、检索糖分健康影响的科研论文、收集社区戒糖反馈。</td>
+          </tr>
+          <tr>
+            <td>📺 英语教练</td>
+            <td>
+              <span class="badge">youtube-search</span>
+              <span class="badge">transcript</span>
+            </td>
+            <td>根据话题搜索 YouTube 优质英文视频，并提取全量字幕用于高频词及长难句学习。</td>
+          </tr>
+          <tr>
+            <td>💼 求职情报站</td>
+            <td>
+              <span class="badge">jobs</span>
+              <span class="badge">reddit</span>
+              <span class="badge">wikipedia</span>
+            </td>
+            <td>查询 Indeed 真实岗位，提取 Reddit 行业内部消息，并通过 Wikipedia 提供宏观行业背景。</td>
+          </tr>
+          <tr>
+            <td>✈️ 旅行准备官</td>
+            <td>
+              <span class="badge">wikipedia</span>
+              <span class="badge">hotels</span>
+              <span class="badge">youtube-search</span>
+              <span class="badge">reddit</span>
+            </td>
+            <td>聚合目的地百科介绍、Booking 酒店住宿推荐、YouTube Vlog 游记以及 Reddit 避坑指南。</td>
+          </tr>
+          <tr>
+            <td>💪 健身实验室</td>
+            <td>
+              <span class="badge">exercises</span>
+              <span class="badge">pubmed</span>
+              <span class="badge">shopping</span>
+              <span class="badge">reddit</span>
+            </td>
+            <td>排布训练动作计划，用 PubMed 佐证动作科学性，推荐训练辅具及补剂，并展现真实增肌讨论。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

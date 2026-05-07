@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S · 食物预识别（未摄入）· Jovida 减脂教练</title>
+  <style>
+    :root { --bg:#0b0f14; --card:#121826; --line:#2d3a52; --text:#e8edf5; --muted:#94a3b8; --accent:#4ade80; --pink:#f472b6; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); padding:1.25rem clamp(1rem,4vw,2rem) 2.5rem; line-height:1.6; }
+    a.back { color:#fbcfe8; text-decoration:none; font-size:0.9rem; }
+    a.back:focus-visible { outline:2px solid var(--pink); outline-offset:2px; }
+    h1 { font-size:1.35rem; margin:1rem 0 0.5rem; letter-spacing:-0.02em; }
+    .tag { font-size:0.72rem; color:#fbcfe8; letter-spacing:0.08em; text-transform:uppercase; }
+    .copy { color:var(--muted); max-width:56ch; font-size:0.95rem; }
+    .copy strong { color:#e2e8f0; }
+    .spare { font-size:0.82rem; color:#86efac; margin:0.75rem 0 0; padding:0.65rem 0.85rem; border-radius:0.65rem; border:1px solid rgba(74,222,128,0.25); background:rgba(74,222,128,0.06); max-width:56ch; }
+    .grid {
+      margin-top:1.5rem;
+      display:grid;
+      gap:1.25rem;
+      grid-template-columns:1fr;
+      max-width:56rem;
+    }
+    @media (min-width:900px) {
+      .grid { grid-template-columns:repeat(3, 1fr); }
+    }
+    figure {
+      margin:0;
+      border-radius:1rem;
+      border:1px solid var(--line);
+      background:var(--card);
+      overflow:hidden;
+    }
+    figure img {
+      width:100%;
+      height:auto;
+      display:block;
+      vertical-align:middle;
+      background:#0f172a;
+    }
+    figcaption {
+      padding:0.85rem 1rem 1rem;
+      font-size:0.8rem;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+    }
+    figcaption .step {
+      display:block;
+      font-size:0.68rem;
+      font-weight:800;
+      letter-spacing:0.06em;
+      color:var(--accent);
+      margin-bottom:0.35rem;
+    }
+    .hint {
+      margin-top:1.25rem;
+      font-size:0.78rem;
+      color:var(--muted);
+      max-width:56rem;
+    }
+    .hint code { color:#fbcfe8; font-size:0.74rem; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← 返回 SPARE 总览</a>
+  <p class="tag">S · 科学性 / 摄入前认知 · 我主导的设计</p>
+  <h1>食物预识别（还没吃，先估热量）</h1>
+  <p class="copy">
+    <strong>场景：</strong>正式记入饮食日志之前，先拍照或连扫多张，得到<strong>估算热量 + 宏量 + 教练一句解读</strong>；支持多条缩略图切换、批量「Log All」，并在<strong>非食物</strong>或<strong>次数上限</strong>时给出明确反馈，避免误记。
+  </p>
+  <p class="spare">在 SPARE 里偏 <strong>S · 科学性</strong> 与摄入前心智：先识别、再决策是否吃、最后才落库。</p>
+
+  <div class="grid" aria-label="预识别界面三屏">
+    <figure>
+      <img src="../assets/m4-ui-scan.png" alt="相机扫描界面：扫描线与非食物 Non-food 判定" width="286" loading="lazy" />
+      <figcaption>
+        <span class="step">① 扫描 / 分类</span>
+        实时取景 + 扫描动效；对非食物打 <strong>Non-food</strong> 标签，「Log All」在未识别可记餐食时可弱化或禁用，避免脏数据。
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/m4-ui-result.png" alt="识别结果卡：多图 1/5、营养浮层与 Scan More、Log All" width="290" loading="lazy" />
+      <figcaption>
+        <span class="step">② 单条结果</span>
+        主图 + 玻璃态营养浮层（热量、蛋白/碳水/脂肪、Estimated Values）、教练头像短评；底部缩略条表示<strong>未吃先预览</strong>的多张队列（如 1/5）。
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/m4-ui-limit.png" alt="批量预览 5/5 与 Limit Reached" width="292" loading="lazy" />
+      <figcaption>
+        <span class="step">③ 批量与上限</span>
+        多缩略图高亮当前张；达到识别次数上限时展示 <strong>Limit Reached</strong>，仍保留「Scan More / Log All」完成从<strong>预识别 → 一键落库</strong>的闭环。
+      </figcaption>
+    </figure>
+  </div>
+
+  <p class="hint">
+    物料已与仓库目录 <code>科学性-预览食物</code> 对齐为三屏截图：<code>m4-ui-scan.png</code> → <code>m4-ui-result.png</code> → <code>m4-ui-limit.png</code>。若长图需拆段，请保持文件名与上顺序一致覆盖。
+  </p>
+</body>
+</html>

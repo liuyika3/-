@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>减脂教练业务展示 · SPARE 五维体系</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060a10;
+      --card: #0c1220;
+      --card2: #111a2e;
+      --line: rgba(148, 163, 184, 0.22);
+      --text: #f1f5f9;
+      --muted: #8b9cb3;
+      --s: #38bdf8;
+      --p: #a78bfa;
+      --a: #fbbf24;
+      --r: #fb7185;
+      --e: #34d399;
+      --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+      --font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      background:
+        radial-gradient(ellipse 100% 80% at 50% -25%, rgba(52, 211, 153, 0.09), transparent 50%),
+        radial-gradient(ellipse 70% 50% at 100% 30%, rgba(99, 102, 241, 0.07), transparent 45%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      padding: 1.1rem clamp(0.75rem, 2.5vw, 1.5rem) 2rem;
+    }
+    header {
+      max-width: 40rem;
+      margin: 0 auto 1.35rem;
+      text-align: center;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.45rem;
+      background: linear-gradient(120deg, #f8fafc 0%, #94a3b8 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin: 0 auto;
+      max-width: min(46rem, 94vw);
+      text-align: left;
+    }
+    .badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--e);
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      background: rgba(52, 211, 153, 0.07);
+      font-family: var(--font-display);
+    }
+
+    /* SPARE：单侧大括号 + 五维（非星形）— 整体放大 */
+    .spare-tree {
+      max-width: min(960px, 96vw);
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      gap: 0.45rem 1.1rem;
+      padding: 1.55rem 1.35rem 1.65rem 1.15rem;
+      border-radius: 1.15rem;
+      border: 1px solid var(--line);
+      background: linear-gradient(155deg, rgba(17, 26, 46, 0.92), rgba(8, 12, 22, 0.98));
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 24px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .spare-tree__label {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0.35rem 0.5rem 0.35rem 0.15rem;
+      min-width: 5.75rem;
+    }
+
+    .spare-tree__label span.acr {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4.8vw, 2.45rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #e2e8f0;
+      line-height: 1.1;
+    }
+
+    .spare-tree__label span.sub {
+      margin-top: 0.35rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: 9rem;
+      line-height: 1.35;
+    }
+
+    .spare-tree__brace {
+      flex: 0 0 auto;
+      width: clamp(30px, 5vw, 46px);
+      min-height: 15rem;
+      color: rgba(148, 163, 184, 0.55);
+      align-self: stretch;
+    }
+
+    .spare-tree__brace svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .spare-tree__list {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    a.brace-node {
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem 0.75rem;
+      align-items: center;
+      padding: 0.65rem 0.75rem 0.65rem 0.65rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: linear-gradient(105deg, rgba(30, 41, 59, 0.55), rgba(15, 23, 42, 0.35));
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    a.brace-node:hover {
+      border-color: rgba(148, 163, 184, 0.35);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+      transform: translateX(2px);
+    }
+
+    a.brace-node:focus-visible {
+      outline: 2px solid #e2e8f0;
+      outline-offset: 2px;
+    }
+
+    a.brace-node .glyph {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      width: 1.85rem;
+      text-align: center;
+    }
+
+    a.brace-node.node-s .glyph { color: var(--s); }
+    a.brace-node.node-p .glyph { color: var(--p); }
+    a.brace-node.node-a .glyph { color: var(--a); }
+    a.brace-node.node-r .glyph { color: var(--r); }
+    a.brace-node.node-e .glyph { color: var(--e); }
+
+    a.brace-node .meta {
+      min-width: 0;
+    }
+
+    a.brace-node .name {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: 0.02em;
+    }
+
+    a.brace-node .hint {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      line-height: 1.35;
+    }
+
+    a.brace-node .chev {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(148, 163, 184, 0.65);
+    }
+
+    a.brace-node.node-e {
+      border-color: rgba(52, 211, 153, 0.28);
+      background: linear-gradient(105deg, rgba(6, 78, 59, 0.22), rgba(15, 23, 42, 0.45));
+    }
+
+    @media (max-width: 520px) {
+      .spare-tree {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .spare-tree__label {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.75rem;
+        min-width: 0;
+        padding-left: 0;
+      }
+      .spare-tree__label span.sub { margin-top: 0; text-align: left; }
+      .spare-tree__brace {
+        display: none;
+      }
+      .spare-tree__list {
+        border-left: 3px solid rgba(148, 163, 184, 0.28);
+        padding-left: 0.75rem;
+        margin-left: 0.15rem;
+      }
+    }
+
+    .foot {
+      max-width: 34rem;
+      margin: 1.25rem auto 0;
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>减脂教练业务展示 · SPARE 五维</h1>
+    <p class="lead">
+      「减脂教练」产品能力的 <strong>SPARE</strong> 五维总览：单侧大括号串联 S / P / A / R / E，点击各字母进入对应子页（界面截图或录屏占位）。
+    </p>
+    <span class="badge">作品演示 · 可交互总览</span>
+  </header>
+
+  <div class="spare-tree" aria-label="SPARE 五维结构">
+    <div class="spare-tree__label">
+      <span class="acr">SPARE</span>
+      <span class="sub">科学性 · 个性化 · 主动性 · 结果导向 · 可落地性</span>
+    </div>
+    <div class="spare-tree__brace" aria-hidden="true">
+      <svg viewBox="0 0 32 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M 28 4 C 10 4 8 18 8 36 L 8 78 C 4 88 2 94 2 100 C 2 106 4 112 8 122 L 8 164 C 8 182 10 196 28 196"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="spare-tree__list">
+      <a class="brace-node node-s" href="modules/m4-pre-recognition.html">
+        <span class="glyph">S</span>
+        <div class="meta">
+          <div class="name">科学性</div>
+          <div class="hint">食物预识别：扫描、营养卡、Non-food 与批量记录等界面。</div>
+        </div>
+        <span class="chev">→</span>
+      </a>
+      <a class="brace-node node-p" href="modules/m3-food-scoring.html">
+        <span class="glyph">P</span>
+        <div class="meta">
+          <div class="name">个性化</div>
+          <div class="hint">食物评分与分析：分数、结论与下一步建议。</div>
+        </div>
+        <span class="chev">→</span>
+      </a>
+      <a class="brace-node node-a" href="modules/m2-daily-challenge.html">
+        <span class="glyph">A</span>
+        <div class="meta">
+          <div class="name">主动性</div>
+          <div class="hint">每日挑战：打卡与任务卡片界面。</div>
+        </div>
+        <span class="chev">→</span>
+      </a>
+      <a class="brace-node node-r" href="modules/m1-food-burn.html">
+        <span class="glyph">R</span>
+        <div class="meta">
+          <div class="name">结果导向</div>
+          <div class="hint">结果叙事：把摄入/消耗讲成人能共情的故事（录屏位展示动效与节奏）。</div>
+        </div>
+        <span class="chev">→</span>
+      </a>
+      <a class="brace-node node-e" href="modules/e-out-eating-system.html">
+        <span class="glyph">E</span>
+        <div class="meta">
+          <div class="name">可落地性 · 外食体系</div>
+          <div class="hint">外食体系：首页、菜谱与外食详情界面物料。</div>
+        </div>
+        <span class="chev">→</span>
+      </a>
+    </div>
+  </div>
+
+  <p class="foot">物料溯源（技术评审用）：<code>科学性-预览食物</code> → m4；<code>主动性-每日挑战</code> → m2；<code>落地性-餐厅</code> → 外食页。品牌社媒入口在 Vibe 作品集侧栏「品牌内容」区。</p>
+</body>
+</html>

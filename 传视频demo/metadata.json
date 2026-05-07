@@ -1,0 +1,7 @@
+{
+  "name": "Nudge Coach: 物理级自律指南",
+  "description": "集成社交边界、高效沟通、精力提升、理智消费与情绪重置五大教练，通过物理存证与后果预演助你夺回生活主权。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

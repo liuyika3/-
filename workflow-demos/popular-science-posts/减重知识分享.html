@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>减重知识分享 - Jovida团队</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .nav-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .nav-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .nav-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #5568d3;
+            transform: translateX(-3px);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .concept-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .concept-card .expand-icon {
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        .concept-card.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+
+        .concept-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .concept-card.expanded .concept-detail {
+            max-height: 1000px;
+        }
+
+        .concept-detail p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .concept-detail ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .diagram {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .energy-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .energy-box {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 200px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .energy-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .energy-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .energy-box .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        .formula {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            font-size: 1.3em;
+            color: #495057;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        .highlight-box h4 {
+            color: #d63031;
+            margin-bottom: 10px;
+        }
+
+        .myth-fact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .myth, .fact {
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .myth {
+            background: #ffe0e0;
+            border-left: 5px solid #d63031;
+        }
+
+        .fact {
+            background: #e0f5e0;
+            border-left: 5px solid #00b894;
+        }
+
+        .myth h4, .fact h4 {
+            margin-bottom: 15px;
+        }
+
+        .myth h4 {
+            color: #d63031;
+        }
+
+        .fact h4 {
+            color: #00b894;
+        }
+
+        .hormone-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hormone-card:hover {
+            background: #f0f4ff;
+            transform: translateX(5px);
+        }
+
+        .hormone-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .hormone-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .hormone-card.expanded .hormone-detail {
+            max-height: 500px;
+        }
+
+        .jovida-connection {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .jovida-connection h3 {
+            margin-bottom: 15px;
+        }
+
+        .jovida-connection ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: #dee2e6;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .timeline-content h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* 真实案例样式 */
+        .case-profile {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .case-profile h3 {
+            margin-bottom: 15px;
+        }
+
+        .case-profile ul {
+            list-style: none;
+            line-height: 2;
+        }
+
+        .case-profile li {
+            padding: 5px 0;
+        }
+
+        .energy-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .energy-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border-top: 5px solid #667eea;
+        }
+
+        .energy-item.small {
+            border-top-color: #ff6b6b;
+        }
+
+        .energy-item.medium {
+            border-top-color: #4ecdc4;
+        }
+
+        .energy-item.large {
+            border-top-color: #95e1d3;
+        }
+
+        .energy-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .energy-item .kcal {
+            font-size: 2em;
+            font-weight: bold;
+            color: #764ba2;
+            margin: 10px 0;
+        }
+
+        .energy-item .percentage {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .energy-item .description {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .daily-schedule {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 80px;
+        }
+
+        .schedule-activity {
+            flex: 1;
+            margin: 0 20px;
+            color: #555;
+        }
+
+        .schedule-energy {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        /* 激素连线图样式 */
+        .hormone-diagram {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            min-height: 500px;
+        }
+
+        .hormone-node {
+            position: absolute;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hormone-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+            z-index: 10;
+        }
+
+        .hormone-node.hunger {
+            border-color: #ff6b6b;
+            background: #ffe0e0;
+        }
+
+        .hormone-node.satiety {
+            border-color: #4ecdc4;
+            background: #e0f5f5;
+        }
+
+        .hormone-node h5 {
+            font-size: 0.9em;
+            color: #667eea;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .hormone-node.hunger h5 {
+            color: #d63031;
+        }
+
+        .hormone-node.satiety h5 {
+            color: #00b894;
+        }
+
+        .hormone-node .icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .connection-line {
+            position: absolute;
+            background: #667eea;
+            height: 3px;
+            transform-origin: left center;
+        }
+
+        .connection-line.hunger {
+            background: #ff6b6b;
+        }
+
+        .connection-line.satiety {
+            background: #4ecdc4;
+        }
+
+        .connection-arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .connection-arrow.hunger {
+            border-color: transparent transparent transparent #ff6b6b;
+        }
+
+        .connection-arrow.satiety {
+            border-color: transparent transparent transparent #4ecdc4;
+        }
+
+        .brain-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            z-index: 5;
+        }
+
+        .brain-center h4 {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .appetite-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flow-step {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-step h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .myth-fact {
+                grid-template-columns: 1fr;
+            }
+            
+            .energy-flow {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+            
+            .hormone-diagram {
+                min-height: 400px;
+                padding: 20px;
+            }
+            
+            .hormone-node {
+                width: 80px;
+                height: 80px;
+                font-size: 0.8em;
+            }
+            
+            .brain-center {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .appetite-flow {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-step::after {
+                display: none;
+            }
+            
+            .energy-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 图片样式 */
+        .module-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 12px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .image-caption {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="image-container" style="margin-top: 0; margin-bottom: 16px;">
+                <img src="https://www.figma.com/api/mcp/asset/8a418157-783a-4ea8-aaab-ccd7341b3585" alt="减重知识分享头图" class="module-image" style="max-width: 240px;">
+            </div>
+            <h1>减重知识分享</h1>
+            <p>拉齐团队对减脂减重减肥的科学认知 | 20分钟快速了解</p>
+        </div>
+
+        <!-- 导航页面 -->
+        <div id="nav-page" class="content active">
+            <div class="nav">
+                <div class="nav-card" onclick="showContent('base-theory')">
+                    <div class="icon">📘</div>
+                    <h2>减重基础原理</h2>
+                    <p>能量平衡 + 激素与食欲调节</p>
+                </div>
+                
+                <div class="nav-card" onclick="showContent('practice')">
+                    <div class="icon">🧭</div>
+                    <h2>现实应用</h2>
+                    <p>常见误区 + 真实案例</p>
+                </div>
+                
+                <div class="nav-card" onclick="showContent('dev-notes')">
+                    <div class="icon">🛠️</div>
+                    <h2>开发者须知</h2>
+                    <p>App与营养师、药物与手术、Jovida要点</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 减重基础原理：能量平衡 + 食欲与激素 -->
+        <div id="base-theory" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>📘 减重基础原理</h1>
+
+            <h2 style="margin-top: 20px; color: #667eea;">能量平衡</h2>
+
+            <div class="image-container">
+                <img src="热量饼图.jpeg" alt="能量摄入构成示意饼图" class="module-image">
+                <p class="image-caption">能量来源比例示意：蛋白质、脂肪、碳水与酒精的热量差异</p>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #667eea;">能量消耗的组成</h3>
+            
+            <div class="concept-grid" style="margin-top: 20px;">
+                <div class="concept-card">
+                    <h3>BMR（基础代谢率） <span class="expand-icon">▶</span></h3>
+                    <p>维持生命所需的最低能量</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>占比：</strong>占TDEE的60-70%，是能量消耗的最大组成部分</li>
+                            <li><strong>影响因素：</strong>肌肉量（肌肉越多，BMR越高）、年龄、性别、体重</li>
+                            <li><strong>特点：</strong>很难快速改变，需要长期努力（增肌、改善代谢）</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>NEAT（非运动活动热效应） <span class="expand-icon">▶</span></h3>
+                    <p>日常活动消耗的能量</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>占比：</strong>占TDEE的15-30%，个体差异很大</li>
+                            <li><strong>包括：</strong>走路、站立、做家务、打字、坐立不安等</li>
+                            <li><strong>特点：</strong>最容易提升的部分，累积效应显著</li>
+                            <li><strong>差异：</strong>久坐人群200-300大卡/天，活跃人群可达800-1000大卡/天</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>EAT（运动活动热效应） <span class="expand-icon">▶</span></h3>
+                    <p>专门运动消耗的能量</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>占比：</strong>占TDEE的5-10%，相对较少</li>
+                            <li><strong>包括：</strong>跑步、游泳、力量训练等有计划的运动</li>
+                            <li><strong>特点：</strong>作用有限，不能只靠运动减重</li>
+                            <li><strong>建议：</strong>结合NEAT和饮食控制效果更好</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>TEF（食物热效应） <span class="expand-icon">▶</span></h3>
+                    <p>消化食物消耗的能量</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>占比：</strong>约占TDEE的10%</li>
+                            <li><strong>原理：</strong>身体消化、吸收、代谢食物需要消耗能量</li>
+                            <li><strong>差异：</strong>蛋白质的热效应最高（20-30%），脂肪最低（0-3%），碳水居中（5-10%）</li>
+                            <li><strong>启示：</strong>高蛋白饮食有助于增加能量消耗并增强饱腹感</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h4>能量摄入要点（Atwater因子）</h4>
+                <p style="color: #555; margin-top: 10px;">
+                    脂肪 9 千卡/克；蛋白质 4 千卡/克；碳水 4 千卡/克；纤维可代谢部分约 2 千卡/克；酒精 7 千卡/克
+                </p>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">食欲与激素调节</h2>
+            <p style="font-size: 1.05em; color: #666; margin: 15px 0; line-height: 1.7;">
+                食欲由大脑、胃肠激素和环境共同决定。理解“饿/饱”信号，有助于更轻松地控制摄入。
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>促进进食的信号 <span class="expand-icon">▶</span></h3>
+                    <p>身体和环境让你更想吃</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>激素：</strong>胃饥饿素（Ghrelin）升高、神经肽Y（NPY）增加、刺鼠相关蛋白（AgRP）激活</li>
+                            <li><strong>生理状态：</strong>低血糖、脂肪储存下降、胃排空</li>
+                            <li><strong>压力与睡眠：</strong>皮质醇升高、睡眠不足导致激素失衡</li>
+                            <li><strong>环境因素：</strong>食物视觉、气味、便利性诱发"想吃"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>抑制进食的信号 <span class="expand-icon">▶</span></h3>
+                    <p>身体与环境让你“该停了”</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>胃胀、瘦素、胰岛素、肠道激素（如GLP-1、CCK）</li>
+                            <li>下丘脑饱腹中枢被激活</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>关键激素 <span class="expand-icon">▶</span></h3>
+                    <p>告诉大脑“饿了/饱了”</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>胃饥饿素：饭前升高，推动进食</li>
+                            <li>瘦素：脂肪组织分泌，反馈能量充足</li>
+                            <li>胰岛素：餐后升高，控制血糖并传递饱足信号</li>
+                            <li>肠道激素：食物入肠后释放，延迟传递“饱”的信号</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h4>减重时的生理适应</h4>
+                <p style="color: #555; line-height: 1.7;">
+                    体重下降后，胃饥饿素往往升高、瘦素下降，饱腹感减弱。这种变化可持续数月，需要通过高蛋白、足量蔬菜、足睡眠、管理压力来对冲。
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="激素调节.jpeg" alt="激素调节示意：饥饿与饱腹信号" class="module-image">
+                <p class="image-caption">激素调节示意：Ghrelin 提醒“饿了”，Leptin/胰岛素/肠道激素传递“够了”</p>
+            </div>
+        </div>
+
+        <!-- 原能量平衡页面（保留） -->
+        <div id="energy-balance" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>⚖️ 能量平衡基础</h1>
+            
+            <div class="highlight-box">
+                <h4>🎯 核心公式</h4>
+                <div class="formula">
+                    能量平衡 = 能量摄入 - 能量消耗
+                </div>
+                <p style="margin-top: 15px; color: #555;">
+                    <strong>能量摄入 > 能量消耗</strong> → 体重增加<br>
+                    <strong>能量摄入 < 能量消耗</strong> → 体重减少<br>
+                    <strong>能量摄入 = 能量消耗</strong> → 体重维持
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Healthy_Lifestyle_Infographic.png" alt="健康生活方式示意图" class="module-image" onerror="this.style.display='none'">
+                <p class="image-caption">健康生活方式示意图 - 展示规律饮食、适度运动、充足睡眠等健康习惯</p>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">能量消耗的组成部分</h2>
+            <div class="energy-flow">
+                <div class="energy-box" onclick="toggleDetail('tdee-detail')">
+                    <h4>TDEE</h4>
+                    <div class="value">100%</div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">总能量消耗</p>
+                </div>
+                <div class="arrow">=</div>
+                <div class="energy-box" onclick="toggleDetail('bmr-detail')">
+                    <h4>BMR</h4>
+                    <div class="value">60-70%</div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">基础代谢率</p>
+                </div>
+                <div class="arrow">+</div>
+                <div class="energy-box" onclick="toggleDetail('tef-detail')">
+                    <h4>TEF</h4>
+                    <div class="value">10%</div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">食物热效应</p>
+                </div>
+                <div class="arrow">+</div>
+                <div class="energy-box" onclick="toggleDetail('eat-detail')">
+                    <h4>EAT</h4>
+                    <div class="value">5-10%</div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">运动消耗</p>
+                </div>
+                <div class="arrow">+</div>
+                <div class="energy-box" onclick="toggleDetail('neat-detail')">
+                    <h4>NEAT</h4>
+                    <div class="value">15-30%</div>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">非运动活动</p>
+                </div>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card" id="tdee-detail">
+                    <h3>TDEE (总能量消耗) <span class="expand-icon">▶</span></h3>
+                    <p>Total Daily Energy Expenditure - 一天消耗的总能量</p>
+                    <div class="concept-detail">
+                        <p><strong>定义：</strong>维持当前体重所需的总能量</p>
+                        <p><strong>计算：</strong>TDEE = BMR + TEF + EAT + NEAT</p>
+                        <p><strong>重要性：</strong>减重需要让能量摄入 < TDEE</p>
+                        <p><strong>影响因素：</strong>年龄、性别、体重、体脂率、活动水平</p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="bmr-detail">
+                    <h3>BMR (基础代谢率) <span class="expand-icon">▶</span></h3>
+                    <p>Basal Metabolic Rate - 维持生命最基本功能所需的能量</p>
+                    <div class="concept-detail">
+                        <p><strong>定义：</strong>静息状态下，维持心跳、呼吸、体温等基本生理功能所需的能量</p>
+                        <p><strong>占比：</strong>占TDEE的60-70%，是能量消耗的最大组成部分</p>
+                        <p><strong>影响因素：</strong></p>
+                        <ul>
+                            <li>肌肉量（肌肉越多，BMR越高）</li>
+                            <li>体重和体表面积</li>
+                            <li>年龄（随年龄增长而下降）</li>
+                            <li>性别（男性通常高于女性）</li>
+                            <li>遗传因素</li>
+                        </ul>
+                        <p><strong>提升方法：</strong>增加肌肉量、规律运动、充足睡眠</p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="tef-detail">
+                    <h3>TEF (食物热效应) <span class="expand-icon">▶</span></h3>
+                    <p>Thermic Effect of Food - 消化、吸收、代谢食物所需的能量</p>
+                    <div class="concept-detail">
+                        <p><strong>定义：</strong>身体处理食物时消耗的能量</p>
+                        <p><strong>占比：</strong>约占TDEE的10%</p>
+                        <p><strong>不同营养素的热效应：</strong></p>
+                        <ul>
+                            <li><strong>蛋白质：</strong>20-30%（最高）</li>
+                            <li><strong>碳水化合物：</strong>5-10%</li>
+                            <li><strong>脂肪：</strong>0-3%（最低）</li>
+                        </ul>
+                        <p><strong>启示：</strong>高蛋白饮食有助于增加能量消耗</p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="eat-detail">
+                    <h3>EAT (运动活动热效应) <span class="expand-icon">▶</span></h3>
+                    <p>Exercise Activity Thermogenesis - 有意识运动消耗的能量</p>
+                    <div class="concept-detail">
+                        <p><strong>定义：</strong>专门进行的运动（如跑步、健身）消耗的能量</p>
+                        <p><strong>占比：</strong>约占TDEE的5-10%（取决于运动量）</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>可控制性强</li>
+                            <li>对减重有帮助，但不是唯一途径</li>
+                            <li>过度运动可能导致补偿性行为（吃更多、动更少）</li>
+                        </ul>
+                        <p><strong>研究发现：</strong>单纯增加运动量，如果没有控制饮食，减重效果有限</p>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="neat-detail">
+                    <h3>NEAT (非运动活动热效应) <span class="expand-icon">▶</span></h3>
+                    <p>Non-Exercise Activity Thermogenesis - 日常活动消耗的能量</p>
+                    <div class="concept-detail">
+                        <p><strong>定义：</strong>除了专门运动外的所有活动：走路、做家务、打字、坐立不安等</p>
+                        <p><strong>占比：</strong>约占TDEE的15-30%，个体差异很大</p>
+                        <p><strong>重要性：</strong></p>
+                        <ul>
+                            <li>是能量消耗中变化最大的部分</li>
+                            <li>容易被忽视，但累积效应显著</li>
+                            <li>久坐人群的NEAT可能只有200-300 kcal/天</li>
+                            <li>活跃人群的NEAT可达800-1000 kcal/天</li>
+                        </ul>
+                        <p><strong>提升方法：</strong>多走路、走楼梯、站立办公、做家务、减少久坐</p>
+                        <p><strong>💡 关键洞察：</strong>增加NEAT比单纯增加运动更容易坚持，且效果显著</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h4>📊 能量摄入：Atwater因子</h4>
+                <p style="color: #555; margin-top: 10px;">
+                    <strong>脂肪：</strong>9 kcal/g<br>
+                    <strong>蛋白质：</strong>4 kcal/g<br>
+                    <strong>碳水化合物：</strong>4 kcal/g<br>
+                    <strong>纤维：</strong>2 kcal/g（可代谢部分）<br>
+                    <strong>酒精：</strong>7 kcal/g
+                </p>
+            </div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%); border-left-color: #00b894;">
+                <h4>🎯 减重策略要点</h4>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>能量缺口是关键：</strong>摄入 < 消耗才能减重</li>
+                    <li><strong>BMR是基础：</strong>通过增肌、规律作息来维持/提升BMR</li>
+                    <li><strong>NEAT容易被忽视：</strong>增加日常活动比单纯运动更容易坚持</li>
+                    <li><strong>蛋白质有优势：</strong>高蛋白饮食增加TEF，增强饱腹感</li>
+                    <li><strong>可持续性最重要：</strong>极端方法不可持续，容易反弹</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 食欲控制页面 -->
+        <div id="appetite" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>🧠 食欲控制机制</h1>
+            
+            <p style="font-size: 1.1em; color: #666; margin: 20px 0; line-height: 1.8;">
+                食欲控制是一个复杂的系统，涉及大脑、激素、神经信号等多个层面。理解这些机制有助于我们更好地理解为什么减重如此困难，以及如何科学地管理食欲。
+            </p>
+
+            <h2 style="margin-top: 40px; color: #667eea;">进食行为的三个阶段</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>1. 食欲期 (Appetitive)</h4>
+                        <p>寻找食物、觅食行为。受饥饿信号、环境线索（食物广告、香味）等驱动。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>2. 消费期 (Consummatory)</h4>
+                        <p>实际进食过程。受味觉、饱腹信号等调节。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>3. 后消费期 (Post-consummatory)</h4>
+                        <p>进食后的行为，如整理、休息。受饱腹感、满足感等影响。</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">促进进食的因素</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>内部生理信号 <span class="expand-icon">▶</span></h3>
+                    <p>身体内部的能量状态信号</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>低血糖：</strong>血糖下降触发饥饿感</li>
+                            <li><strong>低脂肪储存：</strong>脂肪组织减少时发出信号</li>
+                            <li><strong>激素信号：</strong>如胃饥饿素（Ghrelin）升高</li>
+                            <li><strong>微量营养素缺乏：</strong>身体需要特定营养素</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>外部环境线索 <span class="expand-icon">▶</span></h3>
+                    <p>环境中的食物相关刺激</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>视觉线索：</strong>食物广告、餐厅招牌</li>
+                            <li><strong>嗅觉线索：</strong>食物香味（如面包店）</li>
+                            <li><strong>听觉线索：</strong>食物相关的声音（如麦当劳广告歌）</li>
+                            <li><strong>可获得性：</strong>容易获得的、美味的食物</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">抑制进食的因素</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>内部生理信号 <span class="expand-icon">▶</span></h3>
+                    <p>身体发出的饱腹和满足信号</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>高胰岛素/瘦素水平：</strong>能量充足信号</li>
+                            <li><strong>胃扩张：</strong>胃部充盈感</li>
+                            <li><strong>大脑抑制信号：</strong>下丘脑饱腹中枢激活</li>
+                            <li><strong>肠道激素：</strong>如GLP-1、CCK等</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>外部环境因素 <span class="expand-icon">▶</span></h3>
+                    <p>环境中的抑制因素</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>威胁：</strong>如捕食者威胁（进化遗留）</li>
+                            <li><strong>负面刺激：</strong>不愉快的经历</li>
+                            <li><strong>社会压力：</strong>如社会对体重的偏见</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">控制食欲的"信使"（激素）</h2>
+            
+            <p style="color: #666; margin: 20px 0; line-height: 1.8;">
+                身体通过一些化学物质（激素）来告诉大脑"饿了"还是"饱了"。就像信使一样，它们在不同地方产生，然后跑到大脑去传递信息。
+            </p>
+
+            <!-- 激素连线图 -->
+            <div class="hormone-diagram" id="hormoneDiagram" style="position: relative; min-height: 500px;">
+                <div class="brain-center">
+                    <div class="icon">🧠</div>
+                    <h4>大脑</h4>
+                    <p style="font-size: 0.8em; margin: 0;">控制中心</p>
+                </div>
+                
+                <!-- 饥饿激素节点 -->
+                <div class="hormone-node hunger" style="top: 50px; left: 50px;" onclick="showHormoneDetail('ghrelin')">
+                    <div class="icon">🍽️</div>
+                    <h5>胃饥饿素</h5>
+                    <p style="font-size: 0.7em; color: #d63031; margin: 0;">"我饿了"</p>
+                </div>
+                
+                <!-- 饱腹激素节点 -->
+                <div class="hormone-node satiety" style="top: 50px; right: 50px;" onclick="showHormoneDetail('leptin')">
+                    <div class="icon">📉</div>
+                    <h5>瘦素</h5>
+                    <p style="font-size: 0.7em; color: #00b894; margin: 0;">"我饱了"</p>
+                </div>
+                
+                <div class="hormone-node satiety" style="bottom: 50px; left: 50px;" onclick="showHormoneDetail('insulin')">
+                    <div class="icon">💉</div>
+                    <h5>胰岛素</h5>
+                    <p style="font-size: 0.7em; color: #00b894; margin: 0;">"血糖控制"</p>
+                </div>
+                
+                <div class="hormone-node satiety" style="bottom: 50px; right: 50px;" onclick="showHormoneDetail('glp1')">
+                    <div class="icon">🫀</div>
+                    <h5>肠道激素</h5>
+                    <p style="font-size: 0.7em; color: #00b894; margin: 0;">"胃满了"</p>
+                </div>
+                
+                <!-- 连线 - 使用百分比定位以适应不同屏幕 -->
+                <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible;">
+                    <!-- 胃饥饿素到大脑 -->
+                    <line x1="10%" y1="20%" x2="45%" y2="60%" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrowhead-hunger)"/>
+                    <!-- 瘦素到大脑 -->
+                    <line x1="90%" y1="20%" x2="55%" y2="60%" stroke="#4ecdc4" stroke-width="3" marker-end="url(#arrowhead-satiety)"/>
+                    <!-- 胰岛素到大脑 -->
+                    <line x1="10%" y1="80%" x2="45%" y2="70%" stroke="#4ecdc4" stroke-width="3" marker-end="url(#arrowhead-satiety)"/>
+                    <!-- 肠道激素到大脑 -->
+                    <line x1="90%" y1="80%" x2="55%" y2="70%" stroke="#4ecdc4" stroke-width="3" marker-end="url(#arrowhead-satiety)"/>
+                    
+                    <defs>
+                        <marker id="arrowhead-hunger" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#ff6b6b" />
+                        </marker>
+                        <marker id="arrowhead-satiety" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#4ecdc4" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- 激素详细说明 -->
+            <div id="hormoneDetails" style="display: none; margin-top: 30px;">
+                <div class="hormone-card" id="ghrelin-detail">
+                    <h4>🍽️ 胃饥饿素 - "我饿了"的信号</h4>
+                    <div class="hormone-detail" style="max-height: 500px;">
+                        <p><strong>什么时候产生：</strong>胃空了的时候，胃部会释放这个信号</p>
+                        <p><strong>告诉大脑什么：</strong>"我饿了，快去找吃的！"</p>
+                        <p><strong>什么时候最高：</strong>饭前，特别是长时间没吃东西的时候</p>
+                        <p><strong>什么时候下降：</strong>吃完饭后</p>
+                        <p><strong>减重时的问题：</strong>减重后，这个信号可能会变得更强，让你感觉更饿（这就是为什么减重后容易想吃东西）</p>
+                    </div>
+                </div>
+
+                <div class="hormone-card" id="leptin-detail" style="display: none;">
+                    <h4>📉 瘦素 - "我饱了"的信号</h4>
+                    <div class="hormone-detail" style="max-height: 500px;">
+                        <p><strong>什么时候产生：</strong>脂肪组织（身上的肥肉）会一直产生这个信号</p>
+                        <p><strong>告诉大脑什么：</strong>"能量够了，不用再吃了"</p>
+                        <p><strong>特点：</strong>脂肪越多，这个信号越强（理论上应该越不想吃）</p>
+                        <p><strong>问题：</strong>但很多胖的人，虽然这个信号很强，大脑却"听不见"（这叫"瘦素抵抗"）</p>
+                        <p><strong>减重时的问题：</strong>减重后脂肪少了，这个信号变弱，大脑可能觉得"能量不够了"，让你想吃更多</p>
+                    </div>
+                </div>
+
+                <div class="hormone-card" id="insulin-detail" style="display: none;">
+                    <h4>💉 胰岛素 - "血糖控制员"</h4>
+                    <div class="hormone-detail" style="max-height: 500px;">
+                        <p><strong>什么时候产生：</strong>吃完饭后，特别是吃了含糖的食物</p>
+                        <p><strong>主要工作：</strong>把血糖降下来，让身体能使用这些能量</p>
+                        <p><strong>额外作用：</strong>也会告诉大脑"刚吃完，别急着再吃"</p>
+                        <p><strong>问题：</strong>如果经常吃很多糖，身体可能对胰岛素"不敏感"了，控制食欲的能力也会下降</p>
+                        <p><strong>减重的好处：</strong>减重后，身体对胰岛素更敏感，食欲控制会更好</p>
+                    </div>
+                </div>
+
+                <div class="hormone-card" id="glp1-detail" style="display: none;">
+                    <h4>🫀 肠道激素 - "胃满了"的信号</h4>
+                    <div class="hormone-detail" style="max-height: 500px;">
+                        <p><strong>什么时候产生：</strong>食物进入肠道后，肠道会释放这些信号</p>
+                        <p><strong>告诉大脑什么：</strong>"胃和肠道都装满了，可以停了"</p>
+                        <p><strong>特点：</strong>这个信号有延迟，需要时间才能传到大脑（所以吃太快容易吃多）</p>
+                        <p><strong>作用方式：</strong>通过神经和血液两种方式告诉大脑</p>
+                        <p><strong>减重时：</strong>研究结果不太一致，但总的来说，减重后这些信号可能会变化，影响饱腹感</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 食欲控制流程图 -->
+            <h2 style="margin-top: 40px; color: #667eea;">食欲控制的完整流程</h2>
+            <div class="appetite-flow">
+                <div class="flow-step">
+                    <h4>1. 身体发出信号</h4>
+                    <p>胃空了 → 释放"饥饿素"<br>脂肪少了 → "瘦素"信号变弱</p>
+                </div>
+                <div class="flow-step">
+                    <h4>2. 信号传到大脑</h4>
+                    <p>大脑的"控制中心"收到信号，判断"该吃东西了"</p>
+                </div>
+                <div class="flow-step">
+                    <h4>3. 开始找食物</h4>
+                    <p>环境中的食物线索（看到、闻到）也会触发想吃的感觉</p>
+                </div>
+                <div class="flow-step">
+                    <h4>4. 开始吃东西</h4>
+                    <p>吃到食物后，身体开始释放"饱腹信号"</p>
+                </div>
+                <div class="flow-step">
+                    <h4>5. 感到饱了</h4>
+                    <p>胃满了、肠道激素释放、血糖上升 → 大脑收到"够了"的信号</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">大脑的"控制中心"</h2>
+            <p style="color: #666; margin: 20px 0; line-height: 1.8;">
+                大脑里有一个区域专门负责控制食欲，就像总指挥一样。它接收身体各处的信号，然后决定"该吃"还是"该停"。
+            </p>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>饥饿控制中心 <span class="expand-icon">▶</span></h3>
+                    <p>负责"想吃"的信号</p>
+                    <div class="concept-detail">
+                        <p><strong>什么时候激活：</strong></p>
+                        <ul>
+                            <li>身体能量不足的时候</li>
+                            <li>压力大的时候（压力激素会激活它）</li>
+                            <li>收到"饥饿素"信号的时候</li>
+                        </ul>
+                        <p><strong>作用：</strong>让你产生"想吃东西"的冲动</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>饱腹控制中心 <span class="expand-icon">▶</span></h3>
+                    <p>负责"该停了"的信号</p>
+                    <div class="concept-detail">
+                        <p><strong>什么时候激活：</strong></p>
+                        <ul>
+                            <li>看到、闻到食物的时候（提前准备）</li>
+                            <li>开始吃东西的时候</li>
+                            <li>收到"饱腹激素"信号的时候</li>
+                        </ul>
+                        <p><strong>作用：</strong>让你产生"够了，不用再吃"的感觉</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>其他控制区域 <span class="expand-icon">▶</span></h3>
+                    <p>负责其他方面的控制</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li><strong>享乐控制：</strong>控制"因为好吃而想吃"（比如看到蛋糕就想吃）</li>
+                            <li><strong>餐间控制：</strong>控制两餐之间的食欲</li>
+                            <li><strong>信号接收：</strong>接收来自血液和神经的各种信号</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h4>⚠️ 减重对食欲的影响</h4>
+                <p style="color: #555; margin-top: 10px; line-height: 1.8;">
+                    <strong>研究发现：</strong>减重后，身体会产生"适应性反应"：<br>
+                    • <strong>Ghrelin上升</strong> → 增加饥饿感<br>
+                    • <strong>Leptin下降</strong> → 减少饱腹信号<br>
+                    • <strong>PYY可能下降</strong> → 减少餐后饱腹感<br><br>
+                    这些变化可能<strong>持续一年以上</strong>，这就是为什么长期维持减重成果如此困难。这也是为什么需要<strong>可持续的方法</strong>和<strong>行为改变</strong>，而不仅仅是短期节食。
+                </p>
+            </div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); margin-top: 30px;">
+                <h4>💡 压力与进食</h4>
+                <p style="color: #555; margin-top: 10px; line-height: 1.8;">
+                    <strong>皮质醇（压力激素）</strong>会激活AgRP神经元，促进进食行为。<br>
+                    这解释了为什么压力大时容易暴食。管理压力是减重成功的关键因素之一。
+                </p>
+            </div>
+        </div>
+
+        <!-- 现实应用：真实案例 + 常见误区 -->
+        <div id="practice" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>🧭 现实应用</h1>
+
+            <!-- 真实案例 -->
+            <h2 style="margin-top: 20px; color: #667eea;">真实案例：大脸狗的一天</h2>
+            <div class="case-profile">
+                <h3>👤 案例人物：大脸狗</h3>
+                <ul>
+                    <li>189cm，90kg，男性</li>
+                    <li>乳糖不耐受，正在备孕</li>
+                    <li>目标：减重减脂，健康、可持续</li>
+                    <li>办公室久坐，每周1-2次轻运动</li>
+                </ul>
+            </div>
+
+            <div class="image-container">
+                <img src="大脸狗的一天.jpeg" alt="大脸狗的一天：示例饮食与活动" class="module-image">
+                <p class="image-caption">大脸狗的一天：饮食与活动示例，强调无乳糖替代、日常活动和睡眠</p>
+            </div>
+
+            <h3 style="margin-top: 20px; color: #667eea;">一天的能量消耗（示例：约2600千卡）</h3>
+            <div class="energy-breakdown">
+                <div class="energy-item large">
+                    <h4>基础代谢</h4>
+                    <div class="kcal">约2000</div>
+                    <div class="percentage">约70%</div>
+                    <div class="description">躺着不动也需要的能量，占大头（身高189cm、90kg人群，Harris-Benedict估算约2000千卡/天）</div>
+                </div>
+                <div class="energy-item medium">
+                    <h4>日常活动（非运动）</h4>
+                    <div class="kcal">约390</div>
+                    <div class="percentage">约15%</div>
+                    <div class="description">走路、家务、站立等，最容易提升</div>
+                </div>
+                <div class="energy-item small">
+                    <h4>专门运动</h4>
+                    <div class="kcal">约180</div>
+                    <div class="percentage">约7%</div>
+                    <div class="description">慢跑、健身等，占比较小</div>
+                </div>
+                <div class="energy-item small">
+                    <h4>消化食物</h4>
+                    <div class="kcal">约210</div>
+                    <div class="percentage">约8%</div>
+                    <div class="description">处理食物的能量，蛋白质热效应更高</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #667eea;">大脸狗的改进思路</h3>
+            
+            <div class="concept-grid" style="margin-top: 20px;">
+                <div class="concept-card">
+                    <h3>饮食优化：优先蛋白质</h3>
+                    <p>蛋白质热效应最高（20-30%），同样热量下净热量更低，饱腹感强且保护肌肉，选择无乳糖高蛋白食物如鱼、鸡胸肉、豆类。</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>运动选择：力量训练优先</h3>
+                    <p>力量训练增肌提升BMR（占TDEE的70%），长期收益远大于有氧运动，每周2-3次复合动作如深蹲、卧推、硬拉。</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>备孕特殊考虑</h3>
+                    <p>避免极端节食（每天缺口不超过500大卡），保证优质蛋白充足、足量蔬菜、充足睡眠，减重速度每周0.3-0.5kg，温和可持续。</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #667eea;">典型食物的热量解析</h3>
+            <div class="image-container" style="margin-top: 15px;">
+                <img src="牛油果vs米饭.jpeg" alt="典型食物热量对比：牛油果vs米饭" class="module-image">
+                <p class="image-caption">典型食物热量对比：看起来健康的食物可能热量很高</p>
+            </div>
+            <div class="image-container" style="margin-top: 15px;">
+                <img src="沙拉vs沙拉酱.jpeg" alt="典型食物热量对比：沙拉vs沙拉酱" class="module-image">
+                <p class="image-caption">一勺沙拉酱 = 一个苹果的热量</p>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #667eea;">典型运动的热量消耗</h3>
+            <div class="image-container" style="margin-top: 15px;">
+                <img src="走路vs苹果.jpeg" alt="典型运动消耗对比：慢走30分钟vs一个苹果" class="module-image">
+                <p class="image-caption">慢走30分钟 = 一个苹果的热量</p>
+            </div>
+            <div class="image-container" style="margin-top: 15px;">
+                <img src="家务vs坚果.jpeg" alt="典型运动消耗对比：做家务30分钟vs一小把坚果" class="module-image">
+                <p class="image-caption">做家务30分钟 = 一小把坚果的热量</p>
+            </div>
+
+            <!-- 常见误区：仅保留图示 -->
+            <h2 style="margin-top: 30px; color: #667eea;">常见误区与真相</h2>
+
+            <div class="image-container">
+                <img src="真相误区对比.jpeg" alt="减重常见误区与真相对比示意" class="module-image">
+                <p class="image-caption">常见误区与真相对比：运动、饮食、代谢与习惯的平衡</p>
+            </div>
+
+            <div class="image-container">
+                <img src="平台期.jpeg" alt="减重平台期示意图" class="module-image">
+                <p class="image-caption">平台期示意：体重停滞时，检查记录、补觉、拉升NEAT，再微调饮食</p>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 20px; background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border-left-color: #00bcd4;">
+                <h4>平台期：怎么破？</h4>
+                <div style="margin-top: 15px; line-height: 1.8; color: #555;">
+                    <p><strong>平台期的原理：</strong>体重下降后BMR和NEAT自然下降，身体降低代谢率、增加食欲激素，同时可能不知不觉吃多了、动少了，导致能量平衡重新建立。</p>
+                    <p style="margin-top: 15px;"><strong>破平台期的策略：</strong>检查摄入是否回弹、NEAT是否下降、睡眠/压力是否变差，然后小幅调整（减少100-200千卡或增加日常步数/站立时间）打破平衡。</p>
+                    <p style="margin-top: 15px;"><strong>为什么不建议频繁称体重？</strong>每天体重可能波动1-3kg（水分、食物残渣、水肿、肌肉增加），每周固定时间称一次看长期趋势即可。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 真实案例页面 -->
+        <div id="real-case" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>👤 真实案例：一个减重人群的一天</h1>
+
+            <div class="case-profile">
+                <h3>👤 案例人物：小张</h3>
+                <ul>
+                    <li>👨 30岁，男性</li>
+                    <li>📏 身高175cm，体重85kg（想减到75kg）</li>
+                    <li>💼 办公室工作，久坐为主</li>
+                    <li>🏃 偶尔运动（每周1-2次，每次30分钟慢跑）</li>
+                    <li>🎯 目标：健康减重，每周减0.5-1kg</li>
+                </ul>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">小张的一天能量消耗（TDEE = 2100 大卡）</h2>
+            
+            <div class="energy-breakdown">
+                <div class="energy-item large">
+                    <h4>基础代谢 (BMR)</h4>
+                    <div class="kcal">1470</div>
+                    <div class="percentage">70%</div>
+                    <div class="description">
+                        即使躺着不动，身体维持心跳、呼吸、体温等基本功能也需要消耗的能量
+                        <br><br>
+                        <strong>体感：</strong>这是你一天消耗的最大头！即使什么都不做，身体也在"烧钱"
+                    </div>
+                </div>
+
+                <div class="energy-item medium">
+                    <h4>日常活动 (NEAT)</h4>
+                    <div class="kcal">315</div>
+                    <div class="percentage">15%</div>
+                    <div class="description">
+                        走路、做家务、打字、坐立不安等日常活动消耗的能量
+                        <br><br>
+                        <strong>体感：</strong>虽然看起来不多，但这是最容易改变的部分！多走几步、走楼梯，累积起来很可观
+                    </div>
+                </div>
+
+                <div class="energy-item small">
+                    <h4>专门运动 (EAT)</h4>
+                    <div class="kcal">105</div>
+                    <div class="percentage">5%</div>
+                    <div class="description">
+                        专门去运动（如跑步、健身）消耗的能量
+                        <br><br>
+                        <strong>体感：</strong>很多人以为运动消耗很多，但实际上只占很小一部分！这就是为什么"只运动不控制饮食"效果有限
+                    </div>
+                </div>
+
+                <div class="energy-item small">
+                    <h4>消化食物 (TEF)</h4>
+                    <div class="kcal">210</div>
+                    <div class="percentage">10%</div>
+                    <div class="description">
+                        身体消化、吸收、处理食物时消耗的能量
+                        <br><br>
+                        <strong>体感：</strong>吃蛋白质多的食物，这个会更高（因为蛋白质更难消化）
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4>💡 关键洞察</h4>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>BMR占70%：</strong>这是大头，但很难快速改变（需要增肌、改善代谢）</li>
+                    <li><strong>NEAT只占15%：</strong>看起来少，但这是最容易提升的！从315提升到500大卡很容易</li>
+                    <li><strong>EAT只占5%：</strong>专门运动消耗其实很少，这就是为什么不能只靠运动减重</li>
+                    <li><strong>小张的NEAT很低：</strong>因为久坐，日常活动很少，这是最大的改进空间</li>
+                </ul>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">小张典型的一天时间表</h2>
+            <div class="daily-schedule">
+                <div class="schedule-item">
+                    <div class="schedule-time">7:00</div>
+                    <div class="schedule-activity">起床，洗漱，准备上班</div>
+                    <div class="schedule-energy">+50 大卡</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">7:30</div>
+                    <div class="schedule-activity">早餐：包子+豆浆（约400大卡）</div>
+                    <div class="schedule-energy">摄入</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">8:00-12:00</div>
+                    <div class="schedule-activity">坐地铁上班，到公司后一直坐着工作</div>
+                    <div class="schedule-energy">+80 大卡</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00</div>
+                    <div class="schedule-activity">午餐：外卖（约600大卡）</div>
+                    <div class="schedule-energy">摄入</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:00-18:00</div>
+                    <div class="schedule-activity">继续坐着工作，偶尔起来接水、上厕所</div>
+                    <div class="schedule-energy">+100 大卡</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30</div>
+                    <div class="schedule-activity">下班，坐地铁回家</div>
+                    <div class="schedule-energy">+50 大卡</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">19:30</div>
+                    <div class="schedule-activity">晚餐：家常菜（约700大卡）</div>
+                    <div class="schedule-energy">摄入</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">20:00-22:00</div>
+                    <div class="schedule-activity">看电视、玩手机（偶尔吃点零食，约200大卡）</div>
+                    <div class="schedule-energy">+30 大卡</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:30</div>
+                    <div class="schedule-activity">洗澡，准备睡觉</div>
+                    <div class="schedule-energy">+20 大卡</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, #ffe0e0 0%, #ffcccc 100%); border-left-color: #d63031;">
+                <h4>📊 小张的能量平衡分析</h4>
+                <div style="margin-top: 15px; line-height: 2;">
+                    <p><strong>总消耗：</strong>2100 大卡</p>
+                    <p><strong>总摄入：</strong>1900 大卡（400+600+700+200）</p>
+                    <p><strong>能量缺口：</strong>200 大卡/天</p>
+                    <p><strong>预计减重速度：</strong>每周约0.2kg（需要7700大卡缺口才能减1kg脂肪）</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">如果小张想加快减重速度，可以怎么做？</h2>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>方案1：增加NEAT（最容易） <span class="expand-icon">▶</span></h3>
+                    <p>通过改变日常习惯增加活动量</p>
+                    <div class="concept-detail">
+                        <p><strong>具体做法：</strong></p>
+                        <ul>
+                            <li>每天多走5000步（约+150大卡）</li>
+                            <li>走楼梯代替电梯（约+50大卡）</li>
+                            <li>每1小时起来走动2分钟（约+30大卡）</li>
+                            <li>站着办公1小时（约+20大卡）</li>
+                        </ul>
+                        <p><strong>总计：</strong>+250大卡/天</p>
+                        <p><strong>体感：</strong>不需要专门去运动，只是改变日常习惯，很容易坚持</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>方案2：增加专门运动（需要毅力） <span class="expand-icon">▶</span></h3>
+                    <p>每周增加2次运动</p>
+                    <div class="concept-detail">
+                        <p><strong>具体做法：</strong></p>
+                        <ul>
+                            <li>每周从1-2次增加到3-4次运动</li>
+                            <li>每次30分钟慢跑（约+200大卡）</li>
+                            <li>平均到每天：+85大卡/天</li>
+                        </ul>
+                        <p><strong>体感：</strong>需要专门安排时间，需要毅力坚持，但效果有限</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>方案3：减少摄入（需要控制） <span class="expand-icon">▶</span></h3>
+                    <p>稍微减少食物摄入</p>
+                    <div class="concept-detail">
+                        <p><strong>具体做法：</strong></p>
+                        <ul>
+                            <li>晚餐减少100大卡（少吃半碗饭）</li>
+                            <li>零食减少100大卡（少吃一半）</li>
+                            <li>总计：-200大卡/天</li>
+                        </ul>
+                        <p><strong>体感：</strong>需要控制，但不需要极端节食</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>方案4：组合方案（最推荐） <span class="expand-icon">▶</span></h3>
+                    <p>NEAT + 稍微控制饮食</p>
+                    <div class="concept-detail">
+                        <p><strong>具体做法：</strong></p>
+                        <ul>
+                            <li>增加NEAT：+200大卡/天</li>
+                            <li>稍微减少摄入：-150大卡/天</li>
+                            <li>总计：能量缺口从200增加到550大卡/天</li>
+                        </ul>
+                        <p><strong>预计减重速度：</strong>每周约0.5kg（健康且可持续）</p>
+                        <p><strong>体感：</strong>不需要极端节食，不需要大量运动，只需要改变日常习惯，最容易坚持</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px; background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%); border-left-color: #00b894;">
+                <h4>🎯 关键启示</h4>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>NEAT被严重低估：</strong>虽然只占15%，但这是最容易改变的部分，累积效应显著</li>
+                    <li><strong>EAT作用有限：</strong>专门运动只占5%，这就是为什么不能只靠运动减重</li>
+                    <li><strong>BMR是基础：</strong>占70%，但很难快速改变，需要长期努力（增肌、改善代谢）</li>
+                    <li><strong>组合策略最好：</strong>增加NEAT + 稍微控制饮食，比单纯运动或极端节食更可持续</li>
+                    <li><strong>真实体感：</strong>对于久坐的上班族，增加日常活动比专门去运动更容易坚持，效果也更好</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 常见误区页面 -->
+        <div id="myths" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>💡 常见误区与真相</h1>
+
+            <div class="myth-fact">
+                <div class="myth">
+                    <h4>❌ 误区 1</h4>
+                    <p><strong>"只要多运动就能减重"</strong></p>
+                    <p style="margin-top: 10px;">很多人认为只要增加运动量，不需要控制饮食就能减重。</p>
+                </div>
+                <div class="fact">
+                    <h4>✅ 真相</h4>
+                    <p><strong>运动对减重有帮助，但作用有限</strong></p>
+                    <p style="margin-top: 10px;">研究显示：单纯增加运动（如每天400-600 kcal），如果没有控制饮食，减重效果非常有限。因为：</p>
+                    <ul style="margin-top: 10px;">
+                        <li>运动消耗的能量相对较少（占TDEE的5-10%）</li>
+                        <li>运动后可能产生补偿行为（吃更多、动更少）</li>
+                        <li>能量缺口主要来自饮食控制</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="myth-fact">
+                <div class="myth">
+                    <h4>❌ 误区 2</h4>
+                    <p><strong>"卡路里就是卡路里，来源不重要"</strong></p>
+                    <p style="margin-top: 10px;">认为只要控制总热量，吃什么都可以。</p>
+                </div>
+                <div class="fact">
+                    <h4>✅ 真相</h4>
+                    <p><strong>卡路里来源很重要</strong></p>
+                    <p style="margin-top: 10px;">虽然能量平衡是基础，但不同营养素的影响不同：</p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>蛋白质：</strong>热效应高（20-30%），饱腹感强，有助于维持肌肉</li>
+                        <li><strong>纤维：</strong>热量低，增加饱腹感，有益肠道健康</li>
+                        <li><strong>加工食品：</strong>容易过度摄入，饱腹感差</li>
+                        <li><strong>食物质量影响食欲控制：</strong>高质量食物有助于更好的食欲管理</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="myth-fact">
+                <div class="myth">
+                    <h4>❌ 误区 3</h4>
+                    <p><strong>"节食是最快的减重方法"</strong></p>
+                    <p style="margin-top: 10px;">认为极端节食或极低热量饮食是最有效的。</p>
+                </div>
+                <div class="fact">
+                    <h4>✅ 真相</h4>
+                    <p><strong>极端节食不可持续，且会导致代谢适应</strong></p>
+                    <p style="margin-top: 10px;">问题包括：</p>
+                    <ul style="margin-top: 10px;">
+                        <li>BMR可能下降（身体进入"节能模式"）</li>
+                        <li>食欲激素改变（ghrelin上升，leptin下降）</li>
+                        <li>肌肉流失（降低BMR）</li>
+                        <li>容易反弹（停止节食后快速恢复）</li>
+                        <li>心理压力大，难以坚持</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>更好的方法：</strong>适度的能量缺口（500-750 kcal/天），结合营养均衡和运动。</p>
+                </div>
+            </div>
+
+            <div class="myth-fact">
+                <div class="myth">
+                    <h4>❌ 误区 4</h4>
+                    <p><strong>"减重后可以恢复正常饮食"</strong></p>
+                    <p style="margin-top: 10px;">认为达到目标体重后，就可以回到原来的饮食方式。</p>
+                </div>
+                <div class="fact">
+                    <h4>✅ 真相</h4>
+                    <p><strong>减重需要长期的生活方式改变</strong></p>
+                    <p style="margin-top: 10px;">研究发现：</p>
+                    <ul style="margin-top: 10px;">
+                        <li>减重后，身体会"记住"原来的体重，努力恢复到原来的状态</li>
+                        <li>食欲激素的变化可能持续一年以上</li>
+                        <li>需要建立新的、可持续的饮食习惯</li>
+                        <li>维持阶段同样重要，甚至比减重阶段更困难</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="myth-fact">
+                <div class="myth">
+                    <h4>❌ 误区 5</h4>
+                    <p><strong>"NEAT不重要，只有运动才消耗能量"</strong></p>
+                    <p style="margin-top: 10px;">认为只有专门的运动才有助于减重。</p>
+                </div>
+                <div class="fact">
+                    <h4>✅ 真相</h4>
+                    <p><strong>NEAT是能量消耗的重要组成部分</strong></p>
+                    <p style="margin-top: 10px;">事实：</p>
+                    <ul style="margin-top: 10px;">
+                        <li>NEAT占TDEE的15-30%，个体差异很大</li>
+                        <li>久坐人群的NEAT可能只有200-300 kcal/天</li>
+                        <li>活跃人群的NEAT可达800-1000 kcal/天</li>
+                        <li>增加NEAT比增加运动更容易坚持</li>
+                        <li>日常活动（走路、做家务）的累积效应显著</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h4>🎯 科学减重的关键原则</h4>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>能量平衡是基础：</strong>但质量同样重要</li>
+                    <li><strong>可持续性：</strong>选择可以长期坚持的方法</li>
+                    <li><strong>全面考虑：</strong>饮食、运动、睡眠、压力管理</li>
+                    <li><strong>个性化：</strong>每个人的情况不同，需要定制方案</li>
+                    <li><strong>行为改变：</strong>建立新的习惯，而不仅仅是短期节食</li>
+                    <li><strong>耐心：</strong>减重是长期过程，不要追求快速效果</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 减肥药与其他方法 -->
+        <div id="meds" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>💊 减肥药与其他方法</h1>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, #ffe0e0 0%, #ffcccc 100%); border-left-color: #d63031;">
+                <h4>⚠️ 先看这里</h4>
+                <ul style="margin-top: 10px; line-height: 1.8; color: #555;">
+                    <li>药物或手术必须由医生评估、开立、随访</li>
+                    <li>先做饮食、活动、睡眠、减压，至少坚持3-6个月</li>
+                    <li>出现剧烈腹痛、持续呕吐、黄疸、心悸，立刻就医</li>
+                </ul>
+            </div>
+
+            <h2 style="margin-top: 30px; color: #667eea;">什么时候考虑减肥药</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>适用人群 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>体重指数 ≥ 28</li>
+                            <li>体重指数 ≥ 24 且伴有高血压、血脂或血糖异常</li>
+                            <li>已努力饮食和活动，效果有限</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>医生必须检查 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>肝肾功能、胰腺炎史、甲状腺疾病、心血管风险</li>
+                            <li>妊娠、哺乳、计划备孕者避免使用</li>
+                            <li>监测血压、血糖、胃肠反应等</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 30px; color: #667eea;">常见减肥药（需处方）</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>GLP-1 类（如司美格鲁肽、利拉鲁肽） <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>作用：增强饱腹、减慢胃排空、降低食欲</li>
+                            <li>常见副作用：恶心、腹胀、便秘，少数腹泻</li>
+                            <li>警示：胰腺炎史、甲状腺髓样癌家族史需谨慎；孕期、哺乳期禁用</li>
+                            <li>需医生决定起始剂量和递增节奏，定期复诊</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>奥利司他 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>作用：减少脂肪吸收</li>
+                            <li>副作用：油样大便、腹泻，可能影响脂溶性维生素</li>
+                            <li>建议：配合少油饮食，必要时补充维生素</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>其他口服药 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>可能影响食欲或餐后血糖</li>
+                            <li>必须由医生评估适用性与风险</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); border-left-color: #f39c12;">
+                <h4>🚫 不推荐的做法</h4>
+                <ul style="margin-top: 10px; line-height: 1.8; color: #555;">
+                    <li>来路不明的“神药”“代谢丸”，风险高</li>
+                    <li>滥用利尿剂、泻药、激素类，可能伤肝肾或电解质紊乱</li>
+                    <li>自行停药、断药或随意增减剂量</li>
+                </ul>
+            </div>
+
+            <h2 style="margin-top: 30px; color: #667eea;">其他可选方案</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>生活方式优先 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>饮食：控制总能量，多蛋白、多蔬菜，少油少糖</li>
+                            <li>活动：多走路、爬楼、站立，力量训练护肌肉</li>
+                            <li>睡眠与减压：7-9小时睡眠，管理压力，避免情绪性进食</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>代餐与控能食品 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>可短期使用，查看配料，保证足够蛋白质和纤维</li>
+                            <li>避免极低热量或成分不透明的产品</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>代谢手术 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>袖状胃切除、胃旁路等</li>
+                            <li>适用：体重指数 ≥ 32，或 ≥ 30 且有并发症</li>
+                            <li>需术前评估，术后长期营养补充和随访</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>医学营养门诊 <span class="expand-icon">▶</span></h3>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>营养师 + 医生联合随访</li>
+                            <li>个性化饮食、活动与行为计划</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%); border-left-color: #00b894;">
+                <h4>✅ 安全使用要点</h4>
+                <ul style="margin-top: 10px; line-height: 1.8; color: #555;">
+                    <li>先体检：血压、血糖、血脂、肝肾功能</li>
+                    <li>确认无禁忌后开始，小剂量起步，按医嘱调整</li>
+                    <li>记录体重、腰围、饮食和不适感，定期复诊</li>
+                    <li>保持饮食和活动习惯，否则停药后易反弹</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h4>🎯 预期与心态</h4>
+                <ul style="margin-top: 10px; line-height: 1.8; color: #555;">
+                    <li>药物是工具，不是魔法，必须配合饮食和活动</li>
+                    <li>安全的减重速度：每周约0.5-1公斤</li>
+                    <li>目标：改善代谢健康和生活方式，而不仅是体重数字</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 开发者须知：App/营养师 + 药物/手术 + Jovida -->
+        <div id="dev-notes" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>🛠️ 开发者须知</h1>
+
+            <div class="highlight-box" style="margin-top: 10px;">
+                <h4>竞品概览</h4>
+                <p style="margin-top: 10px; color: #555;">常见路径：药物、手术、门诊/营养师、代餐、纯记录App</p>
+            </div>
+
+            <div class="concept-grid" style="margin-top: 20px;">
+                <div class="concept-card">
+                    <h3>药物</h3>
+                    <div class="concept-detail">
+                        <p><strong>代表：</strong>GLP-1受体激动剂（如司美格鲁肽/Semaglutide）、SGLT-2抑制剂</p>
+                        <ul>
+                            <li><strong>优点：</strong>抑制食欲/控制血糖，起效快</li>
+                            <li><strong>缺点：</strong>需医生评估，副作用/复诊成本，停药易反弹</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>手术</h3>
+                    <div class="concept-detail">
+                        <p><strong>代表：</strong>胃袖状切除术、胃旁路术、胃束带术</p>
+                        <ul>
+                            <li><strong>优点：</strong>体重与并发症可明显改善</li>
+                            <li><strong>缺点：</strong>适应证严格，术前评估/术后长期随访，成本高</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>门诊/营养师</h3>
+                    <div class="concept-detail">
+                        <p><strong>代表：</strong>医院营养科、私人营养师咨询、健康管理中心</p>
+                        <ul>
+                            <li><strong>优点：</strong>个性化方案、专业安全</li>
+                            <li><strong>缺点：</strong>就诊频率与费用限制，间断性支持</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>代餐</h3>
+                    <div class="concept-detail">
+                        <p><strong>代表：</strong>代餐奶昔、代餐棒、代餐粉（如康宝莱、Optifast等）</p>
+                        <ul>
+                            <li><strong>优点：</strong>短期控能量、操作简单</li>
+                            <li><strong>缺点：</strong>口味/饱腹依赖，成分与长期可持续性存疑</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3>纯记录类App</h3>
+                    <div class="concept-detail">
+                        <p><strong>代表：</strong>Simple、MyFitnessPal、薄荷健康、Keep</p>
+                        <ul>
+                            <li><strong>优点：</strong>低成本、方便自助记录</li>
+                            <li><strong>缺点：</strong>缺少陪伴与行为干预，易流失</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="jovida核心理念.jpeg" alt="为什么 Jovida 效果更好：营养 + 习惯" class="module-image">
+                <p class="image-caption">Jovida 核心机制：营养 + 习惯 + 温暖支持</p>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 15px;">
+                <h4>我们正在做的转变</h4>
+                <p style="color: #555; line-height: 1.8;">
+                    减肥很难，我们把“减肥”当作情境，不把“立刻减重”当唯一目标；借鉴多邻国，用乐趣和行为设计先留住用户，主打小行动、轻反馈、可持续习惯，把达成作为副产品。
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="两个三角.jpeg" alt="多邻国与减重的三角对比：乐趣 + 行为 + 主线目标" class="module-image">
+                <p class="image-caption">参考多邻国模式：用乐趣和行为设计吸引并留住用户，减肥是情境但坚持才是核心</p>
+            </div>
+        </div>
+
+        <!-- Jovida如何帮助页面 -->
+        <div id="jovida" class="content">
+            <button class="back-btn" onclick="showContent('nav-page')">← 返回首页</button>
+            <h1>🤖 Jovida如何帮助用户</h1>
+
+            <p style="font-size: 1.1em; color: #666; margin: 20px 0; line-height: 1.8;">
+                基于以上科学原理，Jovida作为AI健康教练，如何帮助用户实现可持续的健康减重？
+            </p>
+
+            <div class="jovida-connection">
+                <h3>🎯 Jovida的核心价值</h3>
+                <ul>
+                    <li><strong>Effortless Wellness：</strong>不评判，让健康选择感觉自然</li>
+                    <li><strong>Remember You：</strong>记住你的每次对话，构建个人健康故事</li>
+                    <li><strong>Proactive Care：</strong>主动检查、支持进展，像真正的伙伴</li>
+                    <li><strong>Science-backed：</strong>基于验证过的科学，在美国注册营养师考试中超过80%人类考生</li>
+                    <li><strong>Private by Design：</strong>端到端加密，数据100%私密</li>
+                    <li><strong>7×24小时在线：</strong>随时可及的健康教练</li>
+                </ul>
+            </div>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/USDA_MyPlate.svg" alt="健康饮食餐盘示意图" class="module-image">
+                <p class="image-caption">健康饮食餐盘示意图 - 展示均衡营养的重要性</p>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">Jovida的核心机制：Challenge + Streak</h2>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>🎯 Challenge系统 <span class="expand-icon">▶</span></h3>
+                    <p>基于微习惯理论的每日任务</p>
+                    <div class="concept-detail">
+                        <p><strong>Challenge类型：</strong>Photo（拍照记录）、Chat（对话互动）、Mark（手动完成）、Read（阅读知识）、Onboarding（新用户引导）</p>
+                        <p><strong>核心特点：</strong>即时可完成（当天完成）、场景匹配（根据环境设计）、个性化定制、难度渐进</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🔥 Streak机制 <span class="expand-icon">▶</span></h3>
+                    <p>连续完成挑战的激励机制</p>
+                    <div class="concept-detail">
+                        <p><strong>72小时理论：</strong>新行为坚持72小时（3天），夭折机率大幅降低。前三天是意志力消耗最大、最容易放弃的时期</p>
+                        <p><strong>Jovida策略：</strong>完成首个challenge后引导继续连胜；连续3天后强化守护意识；中断后及时召回重启</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Food_pyramid.svg" alt="营养金字塔图" class="module-image">
+                <p class="image-caption">营养金字塔 - 展示各类食物的推荐摄入比例</p>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">Jovida如何应用这些科学原理</h2>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Nutrition_facts_label.png" alt="营养成分标签示意图" class="module-image">
+                <p class="image-caption">营养成分标签 - 帮助理解食物组成和能量含量</p>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📊 能量平衡管理 <span class="expand-icon">▶</span></h3>
+                    <p>通过challenge帮助用户理解和应用能量平衡</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>通过read类challenge推送知识，解释BMR、TDEE、NEAT等概念</li>
+                            <li>通过photo类challenge记录饮食，追踪能量摄入</li>
+                            <li>通过mark/chat类challenge引导增加NEAT消耗</li>
+                            <li>帮助设定合理的能量缺口，避免代谢适应</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🧠 食欲管理支持 <span class="expand-icon">▶</span></h3>
+                    <p>帮助用户更好地管理食欲和进食行为</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>通过chat类challenge引导识别饥饿信号 vs 情绪性进食</li>
+                            <li>通过read类challenge解释激素机制（ghrelin、leptin等）</li>
+                            <li>帮助用户预期和应对减重后的食欲变化</li>
+                            <li>设计正念进食challenge，引导关注身体真实感受</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🏃 NEAT优先策略 <span class="expand-icon">▶</span></h3>
+                    <p>通过微习惯增加日常活动</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>设计即时可完成的日常活动challenge（走楼梯、站立办公等）</li>
+                            <li>场景匹配：根据用户环境设计合适的活动</li>
+                            <li>累积效应：通过每日小挑战，累积增加NEAT消耗</li>
+                            <li>比专门运动更容易坚持，效果显著</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🥗 营养质量优化 <span class="expand-icon">▶</span></h3>
+                    <p>不仅关注热量，也关注食物质量</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>图片营养分析：拍照自动识别营养成分</li>
+                            <li>通过challenge引导增加蛋白质、纤维摄入</li>
+                            <li>通过read类challenge推送知识，减少加工食品</li>
+                            <li>Instacart集成：定制食谱/购物清单，一键下单</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Digestive_system_diagram.svg" alt="消化系统示意图" class="module-image">
+                <p class="image-caption">消化系统示意图 - 帮助理解食物在体内的消化和吸收过程</p>
+            </div>
+
+            <h2 style="margin-top: 40px; color: #667eea;">Jovida的核心功能模块</h2>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📸 图片饮食记录与营养分析 <span class="expand-icon">▶</span></h3>
+                    <p>一键拍照，自动分析营养成分</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>拍照自动识别食物，分析能量、蛋白质、碳水、脂肪</li>
+                            <li>自动记录到饮食档案，追踪每日摄入</li>
+                            <li>即时反馈，了解食物组成</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>📚 健康小知识推送 <span class="expand-icon">▶</span></h3>
+                    <p>通过read类challenge推送科学知识</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>涵盖营养、运动、睡眠、情绪、习惯养成等领域</li>
+                            <li>根据用户目标、痛点个性化推送</li>
+                            <li>当天可完成，建立"小胜利"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🛒 Instacart集成 <span class="expand-icon">▶</span></h3>
+                    <p>定制食谱或购物清单，一键下单</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>根据用户偏好生成个性化食谱</li>
+                            <li>生成健康食材购物清单</li>
+                            <li>直接通过Instacart下单，降低执行门槛</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>📊 健康分析报告 <span class="expand-icon">▶</span></h3>
+                    <p>个性化的健康分析与行为改变策略</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>深度挖掘用户健康痛点</li>
+                            <li>生成6周行为改变策略</li>
+                            <li>以网页形式呈现，美观易读</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>💬 主动消息推送 <span class="expand-icon">▶</span></h3>
+                    <p>智能的主动关怀和召回机制</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>在关键时刻（完成首个challenge、连续3天、中断后）主动推送</li>
+                            <li>用户24小时未回复时，通过主动消息召回</li>
+                            <li>根据用户状态、历史、偏好定制消息内容</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🤝 共情陪伴与心理支持 <span class="expand-icon">▶</span></h3>
+                    <p>温暖但不失专业的健康教练</p>
+                    <div class="concept-detail">
+                        <ul>
+                            <li>共情理解，不评判用户，使用平行视角</li>
+                            <li>幽默机智，像健康闺蜜一样（参考《老友记》Chandler风格）</li>
+                            <li>理解压力与进食的关系，帮助管理压力</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Mental_health.svg" alt="心理健康示意图" class="module-image">
+                <p class="image-caption">心理健康示意图 - 展示心理健康与营养、运动的关系</p>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px; background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%); border-left-color: #00b894;">
+                <h4>🌟 Jovida的独特价值</h4>
+                <p style="color: #555; margin-top: 15px; line-height: 1.8;">
+                    <strong>1. 科学 + 人性化：</strong>基于能量平衡、食欲控制、习惯养成科学，以温暖、共情、幽默的方式呈现<br><br>
+                    <strong>2. 微习惯方法：</strong>通过小而可持续的challenge建立长期习惯，每个challenge都是"Right Now"可完成的<br><br>
+                    <strong>3. 深度个性化：</strong>深度理解用户的人格特质、动机类型、行为模式，实现真正的个性化<br><br>
+                    <strong>4. 实时支持：</strong>通过WhatsApp提供7×24小时随时可及的支持<br><br>
+                    <strong>5. 主动关怀：</strong>通过主动消息推送在关键时刻引导和召回用户<br><br>
+                    <strong>6. 隐私保护：</strong>端到端加密，健康数据100%私密
+                </p>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4>🎯 科学原理应用总结</h4>
+                <p style="color: #555; margin-top: 15px; line-height: 1.8;">
+                    <strong>能量平衡：</strong>通过photo类challenge追踪摄入，通过mark/chat类challenge引导增加NEAT<br><br>
+                    <strong>食欲控制：</strong>通过chat类challenge识别情绪性进食，通过read类challenge解释激素机制<br><br>
+                    <strong>NEAT提升：</strong>设计即时可完成的日常活动challenge，比专门运动更容易坚持<br><br>
+                    <strong>营养质量：</strong>通过图片营养分析了解食物组成，通过Instacart集成降低执行门槛<br><br>
+                    <strong>习惯养成：</strong>通过challenge系统实现微习惯理论，通过streak机制利用72小时理论
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            // 隐藏所有内容
+            const allContent = document.querySelectorAll('.content');
+            allContent.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 显示选中的内容
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                // 滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleDetail(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.classList.toggle('expanded');
+            }
+        }
+
+        function toggleHormone(card) {
+            card.classList.toggle('expanded');
+        }
+
+        function showHormoneDetail(hormoneType) {
+            // 隐藏所有详情
+            const allDetails = document.querySelectorAll('#hormoneDetails .hormone-card');
+            allDetails.forEach(detail => {
+                detail.style.display = 'none';
+                detail.classList.remove('expanded');
+            });
+            
+            // 显示选中的详情
+            const targetDetail = document.getElementById(hormoneType + '-detail');
+            if (targetDetail) {
+                targetDetail.style.display = 'block';
+                targetDetail.classList.add('expanded');
+                document.getElementById('hormoneDetails').style.display = 'block';
+                
+                // 滚动到详情位置
+                setTimeout(() => {
+                    targetDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // 为所有可展开的卡片添加点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const conceptCards = document.querySelectorAll('.concept-card');
+            conceptCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // 如果点击的是卡片本身（不是内部的链接等），则切换展开状态
+                    if (e.target === this || this.contains(e.target)) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jovida 智能食谱推荐引擎</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            resize: vertical;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .recipe-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .tag.bucket {
+            background: #667eea;
+            color: white;
+        }
+
+        .tag.dietary {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+        }
+
+        .tag.allergen {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+        }
+
+        .tag.equipment {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-item h4 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .config-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .config-section h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .config-input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-badge.connected {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-badge.disconnected {
+            background: #f44336;
+            color: white;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .collapsible-content.expanded {
+            max-height: 500px;
+        }
+
+        @media (max-width: 968px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍳 Jovida 智能食谱推荐引擎</h1>
+            <p>AI驱动的多阶段过滤推荐系统</p>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <div class="section">
+                    <h2>Vertex AI 配置 <span id="vertex-status" class="status-badge disconnected">未连接</span></h2>
+                    <div class="config-section">
+                        <h3>环境变量配置</h3>
+                        <input type="text" id="vertex-project" class="config-input" placeholder="GOOGLE_CLOUD_PROJECT" value="innertest-471009" onchange="saveVertexEnv()">
+                        <input type="text" id="vertex-location" class="config-input" placeholder="GOOGLE_CLOUD_LOCATION (如: us-central1)" value="global" onchange="saveVertexEnv()">
+                        <input type="text" id="vertex-use-vertex" class="config-input" placeholder="GOOGLE_GENAI_USE_VERTEXAI" value="True" onchange="saveVertexEnv()">
+                        <input type="text" id="vertex-credentials" class="config-input" placeholder="GOOGLE_APPLICATION_CREDENTIALS (完整路径)" value="C:\Users\ZhuanZ（无密码）\Desktop\Google Vertex\vertex_ai_credentials.json" onchange="saveVertexEnv()">
+                        <button class="btn btn-success" onclick="configureVertex()" id="connect-btn">连接 Vertex AI</button>
+                        <button class="btn btn-secondary" onclick="checkVertexStatus()">检查状态</button>
+                        <button class="btn btn-secondary" onclick="clearVertexEnv()" style="margin-top: 5px;">清除保存的配置</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>用户信息输入</h2>
+                    <div class="form-group">
+                        <label>描述您的需求</label>
+                        <textarea id="user-info" placeholder="例如：我是上班族，中午只有15分钟时间，需要快速简单的午餐，我是素食主义者，有微波炉。或者：周末想做个丰盛的晚餐，我是素食主义者，对坚果过敏，有完整厨房设备。"></textarea>
+                    </div>
+                    <button class="btn" onclick="getAIRecommendations()" id="recommend-btn">🤖 AI 智能推荐</button>
+                    <button class="btn" onclick="quickEat()" id="quick-eat-btn" style="background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); margin-top: 10px;">🍽️ 我要吃饭</button>
+                    <button class="btn btn-secondary" onclick="loadAllRecipes()" style="margin-top: 10px;">📋 查看所有食谱</button>
+                </div>
+
+                <div class="section">
+                    <h2>提示词配置 <span class="collapsible" onclick="togglePromptConfig()">▼ 展开</span></h2>
+                    <div class="collapsible-content" id="prompt-config">
+                        <div class="form-group">
+                            <label>自定义提示词（可选）</label>
+                            <textarea id="custom-prompt" placeholder="留空则使用默认提示词" onchange="savePrompt()"></textarea>
+                        </div>
+                        <button class="btn btn-secondary" onclick="loadDefaultPrompt()">加载默认提示词</button>
+                        <button class="btn btn-primary" onclick="savePromptAndNotify()" style="margin-top: 10px;">💾 保存提示词</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="section">
+                    <h2>数据库统计</h2>
+                    <div class="stats" id="stats">
+                        <div class="loading">加载统计信息...</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>思考过程与筛选统计</h2>
+                    <div id="thinking-process">
+                        <div class="info-box">
+                            等待AI分析...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>手动编辑关键词</span>
+                        <span style="display: flex; gap: 10px; align-items: center;">
+                            <button class="btn btn-secondary" onclick="applyManualFilters()" style="padding: 5px 15px; font-size: 14px;">🔄 重新筛选</button>
+                            <span class="collapsible" onclick="toggleManualEdit()">▼ 展开</span>
+                        </span>
+                    </h2>
+                    <div class="collapsible-content" id="manual-edit-section">
+                        <div style="background: #f0f4ff; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <strong>📝 说明：</strong>所有标签都支持多选。反向筛选标签（红色标记）表示"排除包含这些标签的食谱"。
+                        </div>
+                        
+                        <h3 style="color: #667eea; margin: 20px 0 10px 0; border-bottom: 2px solid #667eea; padding-bottom: 5px;">L0 类别筛选</h3>
+                        <div class="form-group">
+                            <label><strong>L0 类别 (Buckets)</strong> - 选择要筛选的食物类别（可多选）</label>
+                            <select id="manual-buckets" multiple style="width: 100%; min-height: 100px; font-size: 14px;">
+                            </select>
+                        </div>
+                        
+                        <h3 style="color: #667eea; margin: 20px 0 10px 0; border-bottom: 2px solid #667eea; padding-bottom: 5px;">L1 硬筛选标签</h3>
+                        <div class="form-group">
+                            <label><strong>L1 用餐时间 (Timing)</strong> - 选择用餐时间（可多选）</label>
+                            <select id="manual-timing" multiple style="width: 100%; min-height: 80px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L1 饮食限制 (Dietary)</strong> <span style="color: #c62828;">🔴 反向筛选</span> - 选择用户不能吃的饮食类型（可多选，默认"无preference"）</label>
+                            <select id="manual-dietary" multiple style="width: 100%; min-height: 100px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L1 过敏原 (Allergens)</strong> <span style="color: #c62828;">🔴 反向筛选</span> - 选择需要排除的过敏原（可多选）</label>
+                            <select id="manual-allergens" multiple style="width: 100%; min-height: 100px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L1 设备限制 (Equipment)</strong> <span style="color: #c62828;">🔴 反向筛选</span> - 选择用户没有的设备（可多选，默认"无preference"）</label>
+                            <select id="manual-equipment" multiple style="width: 100%; min-height: 100px; font-size: 14px;">
+                            </select>
+                        </div>
+                        
+                        <h3 style="color: #667eea; margin: 20px 0 10px 0; border-bottom: 2px solid #667eea; padding-bottom: 5px;">L2/L3/L4 策略标签</h3>
+                        <div class="form-group">
+                            <label><strong>优先级队列 (Priority Queue)</strong> - 选择筛选优先级顺序（可多选，按选择顺序）</label>
+                            <select id="manual-priority" multiple style="width: 100%; min-height: 80px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L2 健康标签 (Health)</strong> - 选择健康相关标签（可多选）</label>
+                            <select id="manual-health" multiple style="width: 100%; min-height: 120px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L3 难度标签 (Effort)</strong> - 选择制作难度和便捷度标签（可多选）</label>
+                            <select id="manual-effort" multiple style="width: 100%; min-height: 140px; font-size: 14px;">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>L4 口味标签 (Flavor)</strong> - 选择口味和场景标签（可多选）</label>
+                            <select id="manual-flavor" multiple style="width: 100%; min-height: 140px; font-size: 14px;">
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="applyManualFilters()" style="width: 100%; margin-top: 20px; padding: 12px; font-size: 16px; font-weight: bold;">🔍 应用筛选</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>推荐结果</h2>
+                    <div id="results">
+                        <div class="info-box">
+                            <strong>👋 欢迎使用！</strong><br>
+                            1. 首先在左侧配置 Vertex AI（如果环境变量已设置，系统会自动连接）<br>
+                            2. 在"用户信息输入"中描述您的需求<br>
+                            3. 点击"AI 智能推荐"获取个性化推荐
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        // 全局变量存储标签选项和当前筛选关键词
+        let tagOptions = null;
+        let currentKeywords = null;
+        let filteredRecipes = null;  // 保存筛选后的所有食谱
+        let userContext = null;  // 保存用户上下文信息（condition, goal, user_info）
+
+        // 页面加载时检查状态并自动填充环境变量
+        window.addEventListener('load', async () => {
+            loadStats();
+            await loadVertexEnv();
+            await checkVertexStatus();
+            loadSavedPrompt(); // 加载保存的提示词
+            await loadTagOptions(); // 加载标签选项
+            
+            // 如果环境变量已填充且未连接，提示用户点击连接
+            const project = document.getElementById('vertex-project').value;
+            const credentials = document.getElementById('vertex-credentials').value;
+            if (project && credentials && !document.getElementById('vertex-status').classList.contains('connected')) {
+                console.log('环境变量已检测到，可以点击"连接 Vertex AI"按钮');
+            }
+        });
+
+        function toggleManualEdit() {
+            const content = document.getElementById('manual-edit-section');
+            content.classList.toggle('expanded');
+        }
+
+        async function loadTagOptions() {
+            try {
+                const response = await fetch(`${API_BASE}/tags/options`);
+                const data = await response.json();
+                tagOptions = data;
+                
+                // 填充下拉选项
+                const bucketsSelect = document.getElementById('manual-buckets');
+                data.l0_buckets.forEach(bucket => {
+                    const option = document.createElement('option');
+                    option.value = bucket;
+                    option.textContent = bucket;
+                    bucketsSelect.appendChild(option);
+                });
+                
+                const timingSelect = document.getElementById('manual-timing');
+                data.l1_timing.forEach(timing => {
+                    const option = document.createElement('option');
+                    option.value = timing;
+                    option.textContent = timing;
+                    timingSelect.appendChild(option);
+                });
+                
+                const dietarySelect = document.getElementById('manual-dietary');
+                // 首先添加"无preference"选项并设为默认选中
+                const noPreferenceOption = document.createElement('option');
+                noPreferenceOption.value = '无preference';
+                noPreferenceOption.textContent = '无preference';
+                noPreferenceOption.selected = true;
+                dietarySelect.appendChild(noPreferenceOption);
+                // 然后添加其他选项
+                data.l1_dietary.forEach(dietary => {
+                    const option = document.createElement('option');
+                    option.value = dietary;
+                    option.textContent = dietary;
+                    dietarySelect.appendChild(option);
+                });
+                
+                const allergensSelect = document.getElementById('manual-allergens');
+                data.l1_allergens.forEach(allergen => {
+                    const option = document.createElement('option');
+                    option.value = allergen;
+                    option.textContent = allergen;
+                    allergensSelect.appendChild(option);
+                });
+                
+                const equipmentSelect = document.getElementById('manual-equipment');
+                // 首先添加"无preference"选项并设为默认选中
+                const noPreferenceEquipmentOption = document.createElement('option');
+                noPreferenceEquipmentOption.value = '无preference';
+                noPreferenceEquipmentOption.textContent = '无preference';
+                noPreferenceEquipmentOption.selected = true;
+                equipmentSelect.appendChild(noPreferenceEquipmentOption);
+                // 然后添加其他选项
+                data.l1_equipment.forEach(equipment => {
+                    const option = document.createElement('option');
+                    option.value = equipment;
+                    option.textContent = equipment;
+                    equipmentSelect.appendChild(option);
+                });
+                
+                const prioritySelect = document.getElementById('manual-priority');
+                ['Effort', 'Health', 'Flavor'].forEach(priority => {
+                    const option = document.createElement('option');
+                    option.value = priority;
+                    option.textContent = priority;
+                    prioritySelect.appendChild(option);
+                });
+                
+                const healthSelect = document.getElementById('manual-health');
+                data.l2_health.forEach(tag => {
+                    const option = document.createElement('option');
+                    option.value = tag;
+                    option.textContent = tag;
+                    healthSelect.appendChild(option);
+                });
+                
+                const effortSelect = document.getElementById('manual-effort');
+                data.l3_effort.forEach(tag => {
+                    const option = document.createElement('option');
+                    option.value = tag;
+                    option.textContent = tag;
+                    effortSelect.appendChild(option);
+                });
+                
+                const flavorSelect = document.getElementById('manual-flavor');
+                data.l4_flavor.forEach(tag => {
+                    const option = document.createElement('option');
+                    option.value = tag;
+                    option.textContent = tag;
+                    flavorSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('加载标签选项失败:', error);
+            }
+        }
+
+        function populateManualFilters(keywords) {
+            if (!keywords) return;
+            
+            // 填充手动编辑区域
+            const bucketsSelect = document.getElementById('manual-buckets');
+            Array.from(bucketsSelect.options).forEach(opt => {
+                opt.selected = keywords.buckets && keywords.buckets.includes(opt.value);
+            });
+            
+            const timingSelect = document.getElementById('manual-timing');
+            Array.from(timingSelect.options).forEach(opt => {
+                opt.selected = keywords.timing && keywords.timing.includes(opt.value);
+            });
+            
+            const dietarySelect = document.getElementById('manual-dietary');
+            const dietaryValue = keywords.dietary;
+            // dietary现在是反向筛选数组，如果为空数组表示无限制
+            if (dietaryValue && Array.isArray(dietaryValue) && dietaryValue.length > 0) {
+                // 过滤掉"无preference"
+                const filteredArray = dietaryValue.filter(v => v !== '无preference' && v !== '');
+                if (filteredArray.length > 0) {
+                    Array.from(dietarySelect.options).forEach(opt => {
+                        opt.selected = filteredArray.includes(opt.value);
+                    });
+                } else {
+                    // 如果没有有效值，默认选中"无preference"
+                    Array.from(dietarySelect.options).forEach(opt => {
+                        opt.selected = opt.value === '无preference';
+                    });
+                }
+            } else {
+                // 如果没有值或值为空数组，默认选中"无preference"（表示无限制）
+                Array.from(dietarySelect.options).forEach(opt => {
+                    opt.selected = opt.value === '无preference';
+                });
+            }
+            
+            const allergensSelect = document.getElementById('manual-allergens');
+            Array.from(allergensSelect.options).forEach(opt => {
+                opt.selected = keywords.user_allergens && keywords.user_allergens.includes(opt.value);
+            });
+            
+            const equipmentSelect = document.getElementById('manual-equipment');
+            const equipmentValue = keywords.user_equipment;
+            // equipment现在是反向筛选数组，如果为空数组表示无限制
+            if (equipmentValue && Array.isArray(equipmentValue) && equipmentValue.length > 0) {
+                // 过滤掉"无preference"
+                const filteredArray = equipmentValue.filter(v => v !== '无preference' && v !== '');
+                if (filteredArray.length > 0) {
+                    Array.from(equipmentSelect.options).forEach(opt => {
+                        opt.selected = filteredArray.includes(opt.value);
+                    });
+                } else {
+                    // 如果没有有效值，默认选中"无preference"
+                    Array.from(equipmentSelect.options).forEach(opt => {
+                        opt.selected = opt.value === '无preference';
+                    });
+                }
+            } else {
+                // 如果没有值或值为空数组，默认选中"无preference"（表示无限制）
+                Array.from(equipmentSelect.options).forEach(opt => {
+                    opt.selected = opt.value === '无preference';
+                });
+            }
+            
+            const prioritySelect = document.getElementById('manual-priority');
+            Array.from(prioritySelect.options).forEach(opt => {
+                opt.selected = keywords.priority_queue && keywords.priority_queue.includes(opt.value);
+            });
+            
+            const healthSelect = document.getElementById('manual-health');
+            const healthValue = keywords.health_tag;
+            if (healthValue) {
+                // 支持单个值或数组
+                const healthArray = Array.isArray(healthValue) ? healthValue : [healthValue];
+                Array.from(healthSelect.options).forEach(opt => {
+                    opt.selected = healthArray.includes(opt.value);
+                });
+            }
+            
+            const effortSelect = document.getElementById('manual-effort');
+            const effortValue = keywords.effort_tag;
+            if (effortValue) {
+                // 支持单个值或数组
+                const effortArray = Array.isArray(effortValue) ? effortValue : [effortValue];
+                Array.from(effortSelect.options).forEach(opt => {
+                    opt.selected = effortArray.includes(opt.value);
+                });
+            }
+            
+            const flavorSelect = document.getElementById('manual-flavor');
+            const flavorValue = keywords.flavor_tag;
+            if (flavorValue) {
+                // 支持单个值或数组
+                const flavorArray = Array.isArray(flavorValue) ? flavorValue : [flavorValue];
+                Array.from(flavorSelect.options).forEach(opt => {
+                    opt.selected = flavorArray.includes(opt.value);
+                });
+            }
+        }
+
+        function displayThinkingProcess(keywords, stats) {
+            const thinkingDiv = document.getElementById('thinking-process');
+            
+            if (!stats) {
+                thinkingDiv.innerHTML = '<div class="info-box">等待筛选结果...</div>';
+                return;
+            }
+
+            let html = '<div class="success-box">';
+            html += '<h3 style="margin-top: 0;">🤖 AI生成的搜索关键词：</h3>';
+            html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">';
+            html += `<div><strong>L0 类别:</strong> ${(keywords.buckets || []).join(', ') || '全部'}</div>`;
+            html += `<div><strong>L1 时间:</strong> ${(keywords.timing || []).join(', ') || '全部'}</div>`;
+            const dietaryDisplay = Array.isArray(keywords.dietary) && keywords.dietary.length > 0 
+                ? keywords.dietary.join(', ') 
+                : '无限制';
+            const healthDisplay = Array.isArray(keywords.health_tag) ? keywords.health_tag.join(', ') : (keywords.health_tag || '不限制');
+            const effortDisplay = Array.isArray(keywords.effort_tag) ? keywords.effort_tag.join(', ') : (keywords.effort_tag || '不限制');
+            const flavorDisplay = Array.isArray(keywords.flavor_tag) ? keywords.flavor_tag.join(', ') : (keywords.flavor_tag || '不限制');
+            
+            html += `<div><strong>L1 饮食限制 (反向筛选):</strong> ${dietaryDisplay}</div>`;
+            html += `<div><strong>L1 排除过敏原:</strong> ${(keywords.user_allergens || []).join(', ') || '无'}</div>`;
+            const equipmentDisplay = Array.isArray(keywords.user_equipment) && keywords.user_equipment.length > 0 
+                ? keywords.user_equipment.join(', ') 
+                : '无限制';
+            html += `<div><strong>L1 设备限制 (反向筛选):</strong> ${equipmentDisplay}</div>`;
+            html += `<div><strong>优先级队列:</strong> ${(keywords.priority_queue || []).join(' → ')}</div>`;
+            html += `<div><strong>L2 健康标签:</strong> ${healthDisplay}</div>`;
+            html += `<div><strong>L3 难度标签:</strong> ${effortDisplay}</div>`;
+            html += `<div><strong>L4 口味标签:</strong> ${flavorDisplay}</div>`;
+            html += '</div>';
+
+            html += '<h3 style="margin-top: 20px;">📊 筛选统计：</h3>';
+            html += '<div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">';
+            
+            if (stats.stage1) {
+                html += '<div style="margin-bottom: 15px;"><strong>Step 1: 硬筛选 (L0 & L1)</strong></div>';
+                html += `<div style="margin-left: 20px; margin-bottom: 10px;">`;
+                html += `初始: ${stats.stage1.initial_count} → `;
+                html += `L0筛选后: ${stats.stage1.l0_count} → `;
+                html += `L1时间筛选后: ${stats.stage1.l1_timing_count} → `;
+                html += `L1排除饮食限制后: ${stats.stage1.l1_dietary_count} → `;
+                html += `L1排除过敏原后: ${stats.stage1.l1_allergen_count} → `;
+                html += `L1设备筛选后: <strong>${stats.stage1.l1_equipment_count}</strong>`;
+                html += `</div>`;
+            }
+
+            if (stats.stage2 && stats.stage2.buckets) {
+                html += '<div style="margin-top: 15px; margin-bottom: 15px;"><strong>Step 2: 顺序漏斗 (L2/L3/L4)</strong></div>';
+                for (const [bucket, bucketStats] of Object.entries(stats.stage2.buckets)) {
+                    html += `<div style="margin-left: 20px; margin-bottom: 10px;"><strong>${bucket}:</strong> `;
+                    html += `初始 ${bucketStats.initial_count} → `;
+                    bucketStats.filters.forEach((filter, idx) => {
+                        html += `${filter.level}(${filter.tag}): ${filter.before} → ${filter.after}`;
+                        if (idx < bucketStats.filters.length - 1) html += ' → ';
+                    });
+                    html += ` → 最终: <strong>${bucketStats.final_count}</strong>`;
+                    html += `</div>`;
+                }
+            }
+
+            if (stats.stage3) {
+                html += '<div style="margin-top: 15px;"><strong>Step 3: 最终选择</strong></div>';
+                html += `<div style="margin-left: 20px;">最终推荐: <strong>${stats.stage3.final_count}</strong> 道菜</div>`;
+            }
+
+            html += '</div>';
+            html += '</div>';
+
+            thinkingDiv.innerHTML = html;
+        }
+
+        async function applyManualFilters() {
+            const buckets = Array.from(document.getElementById('manual-buckets').selectedOptions).map(o => o.value);
+            const timing = Array.from(document.getElementById('manual-timing').selectedOptions).map(o => o.value);
+            const dietary = Array.from(document.getElementById('manual-dietary').selectedOptions).map(o => o.value);
+            const allergens = Array.from(document.getElementById('manual-allergens').selectedOptions).map(o => o.value);
+            const equipment = Array.from(document.getElementById('manual-equipment').selectedOptions).map(o => o.value);
+            const priority = Array.from(document.getElementById('manual-priority').selectedOptions).map(o => o.value);
+            const health = Array.from(document.getElementById('manual-health').selectedOptions).map(o => o.value);
+            const effort = Array.from(document.getElementById('manual-effort').selectedOptions).map(o => o.value);
+            const flavor = Array.from(document.getElementById('manual-flavor').selectedOptions).map(o => o.value);
+
+            if (buckets.length === 0) {
+                alert('请至少选择一个类别');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="loading">正在筛选...</div>';
+
+            try {
+                // 过滤掉"无preference"，如果只有"无preference"或为空，则传空数组（表示无限制）
+                const filteredDietary = dietary.filter(d => d !== '无preference' && d !== '');
+                const filteredEquipment = equipment.filter(e => e !== '无preference' && e !== '');
+                
+                const filterResponse = await fetch(`${API_BASE}/filter`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_allergens: allergens,
+                        user_equipment: filteredEquipment.length > 0 ? filteredEquipment : [],
+                        buckets: buckets,
+                        timing: timing,
+                        dietary: filteredDietary.length > 0 ? filteredDietary : [],
+                        effort_tag: effort.length > 0 ? effort : '',  // 支持数组或字符串
+                        health_tag: health.length > 0 ? health : '',  // 支持数组或字符串
+                        flavor_tag: flavor.length > 0 ? flavor : '',  // 支持数组或字符串
+                        priority_queue: priority.length > 0 ? priority : ['Effort', 'Health', 'Flavor'],
+                        condition: '',
+                        goal: ''
+                    })
+                });
+
+                const filterData = await filterResponse.json();
+
+                if (filterData.error) {
+                    throw new Error(filterData.error);
+                }
+
+                // 显示思考过程
+                displayThinkingProcess({
+                    buckets, timing, dietary, user_allergens: allergens,
+                    user_equipment: equipment, priority_queue: priority,
+                    health_tag: health, effort_tag: effort, flavor_tag: flavor
+                }, filterData.stats);
+
+                // 显示结果
+                displayResultsList(filterData.results, filterData.stats, {
+                    buckets, timing, dietary, user_allergens: allergens,
+                    user_equipment: equipment, priority_queue: priority,
+                    health_tag: health, effort_tag: effort, flavor_tag: flavor
+                }, false);
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ 错误: ${error.message}</div>`;
+                console.error('Error:', error);
+            }
+        }
+
+        function togglePromptConfig() {
+            const content = document.getElementById('prompt-config');
+            content.classList.toggle('expanded');
+        }
+
+        async function checkVertexStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/vertex/status`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    console.warn('状态检查响应不是JSON格式');
+                    return;
+                }
+                
+                const data = await response.json();
+                const statusEl = document.getElementById('vertex-status');
+                
+                if (data.configured) {
+                    statusEl.textContent = '已连接';
+                    statusEl.className = 'status-badge connected';
+                } else {
+                    statusEl.textContent = '未连接';
+                    statusEl.className = 'status-badge disconnected';
+                }
+            } catch (error) {
+                console.error('检查状态失败:', error);
+                const statusEl = document.getElementById('vertex-status');
+                statusEl.textContent = '检查失败';
+                statusEl.className = 'status-badge disconnected';
+            }
+        }
+
+        // 保存环境变量到localStorage
+        function saveVertexEnv() {
+            const env = {
+                GOOGLE_CLOUD_PROJECT: document.getElementById('vertex-project').value,
+                GOOGLE_CLOUD_LOCATION: document.getElementById('vertex-location').value,
+                GOOGLE_GENAI_USE_VERTEXAI: document.getElementById('vertex-use-vertex').value,
+                GOOGLE_APPLICATION_CREDENTIALS: document.getElementById('vertex-credentials').value
+            };
+            localStorage.setItem('vertex_env', JSON.stringify(env));
+            console.log('环境变量已保存到本地存储');
+        }
+
+        // 默认环境变量值
+        const DEFAULT_VERTEX_ENV = {
+            GOOGLE_CLOUD_PROJECT: 'innertest-471009',
+            GOOGLE_CLOUD_LOCATION: 'global',
+            GOOGLE_GENAI_USE_VERTEXAI: 'True',
+            GOOGLE_APPLICATION_CREDENTIALS: 'C:\\Users\\ZhuanZ（无密码）\\Desktop\\Google Vertex\\vertex_ai_credentials.json'
+        };
+
+        // 从localStorage加载环境变量
+        function loadVertexEnvFromStorage() {
+            try {
+                const saved = localStorage.getItem('vertex_env');
+                if (saved) {
+                    const env = JSON.parse(saved);
+                    // 使用保存的值，如果为空则使用默认值
+                    document.getElementById('vertex-project').value = env.GOOGLE_CLOUD_PROJECT || DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_PROJECT;
+                    document.getElementById('vertex-location').value = env.GOOGLE_CLOUD_LOCATION || DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_LOCATION;
+                    document.getElementById('vertex-use-vertex').value = env.GOOGLE_GENAI_USE_VERTEXAI || DEFAULT_VERTEX_ENV.GOOGLE_GENAI_USE_VERTEXAI;
+                    document.getElementById('vertex-credentials').value = env.GOOGLE_APPLICATION_CREDENTIALS || DEFAULT_VERTEX_ENV.GOOGLE_APPLICATION_CREDENTIALS;
+                    console.log('已从本地存储加载环境变量');
+                    return true;
+                }
+            } catch (error) {
+                console.error('加载本地存储失败:', error);
+            }
+            return false;
+        }
+
+        async function loadVertexEnv() {
+            // 先尝试从localStorage加载
+            const hasLocalStorage = loadVertexEnvFromStorage();
+            
+            // 然后尝试从服务器加载（会覆盖localStorage的值）
+            try {
+                const response = await fetch(`${API_BASE}/vertex/env`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    console.warn('响应不是JSON格式，可能是HTML错误页面');
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                // 自动填充表单（优先使用服务器环境变量，如果为空则使用默认值）
+                document.getElementById('vertex-project').value = data.GOOGLE_CLOUD_PROJECT || DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_PROJECT;
+                document.getElementById('vertex-location').value = data.GOOGLE_CLOUD_LOCATION || DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_LOCATION;
+                document.getElementById('vertex-use-vertex').value = data.GOOGLE_GENAI_USE_VERTEXAI || DEFAULT_VERTEX_ENV.GOOGLE_GENAI_USE_VERTEXAI;
+                document.getElementById('vertex-credentials').value = data.GOOGLE_APPLICATION_CREDENTIALS || DEFAULT_VERTEX_ENV.GOOGLE_APPLICATION_CREDENTIALS;
+                
+                // 保存到localStorage
+                saveVertexEnv();
+                console.log('已从服务器加载环境变量并保存');
+            } catch (error) {
+                console.log('无法从服务器加载环境变量（可能未设置）:', error.message);
+                if (!hasLocalStorage) {
+                    // 如果没有localStorage也没有服务器值，使用默认值
+                    document.getElementById('vertex-project').value = DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_PROJECT;
+                    document.getElementById('vertex-location').value = DEFAULT_VERTEX_ENV.GOOGLE_CLOUD_LOCATION;
+                    document.getElementById('vertex-use-vertex').value = DEFAULT_VERTEX_ENV.GOOGLE_GENAI_USE_VERTEXAI;
+                    document.getElementById('vertex-credentials').value = DEFAULT_VERTEX_ENV.GOOGLE_APPLICATION_CREDENTIALS;
+                    console.log('使用默认值');
+                }
+            }
+        }
+
+        async function configureVertex() {
+            const project = document.getElementById('vertex-project').value.trim();
+            const location = document.getElementById('vertex-location').value.trim();
+            const useVertex = document.getElementById('vertex-use-vertex').value.trim();
+            const credentials = document.getElementById('vertex-credentials').value.trim();
+
+            if (!project || !location || !useVertex || !credentials) {
+                alert('请填写所有配置项');
+                return;
+            }
+
+            // 保存到localStorage
+            saveVertexEnv();
+
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '连接中...';
+
+            try {
+                const requestBody = {
+                    GOOGLE_CLOUD_PROJECT: project,
+                    GOOGLE_CLOUD_LOCATION: location,
+                    GOOGLE_GENAI_USE_VERTEXAI: useVertex,
+                    GOOGLE_APPLICATION_CREDENTIALS: credentials
+                };
+
+                const response = await fetch(`${API_BASE}/vertex/config`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                // 检查响应类型
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await response.text();
+                    throw new Error(`服务器返回了非JSON响应: ${text.substring(0, 200)}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('✓ Vertex AI 配置成功！');
+                    checkVertexStatus();
+                } else {
+                    alert('✗ 配置失败: ' + (data.error || '未知错误'));
+                }
+            } catch (error) {
+                console.error('配置错误:', error);
+                alert('✗ 配置失败: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        async function loadDefaultPrompt() {
+            try {
+                const response = await fetch(`${API_BASE}/prompt/template`);
+                const data = await response.json();
+                document.getElementById('custom-prompt').value = data.template;
+                // 保存提示词到localStorage
+                localStorage.setItem('custom_prompt', data.template);
+            } catch (error) {
+                alert('加载失败: ' + error.message);
+            }
+        }
+
+        function clearVertexEnv() {
+            if (confirm('确定要清除保存的环境变量配置吗？')) {
+                localStorage.removeItem('vertex_env');
+                document.getElementById('vertex-project').value = '';
+                document.getElementById('vertex-location').value = 'us-central1';
+                document.getElementById('vertex-use-vertex').value = 'True';
+                document.getElementById('vertex-credentials').value = '';
+                alert('已清除保存的配置');
+            }
+        }
+
+        // 加载保存的提示词（如果没有保存，则从后端加载当前默认提示词）
+        async function loadSavedPrompt() {
+            const textarea = document.getElementById('custom-prompt');
+            try {
+                const saved = localStorage.getItem('custom_prompt');
+                if (saved && saved.trim() !== '') {
+                    textarea.value = saved;
+                    return;
+                }
+
+                // 没有本地保存的，就从后端拿当前 DEFAULT_PROMPT_TEMPLATE
+                const resp = await fetch(`${API_BASE}/prompt/template`);
+                if (!resp.ok) {
+                    console.warn('加载默认提示词失败，使用占位文本');
+                    return;
+                }
+                const data = await resp.json();
+                if (data && data.template) {
+                    textarea.value = data.template;
+                }
+            } catch (error) {
+                console.error('加载提示词失败:', error);
+            }
+        }
+
+        // 保存提示词
+        function savePrompt() {
+            const prompt = document.getElementById('custom-prompt').value;
+            localStorage.setItem('custom_prompt', prompt);
+        }
+        
+        // 保存提示词并显示通知
+        function savePromptAndNotify() {
+            const prompt = document.getElementById('custom-prompt').value;
+            if (!prompt || prompt.trim() === '') {
+                alert('提示词不能为空！');
+                return;
+            }
+            savePrompt();
+            alert('✓ 提示词已保存！下次使用AI推荐时将应用此提示词。');
+        }
+
+        async function getAIRecommendations() {
+            const userInfo = document.getElementById('user-info').value.trim();
+            const customPrompt = document.getElementById('custom-prompt').value.trim() || null;
+
+            if (!userInfo) {
+                alert('请输入您的需求描述');
+                return;
+            }
+
+            // 清空之前的结果和思考过程
+            document.getElementById('results').innerHTML = '';
+            document.getElementById('thinking-process').innerHTML = '';
+            
+            // 清空之前保存的筛选结果
+            filteredRecipes = [];
+            currentKeywords = null;
+            userContext = null;
+
+            await performRecommendation(userInfo, customPrompt, false);
+        }
+
+        async function quickEat() {
+            // 如果已经有筛选结果，从结果中选择一个
+            if (filteredRecipes && filteredRecipes.length > 0) {
+                await selectOneRecipe();
+                return;
+            }
+            
+            // 如果没有筛选结果，先进行筛选
+            const userInfo = document.getElementById('user-info').value.trim();
+            const quickUserInfo = userInfo || '我想吃饭，需要快速简单的餐食';
+            await performRecommendation(quickUserInfo, null, true);
+        }
+        
+        async function selectOneRecipe() {
+            // 使用LLM从筛选结果中选择一个最适合的
+            const resultsDiv = document.getElementById('results');
+            const quickEatBtn = document.getElementById('quick-eat-btn');
+            
+            resultsDiv.innerHTML = '<div class="loading">🤖 AI正在为您选择最适合的推荐...</div>';
+            quickEatBtn.disabled = true;
+            quickEatBtn.textContent = '选择中...';
+            
+            try {
+                const selectResponse = await fetch(`${API_BASE}/ai/select-recipe`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        recipes: filteredRecipes,
+                        user_info: userContext?.user_info || document.getElementById('user-info').value.trim() || '',
+                        condition: userContext?.condition || '',
+                        goal: userContext?.goal || '',
+                        model: 'gemini-2.5-flash'
+                    })
+                });
+                
+                const selectData = await selectResponse.json();
+                
+                if (!selectData.success) {
+                    throw new Error(selectData.error || 'AI选择失败');
+                }
+                
+                // 显示选中的推荐卡片
+                displayRecipeCard(selectData.recipe, selectData.reason);
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ 错误: ${error.message}</div>`;
+                console.error('Error:', error);
+            } finally {
+                quickEatBtn.disabled = false;
+                quickEatBtn.textContent = '🍽️ 我要吃饭';
+            }
+        }
+        
+        function displayRecipeCard(recipe, reason) {
+            const resultsDiv = document.getElementById('results');
+            
+            const cardHtml = `
+                <div class="recipe-card" style="border: 3px solid #4caf50; box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3); margin: 20px 0;">
+                    <div style="background: #4caf50; color: white; padding: 10px 15px; border-radius: 5px; margin-bottom: 15px; font-weight: bold;">
+                        ⭐ AI推荐首选
+                    </div>
+                    ${reason ? `<div style="background: #e8f5e9; padding: 10px; border-radius: 5px; margin-bottom: 15px; color: #2e7d32;"><strong>推荐理由：</strong>${reason}</div>` : ''}
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">${recipe.name}</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                        <p><strong>类别:</strong> ${recipe.bucket}</p>
+                        <p><strong>饮食:</strong> ${Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.join(', ') : '无限制'}</p>
+                        <p><strong>热量:</strong> ${recipe.calories} 卡</p>
+                        <p><strong>蛋白质:</strong> ${recipe.protein}g</p>
+                        <p><strong>时间:</strong> ${recipe.timing.join(', ')}</p>
+                    </div>
+                    <div class="recipe-tags" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <strong style="color: #667eea; margin-right: 5px;">L0:</strong>
+                            <span class="tag bucket">${recipe.bucket}</span>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <strong style="color: #667eea; margin-right: 5px;">L1:</strong>
+                            ${recipe.dietary && Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.map(d => `<span class="tag dietary">饮食限制: ${d}</span>`).join('') : ''}
+                            ${recipe.timing && recipe.timing.length > 0 ? recipe.timing.map(t => `<span class="tag">时间: ${t}</span>`).join('') : ''}
+                            ${recipe.allergens && recipe.allergens.length > 0 ? recipe.allergens.map(a => `<span class="tag allergen">过敏: ${a}</span>`).join('') : ''}
+                            ${recipe.equipment && recipe.equipment.length > 0 ? recipe.equipment.map(e => `<span class="tag equipment">设备限制: ${e}</span>`).join('') : ''}
+                        </div>
+                        ${recipe.health_tags && recipe.health_tags.length > 0 ? `
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <strong style="color: #667eea; margin-right: 5px;">L2:</strong>
+                            ${recipe.health_tags.map(t => `<span class="tag" style="background: #e3f2fd; color: #1976d2;">健康: ${t}</span>`).join('')}
+                        </div>` : ''}
+                        ${recipe.effort_tags && recipe.effort_tags.length > 0 ? `
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <strong style="color: #667eea; margin-right: 5px;">L3:</strong>
+                            ${recipe.effort_tags.map(t => `<span class="tag" style="background: #fff3e0; color: #e65100;">难度: ${t}</span>`).join('')}
+                        </div>` : ''}
+                        ${recipe.flavor_tags && recipe.flavor_tags.length > 0 ? `
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            <strong style="color: #667eea; margin-right: 5px;">L4:</strong>
+                            ${recipe.flavor_tags.map(t => `<span class="tag" style="background: #f3e5f5; color: #7b1fa2;">口味: ${t}</span>`).join('')}
+                        </div>` : ''}
+                    </div>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; color: #667eea; font-weight: 600; font-size: 16px;">查看详情</summary>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                            <p><strong>食材:</strong> ${recipe.ingredients}</p>
+                            <p><strong>步骤:</strong> ${recipe.steps}</p>
+                            <p><strong>设备:</strong> ${recipe.equipment.join(', ')}</p>
+                        </div>
+                    </details>
+                </div>
+            `;
+            
+            resultsDiv.innerHTML = cardHtml;
+        }
+
+        async function performRecommendation(userInfo, customPrompt, isQuickEat) {
+            const resultsDiv = document.getElementById('results');
+            const thinkingDiv = document.getElementById('thinking-process');
+            const recommendBtn = document.getElementById('recommend-btn');
+            const quickEatBtn = document.getElementById('quick-eat-btn');
+            
+            // 清空之前的结果和思考过程
+            resultsDiv.innerHTML = '<div class="loading">🤖 AI正在分析您的需求并生成推荐标签...</div>';
+            thinkingDiv.innerHTML = '<div class="info-box">等待AI生成关键词...</div>';
+            
+            recommendBtn.disabled = true;
+            quickEatBtn.disabled = true;
+            recommendBtn.textContent = '处理中...';
+            quickEatBtn.textContent = '处理中...';
+
+            try {
+                // Step 1: 调用AI生成标签
+                const aiResponse = await fetch(`${API_BASE}/ai/generate-tags`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_info: userInfo,
+                        custom_prompt: customPrompt,
+                        model: 'gemini-2.5-flash'
+                    })
+                });
+
+                const aiData = await aiResponse.json();
+                
+                if (!aiData.success) {
+                    throw new Error(aiData.error || 'AI生成标签失败');
+                }
+
+                const tags = aiData.tags;
+                
+                // 立即显示思考过程（AI生成的关键词）
+                displayThinkingProcess(tags, null);
+                
+                resultsDiv.innerHTML = '<div class="info-box">✓ AI已生成筛选标签，正在筛选食谱...</div>';
+
+                // Step 2: 使用生成的标签进行筛选
+                const filterResponse = await fetch(`${API_BASE}/filter`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_allergens: tags.user_allergens || [],
+                        user_equipment: tags.user_equipment || [],
+                        buckets: tags.buckets || [],
+                        timing: tags.timing || [],
+                        dietary: Array.isArray(tags.dietary) ? tags.dietary : (tags.dietary ? [tags.dietary] : []),
+                        effort_tag: tags.effort_tag || '',
+                        health_tag: tags.health_tag || '',
+                        flavor_tag: tags.flavor_tag || '',
+                        priority_queue: tags.priority_queue || ['Effort', 'Health', 'Flavor'],
+                        condition: tags.condition || '',
+                        goal: tags.goal || ''
+                    })
+                });
+
+                const filterData = await filterResponse.json();
+
+                if (filterData.error) {
+                    throw new Error(filterData.error);
+                }
+
+                if (filterData.results.length === 0) {
+                    resultsDiv.innerHTML = '<div class="info-box">没有找到匹配的食谱。请尝试调整您的需求描述。</div>';
+                    // 即使没有结果，也要更新思考过程显示统计信息
+                    displayThinkingProcess(tags, filterData.stats);
+                    return;
+                }
+
+                // 保存当前关键词和筛选结果
+                currentKeywords = tags;
+                filteredRecipes = filterData.results;  // 保存所有筛选结果
+                userContext = {
+                    user_info: userInfo,
+                    condition: tags.condition || '',
+                    goal: tags.goal || ''
+                };
+                
+                // dietary现在是反向筛选数组，如果为空表示无限制
+                populateManualFilters(tags);
+
+                // 显示思考过程
+                displayThinkingProcess(tags, filterData.stats);
+
+                // 如果是快速吃饭模式，使用LLM选择一个
+                if (isQuickEat && filterData.results.length > 0) {
+                    await selectOneRecipe();
+                } else {
+                    // 正常模式，显示所有结果
+                    displayResultsList(filterData.results, filterData.stats, tags, false);
+                }
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ 错误: ${error.message}</div>`;
+                console.error('Error:', error);
+            } finally {
+                recommendBtn.disabled = false;
+                quickEatBtn.disabled = false;
+                recommendBtn.textContent = '🤖 AI 智能推荐';
+                quickEatBtn.textContent = '🍽️ 我要吃饭';
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/stats`);
+                const data = await response.json();
+                
+                const statsHtml = `
+                    <div class="stat-item">
+                        <h4>总食谱数</h4>
+                        <p>${data.total_recipes}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>类别数</h4>
+                        <p>${Object.keys(data.buckets).length}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>饮食选项</h4>
+                        <p>${Object.keys(data.dietary).length}</p>
+                    </div>
+                `;
+                
+                document.getElementById('stats').innerHTML = statsHtml;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        function displayResultsList(displayResults, stats, keywords, isQuickEat) {
+            const resultsDiv = document.getElementById('results');
+            
+            let resultsHtml = `<h3 style="margin: 20px 0 10px 0;">为您推荐 ${displayResults.length} 道菜${isQuickEat ? '（排序最高）' : ''}：</h3>`;
+            resultsHtml += '<div class="results">';
+
+            displayResults.forEach((recipe, index) => {
+                const isTop = isQuickEat && index === 0;
+                resultsHtml += `
+                    <div class="recipe-card" ${isTop ? 'style="border: 3px solid #4caf50; box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);"' : ''}>
+                        ${isTop ? '<div style="background: #4caf50; color: white; padding: 5px 10px; border-radius: 5px; margin-bottom: 10px; font-weight: bold;">⭐ 推荐首选</div>' : ''}
+                        <h3>${recipe.name}</h3>
+                        <p><strong>类别:</strong> ${recipe.bucket}</p>
+                        <p><strong>饮食:</strong> ${Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.join(', ') : '无限制'}</p>
+                        <p><strong>热量:</strong> ${recipe.calories} 卡 | <strong>蛋白质:</strong> ${recipe.protein}g</p>
+                        <p><strong>时间:</strong> ${recipe.timing.join(', ')}</p>
+                        <div class="recipe-tags" style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                <strong style="color: #667eea; margin-right: 5px;">L0:</strong>
+                                <span class="tag bucket">${recipe.bucket}</span>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                <strong style="color: #667eea; margin-right: 5px;">L1:</strong>
+                                ${recipe.dietary && Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.map(d => `<span class="tag dietary">饮食限制: ${d}</span>`).join('') : ''}
+                                ${recipe.timing && recipe.timing.length > 0 ? recipe.timing.map(t => `<span class="tag">时间: ${t}</span>`).join('') : ''}
+                                ${recipe.allergens && recipe.allergens.length > 0 ? recipe.allergens.map(a => `<span class="tag allergen">过敏: ${a}</span>`).join('') : ''}
+                                ${recipe.equipment && recipe.equipment.length > 0 ? recipe.equipment.map(e => `<span class="tag equipment">设备限制: ${e}</span>`).join('') : ''}
+                            </div>
+                            ${recipe.health_tags && recipe.health_tags.length > 0 ? `
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                <strong style="color: #667eea; margin-right: 5px;">L2:</strong>
+                                ${recipe.health_tags.map(t => `<span class="tag" style="background: #e3f2fd; color: #1976d2;">健康: ${t}</span>`).join('')}
+                            </div>` : ''}
+                            ${recipe.effort_tags && recipe.effort_tags.length > 0 ? `
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                <strong style="color: #667eea; margin-right: 5px;">L3:</strong>
+                                ${recipe.effort_tags.map(t => `<span class="tag" style="background: #fff3e0; color: #e65100;">难度: ${t}</span>`).join('')}
+                            </div>` : ''}
+                            ${recipe.flavor_tags && recipe.flavor_tags.length > 0 ? `
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                <strong style="color: #667eea; margin-right: 5px;">L4:</strong>
+                                ${recipe.flavor_tags.map(t => `<span class="tag" style="background: #f3e5f5; color: #7b1fa2;">口味: ${t}</span>`).join('')}
+                            </div>` : ''}
+                        </div>
+                        <details style="margin-top: 15px;">
+                            <summary style="cursor: pointer; color: #667eea; font-weight: 600;">查看详情</summary>
+                            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                                <p><strong>食材:</strong> ${recipe.ingredients}</p>
+                                <p><strong>步骤:</strong> ${recipe.steps}</p>
+                                <p><strong>设备:</strong> ${recipe.equipment.join(', ')}</p>
+                            </div>
+                        </details>
+                    </div>
+                `;
+            });
+
+            resultsHtml += '</div>';
+            
+            // 如果不是快速模式且结果超过1个，提示可以查看更多
+            if (!isQuickEat && stats && stats.stage3 && stats.stage3.final_count > displayResults.length) {
+                resultsHtml += `<div class="info-box" style="margin-top: 20px;">
+                    <strong>💡 提示：</strong> 点击"我要吃饭"按钮可快速查看排序最高的推荐！
+                </div>`;
+            }
+            
+            resultsDiv.innerHTML = resultsHtml;
+        }
+
+        async function loadAllRecipes() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="loading">📋 加载所有食谱...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/recipes`);
+                const data = await response.json();
+
+                if (data.error) {
+                    resultsDiv.innerHTML = `<div class="error">❌ 错误: ${data.error}</div>`;
+                    return;
+                }
+
+                let resultsHtml = `<h3 style="margin-bottom: 20px;">所有食谱 (${data.recipes.length}):</h3>`;
+                resultsHtml += '<div class="results">';
+
+                data.recipes.forEach(recipe => {
+                    resultsHtml += `
+                        <div class="recipe-card">
+                            <h3>${recipe.name}</h3>
+                            <p><strong>类别:</strong> ${recipe.bucket}</p>
+                            <p><strong>饮食:</strong> ${Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.join(', ') : '无限制'}</p>
+                            <p><strong>热量:</strong> ${recipe.calories} 卡 | <strong>蛋白质:</strong> ${recipe.protein}g</p>
+                            <div class="recipe-tags" style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                    <strong style="color: #667eea; margin-right: 5px;">L0:</strong>
+                                    <span class="tag bucket">${recipe.bucket}</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                    <strong style="color: #667eea; margin-right: 5px;">L1:</strong>
+                                    ${recipe.dietary && Array.isArray(recipe.dietary) && recipe.dietary.length > 0 ? recipe.dietary.map(d => `<span class="tag dietary">饮食限制: ${d}</span>`).join('') : ''}
+                                    ${recipe.timing && recipe.timing.length > 0 ? recipe.timing.map(t => `<span class="tag">时间: ${t}</span>`).join('') : ''}
+                                    ${recipe.allergens && recipe.allergens.length > 0 ? recipe.allergens.map(a => `<span class="tag allergen">过敏: ${a}</span>`).join('') : ''}
+                                    ${recipe.equipment && recipe.equipment.length > 0 ? recipe.equipment.map(e => `<span class="tag equipment">设备限制: ${e}</span>`).join('') : ''}
+                                </div>
+                                ${recipe.health_tags && recipe.health_tags.length > 0 ? `
+                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                    <strong style="color: #667eea; margin-right: 5px;">L2:</strong>
+                                    ${recipe.health_tags.map(t => `<span class="tag" style="background: #e3f2fd; color: #1976d2;">健康: ${t}</span>`).join('')}
+                                </div>` : ''}
+                                ${recipe.effort_tags && recipe.effort_tags.length > 0 ? `
+                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                    <strong style="color: #667eea; margin-right: 5px;">L3:</strong>
+                                    ${recipe.effort_tags.map(t => `<span class="tag" style="background: #fff3e0; color: #e65100;">难度: ${t}</span>`).join('')}
+                                </div>` : ''}
+                                ${recipe.flavor_tags && recipe.flavor_tags.length > 0 ? `
+                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                                    <strong style="color: #667eea; margin-right: 5px;">L4:</strong>
+                                    ${recipe.flavor_tags.map(t => `<span class="tag" style="background: #f3e5f5; color: #7b1fa2;">口味: ${t}</span>`).join('')}
+                                </div>` : ''}
+                            </div>
+                            <details style="margin-top: 15px;">
+                                <summary style="cursor: pointer; color: #667eea; font-weight: 600;">查看详情</summary>
+                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                                    <p><strong>食材:</strong> ${recipe.ingredients}</p>
+                                    <p><strong>步骤:</strong> ${recipe.steps}</p>
+                                    <p><strong>时间:</strong> ${recipe.timing.join(', ')}</p>
+                                    <p><strong>设备:</strong> ${recipe.equipment.join(', ')}</p>
+                                </div>
+                            </details>
+                        </div>
+                    `;
+                });
+
+                resultsHtml += '</div>';
+                resultsDiv.innerHTML = resultsHtml;
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ 错误: ${error.message}</div>`;
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

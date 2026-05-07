@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 客户端</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧对话列表侧边栏 -->
+        <aside class="conversations-sidebar" id="conversations-sidebar">
+            <div class="sidebar-header">
+                <div class="mode-tabs">
+                    <button class="mode-tab active" data-mode="text" id="tab-text">
+                        <i class="fas fa-file-alt"></i> 文字创作
+                    </button>
+                    <button class="mode-tab" data-mode="image" id="tab-image">
+                        <i class="fas fa-image"></i> 图像创作
+                    </button>
+                    <button class="mode-tab" data-mode="search" id="tab-search">
+                        <i class="fas fa-search"></i> 联网搜索
+                    </button>
+                </div>
+                <div class="header-actions">
+                    <button id="new-conversation-btn" class="new-conversation-btn" title="新建对话">
+                        <i class="fas fa-plus"></i> 新建
+                    </button>
+                    <button id="new-folder-btn" class="new-folder-btn" title="新建文件夹">
+                        <i class="fas fa-folder-plus"></i>
+                    </button>
+                    <button id="toggle-sidebar-btn" class="toggle-sidebar-btn" title="收起侧边栏">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="conversations-list" id="conversations-list">
+                <!-- 对话列表将在这里动态生成 -->
+            </div>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <!-- 头部 -->
+            <header class="header">
+                <div class="header-tabs">
+                    <button class="header-tab active" id="header-tab-chat" data-view="chat">
+                        <i class="fas fa-comments"></i> 对话
+                    </button>
+                    <button class="header-tab" id="header-tab-tasks" data-view="tasks">
+                        <i class="fas fa-tasks"></i> 复杂任务
+                    </button>
+                </div>
+                <div class="header-content" id="header-content-chat">
+                    <button id="show-sidebar-btn" class="show-sidebar-btn" style="display: none;" title="显示侧边栏">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1><i class="fas fa-robot"></i> Gemini 客户端</h1>
+                    <div class="model-selector" style="display: flex; align-items: center; gap: 1rem;">
+                        <div>
+                            <label for="model-select">选择模型:</label>
+                            <select id="model-select">
+                                <option value="gemini-3-pro-preview">Gemini 3 Pro Preview</option>
+                                <option value="gemini-3-flash-preview">Gemini 3 Flash Preview</option>
+                                <option value="gemini-3-pro-image-preview">Gemini 3 Pro Image Preview</option>
+                                <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+                                <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                                <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                                <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                            </select>
+                        </div>
+                        <button id="toggle-skills" class="btn btn-secondary" style="padding: 0.5rem 1rem; white-space: nowrap;">
+                            Skill 模式：关
+                        </button>
+                        <button id="write-skill-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; white-space: nowrap;">
+                            <i class="fas fa-edit"></i> 写入 Skill
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 聊天区域 -->
+            <main class="chat-container" id="view-chat">
+            <div class="chat-messages" id="chat-messages">
+                <div class="welcome-message">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>👋 您好！我是Gemini AI助手，请选择模型后开始对话吧！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 输入区域 -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <div class="input-actions">
+                        <button id="file-upload-button" class="file-upload-button" title="上传文件">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <input type="file" id="file-input" accept=".txt,.md,.pdf,.doc,.docx,.csv,.json,.py,.js,.html,.css" style="display: none;">
+                    </div>
+                    <textarea 
+                        id="message-input" 
+                        placeholder="输入您的问题..." 
+                        rows="1"
+                        maxlength="800000"
+                    ></textarea>
+                    <button id="send-button" class="send-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <button id="stop-button" class="stop-button" style="display: none;" title="停止生成">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="char-count">0/800000</span>
+                    <span class="shortcut-hint">按 Ctrl+Enter 发送</span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- 复杂任务区域 -->
+        <main class="tasks-container" id="view-tasks" style="display: none;">
+            <div class="tasks-header">
+                <h2><i class="fas fa-tasks"></i> 复杂任务</h2>
+                <button id="add-task-btn" class="add-task-btn">
+                    <i class="fas fa-plus"></i> 添加任务
+                </button>
+            </div>
+            <div class="tasks-list" id="tasks-list">
+                <!-- 任务列表将在这里动态生成 -->
+            </div>
+        </main>
+        </div>
+
+        <!-- 设置面板 -->
+        <div class="settings-panel" id="settings-panel">
+            <div class="settings-content">
+                <h3><i class="fas fa-cog"></i> 设置</h3>
+                
+                <div class="setting-group">
+                    <label>Vertex AI 配置:</label>
+                    <div style="padding: 0.85rem 1rem; background: #f3f4f6; border-radius: 8px; color: #374151; font-size: 0.9rem;">
+                        <div style="margin-bottom: 0.5rem;"><strong>状态:</strong> <span id="vertex-status">检查中...</span></div>
+                        <div style="margin-bottom: 0.5rem;"><strong>项目:</strong> <span id="vertex-project">-</span></div>
+                        <div style="margin-bottom: 0.5rem;"><strong>位置:</strong> <span id="vertex-location">-</span></div>
+                        <button id="reconfigure-vertex-btn" class="btn btn-secondary" style="width: 100%; margin-top: 0.75rem; padding: 0.5rem;">
+                            <i class="fas fa-cog"></i> 重新配置 Vertex AI
+                        </button>
+                    </div>
+                    
+                    <!-- Vertex AI 重新配置表单（默认隐藏） -->
+                    <div id="vertex-reconfig-form" style="display: none; margin-top: 1rem; padding: 1rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px;">
+                        <h4 style="margin-top: 0; margin-bottom: 1rem;">重新配置 Vertex AI</h4>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem; font-size: 0.9rem;">GOOGLE_CLOUD_PROJECT</label>
+                            <input type="text" id="reconfig-project" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem; font-size: 0.9rem;">GOOGLE_CLOUD_LOCATION</label>
+                            <input type="text" id="reconfig-location" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem; font-size: 0.9rem;">GOOGLE_GENAI_USE_VERTEXAI</label>
+                            <input type="text" id="reconfig-use-vertex" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem; font-size: 0.9rem;">GOOGLE_APPLICATION_CREDENTIALS</label>
+                            <input type="text" id="reconfig-credentials" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button id="save-vertex-config-btn" class="btn btn-primary" style="flex: 1; padding: 0.5rem;">
+                                <i class="fas fa-save"></i> 保存配置
+                            </button>
+                            <button id="cancel-vertex-config-btn" class="btn btn-secondary" style="flex: 1; padding: 0.5rem;">
+                                <i class="fas fa-times"></i> 取消
+                            </button>
+                        </div>
+                        <div id="vertex-config-status" style="margin-top: 0.75rem; font-size: 0.85rem; min-height: 1.5rem;"></div>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="temperature">创造性 (Temperature):</label>
+                    <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                    <span id="temperature-value">0.7</span>
+                    <small>控制输出的随机性。0=确定性输出，2=最随机。推荐0.7-1.0</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="max-tokens">最大Token数 (Max Output Tokens):</label>
+                    <input type="number" id="max-tokens" min="1" max="8192" value="4096">
+                    <small>限制AI回复的最大长度。1 token ≈ 0.75个英文单词或1个中文字符</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="top-p">核采样 (Top-P):</label>
+                    <input type="range" id="top-p" min="0" max="1" step="0.05" value="0.95">
+                    <span id="top-p-value">0.95</span>
+                    <small>核采样参数，控制输出的多样性。0.95表示只考虑累积概率95%的token</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="top-k">Top-K采样:</label>
+                    <input type="number" id="top-k" min="1" max="100" value="40">
+                    <small>限制每次只从概率最高的K个token中选择。值越小输出越保守，越大越多样</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="candidate-count">候选数量 (Candidate Count):</label>
+                    <input type="number" id="candidate-count" min="1" max="8" value="1">
+                    <small>生成多少个候选回复。通常设为1，设为多个可以对比不同回复</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="stop-sequences">停止序列 (Stop Sequences):</label>
+                    <input type="text" id="stop-sequences" placeholder="用逗号分隔，例如: END,STOP">
+                    <small>当AI输出包含这些序列时停止生成。多个序列用逗号分隔</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="context-window">上下文窗口大小:</label>
+                    <input type="number" id="context-window" min="5" max="100" value="20">
+                    <small>保留最近N轮对话作为上下文。减少可节省token，增加可提供更多上下文</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="enable-grounding" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="enable-grounding" style="width: auto; cursor: pointer;">
+                        <span>启用 Grounding（搜索增强）</span>
+                    </label>
+                    <small>启用后，AI可以使用Google搜索获取实时信息，提供更准确和最新的回答。可能会略微增加响应时间和成本。</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="system-prompt">系统提示词:</label>
+                    <textarea id="system-prompt" rows="10" placeholder="You are a helpful assistant.">You are a helpful assistant. Please answer in Chinese.</textarea>
+                </div>
+                
+                <!-- 海报制作系统提示词设置 -->
+                <div class="setting-group">
+                    <h4 style="margin-bottom: 1rem; color: #4f46e5; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem;">
+                        <i class="fas fa-image"></i> 海报制作系统提示词
+                    </h4>
+                    
+                    <label for="poster-common-prompt">通用系统提示词:</label>
+                    <textarea id="poster-common-prompt" rows="4" placeholder="通用系统提示词（会添加到图片、文字、排版生成的最前面，可用于产品介绍等）..."></textarea>
+                    <small>此提示词会被添加到图片生成、文字生成、排版生成三个功能的系统提示词最前面。可用于添加产品介绍、品牌信息等通用内容。</small>
+                    
+                    <label for="poster-image-prompt" style="margin-top: 1rem;">图片生成系统提示词:</label>
+                    <textarea id="poster-image-prompt" rows="6" placeholder="图片生成系统提示词..."></textarea>
+                    <small>用于图片内容生成功能的系统提示词。控制AI如何理解和生成图片提示词。</small>
+
+                    <!-- 图生图系统提示词 -->
+                    <label for="image-to-image-prompt" style="margin-top: 1rem;">图生图系统提示词:</label>
+                    <textarea id="image-to-image-prompt" rows="4" placeholder="图生图系统提示词..."></textarea>
+                    <small>
+                        当开启图生图时，会作为系统提示词发送给模型，用来控制“高还原度只改你指定的地方”。
+                        默认会包含：Keep the exact layout and composition of the input image.
+                    </small>
+                    
+                    <!-- 图生图功能 -->
+                    <div style="margin-top: 1rem; padding: 1rem; background: #1e293b; border-radius: 8px; border: 1px solid #334155;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <input type="checkbox" id="enable-image-to-image" style="width: auto;">
+                            <span style="color: #e2e8f0; font-weight: 600;">启用图生图功能</span>
+                        </label>
+                        <small style="display: block; color: #94a3b8; margin-bottom: 0.75rem;">开启后，每次生成图片时会使用参考图片和提示词一起生成新图片</small>
+                        
+                        <div id="image-to-image-upload-area" style="display: none;">
+                            <input type="file" id="image-to-image-input" accept="image/*" multiple style="display: none;">
+                            <button type="button" id="image-to-image-upload-btn" style="width: 100%; padding: 0.5rem; background: #334155; border: 1px solid #475569; border-radius: 6px; color: #e2e8f0; cursor: pointer;">
+                                <i class="fas fa-upload"></i> 上传参考图片（可多选）
+                            </button>
+                            <div id="image-to-image-preview" style="display: none; margin-top: 0.75rem;">
+                                <div id="image-to-image-preview-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 0.5rem;"></div>
+                                <button type="button" id="remove-image-to-image-btn" style="padding: 0.25rem 0.5rem; background: #dc2626; border: none; border-radius: 4px; color: white; cursor: pointer;">
+                                    <i class="fas fa-times"></i> 清空所有图片
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <label for="poster-text-prompt" style="margin-top: 1rem;">文字生成系统提示词:</label>
+                    <textarea id="poster-text-prompt" rows="6" placeholder="文字生成系统提示词..."></textarea>
+                    <small>用于文字内容生成功能的系统提示词。控制AI如何联网查询文献并生成文字内容。</small>
+                    
+                    <label for="poster-web-prompt" style="margin-top: 1rem;">排版生成系统提示词:</label>
+                    <textarea id="poster-web-prompt" rows="6" placeholder="排版生成系统提示词..."></textarea>
+                    <small>用于排版生成功能的系统提示词。控制AI如何生成完整的HTML网页代码（包含定制主题、样式、图片和文字内容）。</small>
+                </div>
+                
+                <div class="setting-group">
+                    <h4 style="margin: 2rem 0 1rem; color: #4f46e5; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem;">
+                        <i class="fab fa-instagram"></i> Instagram 系统提示词
+                    </h4>
+                    <small>这里的提示词将覆盖各个 Instagram 子任务（创意、工程、图片、底部文字、网页）。保存设置后会立即生效，点击任务界面中的滑块按钮也能进一步微调。</small>
+                    
+                    <label for="instagram-designer-prompt" style="margin-top: 1rem;">创意设计师 Prompt:</label>
+                    <textarea id="instagram-designer-prompt" rows="5" placeholder="用于生成整体洞察、图片构图和网页排版建议的系统提示词"></textarea>
+                    
+                    <label for="instagram-engineer-prompt" style="margin-top: 1rem;">提示词工程师 Prompt:</label>
+                    <textarea id="instagram-engineer-prompt" rows="5" placeholder="用于生成 JSON（图片1/图片2/.../底部文字）结构的系统提示词"></textarea>
+                    
+                    <label for="instagram-image-prompt" style="margin-top: 1rem;">图片生成 Prompt:</label>
+                    <textarea id="instagram-image-prompt" rows="5" placeholder="用于生成单张图片提示词的系统提示词"></textarea>
+                    
+                    <label for="instagram-text-prompt" style="margin-top: 1rem;">底部文字 Prompt:</label>
+                    <textarea id="instagram-text-prompt" rows="5" placeholder="用于生成或润色底部文案的系统提示词"></textarea>
+                    
+                    <label style="margin-top: 1rem; color: #9ca3af;">网页生成 Prompt（已停用）:</label>
+                    <div style="padding: 0.85rem 1rem; background: #f3f4f6; border-radius: 8px; color: #6b7280; font-size: 0.9rem;">
+                        网页生成功能已移除，不再支持编辑相关提示词。
+                    </div>
+                </div>
+                
+                <div class="setting-group" id="agent-prompt-group" style="display: none;">
+                    <label for="agent-prompt">当前Agent的Prompt（提示词专家专用）:</label>
+                    <textarea id="agent-prompt" rows="8" placeholder="请输入您当前agent的完整prompt，让AI了解它要站在哪个角色的角度去思考提示词..."></textarea>
+                    <small>这个输入框只在"提示词专家"对话中显示。输入后，AI会基于这个agent的角色和职责来优化提示词。</small>
+                </div>
+                
+                <div class="setting-group" id="jovida-prompt-expert-group" style="display: none;">
+                    <label for="jovida-target-agent">当前为哪个Agent设计提示词（Jovida提示词专家专用）:</label>
+                    <textarea id="jovida-target-agent" rows="6" placeholder="请输入当前要为哪个agent设计提示词，例如：Jovida后台日志提取助手、Jovida数据分析助手等..."></textarea>
+                    <small>输入当前要为哪个agent设计提示词，帮助AI更好地理解目标agent的需求和特点</small>
+                </div>
+                
+                <div class="setting-group" id="summary-assistant-group" style="display: none;">
+                    <label for="length-limit">长度限制（精炼总结助手专用）:</label>
+                    <input type="number" id="length-limit" min="0" placeholder="例如：500（字数）">
+                    <small>限制总结或精炼后的内容长度，单位：字数</small>
+                    
+                    <label for="content-purpose" style="margin-top: 1rem;">内容用途（精炼总结助手专用）:</label>
+                    <input type="text" id="content-purpose" placeholder="例如：用作提示词、用作自己看、用作给同事报告等">
+                    <small>说明内容的用途，帮助AI更好地调整输出风格和格式</small>
+                    
+                    <label for="output-format" style="margin-top: 1rem;">输出格式（精炼总结助手专用）:</label>
+                    <select id="output-format">
+                        <option value="">默认格式</option>
+                        <option value="文本">文本</option>
+                        <option value="bulletpoints">要点列表 (Bullet Points)</option>
+                        <option value="numbered">编号列表 (Numbered List)</option>
+                        <option value="json">JSON格式</option>
+                        <option value="markdown">Markdown格式</option>
+                        <option value="表格">表格格式</option>
+                        <option value="大纲">大纲格式</option>
+                        <option value="段落">段落格式</option>
+                    </select>
+                    <small>选择输出内容的格式类型</small>
+                </div>
+                
+                <div class="setting-group" id="nutritionist-group" style="display: none;">
+                    <label for="patient-info">病人已知信息（美国注册营养师专用）:</label>
+                    <textarea id="patient-info" rows="8" placeholder="请输入病人的已知信息，例如：年龄、性别、身高、体重、疾病史、过敏史、饮食习惯、运动情况、用药情况等..."></textarea>
+                    <small>输入病人的基本信息、健康状况、饮食习惯等，帮助营养师更好地制定个性化营养方案</small>
+                </div>
+                
+                <div class="setting-group" id="jovida-effect-checker-group" style="display: none;">
+                    <label for="user-personal-info">用户个人信息（jovida效果检查助手专用）:</label>
+                    <textarea id="user-personal-info" rows="8" placeholder="请输入用户的个人信息，例如：年龄、性别、使用场景、使用习惯、期望效果等..."></textarea>
+                    <small>输入用户的个人信息，帮助AI更好地评估和检查效果</small>
+                </div>
+
+                <div class="setting-group" id="jovida-virtual-user-group" style="display: none;">
+                    <label for="jovida-virtual-user-select">虚拟用户（Jovida虚拟用户模拟器专用）:</label>
+                    <select id="jovida-virtual-user-select" multiple size="5"></select>
+                    <small>按住 Ctrl/Command 键可以多选。系统会自动根据所选虚拟用户更新系统提示词，让模拟器逐一扮演他们。</small>
+                    <div class="virtual-user-prompts" id="jovida-virtual-user-prompts"></div>
+                </div>
+                
+                <div class="setting-group" id="jovida-assistant-group" style="display: none;">
+                    <label for="jovida-mode">提取模式（Jovida后台日志提取助手专用）:</label>
+                    <select id="jovida-mode">
+                        <option value="pure-dialog">纯对话内容</option>
+                        <option value="full-process">全过程</option>
+                    </select>
+                    <small>选择日志提取的模式类型</small>
+                    
+                    <label for="jovida-prompt-pure" style="margin-top: 1rem;">纯对话内容模式 System Prompt:</label>
+                    <textarea id="jovida-prompt-pure" rows="8" placeholder="请输入纯对话内容模式下的系统提示词..."></textarea>
+                    
+                    <label for="jovida-prompt-full" style="margin-top: 1rem;">全过程模式 System Prompt:</label>
+                    <textarea id="jovida-prompt-full" rows="8" placeholder="请输入全过程模式下的系统提示词..."></textarea>
+                    <small>根据选择的模式，系统会自动使用对应的System Prompt</small>
+                </div>
+                
+                <!-- Skill 管理区域 -->
+                <div class="setting-group" id="skill-management-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e5e7eb;">
+                    <h4 style="margin-bottom: 1rem; color: #4f46e5; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem;">
+                        <i class="fas fa-book"></i> Skill 文档管理
+                    </h4>
+                    
+                    <!-- 上传新 Skill -->
+                    <div class="skill-upload-area" style="margin-bottom: 2rem;">
+                        <h5 style="margin-bottom: 0.5rem;">上传新 Skill 文档</h5>
+                        <input type="file" id="skill-file-input" accept=".md,.txt,.docx,.pdf,.html,.json,.csv" multiple style="display: none;">
+                        <button id="skill-upload-btn" class="btn btn-primary" style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-upload"></i> 选择文件并自动生成 Skill（支持多选）
+                        </button>
+                        <div id="skill-upload-status" style="color: #6b7280; font-size: 0.9rem; min-height: 1.5rem;"></div>
+                        <small style="display: block; color: #9ca3af; margin-top: 0.5rem;">
+                            支持格式：Markdown (.md), 纯文本 (.txt), Word (.docx), PDF (.pdf), HTML (.html), JSON (.json), CSV (.csv)
+                        </small>
+                    </div>
+                    
+                    <!-- Skill 管理按钮 -->
+                    <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button id="manage-skills-btn" class="btn btn-secondary" style="flex: 1;">
+                            <i class="fas fa-cog"></i> 管理 Skill
+                        </button>
+                        <button id="open-skills-dir-btn" class="btn btn-secondary">
+                            <i class="fas fa-folder-open"></i> 打开目录
+                        </button>
+                        <button id="edit-skill-btn" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> 编辑 Skill
+                        </button>
+                    </div>
+                    
+                </div>
+                
+                <div class="setting-actions">
+                    <button id="save-settings" class="btn btn-primary">保存设置</button>
+                    <button id="clear-chat" class="btn btn-secondary">清空当前对话</button>
+                    <button id="clear-storage-lite" class="btn btn-secondary">释放空间（保留对话）</button>
+                    <button id="clear-storage" class="btn btn-danger">危险操作：清空所有数据</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置按钮 -->
+        <button class="settings-toggle" id="settings-toggle">
+            <i class="fas fa-cog"></i>
+        </button>
+
+        <!-- 加载指示器 -->
+        <div class="loading-indicator" id="loading-indicator">
+            <div class="loading-spinner"></div>
+            <span>AI正在思考中...</span>
+        </div>
+    </div>
+
+    <!-- 添加docx文件读取库 -->
+    <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
+    
+    <!-- Skill 管理弹窗 -->
+    <div id="skill-management-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 900px; margin: 2rem auto; background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0;"><i class="fas fa-cog"></i> Skill 管理</h2>
+                <button id="close-skill-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6b7280;">&times;</button>
+            </div>
+            <div id="skill-management-content">
+                <!-- 内容由 JS 动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 写入 Skill 弹窗 -->
+    <div id="write-skill-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 2rem auto; background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0;"><i class="fas fa-edit"></i> 写入 Skill</h2>
+                <button id="close-write-skill-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6b7280;">&times;</button>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Skill 名称（可选，留空将自动生成）：</label>
+                <input type="text" id="write-skill-name" placeholder="例如: my-skill" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                <small style="color: #9ca3af;">留空将根据内容自动生成名称</small>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Skill 内容（Markdown 格式）：</label>
+                <textarea id="write-skill-content" rows="15" placeholder="在这里输入 Skill 的内容，支持 Markdown 格式..." style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem; resize: vertical; font-family: 'Courier New', monospace;"></textarea>
+                <small style="color: #9ca3af; display: block; margin-top: 0.25rem;">
+                    <i class="fas fa-save"></i> 内容会自动保存到本地草稿
+                </small>
+            </div>
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                <button id="cancel-write-skill" class="btn btn-secondary" style="padding: 0.5rem 1rem;">取消</button>
+                <button id="confirm-write-skill" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                    <i class="fas fa-save"></i> 确认并创建 Skill
+                </button>
+            </div>
+            <div id="write-skill-status" style="margin-top: 1rem; color: #6b7280; font-size: 0.9rem; min-height: 1.5rem;"></div>
+        </div>
+    </div>
+    
+    <!-- 编辑 Skill 弹窗 -->
+    <div id="edit-skill-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 900px; margin: 2rem auto; background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0;"><i class="fas fa-edit"></i> 编辑 Skill</h2>
+                <button id="close-edit-skill-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6b7280;">&times;</button>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">选择要编辑的 Skill：</label>
+                <select id="edit-skill-select" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem;">
+                    <option value="">-- 请选择 Skill --</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Skill 内容（Markdown 格式）：</label>
+                <textarea id="edit-skill-content" rows="20" placeholder="选择 Skill 后将显示内容..." style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.9rem; resize: vertical; font-family: 'Courier New', monospace;" readonly></textarea>
+            </div>
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                <button id="cancel-edit-skill" class="btn btn-secondary" style="padding: 0.5rem 1rem;">取消</button>
+                <button id="save-edit-skill" class="btn btn-primary" style="padding: 0.5rem 1rem;" disabled>
+                    <i class="fas fa-save"></i> 保存并更新 Skill
+                </button>
+            </div>
+            <div id="edit-skill-status" style="margin-top: 1rem; color: #6b7280; font-size: 0.9rem; min-height: 1.5rem;"></div>
+        </div>
+    </div>
+    
+    <!-- 常量定义 -->
+    <script src="constants.js"></script>
+    <!-- 主脚本 -->
+    <script src="script.js"></script>
+    <!-- 对话管理模块（需要在类定义后加载） -->
+    <script src="script-conversations.js"></script>
+    <!-- Skill 管理模块（需要在类定义后加载） -->
+    <script src="skill-management.js"></script>
+    <!-- UI 工具方法模块（需要在类定义后加载） -->
+    <script src="script-ui-utils.js"></script>
+</body>
+</html>

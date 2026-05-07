@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 docx 文件读取</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .test-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .file-input {
+            margin: 10px 0;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 docx 文件读取测试</h1>
+        
+        <div class="test-area">
+            <h3>选择 docx 文件进行测试</h3>
+            <input type="file" id="fileInput" accept=".docx" class="file-input">
+            <br>
+            <button onclick="testDocxFile()">测试读取</button>
+            <button onclick="clearResult()">清空结果</button>
+        </div>
+        
+        <div id="result" class="result" style="display: none;">
+            <h4>读取结果：</h4>
+            <div id="content"></div>
+        </div>
+        
+        <div class="test-area">
+            <h3>测试说明</h3>
+            <p>1. 选择一个 .docx 文件</p>
+            <p>2. 点击"测试读取"按钮</p>
+            <p>3. 查看提取的文本内容</p>
+            <p>4. 如果成功，说明 docx 文件读取功能正常工作</p>
+        </div>
+    </div>
+
+    <!-- 加载 mammoth.js 库 -->
+    <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
+    
+    <script>
+        function testDocxFile() {
+            const fileInput = document.getElementById('fileInput');
+            const resultDiv = document.getElementById('result');
+            const contentDiv = document.getElementById('content');
+            
+            if (!fileInput.files[0]) {
+                showResult('请先选择一个 docx 文件', 'error');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            if (!file.name.endsWith('.docx')) {
+                showResult('请选择 .docx 文件', 'error');
+                return;
+            }
+            
+            showResult('正在读取文件...', 'info');
+            
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    // 检查 mammoth 库是否加载
+                    if (typeof mammoth === 'undefined') {
+                        showResult('mammoth.js 库未加载', 'error');
+                        return;
+                    }
+                    
+                    const arrayBuffer = e.target.result;
+                    const result = await mammoth.extractRawText({arrayBuffer: arrayBuffer});
+                    
+                    if (!result.value || result.value.trim().length === 0) {
+                        showResult('文件内容为空或无法提取文本', 'error');
+                        return;
+                    }
+                    
+                    let content = `文件名称: ${file.name}\n文件大小: ${(file.size / 1024).toFixed(2)} KB\n\n提取的文本内容:\n\n${result.value}`;
+                    
+                    // 添加警告信息
+                    if (result.messages && result.messages.length > 0) {
+                        const warnings = result.messages.filter(msg => msg.type === 'warning');
+                        if (warnings.length > 0) {
+                            content += `\n\n解析警告 (${warnings.length} 个):\n`;
+                            warnings.forEach((warning, index) => {
+                                content += `${index + 1}. ${warning.message}\n`;
+                            });
+                        }
+                    }
+                    
+                    showResult(content, 'success');
+                } catch (error) {
+                    console.error('docx 读取错误:', error);
+                    showResult(`读取失败: ${error.message}`, 'error');
+                }
+            };
+            
+            reader.onerror = function() {
+                showResult('文件读取失败', 'error');
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function showResult(content, type) {
+            const resultDiv = document.getElementById('result');
+            const contentDiv = document.getElementById('content');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = `result ${type}`;
+            contentDiv.textContent = content;
+        }
+        
+        function clearResult() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'none';
+        }
+        
+        // 检查 mammoth 库加载状态
+        window.addEventListener('load', function() {
+            if (typeof mammoth !== 'undefined') {
+                console.log('✅ mammoth.js 库加载成功');
+            } else {
+                console.error('❌ mammoth.js 库加载失败');
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,640 @@
+{\rtf1\ansi\ansicpg936\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import React, \{ useState, useEffect, useRef \} from 'react';\
+import \{ \
+  ArrowLeft, MoreHorizontal, Sparkles, BookOpen, Link, \
+  Loader2, CheckCircle2, FileText, Image as ImageIcon,\
+  Zap, ChevronRight, X, ExternalLink, Bell, Lightbulb, \
+  Plus, Copy, Edit3, MessageCircle, AlertCircle, Clock, \
+  PlayCircle, Download, Users, Compass\
+\} from 'lucide-react';\
+\
+// --- \uc0\u20840 \u29699 \u31934 \u36873 \u65306 \u28023 \u22806 \u21069 \u27839 \u40657 \u31185 \u25216  + AI \u23567 \u28216 \u25103  UGC \u29190 \u27454  ---\
+const INITIAL_COLLECTION = [\
+  \{\
+    id: 'p1',\
+    title: 'Claude Artifacts',\
+    type: 'UI \uc0\u20132 \u20114 \u33539 \u24335 ',\
+    summary: '\uc0\u39072 \u35206 \u20256 \u32479  Chat \u32842 \u22825 \u30340 \u38761 \u21629 \u24615 \u20132 \u20114 \u65292 \u21491 \u20391 \u23454 \u26102 \u28210 \u26579 \u20320 \u24819 \u35201 \u30340 \u19968 \u20999 \u12290 ',\
+    tags: ['#UI\uc0\u33539 \u24335 ', '#Anthropic', '#\u29983 \u20135 \u21147 '],\
+    color: 'bg-indigo-50',\
+    content: 'Anthropic \uc0\u38543  Claude 3.5 \u25512 \u20986 \u12290 \u24403 \u35201 \u27714  AI \u20889 \u20195 \u30721 \u12289 \u20570 \u22270 \u34920 \u12289 \u20889  SVG \u26102 \u65292 \u23427 \u19981 \u20877 \u21482 \u26159 \u19968 \u20018 \u26543 \u29157 \u30340 \u20195 \u30721 \u25991 \u26412 \u65292 \u32780 \u26159 \u30452 \u25509 \u22312 \u32842 \u22825 \u31383 \u21475 \u21491 \u20391 \u24320 \u36767 \u19968 \u20010 \u29420 \u31435 \u38754 \u26495 \u65292 \u23454 \u26102 \u28210 \u26579 \u20986 \u21487 \u35270 \u21270 \u12289 \u21487 \u20132 \u20114 \u30340 \u32467 \u26524 \u12290 ',\
+    reminders: [\
+      '\uc0\u55357 \u56393  \u31435 \u21363 \u20307 \u39564 : claude.ai',\
+      '\uc0\u55357 \u56481  \u35797 \u29992 \u24314 \u35758 \u65306 \u35753 \u23427 \'93\u29992  React \u20889 \u19968 \u20010 \u24102 \u28843 \u37239 \u21160 \u30011 \u30340 \u30058 \u33540 \u38047 \'94\u65292 \u28982 \u21518 \u30452 \u25509 \u22312 \u32593 \u39029 \u37324 \u28857 \u36816 \u34892 \u12290 '\
+    ],\
+    recommendations: [\{ title: 'Vercel v0 (\uc0\u21516 \u26679 \u25903 \u25345 \u29983 \u25104 \u21363 \u39044 \u35272 \u30340 \u24037 \u20855 )', type: 'Web' \}]\
+  \},\
+  \{\
+    id: 'p2',\
+    title: 'Rezona',\
+    type: 'AI \uc0\u26775 \u28216 \u25103 \u24341 \u25806 ',\
+    summary: '\uc0\u19968 \u21477 \u35805 \u25226 \u20114 \u32852 \u32593 \u19978 \u30340 \u28909 \u26775 \u65288 Meme\u65289 \u25110 \u33041 \u27934 \u65292 \u21464 \u25104 \u21487 \u20197 \u19978 \u25163 \u29609 \u30340 \u27801 \u38613 \u23567 \u28216 \u25103 \u12290 ',\
+    tags: ['#Meme', '#AI\uc0\u28216 \u25103 ', '#\u30149 \u27602 \u20256 \u25773 '],\
+    color: 'bg-emerald-50',\
+    content: '\uc0\u30456 \u27604 \u20256 \u32479 \u30340 \u28216 \u25103 \u24341 \u25806 \u65292 Rezona \u23436 \u20840 \u25243 \u24323 \u20102 \u20195 \u30721 \u21644 \u25945 \u31243 \u12290 \u22914 \u26524 \u20320 \u22312 \u32593 \u19978 \u30475 \u21040 \u19968 \u20010 \u22909 \u31505 \u30340 \u26775 \u65292 \u21482 \u38656 \u36755 \u20837 \u25991 \u23383 \u65292 AI \u23601 \u33021 \u22312 \u20960 \u31186 \u38047 \u20869 \u25226 \u23427 \u21464 \u25104 \u19968 \u20010 \u21487 \u29609 \u12289 \u21487 \u20998 \u20139 \u30340 \u36855 \u20320 \u28216 \u25103 \u12290 \u38752 \u30528 \u26497 \u20854 \u39764 \u24615 \u30340 \u30149 \u27602 \u24335 \u20256 \u25773 \u65292 \u19978 \u32447 \u39318 \u26376 \u23601 \u31361 \u30772 \u20102 \u30334 \u19975 \u19979 \u36733 \u37327 \u12290 ',\
+    reminders: [\
+      '\uc0\u55357 \u56421  \u22242 \u38431 \u32972 \u26223 \u65306 Stratava Group \u24320 \u21457 \u65292 \u28023 \u22806 \u22686 \u38271 \u26497 \u29467 \u30340 \u23089 \u20048 \u40657 \u39532 \u12290 ',\
+      '\uc0\u55357 \u56481  \u35797 \u29609 \u24314 \u35758 \u65306 \u24819 \u19968 \u20010 \u26368 \u36817 \u30340 \u22320 \u29425 \u31505 \u35805 \u25110 \u32593 \u32476 \u28909 \u26775 \u65292 \u35797 \u30528 \u25226 \u23427 \u21464 \u25104 \u36890 \u20851 \u28216 \u25103 \u20998 \u20139 \u32473 \u26379 \u21451 \u12290 '\
+    ],\
+    recommendations: [\{ title: 'Sekai (\uc0\u25226 \u20869 \u23481 \u20174 \u35266 \u30475 \u21319 \u32423 \u20026 \u21487 \u29609 \u30340 \u21516 \u31867 \u24179 \u21488 )', type: 'App' \}]\
+  \},\
+  \{\
+    id: 'p3',\
+    title: 'Devin',\
+    type: 'Autonomous Agent',\
+    summary: '\uc0\u20840 \u29699 \u39318 \u20010 \u23436 \u20840 \u33258 \u20027 \u30340  AI \u36719 \u20214 \u24037 \u31243 \u24072 \u65292 \u33021 \u33258 \u24049 \u25509 \u21333 \u20889 \u20195 \u30721 \u12290 ',\
+    tags: ['#AI\uc0\u32534 \u31243 ', '#Agent', '#AGI'],\
+    img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=300&h=400',\
+    content: '\uc0\u26680 \u24515 \u21334 \u28857 \u65306 \u19981 \u20165 \u26159 \u20687  Copilot \u37027 \u26679 \u34917 \u20840 \u20195 \u30721 \u65292 Devin \u25317 \u26377 \u33258 \u24049 \u30340 \u21629 \u20196 \u34892 \u12289 \u20195 \u30721 \u32534 \u36753 \u22120 \u21644 \u27983 \u35272 \u22120 \u12290 \u20320 \u21482 \u38656 \u32473 \u23427 \u19968 \u20010  Upwork \u19978 \u30340 \u20219 \u21153 \u38656 \u27714 \u65292 \u23427 \u33021 \u33258 \u24049 \u26597 \u25991 \u26723 \u12289 \u20889 \u20195 \u30721 \u12289 \u20462  Bug\u12289 \u30452 \u33267 \u37096 \u32626 \u19978 \u32447 \u12290 ',\
+    link: 'https://cognition-labs.com',\
+    reminders: [\
+      '\uc0\u55357 \u56421  \u22242 \u38431 \u32972 \u26223 \u65306 Cognition AI \u21019 \u31435 \u19981 \u21040 \u21322 \u24180 \u20272 \u20540 \u36798  20 \u20159 \u32654 \u20803 \u65292 \u22242 \u38431 \u25163 \u25569  10 \u22359  IOI \u37329 \u29260 \u12290 ',\
+      '\uc0\u55357 \u56481  \u35797 \u29992 \u24314 \u35758 \u65306 \u30446 \u21069 \u38656 \u25490 \u38431 \u12290 \u22269 \u20869 \u21487 \u23581 \u35797 \u24179 \u26367 \u24320 \u28304 \u39033 \u30446  AutoCodeRover\u12290 '\
+    ],\
+    recommendations: [\{ title: 'SWE-agent (\uc0\u26222 \u26519 \u26031 \u39039 \u24320 \u28304 \u30340 \u24378 \u21147 \u31454 \u21697 )', type: 'Repo' \}]\
+  \},\
+  \{\
+    id: 'p4',\
+    title: 'Aippy',\
+    type: 'AI \uc0\u28216 \u25103 \u31038 \u21306 ',\
+    summary: '\uc0\u20687 \u21047  TikTok \u19968 \u26679 \u21047  AI \u29983 \u25104 \u30340 \u23567 \u28216 \u25103 \u65292 \u38646 \u20195 \u30721 \u29992 \u22823 \u30333 \u35805 \u21019 \u20316 \u20114 \u21160 \u20869 \u23481 \u12290 ',\
+    tags: ['#AI\uc0\u20114 \u21160 ', '#UGC', '#\u20986 \u28023 \u29190 \u27454 '],\
+    img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=300&h=400',\
+    content: '\uc0\u26680 \u24515 \u21334 \u28857 \u65306 \u34701 \u21512 \u20102  TikTok \u30340 \'93\u26080 \u38480 \u20449 \u24687 \u27969 \'94\u21644  AI \u28216 \u25103 \u29983 \u25104 \u25216 \u26415 \u12290 \u20320 \u21487 \u20197 \u30452 \u25509 \u29992 \u33258 \u28982 \u35821 \u35328 \u65288 \u29978 \u33267 \u35843 \u29992 \u25163 \u26426 \u40614 \u20811 \u39118 \u12289 \u38464 \u34746 \u20202 \u65289 \u22312 \u25163 \u26426 \u19978 \u29983 \u25104 \u20114 \u21160 \u23567 \u28216 \u25103 \u12289 3D \u23454 \u39564 \u25110 \u26775 \u22270 \u12290 \u22312 \u27431 \u32654 \u24180 \u36731 \u20154 \u32676 \u20307 \u20013 \u26497 \u21463 \u27426 \u36814 \u65292 \u19979 \u36733 \u37327 \u36805 \u36895 \u30772 \u30334 \u19975 \u12290 ',\
+    link: 'https://aippy.ai',\
+    reminders: [\
+      '\uc0\u55357 \u56421  \u22242 \u38431 \u32972 \u26223 \u65306 \u22269 \u20869 \u20986 \u28023 \u24040 \u22836 \u36196 \u23376 \u22478 \u26071 \u19979 \u23413 \u21270 \u30340 \u26126 \u26143 \u39033 \u30446 \u12290 ',\
+      '\uc0\u55357 \u56481  \u35797 \u29992 \u24314 \u35758 \u65306 \u19979 \u36733 \u21518 \u30452 \u25509 \u21047  Feed \u27969 \u65292 \u30475 \u21040 \u21035 \u20154 \u20570 \u30340 \u29190 \u27454 \u28216 \u25103 \u30452 \u25509 \u28857  Remix (\u25913 \u32534 ) \u33258 \u24049 \u25442 \u20010 \u30382 \u12290 '\
+    ],\
+    recommendations: [\{ title: 'Loopit (\uc0\u25226 \u20869 \u23481 \u21464 \u25104 \u21487 \u20197 \u30452 \u25509 \u19978 \u25163 \u29609 \u30340 \u19996 \u35199 )', type: 'App' \}]\
+  \},\
+  \{\
+    id: 'p5',\
+    title: 'Limitless',\
+    type: '\uc0\u21487 \u31359 \u25140  AI \u30828 \u20214 ',\
+    summary: '\uc0\u24110 \u20320 \u35760 \u20303 \u27599 \u19968 \u22330 \u20250 \u35758 \u30340 \u26497 \u31616  AI \u21514 \u22368 \u65292 \u20027 \u25171 \'93\u35760 \u24518 \u22686 \u24378 \'94\u12290 ',\
+    tags: ['#AI\uc0\u30828 \u20214 ', '#\u35760 \u24518 \u22686 \u24378 ', '#Privacy'],\
+    color: 'bg-white',\
+    content: '\uc0\u21069  Rewind \u22242 \u38431 \u36716 \u22411 \u20043 \u20316 \u12290 \u36825 \u26159 \u19968 \u20010 \u21487 \u20197 \u22841 \u22312 \u34915 \u39046 \u19978 \u30340 \u26080 \u23631 \u24149 \u23567 \u25346 \u20214 \u65292 \u33021 \u25345 \u32493 \u30417 \u21548 \u20320 \u19968 \u25972 \u22825 \u30340 \u23545 \u35805 \u65292 \u24182 \u33258 \u21160 \u36807 \u28388 \u32972 \u26223 \u22122 \u38899 \u12290 \u37197 \u22871 \u30340  Web App \u20250 \u33258 \u21160 \u29983 \u25104 \u20250 \u35758 \u25688 \u35201 \u21644 \u24453 \u21150 \u20107 \u39033 \u12290 ',\
+    link: 'https://limitless.ai',\
+    reminders: [\
+      '\uc0\u55357 \u56481  \u20135 \u21697 \u20142 \u28857 \u65306 \u26497 \u20854 \u27880 \u37325 \u38544 \u31169 \u65292 \u37319 \u29992 \'93\u21516 \u24847 \u27169 \u24335 \'94\u65292 \u21482 \u26377 \u35782 \u21035 \u21040 \u23545 \u26041 \u21516 \u24847 \u24405 \u38899 \u25165 \u20250 \u24320 \u22987 \u35760 \u24405 \u12290 ',\
+      '\uc0\u55357 \u56393  \u23448 \u32593 \u23450 \u20215 \u65306 \u30828 \u20214  99 \u32654 \u20803 \u65292 \u36719 \u20214 \u35746 \u38405  19 \u20992 /\u26376 \u12290 '\
+    ],\
+    recommendations: [\{ title: 'Friend (\uc0\u21478 \u19968 \u27454 \u38506 \u20276 \u22411  AI \u21514 \u22368 )', type: 'Hardware' \}]\
+  \},\
+  \{\
+    id: 'p6',\
+    title: 'Luma Dream Machine',\
+    type: 'AI \uc0\u35270 \u39057 \u22823 \u27169 \u22411 ',\
+    summary: '\uc0\u24403 \u21069 \u26368 \u24378 \u19988 \u23545 \u22823 \u20247 \u20813 \u36153 \u24320 \u25918 \u30340 \u26497 \u36895 \u39640 \u36136 \u37327 \u35270 \u39057 \u29983 \u25104 \u22120 \u12290 ',\
+    tags: ['#AIGC', '#\uc0\u35270 \u39057 \u29983 \u25104 '],\
+    img: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=300&h=400',\
+    content: 'Sora \uc0\u30340 \u26377 \u21147 \u31454 \u20105 \u32773 \u12290 \u33021 \u22312  120 \u31186 \u20869 \u29983 \u25104  5 \u31186 \u38047 \u30340 \u29289 \u29702 \u35268 \u24459 \u20934 \u30830 \u12289 \u39640 \u24230 \u36924 \u30495 \u30340 \u39640 \u36136 \u37327 \u35270 \u39057 \u12290 \u25797 \u38271 \u36816 \u38236 \u21644 \u36830 \u36143 \u24615 \u65292 \u30456 \u27604  Pika \u21644  Runway \u36827 \u27493 \u24040 \u22823 \u12290 ',\
+    reminders: ['\uc0\u55357 \u56481  \u35797 \u29609 \u65306 \u29992 \u22443 \u22270 \u27169 \u24335 \u65288 Image to Video\u65289 \u65292 \u19978 \u20256 \u19968 \u24352 \u20320 \u23567 \u26102 \u20505 \u30340 \u29031 \u29255 \u35753 \u23427 \u21160 \u36215 \u26469 \u12290 ']\
+  \}\
+];\
+\
+// --- Gemini API Configuration ---\
+const apiKey = ""; // Provided by environment\
+const callGemini = async (prompt, schema) => \{\
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=$\{apiKey\}`;\
+  const payload = \{\
+    contents: [\{ parts: [\{ text: prompt \}] \}],\
+    generationConfig: \{\}\
+  \};\
+  \
+  if (schema) \{\
+    payload.generationConfig.responseMimeType = "application/json";\
+    payload.generationConfig.responseSchema = schema;\
+  \}\
+\
+  let lastError;\
+  for (let i = 0; i < 5; i++) \{\
+    try \{\
+      const res = await fetch(url, \{\
+        method: 'POST',\
+        headers: \{ 'Content-Type': 'application/json' \},\
+        body: JSON.stringify(payload)\
+      \});\
+      if (!res.ok) throw new Error(`HTTP Error: $\{res.status\}`);\
+      const data = await res.json();\
+      const textResponse = data.candidates[0].content.parts[0].text;\
+      return schema ? JSON.parse(textResponse) : textResponse;\
+    \} catch (err) \{\
+      lastError = err;\
+      await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));\
+    \}\
+  \}\
+  throw lastError;\
+\};\
+\
+export default function App() \{\
+  const [collection, setCollection] = useState(INITIAL_COLLECTION);\
+  const [inbox, setInbox] = useState([]);\
+  \
+  // Nudge / Plan State\
+  const [dailyNudge, setDailyNudge] = useState(\{\
+    title: "\uc0\u20170 \u26085 \u26497 \u23458 \u35797 \u29609 \u65306 \u19979 \u19968 \u20195 \u20114 \u21160 \u20869 \u23481 ",\
+    message: "Claude Artifacts \uc0\u39072 \u35206 \u20102 \u29983 \u20135 \u21147 \u24037 \u20855 \u30340 \u20132 \u20114 \u65292 \u32780  Aippy \u21644  Rezona \u21017 \u22312 \u29992  AI \u37325 \u22609 \u25105 \u20204 \u28040 \u36153 \u23089 \u20048 \u21644 \u28216 \u25103 \u30340 \u26041 \u24335 \u12290 \u33457  15 \u20998 \u38047 \u20307 \u39564 \u19968 \u19979 \u36825 \u31181 \u12302 \u25152 \u24819 \u21363 \u25152 \u29609 \u12303 \u30340 \u24555 \u24863 \u12290 ",\
+    recommendedIds: ['p4', 'p2']\
+  \});\
+\
+  // Loading & State variables\
+  const [isProcessingInbox, setIsProcessingInbox] = useState(false);\
+  const [isProcessingSynthesis, setIsProcessingSynthesis] = useState(false);\
+  const [isExplaining, setIsExplaining] = useState(false);\
+  const [isPlanning, setIsPlanning] = useState(false);\
+  \
+  const [selectedItem, setSelectedItem] = useState(null);\
+  const [showCollectModal, setShowCollectModal] = useState(false);\
+  const [rawInput, setRawInput] = useState('');\
+  const [synthesisText, setSynthesisText] = useState('\uc0\u20174 \u20320 \u30340 \u25910 \u34255 \u24211 \u33021 \u30475 \u20986 \u65292 \u20320 \u19981 \u20165 \u20851 \u27880 \u30789 \u35895 \u30828 \u26680 \u30340  AGI \u38761 \u21629 \u65288 Devin, Claude\u65289 \u65292 \u20063 \u25935 \u38160 \u22320 \u25429 \u25417 \u21040 \u20102  AI \u22312  C \u31471 \u23089 \u20048 \u21644  UGC \u23567 \u28216 \u25103 \u65288 Aippy, Rezona\u65289 \u19978 \u30340 \u22823 \u29190 \u21457 \u12290 \u20320 \u26159 \u19968 \u20010 \u20860 \u39038 \u30828 \u26680 \u25216 \u26415 \u19982 \u27969 \u34892 \u25991 \u21270 \u30340 \u36235 \u21183 \u25429 \u25163 \u12290 ');\
+  const [errorMsg, setErrorMsg] = useState(null);\
+  const scrollRef = useRef(null);\
+\
+  useEffect(() => \{\
+    if (errorMsg) \{\
+      const timer = setTimeout(() => setErrorMsg(null), 5000);\
+      return () => clearTimeout(timer);\
+    \}\
+  \}, [errorMsg]);\
+\
+  // ==========================================\
+  // \uc0\u26680 \u24515 \u21151 \u33021 : \u25910 \u38598 \u26032 \u20135 \u21697  (\u24378 \u21270 \u20102 \u22788 \u29702  Link \u30340 \u33021 \u21147 )\
+  // ==========================================\
+  const handleAddToInbox = () => \{\
+    if (!rawInput.trim()) return;\
+    const newItem = \{ id: `raw_$\{Date.now()\}`, content: rawInput, source: '\uc0\u38142 \u25509 \u25110 \u21098 \u25253 ' \};\
+    setInbox(prev => [newItem, ...prev]);\
+    setRawInput('');\
+    setShowCollectModal(false);\
+    setTimeout(() => scrollRef.current?.scrollTo(\{ top: 0, behavior: 'smooth' \}), 100);\
+  \};\
+\
+  const handleSimulateAdd = () => \{\
+    // \uc0\u27169 \u25311 \u20002 \u20837 \u19968 \u20010 \u21482 \u24102 \u31616 \u21333 \u25551 \u36848 \u30340 \u38142 \u25509 \
+    setRawInput("\uc0\u30475 \u21040 \u25512 \u29305 \u19978 \u26032 \u20986 \u30340  AI \u25628 \u32034 \u24179 \u21488 \u65306 https://perplexity.ai\u65292 \u21495 \u31216 \u33021 \u24178 \u32763  Google\u65292 \u26080 \u24191 \u21578 \u19988 \u33258 \u24102 \u24341 \u29992 \u26469 \u28304 \u12290 ");\
+  \};\
+\
+  // ==========================================\
+  // \uc0\u26680 \u24515 \u21151 \u33021 : AI \u20135 \u21697 \u20449 \u24687 \u26234 \u33021 \u33795 \u21462  (Product Extraction)\
+  // ==========================================\
+  const processInboxWithGemini = async () => \{\
+    setIsProcessingInbox(true);\
+    setErrorMsg(null);\
+    try \{\
+      const schema = \{\
+        type: "ARRAY",\
+        items: \{\
+          type: "OBJECT",\
+          properties: \{\
+            title: \{ type: "STRING", description: "\uc0\u20135 \u21697 \u21517 \u31216 " \}, \
+            type: \{ type: "STRING", description: "\uc0\u36733 \u20307 \u31867 \u22411 \u65292 \u22914  Web, AI App, Mini-game" \}, \
+            summary: \{ type: "STRING", description: "\uc0\u19968 \u34892 \u23383 \u35828 \u28165 \u26970 \u36825 \u26159 \u20010 \u21861  (One-liner)" \},\
+            tags: \{ type: "ARRAY", items: \{ type: "STRING" \}, description: "3\uc0\u20010 \u26497 \u23458 \u35270 \u35282 \u30340 \u26631 \u31614 \u65292 \u22914  #AI\u28216 \u25103 , #UGC" \}, \
+            content: \{ type: "STRING", description: "\uc0\u20135 \u21697 \u30340 \u26680 \u24515 \u29305 \u28857 \u12289 \u35299 \u20915 \u30340 \u30171 \u28857 \u25110 \u39072 \u35206 \u24615 \u30340 \u29609 \u27861 \u12290 \u22914 \u26524 \u29992 \u25143 \u21482 \u32473 \u20102 \u19968 \u20010 \u38142 \u25509 \u65292 \u35831 \u21033 \u29992 \u20320 \u30340 \u30693 \u35782 \u24211 \u34917 \u20805 \u35813 \u20135 \u21697 \u30340 \u29305 \u28857 \u32454 \u33410 \u12290 " \},\
+            reminders: \{ \
+              type: "ARRAY", \
+              items: \{ type: "STRING" \}, \
+              description: "\uc0\u29983 \u25104 2-3\u26465 \u25552 \u31034 \u65292 \u22914 \u65306 '\u55357 \u56599  \u23448 \u32593 \u35775 \u38382 \u65306 (\u24102 \u19978 \u38142 \u25509 )'\u65292 '\u55357 \u56481  \u35797 \u29609 \u24314 \u35758 \u65306 \u21578 \u35785 \u29992 \u25143 \u31532 \u19968 \u27493 \u35813 \u24590 \u20040 \u29609 '" \
+            \}\
+          \}\
+        \}\
+      \};\
+      const prompt = `\uc0\u20320 \u26159 \u19968 \u20010 \u20840 \u29699 \u39030 \u23574 \u31185 \u25216 \u25237 \u36164 \u20154 \u20860  Product Hunter\u12290 \u20998 \u26512 \u20197 \u19979 \u29992 \u25143 \u20002 \u20837 \u30340 \u24773 \u25253 \u12290 \
+      \uc0\u55357 \u57000  \u27880 \u24847 \u65306 \u22914 \u26524 \u29255 \u27573 \u20013 \u21253 \u21547 \u32593 \u22336 /\u38142 \u25509 \u65292 \u35831 \u21153 \u24517 \u35843 \u21160 \u20320 \u30340 \u20869 \u32622 \u30693 \u35782 \u24211 \u65292 \u32467 \u21512 \u32593 \u22336 \u33258 \u21160 \u34917 \u20805 \u24635 \u32467 \u20986 \u36825 \u20010 \u20135 \u21697 \u30340 \u35814 \u32454 \u29305 \u28857 \u12289 \u26680 \u24515 \u30171 \u28857 \u21644 \u25252 \u22478 \u27827 \u12290 \
+      \uc0\u25353  JSON \u26684 \u24335 \u25552 \u21462 \u20986 \u12304 \u20135 \u21697 \u26723 \u26696 \u12305 \u36755 \u20986 \u65288 \u20013 \u25991 \u65289 \u12290 \
+      \uc0\u29255 \u27573 \u65306 \\n$\{inbox.map(item => item.content).join('\\n\\n')\}`;\
+      \
+      const processedData = await callGemini(prompt, schema);\
+      \
+      const newCollectionItems = processedData.map((item, index) => (\{\
+        id: `processed_$\{Date.now()\}_$\{index\}`, ...item, color: 'bg-white'\
+      \}));\
+\
+      setCollection(prev => [...newCollectionItems, ...prev]);\
+      setInbox([]);\
+    \} catch (err) \{\
+      setErrorMsg("\uc0\u25552 \u21462 \u22833 \u36133 \u65292 \u35831 \u26816 \u26597 \u32593 \u32476 \u12290 ");\
+    \} finally \{\
+      setIsProcessingInbox(false);\
+    \}\
+  \};\
+\
+  // ==========================================\
+  // \uc0\u35753  AI \u37325 \u26032 \u35268 \u21010 \u20170 \u26085 \u35797 \u29992  (Daily Product Nudge)\
+  // ==========================================\
+  const generateDailyPlan = async () => \{\
+    if (collection.length === 0) return;\
+    setIsPlanning(true);\
+    setErrorMsg(null);\
+    try \{\
+      const schema = \{\
+        type: "OBJECT",\
+        properties: \{\
+          title: \{ type: "STRING", description: "\uc0\u25769 \u25320 \u26497 \u23458 \u31070 \u32463 \u30340 \u26631 \u39064 \u65292 \u22914 '\u20170 \u26202 \u20307 \u39564 \u19968 \u19979 AI\u29983 \u25104 \u30340 \u39764 \u24615 \u28216 \u25103 '" \},\
+          message: \{ type: "STRING", description: "\uc0\u26497 \u23458 \u20135 \u21697 \u25945 \u32451 \u21475 \u21563 \u65292 \u35299 \u37322 \u20026 \u20160 \u20040 \u25512 \u33616 \u20170 \u22825 \u21435 \u25226 \u29609 \u36825 \u20004 \u20010 \u20135 \u21697 \u12290 \u35828 \u26126 \u20854 \u39072 \u35206 \u24615 \u25110 \u22909 \u29609 \u30340 \u22320 \u26041 \u12290 " \},\
+          recommended_indices: \{ type: "ARRAY", items: \{ type: "NUMBER" \}, description: "\uc0\u36873 \u20986  2 \u20010 \u26368 \u20540 \u24471 \u20307 \u39564 \u30340 \u20135 \u21697 \u32034 \u24341 (0 \u21040  n-1)" \}\
+        \}\
+      \};\
+\
+      const listForGemini = collection.map((c, idx) => `[$\{idx\}] $\{c.title\}: $\{c.summary\}`).join('\\n');\
+      const prompt = `\uc0\u20320 \u26159 \u29992 \u25143 \u30340 \u26497 \u23458 \u21069 \u27839 \u23548 \u24072 \u12290 \u20998 \u26512 \u29992 \u25143 \u30693 \u35782 \u24211 \u20013 \u29616 \u26377 \u30340 \u20135 \u21697 \u65292 \u25361 \u36873  2 \u20010 \u26368 \u20540 \u24471 \u20170 \u22825 \u21435 \u35797 \u29992 \u30740 \u31350 \u30340 \u12290 \u29983 \u25104 \u19968 \u20010 \u20855 \u29053 \u21160 \u24615 \u30340 \u26497 \u23458 \u25512 \u36865 \u21345 \u29255 \u65288 JSON\u65289 \u12290 \\n\\n\u20135 \u21697 \u21015 \u34920 \u65306 \\n$\{listForGemini\}`;\
+\
+      const response = await callGemini(prompt, schema);\
+      \
+      const mappedIds = response.recommended_indices\
+        .map(index => collection[index]?.id)\
+        .filter(id => id !== undefined)\
+        .slice(0, 2); \
+\
+      setDailyNudge(\{\
+        title: response.title,\
+        message: response.message,\
+        recommendedIds: mappedIds.length > 0 ? mappedIds : [collection[0].id]\
+      \});\
+    \} catch (err) \{\
+      setErrorMsg("\uc0\u29983 \u25104 \u20170 \u26085 \u35797 \u29609 \u35745 \u21010 \u22833 \u36133 \u12290 ");\
+    \} finally \{\
+      setIsPlanning(false);\
+    \}\
+  \};\
+\
+  const generateSynthesisWithGemini = async () => \{\
+    setIsProcessingSynthesis(true);\
+    try \{\
+      const prompt = `\uc0\u20316 \u20026 \u19968 \u20010 \u36164 \u28145 \u31185 \u25216 \u35266 \u23519 \u23478 \u65292 \u29992  100 \u23383 \u27010 \u25324 \u29992 \u25143 \u20197 \u19979 \u25910 \u34255 \u20135 \u21697 \u21015 \u34920 \u20307 \u29616 \u20986 \u30340 \u12304 \u23545 \u19979 \u19968 \u20195 \u36719 \u20214 /\u23089 \u20048 \u28436 \u36827 \u30340 \u20851 \u27880 \u28857 \u12305 \u12290 \u32467 \u21512 \u30828 \u26680 AI\u21644 UGC\u23089 \u20048 \u20135 \u21697 \u30340 \u24046 \u24322 \u21270 \u32473 \u20986 \u29420 \u21040 \u35265 \u35299 \u12290 \\n\u20135 \u21697 \u65306 $\{collection.map(c => c.title).join(', ')\}`;\
+      const responseText = await callGemini(prompt, null);\
+      setSynthesisText(responseText);\
+    \} catch (err) \{\} finally \{ setIsProcessingSynthesis(false); \}\
+  \};\
+\
+  // ==========================================\
+  // \uc0\u22823 \u30333 \u35805 \u35299 \u37322  (\u36153 \u26364 \u25216 \u24039 ) -> \u21093 \u21435 \u30789 \u35895 /\u20013 \u20851 \u26449 \u40657 \u35805 \u21253 \u35013 \
+  // ==========================================\
+  const explainWithFeynman = async (content) => \{\
+    setIsExplaining(true);\
+    try \{\
+      const prompt = `\uc0\u31185 \u25216 \u21021 \u21019 \u20844 \u21496 \u21916 \u27426 \u36896 \u35789 \u35762 \u40657 \u35805 \u65288 \u27604 \u22914  Autonomous Agent, UGC \u29983 \u24577 , \u22810 \u27169 \u24577 \u65289 \u12290 \u35831 \u29992 \'93\u36153 \u26364 \u25216 \u24039 \'94\u21644 \'93\u22823 \u30333 \u35805 /\u35828 \u20154 \u35805 \'94\u65292 \u25286 \u31359 \u19979 \u38754 \u36825 \u20010 \u26497 \u23458 \u20135 \u21697 \u30340 \u30495 \u23454 \u38754 \u30446 \u12290 \u26497 \u24230 \u29312 \u21033 \u12289 \u25509 \u22320 \u27668 \u24189 \u40664 \u65292 \u19981 \u36229 \u36807  150 \u23383 \u65306 \\n$\{content\}`;\
+      const responseText = await callGemini(prompt, null);\
+      setSelectedItem(prev => (\{ ...prev, feynmanExplanation: responseText \}));\
+    \} catch (err) \{\} finally \{ setIsExplaining(false); \}\
+  \};\
+\
+  return (\
+    <div className="min-h-screen bg-white sm:bg-neutral-900 font-sans flex items-center justify-center sm:p-4 overflow-hidden">\
+      \
+      \{/* \uc0\u23436 \u32654 \u31561 \u27604 \u20363 \u32553 \u23567 \u30340  iPhone 15 Pro \u27604 \u20363 \u65306 340 x 737 */\}\
+      <div className="w-full h-[100dvh] sm:w-[340px] sm:h-[737px] sm:shrink-0 bg-[#ecedf1] sm:rounded-[44px] sm:border-[12px] sm:border-black relative overflow-hidden flex flex-col sm:shadow-2xl">\
+        \
+        \{errorMsg && (\
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-bold animate-in slide-in-from-top-4 fade-in">\
+            <AlertCircle className="w-4 h-4" /> \{errorMsg\}\
+          </div>\
+        )\}\
+\
+        \{/* \uc0\u39030 \u37096  Header */\}\
+        <div className="pt-12 sm:pt-10 px-5 pb-3 bg-[#ecedf1]/80 backdrop-blur-xl sticky top-0 z-30">\
+          <div className="flex justify-between items-center">\
+            <button className="w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-gray-700 hover:bg-white active:scale-95 transition">\
+              <ArrowLeft className="w-4 h-4" />\
+            </button>\
+            <div className="text-center">\
+              <div className="text-[9px] font-bold tracking-widest text-gray-500 uppercase">Global Product Hunt</div>\
+              <h1 className="text-base font-bold text-gray-900 leading-tight">\uc0\u20840 \u29699 \u21069 \u27839 \u20135 \u21697 \u25429 \u25163 </h1>\
+            </div>\
+            <button className="w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-gray-700 hover:bg-white active:scale-95 transition">\
+              <MoreHorizontal className="w-4 h-4" />\
+            </button>\
+          </div>\
+        </div>\
+\
+        \{/* \uc0\u20027 \u20869 \u23481 \u28378 \u21160 \u21306  */\}\
+        <div ref=\{scrollRef\} className="flex-1 overflow-y-auto px-4 pb-28 no-scrollbar relative space-y-5">\
+          \
+          \{/* =========================================\
+              \uc0\u55357 \u56613  \u30563 \u20419 \u35797 \u29992 \u21345 \u29255  (Nudge to Try)\
+              ========================================= */\}\
+          <div className="bg-[#121214] text-white rounded-[28px] p-5 shadow-xl relative overflow-hidden group mt-2">\
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-purple-500 rounded-full blur-[60px] opacity-20"></div>\
+            <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-indigo-500 rounded-full blur-[60px] opacity-20"></div>\
+            \
+            <div className="flex items-center justify-between mb-3 relative z-10">\
+              <div className="flex items-center gap-2 text-purple-300">\
+                <Compass className="w-4 h-4" />\
+                <span className="font-bold text-xs tracking-wide uppercase">\uc0\u26497 \u23458 \u35797 \u29609 \u28165 \u21333 </span>\
+              </div>\
+              <button \
+                onClick=\{generateDailyPlan\}\
+                disabled=\{isPlanning\}\
+                className="bg-white/10 text-white px-2.5 py-1 rounded-full text-[9px] font-bold flex items-center gap-1 active:scale-95 transition disabled:opacity-50 hover:bg-white/20"\
+              >\
+                \{isPlanning ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3 text-amber-300" />\}\
+                \uc0\u10024  \u21047 \u26032 \u28789 \u24863 \
+              </button>\
+            </div>\
+            \
+            <h2 className="text-xl font-extrabold mb-1.5 leading-tight relative z-10">\{dailyNudge.title\}</h2>\
+            <p className="text-gray-300 text-[13px] leading-relaxed font-medium mb-4 relative z-10">\
+              \{dailyNudge.message\}\
+            </p>\
+\
+            \{/* \uc0\u24403 \u22825 \u35201 \u35835 /\u35797 \u29992 \u30340 \u20135 \u21697 \u21345 \u29255  */\}\
+            <div className="space-y-2.5 relative z-10">\
+              \{dailyNudge.recommendedIds.map(id => \{\
+                const item = collection.find(c => c.id === id);\
+                if (!item) return null;\
+                return (\
+                  <div \
+                    key=\{item.id\}\
+                    onClick=\{() => setSelectedItem(item)\}\
+                    className="bg-white/10 backdrop-blur-md border border-white/10 rounded-[18px] p-3 flex gap-3 items-center cursor-pointer hover:bg-white/20 active:scale-[0.98] transition"\
+                  >\
+                    <div className="w-9 h-9 rounded-full bg-purple-500/30 flex items-center justify-center shrink-0">\
+                      <Download className="w-4 h-4 text-purple-200" />\
+                    </div>\
+                    <div className="flex-1">\
+                      <h4 className="font-bold text-[13px] leading-tight line-clamp-1">\{item.title\}</h4>\
+                      <p className="text-[11px] text-gray-400 mt-0.5 line-clamp-1">\{item.summary\}</p>\
+                    </div>\
+                  </div>\
+                );\
+              \})\}\
+            </div>\
+          </div>\
+\
+          \{/* =========================================\
+              \uc0\u21306 \u22495  1\u65306 \u26032 \u20135 \u21697 \u38647 \u36798  (Inbox)\
+              ========================================= */\}\
+          \{inbox.length > 0 && (\
+            <div className="p-1 bg-gradient-to-r from-violet-500 to-purple-600 rounded-[28px] shadow-lg animate-in fade-in slide-in-from-top-4">\
+              <div className="bg-white rounded-[24px] p-4">\
+                <div className="flex justify-between items-center mb-3">\
+                  <div className="flex items-center gap-2">\
+                    <Compass className="w-4 h-4 text-violet-500" />\
+                    <span className="font-bold text-gray-900 text-[13px]">\uc0\u25429 \u33719 \u30340 \u38142 \u25509 \u24773 \u25253  (\{inbox.length\})</span>\
+                  </div>\
+                </div>\
+                \
+                <div className="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar mb-3">\
+                  \{inbox.map((item, idx) => (\
+                    <div key=\{item.id\} className="w-28 h-20 shrink-0 bg-gray-50 rounded-xl p-2.5 border border-gray-200 flex flex-col">\
+                      <span className="text-[9px] text-gray-400 font-bold mb-1">URL #\{idx+1\}</span>\
+                      <p className="text-[11px] text-gray-700 line-clamp-2 leading-snug font-medium break-all">\{item.content\}</p>\
+                    </div>\
+                  ))\}\
+                </div>\
+\
+                <button \
+                  onClick=\{processInboxWithGemini\}\
+                  disabled=\{isProcessingInbox\}\
+                  className="w-full bg-black text-white py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800 active:scale-95 transition disabled:opacity-70 disabled:scale-100 text-[13px]"\
+                >\
+                  \{isProcessingInbox ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-violet-300" />\}\
+                  \{isProcessingInbox ? '\uc0\u10024  AI \u25552 \u21462 \u32593 \u39029 \u25688 \u35201 \u20013 ...' : '\u10024  \u35299 \u26512 \u38142 \u25509 \u32972 \u21518 \u30340 \u20135 \u21697 '\}\
+                </button>\
+              </div>\
+            </div>\
+          )\}\
+\
+          \{/* =========================================\
+              \uc0\u21306 \u22495  2\u65306 \u24037 \u20855 \u21697 \u21619 \u30011 \u20687  (Synthesis)\
+              ========================================= */\}\
+          <div className="bg-[#f3e8ff] rounded-[28px] p-5 shadow-sm relative overflow-hidden">\
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-purple-200 rounded-full blur-3xl opacity-50"></div>\
+            <div className="flex items-center justify-between mb-2.5 relative z-10">\
+              <div className="flex items-center gap-2 text-purple-700">\
+                <Users className="w-4 h-4" />\
+                <span className="font-bold text-sm">\uc0\u21069 \u27839 \u25216 \u26415 \u21957 \u35273 </span>\
+              </div>\
+              <button \
+                onClick=\{generateSynthesisWithGemini\}\
+                disabled=\{isProcessingSynthesis\}\
+                className="bg-white/60 text-purple-700 px-2.5 py-1 rounded-full text-[9px] font-bold flex items-center gap-1 active:scale-95 transition disabled:opacity-50"\
+              >\
+                \{isProcessingSynthesis ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />\}\
+                \uc0\u10024  AI \u20998 \u26512 \
+              </button>\
+            </div>\
+            <p className="text-purple-900 text-[13px] leading-relaxed font-medium relative z-10">\
+              \{synthesisText\}\
+            </p>\
+          </div>\
+\
+          \{/* =========================================\
+              \uc0\u21306 \u22495  3\u65306 \u24515 \u24895 \u28165 \u21333 \u30011 \u24266  (Collection)\
+              ========================================= */\}\
+          <div>\
+            <h2 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">Global \uc0\u20853 \u22120 \u24211  (\{collection.length\})</h2>\
+            \
+            <div className="grid grid-cols-2 gap-2.5">\
+              \{collection.map((item) => (\
+                <div \
+                  key=\{item.id\} \
+                  onClick=\{() => setSelectedItem(item)\}\
+                  className=\{`rounded-[24px] p-3.5 flex flex-col gap-1.5 cursor-pointer active:scale-[0.96] transition-transform $\{item.color || 'bg-white shadow-sm border border-gray-100'\} $\{item.img ? 'row-span-2' : ''\}`\}\
+                >\
+                  \{item.img && (\
+                    <div className="w-full aspect-square rounded-[18px] overflow-hidden bg-gray-100 mb-1.5">\
+                      <img src=\{item.img\} alt="" className="w-full h-full object-cover" />\
+                    </div>\
+                  )\}\
+                  <div className="text-[9px] font-bold text-purple-600 uppercase flex items-center gap-1">\
+                    \{item.type === 'extracted' ? <Sparkles className="w-2.5 h-2.5" /> : <CheckCircle2 className="w-2.5 h-2.5" />\}\
+                    \{item.type\}\
+                  </div>\
+                  <h3 className="font-bold text-gray-900 text-[13px] leading-snug">\{item.title\}</h3>\
+                  <p className="text-[11px] text-gray-500 line-clamp-3 leading-relaxed mt-auto">\
+                    \{item.summary\}\
+                  </p>\
+                  <div className="flex flex-wrap gap-1 mt-1.5">\
+                    \{item.tags?.map(tag => (\
+                      <span key=\{tag\} className="text-[8px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-medium">\
+                        \{tag\}\
+                      </span>\
+                    ))\}\
+                  </div>\
+                </div>\
+              ))\}\
+            </div>\
+          </div>\
+\
+        </div>\
+\
+        \{/* =========================================\
+            FAB (\uc0\u25910 \u38598 \u25353 \u38062 )\
+            ========================================= */\}\
+        <div className="absolute bottom-8 right-5 z-30">\
+          <button \
+            onClick=\{() => setShowCollectModal(true)\}\
+            className="flex items-center gap-2 bg-purple-600 text-white pl-4 pr-5 py-3 rounded-full shadow-[0_8px_30px_rgba(147,51,234,0.4)] active:scale-95 transition-transform font-bold"\
+          >\
+            <Plus className="w-5 h-5" />\
+            <span className="text-[13px]">\uc0\u20002 \u20837 \u26032 \u38142 \u25509 </span>\
+          </button>\
+        </div>\
+\
+        \{/* =========================================\
+            \uc0\u25910 \u38598 \u24377 \u31383  (Input Modal)\
+            ========================================= */\}\
+        \{showCollectModal && (\
+          <div className="absolute inset-0 z-50 flex items-end justify-center overflow-hidden sm:rounded-[44px] animate-in fade-in duration-200">\
+             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick=\{() => setShowCollectModal(false)\}></div>\
+             <div className="w-full bg-white rounded-t-[36px] relative z-10 p-5 pb-10 shadow-2xl animate-in slide-in-from-bottom-full">\
+                <div className="flex justify-between items-center mb-4">\
+                  <h3 className="font-bold text-gray-900 text-base flex items-center gap-2">\
+                    <Edit3 className="w-4 h-4 text-purple-500" />\
+                    \uc0\u20002 \u20837 \u32593 \u22336 \u33258 \u21160 \u25552 \u21462 \
+                  </h3>\
+                  <button onClick=\{() => setShowCollectModal(false)\} className="bg-gray-100 p-1.5 rounded-full text-gray-500">\
+                    <X className="w-4 h-4" />\
+                  </button>\
+                </div>\
+                <textarea \
+                  value=\{rawInput\}\
+                  onChange=\{(e) => setRawInput(e.target.value)\}\
+                  placeholder="\uc0\u31896 \u36148 \u20219 \u24847 \u26032 \u20135 \u21697 \u30340 \u23448 \u32593 \u32593 \u22336  (URL)\u65292 AI \u23558 \u20026 \u20320 \u36824 \u21407 \u35813 \u20135 \u21697 \u30340 \u26680 \u24515 \u20142 \u28857 ..."\
+                  className="w-full h-28 bg-gray-50 rounded-2xl p-3.5 text-[13px] text-gray-800 focus:outline-none focus:ring-2 ring-purple-500/30 resize-none mb-4"\
+                />\
+                <div className="flex gap-2.5">\
+                  <button onClick=\{handleSimulateAdd\} className="flex-1 bg-purple-50 text-purple-700 font-bold py-3 rounded-xl text-[13px] hover:bg-purple-100 transition">\
+                    \uc0\u22635 \u20837 \u27979 \u35797 \u32593 \u22336 \
+                  </button>\
+                  <button onClick=\{handleAddToInbox\} className="flex-[2] bg-purple-600 text-white font-bold py-3 rounded-xl text-[13px] shadow-md active:scale-95 transition">\
+                    \uc0\u20002 \u32473  AI \u24635 \u32467 \
+                  </button>\
+                </div>\
+             </div>\
+          </div>\
+        )\}\
+\
+        \{/* =========================================\
+            \uc0\u35814 \u24773 \u39029 \u24377 \u31383  (Bottom Sheet \u25277 \u23625 )\
+            ========================================= */\}\
+        \{selectedItem && (\
+          <div className="absolute inset-0 z-50 flex items-end justify-center overflow-hidden sm:rounded-[44px] animate-in fade-in duration-200">\
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick=\{() => setSelectedItem(null)\}></div>\
+            <div className="w-full h-[88%] bg-[#ecedf1] rounded-t-[36px] relative z-10 flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.15)] animate-in slide-in-from-bottom-full duration-300">\
+              <div className="sticky top-0 bg-[#ecedf1]/90 backdrop-blur-md pt-4 pb-3 px-5 rounded-t-[36px] z-20 flex items-center justify-between border-b border-gray-200/60">\
+                <div className="w-8"></div>\
+                <div className="w-10 h-1.5 bg-gray-300 rounded-full absolute left-1/2 -translate-x-1/2 top-2"></div>\
+                <h3 className="font-bold text-gray-500 text-[10px] tracking-widest uppercase">\uc0\u20135 \u21697 \u28145 \u24230 \u35299 \u26500 </h3>\
+                <button onClick=\{() => setSelectedItem(null)\} className="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 active:bg-gray-300 active:scale-95 transition">\
+                  <X className="w-4 h-4" />\
+                </button>\
+              </div>\
+\
+              <div className="flex-1 overflow-y-auto p-5 space-y-5 no-scrollbar pb-10">\
+                <div className="flex items-start justify-between gap-3">\
+                  <div>\
+                    <h2 className="text-xl font-bold text-gray-900 leading-tight mb-1">\{selectedItem.title\}</h2>\
+                    <p className="text-[13px] font-semibold text-gray-500">\{selectedItem.type\}</p>\
+                  </div>\
+                  \{selectedItem.link && (\
+                    <button className="flex-shrink-0 flex items-center justify-center w-9 h-9 bg-white rounded-full shadow-sm text-purple-600 active:bg-purple-50 transition">\
+                      <ExternalLink className="w-4 h-4" />\
+                    </button>\
+                  )\}\
+                </div>\
+\
+                <div className="bg-white p-4 rounded-[24px] shadow-sm">\
+                  <div className="flex items-center justify-between mb-3.5">\
+                    <div className="flex items-center gap-1.5 text-purple-600">\
+                      <Zap className="w-4 h-4" />\
+                      <span className="font-bold text-[13px]">\uc0\u30828 \u26680 \u20215 \u20540 \u27934 \u23519 </span>\
+                    </div>\
+                    \{/* \uc0\u21093 \u21435 \u21253 \u35013 \u35828 \u20154 \u35805  */\}\
+                    <button \
+                      onClick=\{() => explainWithFeynman(selectedItem.content || selectedItem.summary)\}\
+                      disabled=\{isExplaining\}\
+                      className="bg-purple-50 text-purple-700 px-2.5 py-1.5 rounded-full text-[9px] font-bold flex items-center gap-1 active:scale-95 transition disabled:opacity-50"\
+                    >\
+                      \{isExplaining ? <Loader2 className="w-3 h-3 animate-spin" /> : <MessageCircle className="w-3 h-3" />\}\
+                      \uc0\u10024  \u25170 \u25481 \u39640 \u22823 \u19978 \u30340 \u22806 \u34915 \
+                    </button>\
+                  </div>\
+\
+                  \{selectedItem.img && (\
+                    <div className="w-full h-36 rounded-[18px] overflow-hidden mb-3.5 border border-gray-100">\
+                      <img src=\{selectedItem.img\} alt="cover" className="w-full h-full object-cover" />\
+                    </div>\
+                  )\}\
+                  \
+                  \{selectedItem.feynmanExplanation && (\
+                     <div className="mb-3.5 bg-purple-50/50 border border-purple-100 rounded-2xl p-3.5 relative animate-in fade-in">\
+                       <div className="absolute -top-2 -left-2 text-xl">\uc0\u55357 \u56613 </div>\
+                       <p className="text-purple-900 text-[13px] font-medium leading-relaxed pt-1.5">\
+                         \{selectedItem.feynmanExplanation\}\
+                       </p>\
+                     </div>\
+                  )\}\
+\
+                  <p className="text-gray-700 text-[13px] leading-relaxed font-medium">\
+                    \{selectedItem.content || selectedItem.summary\}\
+                  </p>\
+                  \
+                  <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-gray-50">\
+                    \{selectedItem.tags?.map(tag => (\
+                      <span key=\{tag\} className="text-[9px] bg-gray-100 text-gray-600 px-2 py-1 rounded-md font-medium">\
+                        \{tag\}\
+                      </span>\
+                    ))\}\
+                  </div>\
+                </div>\
+\
+                \{/* \uc0\u32972 \u26223 \u19982 \u35797 \u29992 \u24314 \u35758  */\}\
+                \{selectedItem.reminders && selectedItem.reminders.length > 0 && (\
+                  <div className="bg-[#f3e8ff] p-4 rounded-[24px] shadow-sm">\
+                    <div className="flex items-center gap-1.5 mb-3 text-purple-700">\
+                      <Compass className="w-4 h-4" />\
+                      <span className="font-bold text-[13px]">\uc0\u32972 \u26223  & \u34892 \u21160 \u25351 \u21335 </span>\
+                    </div>\
+                    \{selectedItem.reminders.map((r, i) => (\
+                      <div key=\{i\} className="flex items-center gap-2.5 bg-white/60 p-2.5 rounded-xl mb-1.5">\
+                        <div className="w-4 h-4 rounded-full border-2 border-purple-400 flex-shrink-0 bg-white flex items-center justify-center">\
+                           <div className="w-1 h-1 bg-purple-500 rounded-full"></div>\
+                        </div>\
+                        <span className="text-[13px] font-semibold text-purple-900 leading-snug">\{r\}</span>\
+                      </div>\
+                    ))\}\
+                  </div>\
+                )\}\
+\
+                \{selectedItem.recommendations && selectedItem.recommendations.length > 0 && (\
+                  <div>\
+                    <div className="flex items-center gap-1.5 mb-2.5 text-gray-500 px-1">\
+                      <Lightbulb className="w-4 h-4" />\
+                      <span className="font-bold text-[11px] uppercase tracking-wider">\uc0\u28023 \u22806 \u31454 \u21697 \u29983 \u24577 </span>\
+                    </div>\
+                    <div className="flex flex-col gap-2.5">\
+                      \{selectedItem.recommendations.map((rec, i) => (\
+                        <div key=\{i\} className="bg-white p-3.5 rounded-[20px] shadow-sm border border-gray-100 flex items-center justify-between active:scale-95 transition-transform cursor-pointer">\
+                          <div className="flex flex-col">\
+                            <span className="text-[9px] text-gray-400 font-bold mb-0.5 uppercase">\{rec.type\}</span>\
+                            <span className="text-[13px] font-bold text-gray-900">\{rec.title\}</span>\
+                          </div>\
+                          <div className="w-7 h-7 bg-gray-50 rounded-full flex items-center justify-center">\
+                             <ChevronRight className="w-4 h-4 text-gray-400" />\
+                          </div>\
+                        </div>\
+                      ))\}\
+                    </div>\
+                  </div>\
+                )\}\
+\
+              </div>\
+            </div>\
+          </div>\
+        )\}\
+\
+      </div>\
+    </div>\
+  );\
+\}}

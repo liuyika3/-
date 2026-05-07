@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>互动式onboarding demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --font: ui-sans-serif, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+        --ink: #0f172a;
+        --ink-muted: #475569;
+        --surface: rgba(255, 255, 255, 0.82);
+        --surface-border: rgba(148, 163, 184, 0.35);
+        --accent: #10b981;
+        --accent-soft: rgba(16, 185, 129, 0.18);
+        --deck: linear-gradient(155deg, #0f172a 0%, #1e293b 48%, #134e4a 100%);
+        --shadow-lg: 0 22px 50px rgba(15, 23, 42, 0.12);
+        --shadow-deck: 0 20px 48px rgba(15, 23, 42, 0.35);
+        --radius-lg: 1.5rem;
+        --radius-xl: 1.75rem;
+        font-family: var(--font);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        padding: clamp(1.5rem, 4vw, 3rem) clamp(0.5rem, 1.5vw, 1.25rem) 3.5rem;
+        background-color: #e2e8f0;
+        background-image:
+          radial-gradient(ellipse 120% 80% at 50% -30%, rgba(16, 185, 129, 0.16), transparent 55%),
+          radial-gradient(ellipse 90% 60% at 100% 20%, rgba(99, 102, 241, 0.1), transparent 50%),
+          radial-gradient(ellipse 70% 50% at 0% 80%, rgba(14, 165, 233, 0.08), transparent 45%);
+      }
+
+      main {
+        width: 100%;
+        max-width: min(1720px, 100%);
+        margin: 0 auto;
+        padding-inline: clamp(0.25rem, 1.2vw, 1.5rem);
+      }
+
+      h1 {
+        margin: 0 0 0.65rem;
+        font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        text-align: center;
+        line-height: 1.15;
+        background: linear-gradient(120deg, #0f172a 10%, #047857 42%, #0f766e 78%, #312e81 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      p.subtitle {
+        margin: 0 auto 1.75rem;
+        max-width: 52rem;
+        text-align: center;
+        color: var(--ink-muted);
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        line-height: 1.65;
+      }
+
+      /** 主展示容器，负责承载横滑画廊 */
+      .gallery-shell {
+        position: relative;
+        padding: 0 clamp(0.15rem, 1.2vw, 0.75rem);
+        margin-inline: clamp(-0.35rem, -0.5vw, 0px);
+      }
+
+      .module {
+        margin-bottom: clamp(2rem, 5vw, 3.25rem);
+        padding: clamp(1.35rem, 3vw, 2rem) clamp(0.85rem, 2vw, 1.5rem) clamp(1.5rem, 3vw, 2.25rem);
+        border-radius: var(--radius-xl);
+        background: var(--surface);
+        border: 1px solid var(--surface-border);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .module-heading {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .module-label {
+        margin: 0;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #059669;
+      }
+
+      .module-title {
+        margin: 0.2rem 0 0;
+        font-size: clamp(1.45rem, 2.8vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+
+      .module-meta {
+        margin: 0;
+        max-width: 22rem;
+        color: var(--ink-muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .module-basic {
+        --frame-gradient: linear-gradient(160deg, #0c1227, #1d2440);
+        --frame-border: #0c1227;
+      }
+
+      .module-diet {
+        --frame-gradient: linear-gradient(160deg, #09232e, #134154);
+        --frame-border: #0b2a38;
+      }
+
+      .module-life {
+        --frame-gradient: linear-gradient(160deg, #251640, #3a2a63);
+        --frame-border: #2a1c4c;
+      }
+
+      .module-goal {
+        --frame-gradient: linear-gradient(160deg, #401711, #5b2c21);
+        --frame-border: #402117;
+      }
+
+      .module-chat {
+        --frame-gradient: linear-gradient(160deg, #0e2a1c, #134631);
+        --frame-border: #0e2a1c;
+      }
+
+      .view-switch {
+        margin: 0 auto 2rem;
+        max-width: min(48rem, 100%);
+        padding: 1.15rem 1.25rem 1.35rem;
+        border-radius: var(--radius-lg);
+        background: var(--deck);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--shadow-deck);
+      }
+
+      .view-switch input[type="radio"] {
+        position: fixed;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .view-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .view-tabs label {
+        padding: 0.55rem 1.35rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: #e2e8f0;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.88rem;
+        letter-spacing: 0.02em;
+        transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+        touch-action: manipulation;
+      }
+
+      .view-tabs label:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+
+      .view-tabs label:focus-visible {
+        outline: 2px solid #34d399;
+        outline-offset: 3px;
+      }
+
+      .view-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.15rem;
+      }
+
+      .view-buttons button {
+        padding: 0.55rem 1.35rem;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #34d399, #14b8a6);
+        color: #042f2e;
+        font-weight: 700;
+        font-size: 0.86rem;
+        cursor: pointer;
+        box-shadow: 0 8px 22px rgba(20, 184, 166, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        touch-action: manipulation;
+      }
+
+      .view-buttons button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px rgba(20, 184, 166, 0.42);
+      }
+
+      .view-buttons button:focus-visible {
+        outline: 2px solid #a7f3d0;
+        outline-offset: 3px;
+      }
+
+      .tryout-nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .tryout-nav button {
+        padding: 0.5rem 1.25rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.06);
+        color: #f1f5f9;
+        font-weight: 600;
+        font-size: 0.86rem;
+        cursor: pointer;
+        transition: background 0.18s ease, border-color 0.18s ease;
+        touch-action: manipulation;
+      }
+
+      .tryout-nav button:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .tryout-nav button:focus-visible {
+        outline: 2px solid #5eead4;
+        outline-offset: 3px;
+      }
+
+      .tryout-nav button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      #mode-demo:checked ~ .view-tabs label[for="mode-demo"],
+      #mode-tryout:checked ~ .view-tabs label[for="mode-tryout"] {
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        border-color: rgba(52, 211, 153, 0.55);
+        color: #064e3b;
+        box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.25);
+      }
+
+      .view-panel {
+        display: none;
+      }
+
+      #mode-demo:checked ~ .panel-demo {
+        display: block;
+      }
+
+      #mode-demo:checked ~ .panel-tryout {
+        display: none;
+      }
+
+      #mode-tryout:checked ~ .panel-tryout {
+        display: block;
+      }
+
+      #mode-tryout:checked ~ .panel-demo {
+        display: none;
+      }
+
+      .gallery-track {
+        display: flex;
+        gap: clamp(1rem, 2vw, 1.85rem);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 0.15rem 1rem;
+        scrollbar-width: thin;
+      }
+
+      .gallery-track::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .gallery-track::-webkit-scrollbar-thumb {
+        background: #c5cbe9;
+        border-radius: 999px;
+      }
+
+      .gallery-track::-webkit-scrollbar-track {
+        background: rgba(197, 203, 233, 0.4);
+      }
+
+      .frame-card {
+        --g: clamp(1rem, 2vw, 1.85rem);
+        flex: 0 0 calc((100% - 2 * var(--g)) / 3);
+        min-width: 0;
+        background: var(--frame-gradient, linear-gradient(160deg, #0c1227, #1d2440));
+        border-radius: 28px;
+        padding: 1rem 0.75rem;
+        position: relative;
+        scroll-snap-align: start;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.06),
+          0 18px 40px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        aspect-ratio: 9 / 19.5;
+        color: #fff;
+      }
+
+      .frame-notch {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 112px;
+        height: 22px;
+        border-radius: 0 0 14px 14px;
+        background: #020617;
+        box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      .frame-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 22px;
+        background: linear-gradient(165deg, rgba(255, 255, 255, 0.07) 0%, rgba(15, 23, 42, 0.35) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        padding: 1.35rem 0.85rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .screen-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+        letter-spacing: 0.01em;
+        color: #f8fafc;
+      }
+
+      .screen-preview {
+        flex: 1;
+        border-radius: 14px;
+        background: rgba(2, 6, 23, 0.28);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.85rem;
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 0.75rem 0.55rem;
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .hero-intro,
+      .speech-row {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        text-align: left;
+      }
+
+      .rabbit-avatar {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, rgba(52, 211, 153, 0.45), rgba(45, 212, 191, 0.2));
+        border: 1px solid rgba(167, 243, 208, 0.35);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .rabbit-mark {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #ecfdf5;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .speech-bubble {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .product-tagline {
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .slider-field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: left;
+        font-size: 0.85rem;
+      }
+
+      .package-summary {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .package-summary header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .package-summary .tag {
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+      }
+
+      .package-summary .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .package-summary h4 {
+        margin: 0 0 0.3rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .package-summary p,
+      .package-summary li {
+        margin: 0;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .package-summary ul {
+        padding-left: 1rem;
+      }
+
+      .slider-field input[type="range"] {
+        accent-color: #14b8a6;
+      }
+
+      .slider-scale {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .card-entry {
+        width: 100%;
+        padding: 0.9rem;
+        border-radius: 14px;
+        border: none;
+        background: linear-gradient(135deg, #34d399, #14b8a6);
+        color: #042f2e;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        touch-action: manipulation;
+      }
+
+      .card-entry:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(20, 184, 166, 0.45);
+      }
+
+      .card-entry:focus-visible {
+        outline: 2px solid #a7f3d0;
+        outline-offset: 3px;
+      }
+
+      .option-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .option-pill {
+        padding: 0.75rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .option-pill:hover {
+        border-color: rgba(52, 211, 153, 0.55);
+        background: rgba(52, 211, 153, 0.12);
+      }
+
+      .option-pill:focus-visible {
+        outline: 2px solid #5eead4;
+        outline-offset: 2px;
+      }
+
+      .upload-area {
+        width: 100%;
+        border: 1px dashed rgba(255, 255, 255, 0.5);
+        border-radius: 18px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .plus-button {
+        width: 72px;
+        height: 72px;
+        border-radius: 24px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .plus-button:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .hint-text {
+        margin: 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .app-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .app-button {
+        flex: 1;
+        padding: 0.6rem 0.4rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 0.85rem;
+      }
+
+      .app-button.active {
+        background: rgba(109, 225, 255, 0.2);
+        border-color: #6de1ff;
+      }
+
+      .loader-ring {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.15);
+        border-top-color: #34d399;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .analysis-panel {
+        width: 100%;
+        background: rgba(12, 18, 39, 0.6);
+        border-radius: 18px;
+        padding: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .analysis-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .stat {
+        text-align: left;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1rem;
+        color: #fff;
+        margin-top: 0.3rem;
+      }
+
+      .suggestion-list {
+        margin: 0;
+        padding-left: 1.1rem;
+        text-align: left;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .suggestion-list li + li {
+        margin-top: 0.35rem;
+      }
+
+      .habit-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+      }
+
+      .habit-options button {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      .platform-select {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: left;
+        font-size: 0.85rem;
+      }
+
+      .platform-select select {
+        border-radius: 10px;
+        border: none;
+        padding: 0.5rem;
+        font-family: inherit;
+      }
+
+      .shopping-card {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .shopping-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .item-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .item-meta {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cta-primary {
+        margin-top: 0.5rem;
+        padding: 0.85rem;
+        border-radius: 14px;
+        border: none;
+        background: linear-gradient(135deg, #ffb347, #ffcc33);
+        color: #0c1227;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .celebration-panel {
+        width: 100%;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 1rem;
+        display: flex;
+        gap: 0.75rem;
+        text-align: left;
+        align-items: center;
+      }
+
+      .celebration-panel .emoji {
+        display: inline-grid;
+        place-items: center;
+        width: 2.35rem;
+        height: 2.35rem;
+        border-radius: 50%;
+        font-size: 0;
+        background: linear-gradient(145deg, rgba(52, 211, 153, 0.45), rgba(20, 184, 166, 0.2));
+        border: 1px solid rgba(167, 243, 208, 0.45);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      }
+
+      .celebration-panel .emoji::after {
+        content: "";
+        width: 0.45rem;
+        height: 0.75rem;
+        border: solid #ecfdf5;
+        border-width: 0 0.14rem 0.14rem 0;
+        transform: rotate(45deg) translate(-0.05rem, -0.08rem);
+      }
+
+      .celebration-panel p {
+        margin: 0.2rem 0 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .prev-module-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.28rem 0.75rem 0.28rem 0.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(52, 211, 153, 0.28);
+        background: rgba(6, 78, 59, 0.35);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        color: #d1fae5;
+        align-self: flex-start;
+      }
+
+      .module-badge {
+        position: absolute;
+        top: 2.85rem;
+        right: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border-radius: 999px;
+        padding: 0.22rem 0.75rem 0.22rem 0.35rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(15, 23, 42, 0.55);
+        color: #e2e8f0;
+      }
+
+      .module-badge::before {
+        content: attr(data-letter);
+        font-size: 0.62rem;
+        font-weight: 800;
+        width: 1.35rem;
+        height: 1.35rem;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(52, 211, 153, 0.35);
+        color: #ecfdf5;
+        border: 1px solid rgba(167, 243, 208, 0.35);
+      }
+
+      .open-question {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .open-question label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .module-intro {
+        margin: 0 0 0.8rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .open-question textarea {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.8rem;
+        color: #fff;
+        font-family: inherit;
+        min-height: 90px;
+        resize: none;
+      }
+
+      .cred-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .cred-icon {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 0.8rem 0.4rem;
+        font-size: 0.75rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .testimonial-card {
+        margin-top: 0.6rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.9rem;
+        text-align: left;
+        font-size: 0.8rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .report-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+        text-align: left;
+      }
+
+      .report-card {
+        padding: 0.9rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .report-card h3 {
+        margin: 0 0 0.4rem;
+        font-size: 0.95rem;
+      }
+
+      .report-card p,
+      .report-card ul {
+        margin: 0;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .report-card ul {
+        padding-left: 1rem;
+        margin-top: 0.3rem;
+      }
+
+      .action-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .spin-btn {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        background: radial-gradient(circle at 30% 25%, #5eead4, #14b8a6 55%, #0f766e);
+        color: #042f2e;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        animation: pulse-spin 2.5s infinite linear;
+      }
+
+      @keyframes pulse-spin {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(1.06);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+
+      .solution-stack {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        text-align: left;
+      }
+
+      .solution-card {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .solution-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+        flex-wrap: wrap;
+      }
+
+      .insight-tag {
+        align-self: flex-start;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .analysis-board {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        text-align: left;
+      }
+
+      .analysis-board .tile {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.9rem;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+      }
+
+      .analysis-board h3 {
+        margin: 0 0 0.4rem;
+        font-size: 0.95rem;
+        color: #fff;
+      }
+
+      .thumb-strip {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .thumb-strip span {
+        flex: 1;
+        height: 64px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.15);
+        display: grid;
+        place-items: center;
+        font-size: 0.8rem;
+        color: #fff;
+      }
+
+      .sleep-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .sleep-bars label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+      }
+
+      .sleep-bars progress {
+        width: 100%;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .chat-thread {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        text-align: left;
+      }
+
+      .chat-bubble {
+        max-width: 80%;
+        padding: 0.55rem 0.85rem;
+        border-radius: 14px 14px 14px 4px;
+        background: rgba(236, 253, 245, 0.12);
+        border: 1px solid rgba(167, 243, 208, 0.2);
+        color: #f8fafc;
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .chat-bubble.self {
+        align-self: flex-end;
+        border-radius: 14px 14px 4px 14px;
+        background: rgba(52, 211, 153, 0.22);
+        border-color: rgba(52, 211, 153, 0.45);
+        color: #ecfdf5;
+      }
+
+      .knowledge-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        width: 100%;
+      }
+
+      .knowledge-photo {
+        width: 70%;
+        max-width: 220px;
+        height: 150px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(109, 225, 255, 0.18));
+        display: grid;
+        place-items: center;
+        font-size: 0.95rem;
+        color: #fff;
+      }
+
+      .knowledge-card p {
+        margin: 0;
+        font-size: 0.85rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .package-breakdown {
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(10, 16, 40, 0.35);
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .package-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .package-header h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .package-tag {
+        padding: 0.2rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+
+      .package-detail {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .package-detail section {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.8rem;
+      }
+
+      .package-detail h4 {
+        margin: 0 0 0.4rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .package-detail ul {
+        margin: 0;
+        padding-left: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .package-detail li {
+        margin-bottom: 0.3rem;
+      }
+
+      .mock-screen {
+        width: 100%;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .star-rating {
+        display: flex;
+        gap: 0.2rem;
+        color: #fbbf24;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+      }
+
+      .behavior-curve {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+
+      .curve-point {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 0.7rem;
+        text-align: center;
+        font-size: 0.75rem;
+      }
+
+      .curve-point strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .panel-tryout {
+        margin-top: 2rem;
+      }
+
+      .tryout-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .tryout-card {
+        max-width: min(480px, 100%);
+        margin: 0 auto;
+        display: none;
+      }
+
+      .tryout-card.active {
+        display: block;
+      }
+
+      .tryout-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: left;
+      }
+
+      .tryout-form label {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .tryout-form input,
+      .tryout-form textarea,
+      .tryout-form select {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        padding: 0.5rem 0.7rem;
+        font-family: inherit;
+      }
+
+      .tryout-form textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .tryout-form button {
+        align-self: flex-end;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #34d399, #14b8a6);
+        color: #042f2e;
+        font-weight: 700;
+        font-size: 0.86rem;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        touch-action: manipulation;
+      }
+
+      .tryout-form button:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(20, 184, 166, 0.35);
+      }
+
+      .tryout-form button:focus-visible {
+        outline: 2px solid #a7f3d0;
+        outline-offset: 3px;
+      }
+
+      .tryout-radio,
+      .tryout-checkbox {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .tryout-radio label,
+      .tryout-checkbox label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .story-carousel {
+        display: flex;
+        gap: 0.6rem;
+        overflow-x: auto;
+        padding: 0.4rem 0.1rem;
+        width: 100%;
+      }
+
+      .story-card {
+        flex: 0 0 140px;
+        height: 220px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #fff;
+      }
+
+      .story-card h4 {
+        margin: 0 0 0.4rem;
+        font-size: 0.9rem;
+      }
+
+      .story-card span {
+        font-size: 0.75rem;
+        opacity: 0.85;
+      }
+
+      .story-caption {
+        margin: 0.6rem 0 0;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+      }
+
+      .progress-bar {
+        width: 100%;
+        max-width: min(1120px, 100%);
+        margin: 0 auto 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(0.65rem, 1.5vw, 1.15rem);
+      }
+
+      .progress-segment {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .segment-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .segment-track {
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+      }
+
+      .segment-fill {
+        width: 0%;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #34d399, #14b8a6, #5eead4);
+        transition: width 0.3s ease;
+      }
+
+      .progress-deck {
+        padding: 1rem 1.15rem 1.1rem;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #134e4a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.2);
+      }
+
+      .progress-deck .segment-label {
+        color: #cbd5e1;
+      }
+
+      .progress-deck .segment-track {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .phase-tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.35rem;
+        height: 1.35rem;
+        margin-right: 0.35rem;
+        border-radius: 6px;
+        font-size: 0.62rem;
+        font-weight: 800;
+        color: #ecfdf5;
+        background: rgba(52, 211, 153, 0.35);
+        border: 1px solid rgba(167, 243, 208, 0.35);
+        vertical-align: middle;
+      }
+
+      .frame-content .progress-bar {
+        max-width: none;
+        margin: 0 0 1rem;
+      }
+
+      .weekday-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .weekday-options button {
+        flex: 1 1 70px;
+        padding: 0.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+
+      .follow-up {
+        margin-top: 0.7rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+        text-align: left;
+      }
+
+      .placeholder-copy {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+      }
+
+      .screen-footer {
+        margin-top: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      @media (min-width: 1320px) {
+        .frame-card {
+          flex: 0 0 calc((100% - 3 * var(--g, 1.75rem)) / 4);
+        }
+      }
+
+      @media (min-width: 1680px) {
+        .frame-card {
+          flex: 0 0 calc((100% - 4 * var(--g, 1.85rem)) / 5);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .frame-card {
+          flex: 0 0 calc((100% - var(--g, 1.5rem)) / 2);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .gallery-shell {
+          padding: 0 0.35rem;
+          margin-inline: 0;
+        }
+
+        .frame-card {
+          flex: 0 0 88%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .loader-ring,
+        .spin-btn {
+          animation: none !important;
+        }
+
+        .card-entry:hover,
+        .view-buttons button:hover {
+          transform: none;
+        }
+
+        .segment-fill {
+          transition: none;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>互动式onboarding demo</h1>
+      <div class="view-switch">
+        <input type="radio" name="view-mode" id="mode-demo" />
+        <input type="radio" name="view-mode" id="mode-tryout" checked />
+        <div class="view-tabs">
+          <label for="mode-demo">Demo 展示</label>
+          <label for="mode-tryout">Tryout 流程</label>
+        </div>
+        <div class="view-buttons">
+          <button type="button" data-switch="demo">进入 Demo</button>
+          <button type="button" data-switch="tryout">进入 Tryout</button>
+        </div>
+        <div class="view-panel panel-demo">
+          <p class="subtitle">
+            Basic / Diet / LifeHabit 模块分别独立编号（5 / 5 / 4 张），Goal &amp; Motivation 3 张、诊断干预 6 张，并以「正式进入 jovida」模块带入绿白聊天氛围。
+          </p>
+          <div class="progress-bar demo-progress progress-deck" aria-label="Demo 进度">
+            <div class="progress-segment" data-phase="Basic">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">B</span>Basic</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="Diet">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">D</span>Diet</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="LifeHabit">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">L</span>LifeHabit</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="Goal">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">G</span>Goal</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+          </div>
+
+      <section class="module module-basic">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 01</p>
+            <h2 class="module-title">Basic</h2>
+          </div>
+          <p class="module-meta">开场问候、基础信息与功能入口，帮助用户快速建立对 jovida 的第一印象。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Basic onboarding screens">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Basic 01 jovida 欢迎</header>
+                <span class="module-badge">Basic</span>
+                <div class="screen-preview">
+                  <div class="hero-intro">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>嗨，我是小兔子 jovida！</strong>
+                      <span>欢迎体验 jovida onboarding。</span>
+                    </div>
+                  </div>
+                  <p class="product-tagline">您的互动式营养伙伴，随时为你守护健康。</p>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 05</span>
+                  <span>品牌问候</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Basic 02 身体参数</header>
+                <span class="module-badge">Basic</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>随便拖一下身高体重，让我摸摸你的 baseline～</strong>
+                      <span>不用太严肃，之后想改随时调。</span>
+                    </div>
+                  </div>
+                  <label class="slider-field">
+                    <span>身高 (cm)</span>
+                    <input type="range" min="140" max="200" value="170" />
+                  </label>
+                  <label class="slider-field">
+                    <span>体重 (kg)</span>
+                    <input type="range" min="40" max="120" value="60" />
+                  </label>
+                </div>
+                <footer class="screen-footer">
+                  <span>02 / 05</span>
+                  <span>身体数据</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Basic 03 营养知识水平</header>
+                <span class="module-badge">Basic</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>聊聊你对营养知识的熟悉度？</strong>
+                      <span>滑块随手一推，我就知道要讲深还是讲浅。</span>
+                    </div>
+                  </div>
+                  <label class="slider-field">
+                    <span>了解程度</span>
+                    <input type="range" min="0" max="100" value="45" />
+                    <div class="slider-scale">
+                      <span>新手</span>
+                      <span>达人</span>
+                    </div>
+                  </label>
+                </div>
+                <footer class="screen-footer">
+                  <span>03 / 05</span>
+                  <span>偏好设定</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Basic 04 小知识卡片入口</header>
+                <span class="module-badge">Basic</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>想刷点轻松的小知识吗？</strong>
+                      <span>点进去就像刷短内容，随手补灵感。</span>
+                    </div>
+                  </div>
+                  <button class="card-entry">进入小知识卡片</button>
+                </div>
+                <footer class="screen-footer">
+                  <span>04 / 05</span>
+                  <span>亮点展示</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Basic 05 小知识卡内容</header>
+                <span class="module-badge">Basic</span>
+                <div class="screen-preview">
+                  <div class="knowledge-card">
+                    <div class="knowledge-photo">蛋白早餐</div>
+                    <p>一份无糖酸奶 + 鸡蛋 + 全麦燕麦，20g 蛋白质启动代谢。</p>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>以后遇到喜欢的小知识，直接喊我收藏。</strong>
+                      <span>我会把类似提醒塞进日常任务里。</span>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>05 / 05</span>
+                  <span>任务列表</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="module module-diet">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 02</p>
+            <h2 class="module-title">Diet</h2>
+          </div>
+          <p class="module-meta">围绕饮食习惯、上传入口与分析反馈，打造沉浸式的营养互动体验。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Diet onboarding screens">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Diet 01 认识完继续聊</header>
+                <span class="module-badge">Diet</span>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">B</span>Basic 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>太棒了，初识 jovida 成功！</strong>
+                      <p>Basic 模块里的品牌问候与基础数据都已记录，接下来我想了解你的日常就餐场景。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>平常都在哪儿解决一日三餐？</strong>
+                      <span>跟我说说，我才好给对应的招数。</span>
+                    </div>
+                  </div>
+                  <div class="option-grid">
+                    <button class="option-pill">在家吃饭</button>
+                    <button class="option-pill">公司/学校食堂</button>
+                    <button class="option-pill">外带/外卖</button>
+                    <button class="option-pill">餐馆堂食</button>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 05</span>
+                  <span>习惯收集</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Diet 02 上传饮食照片</header>
+                <span class="module-badge">Diet</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>戳中间的大加号，扔一张最近的餐照给我。</strong>
+                      <span>随手拍就行，我想感受你的日常风格。</span>
+                    </div>
+                  </div>
+                  <div class="upload-area">
+                    <button class="plus-button" aria-label="上传照片">+</button>
+                    <p class="hint-text">从相册挑一张或随手拍都行</p>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>02 / 05</span>
+                  <span>互动上传</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Diet 03 健管风格</header>
+                <span class="module-badge">Diet</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>更想用哪种 vibe 管理健康？</strong>
+                      <span>爱数据、走随性、还是掌心估份量都 OK。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>数据派：表格/趋势</button>
+                    <button>随性派：心情写实</button>
+                    <button>份量派：掌心量化</button>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>03 / 05</span>
+                  <span>偏好标记</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Diet 04 我的洞察</header>
+                <span class="module-badge">Diet</span>
+                <div class="screen-preview">
+                  <div class="mock-screen">
+                    <div class="insight-tag">我的洞察</div>
+                    <div class="analysis-board">
+                      <div class="tile">
+                        <h3>饮食 · 今日快照</h3>
+                        <div class="thumb-strip">
+                          <span>早餐</span>
+                          <span>午餐</span>
+                          <span>晚餐</span>
+                        </div>
+                      </div>
+                      <div class="tile">
+                        <h3>睡眠 · 阶段</h3>
+                        <div class="sleep-bars">
+                          <label>深度 <span>1.6h</span></label>
+                          <progress max="100" value="65"></progress>
+                          <label>浅睡 <span>3.2h</span></label>
+                          <progress max="100" value="45"></progress>
+                          <label>REM <span>1.1h</span></label>
+                          <progress max="100" value="35"></progress>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="loader-ring" aria-label="分析中"></div>
+                </div>
+                <footer class="screen-footer">
+                  <span>04 / 05</span>
+                  <span>加载洞察</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Diet 05 餐食分析结果</header>
+                <span class="module-badge">Diet</span>
+                <div class="screen-preview">
+                  <div class="analysis-panel">
+                    <div class="analysis-stats">
+                      <div class="stat">
+                        卡路里
+                        <strong>530 kcal</strong>
+                      </div>
+                      <div class="stat">
+                        蛋白质
+                        <strong>32 g</strong>
+                      </div>
+                      <div class="stat">
+                        蔬菜比
+                        <strong>45%</strong>
+                      </div>
+                    </div>
+                    <ul class="suggestion-list">
+                      <li>增加 1 份叶菜或高纤维食物，平衡微量营养。</li>
+                      <li>蛋白质充足，记得搭配低糖水果补充维生素。</li>
+                      <li>下一餐可减少油脂摄入，保持整体热量目标。</li>
+                    </ul>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>这就是我看完餐照后的 demo。</strong>
+                      <span>以后想要这种复盘，上传一下我立刻动手。</span>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>05 / 05</span>
+                  <span>饮食分析</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="module module-life">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 03</p>
+            <h2 class="module-title">LifeHabit</h2>
+          </div>
+          <p class="module-meta">聚焦生活方式、消费偏好与智能推荐，描绘用户的长期习惯画像。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Life and habit onboarding screens">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">LifeHabit 01 生活方式</header>
+                <span class="module-badge">LifeHabit</span>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">D</span>Diet 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>Diet 模块的洞察已经 ready！</strong>
+                      <p>饮食节奏我都记住了，接下来把这些策略串到你的生活节奏。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>告诉我最近的活动强度偏哪种。</strong>
+                      <span>我会照这个节奏排提醒，想调随时说。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>久坐/低活动</button>
+                    <button>轻度活动</button>
+                    <button>高强度活动</button>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 04</span>
+                  <span>生活习惯</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">LifeHabit 02 购物偏好</header>
+                <span class="module-badge">LifeHabit</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>你一般怎么补健康食材？</strong>
+                      <span>线下、网购还是混搭都行，顺手点一下常用平台。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>线下超市/菜场</button>
+                    <button>纯网购</button>
+                    <button>混合方式</button>
+                  </div>
+                  <div class="platform-select">
+                    <span>常用网购平台</span>
+                    <select>
+                      <option>京东健康</option>
+                      <option>天猫超市</option>
+                      <option>盒马鲜生</option>
+                      <option>抖音商城</option>
+                    </select>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>02 / 04</span>
+                  <span>消费习惯</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">LifeHabit 03 用户见证</header>
+                <span class="module-badge">LifeHabit</span>
+                <div class="screen-preview">
+                  <div class="loader-ring" aria-label="数据同步中"></div>
+                  <div class="chat-thread">
+                    <div class="chat-bubble">
+                      <div class="star-rating">★★★★★</div>
+                      <p>“jovida 8 周帮我减了 5.6kg，购物清单也同步换成更轻负担的版本。”</p>
+                    </div>
+                    <div class="chat-bubble self">好激励！我也想跟进类似方案。</div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>03 / 04</span>
+                  <span>社区口碑</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">LifeHabit 04 智能购物清单</header>
+                <span class="module-badge">LifeHabit</span>
+                <div class="screen-preview">
+                  <div class="shopping-card">
+                    <strong>jovida 为你准备的补给包</strong>
+                    <div class="shopping-items">
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>藜麦鸡胸沙拉包</span>
+                          <small>蛋白质 32g · 低脂酱料</small>
+                        </div>
+                        <span>¥28</span>
+                      </div>
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>每日坚果轻享装</span>
+                          <small>Ω-3 · 无糖烘烤</small>
+                        </div>
+                        <span>¥19</span>
+                      </div>
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>复合维生素补给</span>
+                          <small>含维C、铁、钙</small>
+                        </div>
+                        <span>¥49</span>
+                      </div>
+                    </div>
+                    <button class="cta-primary">一键下单</button>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>以后缺货就直接喊我，我帮你一键生成清单。</strong>
+                      <span>购物、配送、替换都能在 jovida 里搞定。</span>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>04 / 04</span>
+                  <span>个性推荐</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="module module-goal">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 04</p>
+            <h2 class="module-title">Goal &amp; Motivation</h2>
+          </div>
+          <p class="module-meta">深入了解你的目标动机、阻碍与权威背书，形成可追踪的 Goal &amp; Motivation 流程。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Goal and motivation preview screens">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Goal 01 改变动机</header>
+                <span class="module-badge">Goal</span>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">L</span>LifeHabit 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>LifeHabit 模块洞察 ready！</strong>
+                      <p>我已经了解你的生活节奏与购物偏好，接下来聚焦 Goal & Motivation，定下真正驱动你的理由。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>现在最想减脂/减肥的动力是什么？</strong>
+                      <span>写下让你坚持的原因，我会用它提醒你。</span>
+                    </div>
+                  </div>
+                  <div class="open-question">
+                    <label for="goal-motivation">记录你的动机</label>
+                    <textarea id="goal-motivation" placeholder="例如：想改善体力、想为家人树立榜样..."></textarea>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 03</span>
+                  <span>Goal 深聊</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Goal 02 深层痛点</header>
+                <span class="module-badge">Goal</span>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>马上就收工啦～</strong>
+                      <span>最近最容易卡住的点是什么？我好一起拆。</span>
+                    </div>
+                  </div>
+                  <div class="open-question">
+                    <label for="goal-obstacle">描述遇到的阻碍</label>
+                    <textarea id="goal-obstacle" placeholder="比如：时间不够、食材难买、没人陪练..."></textarea>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>02 / 03</span>
+                  <span>痛点追问</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Goal 03 专业背书</header>
+                <span class="module-badge">Goal</span>
+                <div class="screen-preview">
+                  <div class="cred-grid">
+                    <div class="cred-icon">USDA<br />Guidelines</div>
+                    <div class="cred-icon">NSCA<br />Certified</div>
+                    <div class="cred-icon">RD Exam<br />Top 10%</div>
+                  </div>
+                  <div class="cred-grid">
+                    <div class="cred-icon">ACE EQ<br />High Score</div>
+                    <div class="cred-icon">APA Sleep<br />Advisor</div>
+                    <div class="cred-icon">Harvard<br />Wellness Lab</div>
+                  </div>
+                  <div class="behavior-curve">
+                    <div class="curve-point">
+                      <strong>Week 1</strong>
+                      <span>觉察摄入</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 3</strong>
+                      <span>建立缺口</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 6</strong>
+                      <span>体脂下降 2%</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 10</strong>
+                      <span>稳态维持</span>
+                    </div>
+                  </div>
+                  <div class="loader-ring" aria-label="生成曲线"></div>
+                </div>
+                <footer class="screen-footer">
+                  <span>03 / 03</span>
+                  <span>权威背书</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="module module-goal">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 05</p>
+            <h2 class="module-title">诊断 + 干预</h2>
+          </div>
+          <p class="module-meta">把前面收集到的数据落实为诊断报告、行动启动与模块化干预方案，帮助用户真正执行。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Diagnosis and intervention screens">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 01 健康分析报告</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">G</span>Goal 已完成</span>
+                  </div>
+                  <p class="module-intro">Goal 模块里的动机与阻碍已经归档，接下来整合为诊断报告与干预入口。</p>
+                  <div class="report-grid">
+                    <div class="report-card">
+                      <h3>身体数据</h3>
+                      <p>体脂率 27% · 休息心率 78 bpm</p>
+                      <p>睡眠 6.1h · 每日步数 5.2k</p>
+                    </div>
+                    <div class="report-card">
+                      <h3>健康痛点</h3>
+                      <ul>
+                        <li>早餐能量不足，午后血糖波动大</li>
+                        <li>周内久坐 8h+ 肌肉量下降</li>
+                      </ul>
+                    </div>
+                    <div class="report-card">
+                      <h3>机会发现</h3>
+                      <p>智能称+饮食上传配合，可在 6 周内降低 3% 体脂。</p>
+                    </div>
+                    <div class="report-card">
+                      <h3>即时建议</h3>
+                      <p>补足早餐蛋白，建立 3 次微运动提醒，保持水化。</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 06</span>
+                  <span>诊断洞察</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 02 立即行动</header>
+                <div class="screen-preview">
+                  <div class="action-cta">
+                    <div class="spin-btn">START</div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>02 / 06</span>
+                  <span>激活动力</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 03 套餐干预</header>
+                <div class="screen-preview">
+                  <div class="solution-stack">
+                    <div class="solution-card">
+                      <strong>激进数字化 · “数据切脂营”</strong>
+                      <p>使用 CGM + 智能餐盘记录每一口，jovida AI 按小时反馈热量差，适合追求快速体脂下降的数控型用户。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：血糖掌控</span>
+                        <span>时长：6 周</span>
+                        <span>强度：★★★★☆</span>
+                      </div>
+                    </div>
+                    <div class="solution-card">
+                      <strong>欢快轻松 · “节奏律动营”</strong>
+                      <p>把饮食+运动变成 gamification：音乐节拍健走、轻断食打卡、好友 cheer up，减脂同时保持好心情。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：情绪轻负</span>
+                        <span>时长：8 周</span>
+                        <span>强度：★★★☆☆</span>
+                      </div>
+                    </div>
+                    <div class="solution-card">
+                      <strong>全方位多样化 · “混合加速营”</strong>
+                      <p>结合力量+代谢训练、地中海饮食、正念睡眠，循序渐进地守住能量缺口，适合需要稳健长期成果的用户。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：能量基线</span>
+                        <span>时长：10 周</span>
+                        <span>强度：★★★✩☆</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>03 / 06</span>
+                  <span>干预处方</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 04 治疗日设定</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>哪一天最容易被琐事打乱？</strong>
+                      <span>告诉我，我们就在那天塞点关怀和缓冲。</span>
+                    </div>
+                  </div>
+                  <div class="weekday-options">
+                    <button>Mon</button>
+                    <button>Tue</button>
+                    <button>Wed</button>
+                    <button>Thu</button>
+                    <button>Fri</button>
+                    <button>Sat</button>
+                    <button>Sun</button>
+                  </div>
+                  <p class="follow-up">
+                    Jovida：收到～那天我会排上呼吸/营养/情绪的暖心提醒，想怎么微调随时说。
+                  </p>
+                </div>
+                <footer class="screen-footer">
+                  <span>04 / 06</span>
+                  <span>节奏设定</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 05 陪伴风格</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>更想让我用哪种陪伴 vibe？</strong>
+                      <span>活力搞怪、温柔疗愈或专业干练，随时切换。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>活力搞怪</button>
+                    <button>温柔疗愈</button>
+                    <button>专业干练</button>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>我已经照你的口味开好第一份任务。</strong>
+                      <span>想开跑就点按钮，我一路陪你。</span>
+                    </div>
+                  </div>
+                  <button class="card-entry">开启第一个任务</button>
+                </div>
+                <footer class="screen-footer">
+                  <span>05 / 06</span>
+                  <span>持续微调</span>
+                </footer>
+              </div>
+            </article>
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Dx 06 套餐定制拆包</header>
+                <div class="screen-preview">
+                  <div class="package-breakdown">
+                    <div class="package-header">
+                      <h3>混合加速营 · 专属定制</h3>
+                      <span class="package-tag">CUSTOM</span>
+                    </div>
+                    <p>把默认的“混合加速营”与刚才录入的微调（教练风格、奖励日、困难日）整合，形成真正属于你的方案。</p>
+                    <div class="package-detail">
+                      <section>
+                        <h4>基础配方</h4>
+                        <ul>
+                          <li>力量 + 代谢训练 5 次/周</li>
+                          <li>地中海饮食 · 10 周周期</li>
+                          <li>晚间正念睡眠流程</li>
+                        </ul>
+                      </section>
+                      <section>
+                        <h4>微调信息</h4>
+                        <ul>
+                          <li>教练风格：活力搞怪</li>
+                          <li>困难日：周四（加设情绪护垫任务）</li>
+                        </ul>
+                      </section>
+                      <section>
+                        <h4>专属奖励</h4>
+                        <ul>
+                          <li>奖励日：周日午后，低糖甜品 + 轻断食复盘</li>
+                          <li>上传完成度 ≥80% 自动推送彩蛋任务</li>
+                        </ul>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>这是我为你拆包后的专属方案。</strong>
+                      <span>以后想换奖励日或教练风格，告诉我就能即时再定制。</span>
+                    </div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>06 / 06</span>
+                  <span>定制总结</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="module module-chat">
+        <header class="module-heading">
+          <div>
+            <p class="module-label">Module 06</p>
+            <h2 class="module-title">正式进入 jovida</h2>
+          </div>
+          <p class="module-meta">延续绿白简洁的聊天体验，jovida 主动打招呼、确认语气偏好，并引导用户进入实时陪伴空间。</p>
+        </header>
+        <div class="gallery-shell" aria-label="Jovida chat onboarding">
+          <div class="gallery-track">
+            <article class="frame-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Chat 01 打招呼</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">I</span>Intervention 已完成</span>
+                  </div>
+                  <div class="chat-thread">
+                    <div class="chat-bubble">嗨，我是 jovida 的健康伙伴，终于等到你啦！</div>
+                    <div class="chat-bubble">这里的所有对话都保持绿白极简风，像微信那样轻松。</div>
+                    <div class="chat-bubble self">嘿～我准备好了，接下来怎么做？</div>
+                    <div class="chat-bubble">我会根据前面收集的数据给出行动清单，也可以随时闲聊。</div>
+                    <div class="chat-bubble">想先从哪个目标入手？或者直接告诉我今天的状态？</div>
+                  </div>
+                </div>
+                <footer class="screen-footer">
+                  <span>01 / 01</span>
+                  <span>聊天欢迎</span>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+        </div>
+        <div class="view-panel panel-tryout">
+          <div class="tryout-nav">
+            <button type="button" class="tryout-back">返回上一页</button>
+          </div>
+          <div class="progress-bar tryout-progress progress-deck" aria-label="Tryout 进度">
+            <div class="progress-segment" data-phase="Basic">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">B</span>Basic</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="Diet">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">D</span>Diet</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="LifeHabit">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">L</span>LifeHabit</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+            <div class="progress-segment" data-phase="Goal">
+              <span class="segment-label"><span class="phase-tag" aria-hidden="true">G</span>Goal</span>
+              <div class="segment-track">
+                <div class="segment-fill"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tryout-flow">
+            <article class="frame-card tryout-card active">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Basic 01 jovida 欢迎</header>
+                <div class="screen-preview">
+                  <div class="hero-intro">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>嗨，我是小兔子 jovida！</strong>
+                      <span>欢迎体验 jovida onboarding。</span>
+                    </div>
+                  </div>
+                  <p class="product-tagline">您的互动式营养伙伴，随时为你守护健康。</p>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Basic 02 身体参数</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>随便拖一下身高体重，让我摸摸你的 baseline～</strong>
+                      <span>不用太严肃，之后想改随时调。</span>
+                    </div>
+                  </div>
+                  <label class="slider-field">
+                    <span>身高 (cm)</span>
+                    <input type="range" min="140" max="200" value="170" />
+                  </label>
+                  <label class="slider-field">
+                    <span>体重 (kg)</span>
+                    <input type="range" min="40" max="120" value="60" />
+                  </label>
+                  <form class="tryout-form">
+                    <button type="button">提交并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Basic 03 营养知识水平</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>滑杆随手一推，告诉我你对营养知识的熟悉度。</strong>
+                      <span>我好判断后面要讲深还是讲浅。</span>
+                    </div>
+                  </div>
+                  <label class="slider-field">
+                    <span>了解程度</span>
+                    <input type="range" min="0" max="100" value="45" />
+                    <div class="slider-scale">
+                      <span>新手</span>
+                      <span>达人</span>
+                    </div>
+                  </label>
+                  <form class="tryout-form">
+                    <button type="button">提交并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Basic 04 小知识卡片入口</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>想刷点轻松的小知识吗？</strong>
+                      <span>点进去就像刷短内容，灵感随手补。</span>
+                    </div>
+                  </div>
+                  <button class="card-entry">进入小知识卡片</button>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Basic 05 小知识卡内容</header>
+                <div class="screen-preview">
+                  <div class="knowledge-card">
+                    <div class="knowledge-photo">蛋白早餐</div>
+                    <p>一份无糖酸奶 + 鸡蛋 + 全麦燕麦，20g 蛋白质启动代谢。</p>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>以后遇到喜欢的小知识，直接喊我收藏。</strong>
+                      <span>我会把类似提醒塞进日常任务里。</span>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Diet 01 认识完继续聊</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">B</span>Basic 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>太棒了，初识 jovida 成功！</strong>
+                      <p>Basic 模块里的品牌问候与基础数据都已记录，现在更想了解你的日常就餐场景。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>平常都在哪儿解决一日三餐？</strong>
+                      <span>告诉我，我才能配上相应的小妙招。</span>
+                    </div>
+                  </div>
+                  <div class="option-grid">
+                    <button class="option-pill">在家吃饭</button>
+                    <button class="option-pill">公司/学校食堂</button>
+                    <button class="option-pill">外带/外卖</button>
+                    <button class="option-pill">餐馆堂食</button>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Diet 02 上传饮食照片</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>戳一下大加号，扔张最近的餐照给我。</strong>
+                      <span>随手拍就好，我想体会你的日常风格。</span>
+                    </div>
+                  </div>
+                  <div class="upload-area">
+                    <button class="plus-button" aria-label="上传照片">+</button>
+                    <p class="hint-text">从相册挑一张或随手拍都行</p>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">已上传，继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Diet 03 健管风格</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>更偏爱哪种健康陪伴节奏？</strong>
+                      <span>数据控、随性派还是掌心估份量都可以。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>数据派：表格/趋势</button>
+                    <button>随性派：心情写实</button>
+                    <button>份量派：掌心量化</button>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">提交并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Diet 04 我的洞察</header>
+                <div class="screen-preview">
+                  <div class="mock-screen">
+                    <div class="insight-tag">我的洞察</div>
+                    <div class="analysis-board">
+                      <div class="tile">
+                        <h3>饮食 · 今日快照</h3>
+                        <div class="thumb-strip">
+                          <span>早餐</span>
+                          <span>午餐</span>
+                          <span>晚餐</span>
+                        </div>
+                      </div>
+                      <div class="tile">
+                        <h3>睡眠 · 阶段</h3>
+                        <div class="sleep-bars">
+                          <label>深度 <span>1.6h</span></label>
+                          <progress max="100" value="65"></progress>
+                          <label>浅睡 <span>3.2h</span></label>
+                          <progress max="100" value="45"></progress>
+                          <label>REM <span>1.1h</span></label>
+                          <progress max="100" value="35"></progress>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="loader-ring" aria-label="分析中"></div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Diet 05 餐食分析结果</header>
+                <div class="screen-preview">
+                  <div class="analysis-panel">
+                    <div class="analysis-stats">
+                      <div class="stat">
+                        卡路里
+                        <strong>530 kcal</strong>
+                      </div>
+                      <div class="stat">
+                        蛋白质
+                        <strong>32 g</strong>
+                      </div>
+                      <div class="stat">
+                        蔬菜比
+                        <strong>45%</strong>
+                      </div>
+                    </div>
+                    <ul class="suggestion-list">
+                      <li>增加 1 份叶菜或高纤维食物，平衡微量营养。</li>
+                      <li>蛋白质充足，记得搭配低糖水果补充维生素。</li>
+                      <li>下一餐可减少油脂摄入，保持整体热量目标。</li>
+                    </ul>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>这就是我看完餐照后的 demo。</strong>
+                      <span>以后想要这种复盘，上传一下我立刻动手。</span>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout LifeHabit 01 生活方式</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">D</span>Diet 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>Diet 模块都完成啦！</strong>
+                      <p>饮食轨迹我都记住了，接下来把洞察串进你的生活节奏。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>告诉我最近的活动强度偏哪种。</strong>
+                      <span>我会按这个节奏排提醒，想改随时说。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>久坐/低活动</button>
+                    <button>轻度活动</button>
+                    <button>高强度活动</button>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout LifeHabit 02 购物偏好</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>你一般怎么补健康食材？</strong>
+                      <span>线下、网购或混搭都行，顺便挑一下常用平台。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>线下超市/菜场</button>
+                    <button>纯网购</button>
+                    <button>混合方式</button>
+                  </div>
+                  <div class="platform-select">
+                    <span>常用网购平台</span>
+                    <select>
+                      <option>京东健康</option>
+                      <option>天猫超市</option>
+                      <option>盒马鲜生</option>
+                      <option>抖音商城</option>
+                    </select>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout LifeHabit 03 用户见证</header>
+                <div class="screen-preview">
+                  <div class="loader-ring" aria-label="数据同步中"></div>
+                  <div class="chat-thread">
+                    <div class="chat-bubble">
+                      <div class="star-rating">★★★★★</div>
+                      <p>“jovida 8 周帮我减了 5.6kg，购物清单也同步换成更轻负担的版本。”</p>
+                    </div>
+                    <div class="chat-bubble self">好激励！我也想跟进类似方案。</div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout LifeHabit 04 智能购物清单</header>
+                <div class="screen-preview">
+                  <div class="shopping-card">
+                    <strong>jovida 为你准备的补给包</strong>
+                    <div class="shopping-items">
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>藜麦鸡胸沙拉包</span>
+                          <small>蛋白质 32g · 低脂酱料</small>
+                        </div>
+                        <span>¥28</span>
+                      </div>
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>每日坚果轻享装</span>
+                          <small>Ω-3 · 无糖烘烤</small>
+                        </div>
+                        <span>¥19</span>
+                      </div>
+                      <div class="item-row">
+                        <div class="item-meta">
+                          <span>复合维生素补给</span>
+                          <small>含维C、铁、钙</small>
+                        </div>
+                        <span>¥49</span>
+                      </div>
+                    </div>
+                    <button class="cta-primary">一键下单</button>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>以后缺货就直接喊我，我帮你一键生成清单。</strong>
+                      <span>购物、配送、替换都能在 jovida 里搞定。</span>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Goal 01 改变动机</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">L</span>LifeHabit 已完成</span>
+                  </div>
+                  <div class="celebration-panel">
+                    <span class="emoji" aria-hidden="true"></span>
+                    <div>
+                      <strong>LifeHabit 模块洞察 ready！</strong>
+                      <p>我已经了解你的生活节奏与购物偏好，接下来聚焦 Goal & Motivation，定下真正驱动你的理由。</p>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>现在最想减脂/减肥的动力是什么？</strong>
+                      <span>写下让你坚持的原因，我会用它提醒你。</span>
+                    </div>
+                  </div>
+                  <div class="open-question">
+                    <label for="tryout-goal-motivation">记录你的动机</label>
+                    <textarea id="tryout-goal-motivation" placeholder="例如：想改善体力、想为家人树立榜样..."></textarea>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">提交并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Goal 02 深层痛点</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>马上就收工啦～</strong>
+                      <span>最近最容易卡住的点是什么？我好一起拆。</span>
+                    </div>
+                  </div>
+                  <div class="open-question">
+                    <label for="tryout-goal-obstacle">描述遇到的阻碍</label>
+                    <textarea id="tryout-goal-obstacle" placeholder="比如：时间不够、食材难买、没人陪练..."></textarea>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">提交并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Goal 03 专业背书</header>
+                <div class="screen-preview">
+                  <div class="cred-grid">
+                    <div class="cred-icon">USDA<br />Guidelines</div>
+                    <div class="cred-icon">NSCA<br />Certified</div>
+                    <div class="cred-icon">RD Exam<br />Top 10%</div>
+                  </div>
+                  <div class="cred-grid">
+                    <div class="cred-icon">ACE EQ<br />High Score</div>
+                    <div class="cred-icon">APA Sleep<br />Advisor</div>
+                    <div class="cred-icon">Harvard<br />Wellness Lab</div>
+                  </div>
+                  <div class="behavior-curve">
+                    <div class="curve-point">
+                      <strong>Week 1</strong>
+                      <span>觉察摄入</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 3</strong>
+                      <span>建立缺口</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 6</strong>
+                      <span>体脂下降 2%</span>
+                    </div>
+                    <div class="curve-point">
+                      <strong>Week 10</strong>
+                      <span>稳态维持</span>
+                    </div>
+                  </div>
+                  <div class="loader-ring" aria-label="生成曲线"></div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 01 健康分析报告</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">G</span>Goal 已完成</span>
+                  </div>
+                  <p class="module-intro">Goal 模块的动机与阻碍已归档，现在把它们整合为诊断报告。</p>
+                  <div class="report-grid">
+                    <div class="report-card">
+                      <h3>身体数据</h3>
+                      <p>体脂率 27% · 休息心率 78 bpm</p>
+                      <p>睡眠 6.1h · 每日步数 5.2k</p>
+                    </div>
+                    <div class="report-card">
+                      <h3>健康痛点</h3>
+                      <ul>
+                        <li>早餐能量不足，午后血糖波动大</li>
+                        <li>周内久坐 8h+ 肌肉量下降</li>
+                      </ul>
+                    </div>
+                    <div class="report-card">
+                      <h3>机会发现</h3>
+                      <p>智能称+饮食上传配合，可在 6 周内降低 3% 体脂。</p>
+                    </div>
+                    <div class="report-card">
+                      <h3>即时建议</h3>
+                      <p>补足早餐蛋白，建立 3 次微运动提醒，保持水化。</p>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 02 立即行动</header>
+                <div class="screen-preview">
+                  <div class="action-cta">
+                    <div class="spin-btn">START</div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">立即启动</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 03 套餐干预</header>
+                <div class="screen-preview">
+                  <div class="solution-stack">
+                    <div class="solution-card">
+                      <strong>激进数字化 · “数据切脂营”</strong>
+                      <p>使用 CGM + 智能餐盘记录每一口，jovida AI 按小时反馈热量差，适合追求快速体脂下降的数控型用户。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：血糖掌控</span>
+                        <span>时长：6 周</span>
+                        <span>强度：★★★★☆</span>
+                      </div>
+                    </div>
+                    <div class="solution-card">
+                      <strong>欢快轻松 · “节奏律动营”</strong>
+                      <p>把饮食+运动变成 gamification：音乐节拍健走、轻断食打卡、好友 cheer up。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：情绪轻负</span>
+                        <span>时长：8 周</span>
+                        <span>强度：★★★☆☆</span>
+                      </div>
+                    </div>
+                    <div class="solution-card">
+                      <strong>全方位多样化 · “混合加速营”</strong>
+                      <p>结合力量+代谢训练、地中海饮食、正念睡眠，循序渐进地守住能量缺口。</p>
+                      <div class="solution-meta">
+                        <span>首周主题：能量基线</span>
+                        <span>时长：10 周</span>
+                        <span>强度：★★★✩☆</span>
+                      </div>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">选择并继续</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 04 治疗日设定</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>哪一天最容易被琐事打乱？</strong>
+                      <span>告诉我，我们就在那天塞点关怀和缓冲。</span>
+                    </div>
+                  </div>
+                  <div class="weekday-options">
+                    <button>Mon</button>
+                    <button>Tue</button>
+                    <button>Wed</button>
+                    <button>Thu</button>
+                    <button>Fri</button>
+                    <button>Sat</button>
+                    <button>Sun</button>
+                  </div>
+                  <p class="follow-up">
+                    Jovida：收到～那天我会排上呼吸/营养/情绪的暖心提醒，想怎么微调随时说。
+                  </p>
+                  <form class="tryout-form">
+                    <button type="button">下一页</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 05 陪伴风格</header>
+                <div class="screen-preview">
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>更想让我用哪种陪伴 vibe？</strong>
+                      <span>活力搞怪、温柔疗愈或专业干练，随时切换。</span>
+                    </div>
+                  </div>
+                  <div class="habit-options">
+                    <button>活力搞怪</button>
+                    <button>温柔疗愈</button>
+                    <button>专业干练</button>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>我已经照你的口味开好第一份任务。</strong>
+                      <span>想开跑就点按钮，我一路陪你。</span>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">开启第一个任务</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Dx 06 定制拆包</header>
+                <div class="screen-preview">
+                  <div class="package-breakdown">
+                    <div class="package-header">
+                      <h3>混合加速营 · 专属定制</h3>
+                      <span class="package-tag">CUSTOM</span>
+                    </div>
+                    <p>默认“混合加速营” + 你刚才录入的微调（教练风格、困难日、奖励日）已经写入方案。</p>
+                    <div class="package-detail">
+                      <section>
+                        <h4>基础配方</h4>
+                        <ul>
+                          <li>力量 + 代谢训练 5 次/周</li>
+                          <li>地中海饮食 · 10 周周期</li>
+                          <li>晚间正念睡眠流程</li>
+                        </ul>
+                      </section>
+                      <section>
+                        <h4>微调信息</h4>
+                        <ul>
+                          <li>教练风格：活力搞怪</li>
+                          <li>困难日：周四（额外情绪护垫）</li>
+                        </ul>
+                      </section>
+                      <section>
+                        <h4>专属奖励</h4>
+                        <ul>
+                          <li>奖励日：周日午后 · 低糖甜品 + 轻断食复盘</li>
+                          <li>完成度 ≥80% 自动推送彩蛋任务</li>
+                        </ul>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="speech-row">
+                    <div class="rabbit-avatar" aria-hidden="true"><span class="rabbit-mark">J</span></div>
+                    <div class="speech-bubble">
+                      <strong>以后要换奖励日或调风格，就照这样告诉我。</strong>
+                      <span>我会即时更新你的专属套餐。</span>
+                    </div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">确认定制</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+            <article class="frame-card tryout-card">
+              <span class="frame-notch"></span>
+              <div class="frame-content">
+                <header class="screen-title">Tryout Chat 01 打招呼</header>
+                <div class="screen-preview">
+                  <div class="prev-module-chip">
+                    <span><span class="phase-tag" aria-hidden="true">I</span>Intervention 已完成</span>
+                  </div>
+                  <div class="chat-thread">
+                    <div class="chat-bubble">嗨，我是 jovida 的健康伙伴，终于等到你啦！</div>
+                    <div class="chat-bubble">这里的所有对话都保持绿白极简风，像微信那样轻松。</div>
+                    <div class="chat-bubble self">嘿～我准备好了，接下来怎么做？</div>
+                    <div class="chat-bubble">我会根据前面收集的数据给出行动清单，也可以随时闲聊。</div>
+                    <div class="chat-bubble">想先从哪个目标入手？或者直接告诉我今天的状态？</div>
+                  </div>
+                  <form class="tryout-form">
+                    <button type="button">聊天完成</button>
+                  </form>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const demoBtn = document.querySelector('button[data-switch="demo"]');
+      const tryoutBtn = document.querySelector('button[data-switch="tryout"]');
+      const demoRadio = document.getElementById('mode-demo');
+      const tryoutRadio = document.getElementById('mode-tryout');
+      if (demoBtn && tryoutBtn && demoRadio && tryoutRadio) {
+        demoBtn.addEventListener('click', () => {
+          demoRadio.checked = true;
+          demoBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        tryoutBtn.addEventListener('click', () => {
+          tryoutRadio.checked = true;
+          tryoutBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+
+      const moduleMeta = {
+        Basic: 'B',
+        Diet: 'D',
+        LifeHabit: 'L',
+        Goal: 'G',
+        Diagnosis: 'I',
+        Intervention: 'I',
+        Jovida: 'J'
+      };
+
+      const headerModuleMap = [
+        { match: 'Basic', label: 'Basic' },
+        { match: 'Diet', label: 'Diet' },
+        { match: 'LifeHabit', label: 'LifeHabit' },
+        { match: 'Goal', label: 'Goal' },
+        { match: 'Dx', label: 'Intervention' },
+        { match: 'Chat', label: 'Jovida' }
+      ];
+
+      const ensureModuleBadges = () => {
+        const cards = document.querySelectorAll('.frame-card');
+        cards.forEach((card) => {
+          const frameContent = card.querySelector('.frame-content');
+          if (!frameContent) return;
+          let badge = frameContent.querySelector('.module-badge');
+          let label = badge ? badge.textContent.trim() : '';
+          if (!label) {
+            const headerText = card.querySelector('.screen-title')?.textContent || '';
+            const matched = headerModuleMap.find(({ match }) => headerText.includes(match));
+            if (matched) {
+              label = matched.label;
+            }
+          }
+          const hideBadge = ['Diagnosis', 'Intervention', 'Jovida'].includes(label);
+          if (badge && hideBadge) {
+            badge.remove();
+            badge = null;
+          }
+          if (hideBadge) return;
+          if (!label || !moduleMeta[label]) return;
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'module-badge';
+            const title = frameContent.querySelector('.screen-title');
+            if (title) {
+              title.insertAdjacentElement('afterend', badge);
+            } else {
+              frameContent.prepend(badge);
+            }
+          }
+          badge.textContent = label;
+          badge.dataset.letter = moduleMeta[label] || label.charAt(0).toUpperCase();
+        });
+      };
+
+      ensureModuleBadges();
+
+      const progressPhases = ['Basic', 'Diet', 'LifeHabit', 'Goal'];
+
+      const assignPhaseData = (selector) => {
+        const counts = {};
+        progressPhases.forEach((phase) => {
+          counts[phase] = 0;
+        });
+        document.querySelectorAll(selector).forEach((card) => {
+          const titleText = card.querySelector('.screen-title')?.textContent || '';
+          const matched = progressPhases.find((phase) => titleText.includes(phase));
+          if (!matched) return;
+          counts[matched] += 1;
+          card.dataset.phase = matched;
+          card.dataset.phaseStep = counts[matched];
+        });
+        return counts;
+      };
+
+      const demoPhaseCounts = assignPhaseData('.panel-demo .frame-card');
+      const tryoutPhaseCounts = assignPhaseData('.panel-tryout .frame-card');
+
+      const demoProgressBar = document.querySelector('.demo-progress');
+      const tryoutProgressBar = document.querySelector('.tryout-progress');
+
+      const createPhaseState = () => {
+        const state = {};
+        progressPhases.forEach((phase) => {
+          state[phase] = 0;
+        });
+        return state;
+      };
+
+      const demoPhaseState = createPhaseState();
+      const tryoutPhaseState = createPhaseState();
+
+      const renderProgress = (barEl, state) => {
+        if (!barEl) return;
+        progressPhases.forEach((phase) => {
+          const segment = barEl.querySelector(`.progress-segment[data-phase="${phase}"] .segment-fill`);
+          if (!segment) return;
+          const amount = Math.min(state[phase] || 0, 1) * 100;
+          segment.style.width = `${amount}%`;
+        });
+      };
+
+      renderProgress(demoProgressBar, demoPhaseState);
+      renderProgress(tryoutProgressBar, tryoutPhaseState);
+
+      const tryoutPanel = document.querySelector('.panel-tryout');
+      const tryoutCards = tryoutPanel ? tryoutPanel.querySelectorAll('.tryout-card') : [];
+      const tryoutBackBtn = document.querySelector('.tryout-back');
+      let tryoutIndex = 0;
+      const updateTryoutProgress = () => {
+        if (!tryoutProgressBar || tryoutCards.length === 0) return;
+        const activeCard = tryoutCards[tryoutIndex];
+        if (!activeCard) return;
+        const phase = activeCard.dataset.phase;
+        if (!phase || !tryoutPhaseCounts[phase]) return;
+        const step = Number(activeCard.dataset.phaseStep) || 0;
+        const ratio = Math.min(step / tryoutPhaseCounts[phase], 1);
+        tryoutPhaseState[phase] = ratio;
+        renderProgress(tryoutProgressBar, tryoutPhaseState);
+      };
+      const showTryoutCard = (idx) => {
+        tryoutCards.forEach((card, i) => card.classList.toggle('active', i === idx));
+        if (tryoutBackBtn) {
+          tryoutBackBtn.disabled = idx === 0;
+        }
+        if (tryoutProgressBar) {
+          const activeCard = tryoutCards[idx];
+          const frameContent = activeCard?.querySelector('.frame-content');
+          if (frameContent) {
+            frameContent.prepend(tryoutProgressBar);
+          }
+        }
+        updateTryoutProgress();
+      };
+      const moveTryout = (delta) => {
+        const target = tryoutIndex + delta;
+        if (target < 0 || target >= tryoutCards.length) return;
+        tryoutIndex = target;
+        showTryoutCard(tryoutIndex);
+      };
+      if (tryoutCards.length > 0) {
+        showTryoutCard(0);
+        tryoutPanel.addEventListener('click', (event) => {
+          const button = event.target.closest('.tryout-form button');
+          if (!button) return;
+          event.preventDefault();
+          if (tryoutIndex < tryoutCards.length - 1) {
+            moveTryout(1);
+          } else {
+            button.textContent = '全部完成';
+            button.disabled = true;
+          }
+        });
+        if (tryoutBackBtn) {
+          tryoutBackBtn.addEventListener('click', () => moveTryout(-1));
+        }
+      }
+
+      const demoPhaseCards = document.querySelectorAll('.panel-demo .frame-card[data-phase]');
+      if (demoProgressBar && demoPhaseCards.length) {
+        const demoObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const card = entry.target;
+              const phase = card.dataset.phase;
+              if (!phase || !demoPhaseCounts[phase]) return;
+              const step = Number(card.dataset.phaseStep) || 0;
+              const ratio = Math.min(step / demoPhaseCounts[phase], 1);
+              if (ratio > demoPhaseState[phase]) {
+                demoPhaseState[phase] = ratio;
+                renderProgress(demoProgressBar, demoPhaseState);
+              }
+            });
+          },
+          { threshold: 0.6 }
+        );
+        demoPhaseCards.forEach((card) => demoObserver.observe(card));
+      }
+    </script>
+  </body>
+</html>
+
