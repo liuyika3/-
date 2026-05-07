@@ -4,6 +4,25 @@
 
 ---
 
+## 给 HR / 面试官：要不要克隆、用谁的 GitHub
+
+- **只想看作品集界面**：**不必**克隆、也**不必**登录你的 GitHub。让对方直接打开 **[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)** 即可（与仓库是否公开无关；若打不开，多半是 Pages 未开或 Actions 未跑完，见下文「在线作品集」一节）。
+- **仓库是「公开 Public」时**：对方可以用**自己的任意 GitHub 账号**或**不登录**，用 HTTPS 克隆，例如：  
+  `git clone https://github.com/liuyika3/-.git`  
+  克隆与拉代码**不需要**被你加为协作者，也**不需要**用你的账号。
+- **仓库是「私有 Private」时**：你必须在 GitHub 上把对方 **Invite** 进仓库（或用带权限的 Token），对方才能克隆。
+
+本地跑作品集前请安装 **Node.js 20 或 22（LTS）** 与 **npm**（随 Node 安装）。建议克隆到**带名字的文件夹**，避免仓库名 `-` 与 shell 的 `cd -`（返回上一目录）混淆：
+
+```bash
+git clone https://github.com/liuyika3/-.git liuyikai-dmoes
+cd liuyikai-dmoes/vibe-portfolio
+npm install
+npm run dev
+```
+
+---
+
 ## 怎么浏览（推荐）
 
 主入口是 **`vibe-portfolio/`** 里的 React 作品集：左侧选条目，右侧内嵌预览；也可在每项里用「新标签」全屏打开。
