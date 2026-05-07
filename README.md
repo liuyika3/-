@@ -4,9 +4,25 @@
 
 ---
 
+## 对外一般发哪个链接？
+
+**最常发、也最不会误会的是仓库主页**（点进去就是 README + 目录 + 文件）：
+
+**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)**
+
+这和「能不能在浏览器里直接跑起来」是两件 GitHub 自带能力：
+
+| 链接类型 | 地址形态 | 对方看到什么 |
+|----------|------------|----------------|
+| **仓库**（默认就发这个） | `https://github.com/<用户>/<仓库>` | 说明文档、代码树、Issues 等；**不自动运行**你的 React，但可按 README 本地 `npm run dev`。 |
+| **GitHub Pages**（可选） | `https://<用户>.github.io/<仓库名>/` | 把构建好的静态站挂出去，**像网站一样打开**；要在仓库里 **Settings → Pages** 打开并走 Actions，**没配好就会 404**，不是仓库坏了。 |
+
+---
+
 ## 给 HR / 面试官：要不要克隆、用谁的 GitHub
 
-- **只想看作品集界面**：**不必**克隆、也**不必**登录你的 GitHub。让对方直接打开 **[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)** 即可（与仓库是否公开无关；若打不开，多半是 Pages 未开或 Actions 未跑完，见下文「在线作品集」一节）。
+- **只想快速了解项目**：发上面的 **GitHub 仓库链接** 即可；对方在网页上就能读 README、看目录结构。
+- **想直接在浏览器里点作品集、不装 Node**：才需要 **GitHub Pages** 那类地址（见下节）；若仍是 404，多半是 **Pages 未启用** 或 **Actions 部署失败**，需要仓库管理员在 Settings 里检查。
 - **仓库是「公开 Public」时**：对方可以用**自己的任意 GitHub 账号**或**不登录**，用 HTTPS 克隆，例如：  
   `git clone https://github.com/liuyika3/-.git`  
   克隆与拉代码**不需要**被你加为协作者，也**不需要**用你的账号。
@@ -77,12 +93,13 @@ npm run dev
 
 ---
 
-## 在线作品集（发给别人的链接）
+## 在线作品集（GitHub Pages，可选）
 
-- **直接打开作品集页面（推荐）**：**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**  
-  由 `main` 分支推送后自动构建部署（GitHub Actions → GitHub Pages）。**首次使用前**，请在仓库 **Settings → Pages** 中把 **Build and deployment** 的 **Source** 设为 **GitHub Actions**，保存后等待 Actions 里 **Deploy portfolio to GitHub Pages** 跑绿即可访问。
+若已在仓库 **Settings → Pages** 把 **Source** 设为 **GitHub Actions**，且 **Actions** 里 **Deploy portfolio to GitHub Pages** 成功，则可通过静态站预览（无需克隆）：
 
-- **仓库与源码**：**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)**
+**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**
+
+若打开为 **404**：请到 **Settings → Pages** 确认已启用 **GitHub Actions** 部署，并打开 **Actions** 标签查看最近一次 workflow 是否失败（失败时站点不会发布）。**对外沟通仍以 `github.com/liuyika3/-` 为主链接即可**，Pages 当作「有则加分」的演示入口。
 
 ---
 
