@@ -71,7 +71,7 @@ npm run preview
 | **S** | 科学性 | 营养信息与识别能力，支撑「吃得明白」 | 食物预识别等（`减脂教练业务展示/modules/m4-pre-recognition.html`） |
 | **P** | 个性化 | 结合目标与偏好的解释与建议 | 食物评分与分析（`modules/m3-food-scoring.html`） |
 | **A** | 主动性 | 把长期行为拆成可完成的小任务 | 每日挑战与打卡（`modules/m2-daily-challenge.html`） |
-| **R** | 结果导向 | 把摄入与消耗讲成可感知的叙事 | 结果与动效示意（`modules/m1-food-burn.html`） |
+| **R** | 结果导向 | 把摄入与消耗讲成可感知的叙事 | **热量燃烧模块**（摄入/消耗与燃烧动效，`modules/m1-food-burn.html`） |
 | **E** | 可落地性（外食） | 在外食场景里仍能执行决策 | 外食体系物料（`modules/e-out-eating-system.html`） |
 
 副标题：**科学性 · 个性化 · 主动性 · 结果导向 · 可落地性**。子页内可返回总览。
