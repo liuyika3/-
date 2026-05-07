@@ -242,9 +242,12 @@ function embedDmoesPlugin() {
 
 const fsAllow = [DMOES_ROOT, ...(PRE_ROOT ? [PRE_ROOT] : [])]
 
+/** GitHub Pages 项目站路径为 /<repo>/，仓库名为 `-` 时为 `/-/` */
+const pagesBase = process.env.GITHUB_ACTIONS === 'true' ? '/-/' : './'
+
 export default defineConfig({
   plugins: [react(), tailwindcss(), embedDmoesPlugin()],
-  base: './',
+  base: pagesBase,
   server: {
     fs: { allow: fsAllow },
   },

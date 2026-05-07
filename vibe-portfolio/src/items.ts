@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 export type PortfolioCategory = 'tools' | 'product' | 'jovida' | 'science' | 'workflow'
 
 /** 作品集内嵌文件所在根：dmoes 仓库根 或 旁路的 pre 构建产物 */
@@ -225,6 +227,9 @@ export const ITEMS: PortfolioItem[] = [
 
 export function embedUrl(item: Pick<PortfolioItem, 'path' | 'embedRoot'>) {
   const encoded = item.path.split('/').map((s) => encodeURIComponent(s)).join('/')
-  if (item.embedRoot === 'pre') return `/__embed-pre/${encoded}`
-  return `/__embed/${encoded}`
+  const root = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`
+  if (item.embedRoot === 'pre') return `${root}__embed-pre/${encoded}`
+  return `${root}__embed/${encoded}`
 }

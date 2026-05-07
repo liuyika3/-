@@ -58,6 +58,15 @@ npm run dev
 
 ---
 
+## 在线作品集（发给别人的链接）
+
+- **直接打开作品集页面（推荐）**：**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**  
+  由 `main` 分支推送后自动构建部署（GitHub Actions → GitHub Pages）。**首次使用前**，请在仓库 **Settings → Pages** 中把 **Build and deployment** 的 **Source** 设为 **GitHub Actions**，保存后等待 Actions 里 **Deploy portfolio to GitHub Pages** 跑绿即可访问。
+
+- **仓库与源码**：**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)**
+
+---
+
 ## 作者
 
 **刘益恺** — 本仓库为个人作品集与实验归档，内容随项目迭代更新。
