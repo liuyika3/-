@@ -350,10 +350,10 @@
                     <h2>Vertex AI 配置 <span id="vertex-status" class="status-badge disconnected">未连接</span></h2>
                     <div class="config-section">
                         <h3>环境变量配置</h3>
-                        <input type="text" id="vertex-project" class="config-input" placeholder="GOOGLE_CLOUD_PROJECT" value="innertest-471009" onchange="saveVertexEnv()">
+                        <input type="text" id="vertex-project" class="config-input" placeholder="GOOGLE_CLOUD_PROJECT（示例：your-gcp-project-id）" value="" onchange="saveVertexEnv()">
                         <input type="text" id="vertex-location" class="config-input" placeholder="GOOGLE_CLOUD_LOCATION (如: us-central1)" value="global" onchange="saveVertexEnv()">
                         <input type="text" id="vertex-use-vertex" class="config-input" placeholder="GOOGLE_GENAI_USE_VERTEXAI" value="True" onchange="saveVertexEnv()">
-                        <input type="text" id="vertex-credentials" class="config-input" placeholder="GOOGLE_APPLICATION_CREDENTIALS (完整路径)" value="C:\Users\ZhuanZ（无密码）\Desktop\Google Vertex\vertex_ai_credentials.json" onchange="saveVertexEnv()">
+                        <input type="text" id="vertex-credentials" class="config-input" placeholder="GOOGLE_APPLICATION_CREDENTIALS（本机 JSON 路径，勿填他人路径）" value="" onchange="saveVertexEnv()">
                         <button class="btn btn-success" onclick="configureVertex()" id="connect-btn">连接 Vertex AI</button>
                         <button class="btn btn-secondary" onclick="checkVertexStatus()">检查状态</button>
                         <button class="btn btn-secondary" onclick="clearVertexEnv()" style="margin-top: 5px;">清除保存的配置</button>
@@ -902,10 +902,10 @@
 
         // 默认环境变量值
         const DEFAULT_VERTEX_ENV = {
-            GOOGLE_CLOUD_PROJECT: 'innertest-471009',
+            GOOGLE_CLOUD_PROJECT: '',
             GOOGLE_CLOUD_LOCATION: 'global',
             GOOGLE_GENAI_USE_VERTEXAI: 'True',
-            GOOGLE_APPLICATION_CREDENTIALS: 'C:\\Users\\ZhuanZ（无密码）\\Desktop\\Google Vertex\\vertex_ai_credentials.json'
+            GOOGLE_APPLICATION_CREDENTIALS: ''
         };
 
         // 从localStorage加载环境变量

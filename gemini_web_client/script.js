@@ -1555,10 +1555,10 @@ class GeminiWebClient {
                 const useVertexInput = document.getElementById('reconfig-use-vertex');
                 const credsInput = document.getElementById('reconfig-credentials');
                 
-                if (projectInput) projectInput.value = config.GOOGLE_CLOUD_PROJECT || 'innertest-471009';
+                if (projectInput) projectInput.value = config.GOOGLE_CLOUD_PROJECT || '';
                 if (locationInput) locationInput.value = config.GOOGLE_CLOUD_LOCATION || 'global';
                 if (useVertexInput) useVertexInput.value = config.GOOGLE_GENAI_USE_VERTEXAI || 'True';
-                if (credsInput) credsInput.value = config.GOOGLE_APPLICATION_CREDENTIALS || 'C:\\Users\\ZhuanZ（无密码）\\Desktop\\Google Vertex\\vertex_ai_credentials.json';
+                if (credsInput) credsInput.value = config.GOOGLE_APPLICATION_CREDENTIALS || '';
             }
         } catch (error) {
             console.error('加载配置失败:', error);

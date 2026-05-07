@@ -87,7 +87,7 @@ Real Food Picture: USA's taco bell's {food_name}
 
 ### API 配置
 - **模型**: `gemini-2.5-flash-image` (Nano Banana)
-- **项目 ID**: `innertest-471009`
+- **项目 ID**: 使用你自己的 GCP 项目 ID（勿将真实 ID 写入公开仓库）
 - **区域**: `us-central1`
 - **认证**: Service Account (`vertex_ai_credentials.json`)
 

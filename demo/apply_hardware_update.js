@@ -1,7 +1,10 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 
-const CLI_SCRIPT = 'C:\\\\Users\\\\2025lyk\\\\.npm-global\\\\node_modules\\\\@larksuite\\\\cli\\\\scripts\\\\run.js';
+const CLI_SCRIPT =
+  process.env.LARK_CLI_SCRIPT ||
+  path.join(process.env.USERPROFILE || process.env.HOME || '', '.npm-global', 'node_modules', '@larksuite', 'cli', 'scripts', 'run.js');
 const DOC_URL = 'https://hcnjo5oqfjlb.feishu.cn/wiki/FoiHwoDrJix1Wzkgf8EcQhGznZf?from=from_copylink';
 
 const intro = `万事嘴替。内置输入法功能，自然获取所有信息context。了解通讯录对象，发对应人设的话。骂死对头，高情商crush、导师、领导，直接表达爱to亲友。集中信息都app提升用户话术能力，分析社交处境，做日程管理。健康延展。app外手机内垃圾外卖自动拦截、晚睡拦截。app内食材/菜品一键下单。`;
@@ -39,7 +42,7 @@ const newTable = `
 `;
 
 const finalMd = intro + '\n\n' + newTable.trim() + '\n';
-fs.writeFileSync('C:\\\\Users\\\\2025lyk\\\\Desktop\\\\dmoes\\\\demo\\\\apply_hardware_update.js_temp.md', finalMd, 'utf8');
+fs.writeFileSync(path.join(__dirname, 'apply_hardware_update.js_temp.md'), finalMd, 'utf8');
 
 const result = execFileSync(
   'node',

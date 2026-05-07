@@ -279,7 +279,7 @@
                 <div class="form-group">
                     <label for="google-cloud-project">GOOGLE_CLOUD_PROJECT</label>
                     <input type="text" id="google-cloud-project" name="GOOGLE_CLOUD_PROJECT" 
-                           value="innertest-471009" required>
+                           value="" placeholder="你的 GCP 项目 ID" required>
                 </div>
                 
                 <div class="form-group">
@@ -346,7 +346,7 @@
                     const useVertexInput = document.getElementById('google-genai-use-vertexai');
                     const credsInput = document.getElementById('google-application-credentials');
                     
-                    if (projectInput) projectInput.value = config.GOOGLE_CLOUD_PROJECT || 'innertest-471009';
+                    if (projectInput) projectInput.value = config.GOOGLE_CLOUD_PROJECT || '';
                     if (locationInput) locationInput.value = config.GOOGLE_CLOUD_LOCATION || 'global';
                     if (useVertexInput) useVertexInput.value = config.GOOGLE_GENAI_USE_VERTEXAI || 'True';
                     if (credsInput) credsInput.value = config.GOOGLE_APPLICATION_CREDENTIALS || '';

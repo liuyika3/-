@@ -2,8 +2,10 @@
 
 ## 项目位置
 
+本仓库内路径：`mail-tool/`（与 `dmoes` 根目录相对）。
+
 ```
-C:\Users\2025lyk\Desktop\openclaw works\3001_Server_Project\mail-tool\
+mail-tool/
 ├── server.mjs     ← Node.js 后端（HTTP服务器 + lark-cli 调用）
 ├── index.html     ← 前端界面（单文件，无构建依赖）
 └── HANDOFF.md     ← 本文件
@@ -11,8 +13,10 @@ C:\Users\2025lyk\Desktop\openclaw works\3001_Server_Project\mail-tool\
 
 ## 启动方式
 
+在 `mail-tool/` 目录下：
+
 ```bash
-node "C:\Users\2025lyk\Desktop\openclaw works\3001_Server_Project\mail-tool\server.mjs"
+node server.mjs
 ```
 
 访问：启动后看控制台输出，形如 `Mail Tool running at http://localhost:3011`  

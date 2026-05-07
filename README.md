@@ -1,6 +1,8 @@
 # 刘益恺 · 个人作品集（dmoes）
 
-你好，这里是**刘益恺**的作品集仓库：个人开发的**自动化工具**、**产品功能 Demo**、**减脂教练（Jovida）业务与界面**、**社媒向科普物料**，以及部分**演讲与需求文档**，都集中在本仓库中。
+过去两年里，我在合作项目中负责或参与搭建、需要统一收口维护的一批**工具与自动化 Demo**、**社媒运营侧的可视化产出**，以及业务上由我**主导或深度参与设计的板块与体系**（尤其是减脂教练相关），都放在这个仓库里做集中展示，方便回顾与对外说明。
+
+本页下面的「从这里开始看」和「本地运行」写给**人**也写给**自动化 Agent**：按顺序执行即可在浏览器里打开作品集前端。
 
 ---
 
@@ -8,25 +10,21 @@
 
 | 你想做什么 | 怎么做 |
 |------------|--------|
-| **在网页上看说明和代码** | 打开仓库主页：**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)** — 本页 README 会显示在仓库首页，下方有目录与文件。 |
-| **在浏览器里直接点作品集（不装环境）** | 若仓库已开启 **GitHub Pages** 且部署成功，可尝试：**[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**。若显示 404，说明静态站尚未发布或最近一次构建失败，以仓库主页为准即可。 |
-| **在自己电脑上跑起来** | 见下一节「本地运行」。 |
+| **只看说明和代码** | 打开仓库：**[https://github.com/liuyika3/-](https://github.com/liuyika3/-)**（README 在首页，下面有目录与文件）。 |
+| **不装环境、在浏览器里点作品集** | 若已启用 **GitHub Pages** 且构建成功，可试 **[https://liuyika3.github.io/-/](https://liuyika3.github.io/-/)**；若 404，以本仓库主页为准。 |
+| **在自己电脑里交互预览** | 必须走下面「本地运行」四步（**人 / Agent 相同**）。 |
 
-**克隆仓库（公开仓库时）**：一般不需要仓库作者把你加成协作者；用 HTTPS 即可，例如：
-
-```bash
-git clone https://github.com/liuyika3/-.git liuyikai-dmoes
-```
-
-若仓库为**私有**，需由作者在 GitHub 上邀请你的账号后，你才能克隆或浏览。
+**克隆（公开仓）：** `git clone https://github.com/liuyika3/-.git liuyikai-dmoes`（目录名可自定；**不要**只用 `-` 作文件夹名，以免在终端里和 `cd -` 混淆。）私有仓需作者邀请你的 GitHub 账号。
 
 ---
 
-## 本地运行（作品集主程序）
+## 本地运行（人 / Agent 按此执行）
 
-主程序在 **`vibe-portfolio/`**：左侧选作品，右侧内嵌预览；也可在界面里用「新标签」全屏打开某一则。
+目标：启动 **作品集前端** `vibe-portfolio`，在浏览器里左侧选条目、右侧内嵌预览各 Demo。
 
-**环境要求：** **Node.js 20 或更高（推荐 22 LTS）**，并自带 **npm**。
+**前置：** 已安装 **Node.js ≥ 20**（推荐 **22 LTS**）与 **npm**。
+
+在终端中**从仓库根目录**执行（把 `liuyikai-dmoes` 换成你的克隆目录名）：
 
 ```bash
 cd liuyikai-dmoes/vibe-portfolio
@@ -34,9 +32,20 @@ npm install
 npm run dev
 ```
 
-在终端提示的本地地址（一般为 `http://localhost:5173`）用浏览器打开即可。
+成功后终端会打印本地 URL，一般为 **`http://localhost:5173`**，用浏览器打开即可。
 
-若要生产构建或 Docker，见 `vibe-portfolio/` 下的 `vite.config.ts` 与 `Dockerfile`。
+**可选（生产构建本地预览）：**
+
+```bash
+cd liuyikai-dmoes/vibe-portfolio
+npm ci
+npm run build
+npm run preview
+```
+
+再按终端提示打开（常见为 **`http://localhost:4173`**）。构建说明见 `vibe-portfolio/vite.config.ts`，容器见同目录 `Dockerfile`。
+
+**说明：** 个别子项目（如 Gmail 工具、Vertex 客户端）还需本机服务或自行填写密钥，与上述「作品集壳」无关；未配置时对应条目可能无法完整演示。
 
 ---
 
@@ -46,39 +55,35 @@ npm run dev
 |------|------|----------------|
 | **工具 · 自动化** | 浏览器内工具与自动化原型（部分需本机服务或自行配置密钥） | `gemini_web_client/`、`mail-tool-gmail/` 等 |
 | **产品 · Feature** | 功能与流程界面 Demo | `外食demo/`、`onboarding可视化demo/`、`万物教练api demos/` 等 |
-| **减脂教练业务** | SPARE 五维总览与各维度下的界面示意 | **`减脂教练业务展示/`**（说明见下节） |
+| **减脂教练业务** | SPARE 五维总览与各维度界面示意 | **`减脂教练业务展示/`**（见下节） |
 | **科普 · 社媒向产出** | 信息流/外跳适用的单页 HTML | `workflow-demos/popular-science-posts/` |
-| **方法论长页** | 方法论独立站点的构建产物（在作品集中为单独条目） | 见作品集内「Jovida Methodology（pre）」 |
-| **演讲与需求** | Word、PDF、Markdown 等 | 仓库根目录及子目录中的相关文件 |
-
-部分 Demo 依赖 OAuth、云端 API 或本地服务，**仅供演示**，不等同于线上正式产品；请勿在截图或录屏中泄露密钥。
+| **方法论长页** | 方法论独立站点构建产物（作品集中单独条目） | 「Jovida Methodology（pre）」 |
+| **演讲与需求** | Word、PDF、Markdown 等 | 根目录及子目录中相关文件 |
 
 ---
 
 ## 减脂教练业务：SPARE 五维
 
-在作品集里进入 **「减脂教练业务展示」** 后，会看到 **SPARE** 总览：**S / P / A / R / E 每个字母都可点击**，进入对应业务维度下的 **feature 界面示意**（静态页或长图）。各字母含义与入口如下（与 `减脂教练业务展示/index.html` 一致）。
+在作品集里进入 **「减脂教练业务展示」**，可见 **SPARE** 总览：**S / P / A / R / E 每个字母可点击**，进入该维度下的 **feature 界面示意**。
 
 | 字母 | 维度 | 含义（一句话） | 点进去看什么 |
 |:----:|------|----------------|--------------|
-| **S** | 科学性 | 营养信息与识别能力，支撑「吃得明白」 | 食物预识别等界面（`modules/m4-pre-recognition.html`） |
+| **S** | 科学性 | 营养信息与识别能力，支撑「吃得明白」 | 食物预识别等（`减脂教练业务展示/modules/m4-pre-recognition.html`） |
 | **P** | 个性化 | 结合目标与偏好的解释与建议 | 食物评分与分析（`modules/m3-food-scoring.html`） |
 | **A** | 主动性 | 把长期行为拆成可完成的小任务 | 每日挑战与打卡（`modules/m2-daily-challenge.html`） |
 | **R** | 结果导向 | 把摄入与消耗讲成可感知的叙事 | 结果与动效示意（`modules/m1-food-burn.html`） |
-| **E** | 可落地性（外食） | 在外食场景里仍能执行决策 | 外食体系界面物料（`modules/e-out-eating-system.html`） |
+| **E** | 可落地性（外食） | 在外食场景里仍能执行决策 | 外食体系物料（`modules/e-out-eating-system.html`） |
 
-总览副标题：**科学性 · 个性化 · 主动性 · 结果导向 · 可落地性**。子页内可返回 SPARE 总览。
+副标题：**科学性 · 个性化 · 主动性 · 结果导向 · 可落地性**。子页内可返回总览。
 
 ---
 
 ## 技术栈（作品集壳）
 
-**Vite 7、React 19、TypeScript、Tailwind CSS 4。** 开发时通过 Vite 挂载内嵌静态资源；执行 `npm run build` 时会把需在预览里用到的 Demo 文件一并打进 `dist/`，便于静态部署。
+**Vite 7、React 19、TypeScript、Tailwind CSS 4。** `npm run build` 会把内嵌预览所需的静态 Demo 打进 `vibe-portfolio/dist/`。
 
 ---
 
 ## 作者与使用说明
 
-**刘益恺** — 个人作品集与实验归档，内容会随项目更新。
-
-转载、商用或二次分发本仓库中的页面与素材前，请先取得作者同意。
+**刘益恺** — 个人作品集与实验归档，内容会随项目更新。转载、商用或二次分发页面与素材前，请先取得作者同意。
